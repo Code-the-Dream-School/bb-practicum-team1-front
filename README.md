@@ -2,7 +2,14 @@
 
 This will be the front-end for bb-practicum-team-1-back.
 
-These instructions are for the front-end teams after the back-end server is cloned and running.
+It is suggested that you run these instructions after you setup the back-end server first.
+You can go through these steps during your first group meeting in-case you need assistance from your mentors.
+
+You will have two folders in one folder (one for front-end and one for back-end). 
+
+![folders](images/folders.png)
+
+>The front-end app (React) will be running on port 3000. The back-end server will be running on port 8000. You will need to run both the front-end app and the back-end server at the same time to test your app.
 
 ### Setting up local development environment
 
