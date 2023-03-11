@@ -2,11 +2,11 @@
 
 This will be the front-end for bb-practicum-team-1-back.
 
-These instructions will be run for the front-end teams after the back-end server is running.
+These instructions are for the front-end teams after the back-end server is cloned and running.
 
 ### Setting up local development environment
 
-1. Clone this repository to the folder that was created for both the front-end and back-end repos
+1. Clone this repository to the folder that was already created for both the front-end and back-end repos
 2. Run `npm install` to install dependencies
 3. Pull the latest version of the `main` branch (when needed)
 4. Run `npm start` to start the development server
