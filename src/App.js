@@ -20,8 +20,6 @@ const [message, setMessage] = useState('');
 
   }, []);
 
-  console.log(message);
-
   return (
     <>
       <h1>{message}</h1>
