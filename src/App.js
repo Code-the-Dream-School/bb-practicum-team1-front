@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { getAllData } from './util/index';
+
+const URL = 'http://localhost:8000/api/v1/';
 
 function App() {
+
+const [message, setMessage] = useState(''); 
+
+  useEffect(() => {
+
+    (async () => {
+      const myData = await getAllData(URL)
+      setMessage(myData.data);
+    })();
+      
+    return () => {
+      console.log('unmounting');
+    }
+
+  }, []);
+
+  console.log(message);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>{message}</h1>
+    </>
   );
 }
 
