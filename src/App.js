@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllData } from './util/index';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 const URL = 'http://localhost:8000/api/v1/';
 
@@ -22,7 +24,10 @@ const [message, setMessage] = useState('');
 
   return (
     <>
+      <Header />
       <h1>{message}</h1>
+      
+      <Footer />
     </>
   );
 }
