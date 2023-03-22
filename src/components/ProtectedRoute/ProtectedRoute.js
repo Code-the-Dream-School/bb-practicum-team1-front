@@ -1,16 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ children, requiredAuthLevel }) => {
+const ProtectedRoute = ({ children, requiredAuthLevel = 'user' }) => {
     // Placeholder to actually check if user is authenticated
-    const useAuth = () => {
-        if (Math.random() > 0.5) {
-            return true;
-        }
-        return false;
-    };
-
-    const userAuthenticated = useAuth();
+    const [userAuthenticated, setUserAuthenticated] = useState(false);
 
     if (requiredAuthLevel === "user") {
         if (!userAuthenticated) {
@@ -20,7 +13,7 @@ const ProtectedRoute = ({ children, requiredAuthLevel }) => {
     };
 
     if (requiredAuthLevel === "anonymous") {
-        if (!userAuthenticated) {
+        if (userAuthenticated) {
             return <Navigate to="/login" />;
         }
         return <Navigate to="/" />;
