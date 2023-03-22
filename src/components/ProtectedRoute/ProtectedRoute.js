@@ -8,24 +8,23 @@ const ProtectedRoute = ({ children, requiredAuthLevel }) => {
             return true;
         }
         return false;
-    }
+    };
 
-    const user = useAuth();
+    const userAuthenticated = useAuth();
 
-    switch (requiredAuthLevel) {
-        case "user":
-            break;
-        case "anonymous":
+    if (requiredAuthLevel === "user") {
+        if (!userAuthenticated) {
             return <Navigate to="/login" />;
-        default:
-            return <Navigate to="/login" />;
-    }
+        }
+        return children;
+    };
 
-    if (!user) {
-        // User is not authenticated
-        return <Navigate to="/login" />;
-    }
-    return children;
+    if (requiredAuthLevel === "anonymous") {
+        if (!userAuthenticated) {
+            return <Navigate to="/login" />;
+        }
+        return <Navigate to="/" />;
+    };
 };
 
 export default ProtectedRoute;
