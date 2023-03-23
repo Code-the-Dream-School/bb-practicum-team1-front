@@ -5,9 +5,10 @@ const Ul = styled.ul`
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
+  margin-top: 0;
 
   li {
-    padding: 18px 5px;
+    padding: 28px 15px;
     font-size: 1.7rem;
   }
 
@@ -25,6 +26,7 @@ const Ul = styled.ul`
 
     li {
       color: #fff;
+      cursor: pointer;
     }
   }
 `;
@@ -33,8 +35,8 @@ const RightNav = ({ open }) => {
   return (
     <Ul open={open}>
         <li>Home</li>
-        <li>About Us</li>
-        <li>Contact Us</li>
+        <li>About</li>
+        <li>Contact</li>
         <li>Sign In</li>
         <li>Sign Up</li>
     </Ul>

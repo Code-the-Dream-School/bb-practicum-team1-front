@@ -1,7 +1,8 @@
 import React from 'react';
 import Burger from './Burger';
-import { forLoggedInUser, forSignedOutUser } from '../constants';
+import { forLoggedInUser, forSignedOutUser } from '../../constants';
 import './Header.css';
+import logo from './logo.png'
 
 // Header should always display even when scrolling and should be visible on every page.
 
@@ -11,8 +12,8 @@ const Header = () => {
         <>
             {/* Header should include a simple logo (just text is fine) */}
             <div className='header'>
-                <div className='Nav'>
-                    <div className='logo'>BookSwap</div>
+                <div className='nav'>
+                    <div className='logo'><img src={logo} alt="logo" /></div>
                     <Burger />
                 </div>
             </div>
