@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { getAllData } from "./util/index";
 
 
-const URL = "http://localhost:8000/api/v1/";
-
 function App() {
   const [, setMessage] = useState("");
 
@@ -37,6 +35,22 @@ function App() {
         </div>
       </form>
 </div>
+    <>
+      <h1>{message}</h1>
+      
+      <Routes>
+        <Route 
+          exact path="/" 
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route  path="/login" element={<LoginPage />} />
+      </Routes> 
+    </>
+
   );
 }
 
