@@ -1,4 +1,4 @@
-div {
+.burger {
     width: 2rem;
     height: 2rem;
     position: fixed;
@@ -16,7 +16,6 @@ div {
     .burger-layer {
         width: 2rem;
         height: 0.25rem;
-        // background-color: ${({ open }) => open ? '#ccc' : '#333'};
 
         .openClass {
             background-color: '#ccc';
@@ -31,9 +30,7 @@ div {
         transition: all 0.3s linear;
         cursor: pointer;
 
-        &:nth-child(1) {
-            // transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
-        
+        &:nth-child(1) {        
             .openClass {
                 transform: rotate(45deg);
             }
@@ -53,9 +50,6 @@ div {
                 transform: translateX(0%);
                 opacity: 1;
             }
-
-            // transform: ${({ open }) => open ? 'translateX(100%)' : 'translateX(0%)'};
-            // opacity: ${({ open }) => open ? 0 : 1};
         }
 
         &:nth-child(3) {
@@ -66,7 +60,6 @@ div {
             .closeClass {
                 transform: rotate(0);
             }
-            // transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
         }
     }
 }

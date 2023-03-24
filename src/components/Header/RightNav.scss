@@ -14,6 +14,13 @@ ul {
     background-color: black;
     position: fixed;
 
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 300px;
+    padding-top: 3.5rem;
+    transition: transform 0.3s ease-in-out;
+
     .openClass {
         transform: translateX(0);
         background-color: aqua;
@@ -25,14 +32,6 @@ ul {
         background-color: brown;
     }
 
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 300px;
-    padding-top: 3.5rem;
-    transition: transform 0.3s ease-in-out;
-
-    
 
     li {
       color: #fff;

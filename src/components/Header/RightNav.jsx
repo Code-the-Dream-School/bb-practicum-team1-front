@@ -39,7 +39,13 @@ const RightNav = ({ open }) => {
 
   return (
     <div className={`${open ? 'openClass' : 'closeClass'}`}>
-      
+      <ul open={open} className={`${open ? 'openClass' : 'closeClass'}`}>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+        <li>Sign In</li>
+        <li>Sign Up</li>
+      </ul>
       {/* map through the array with routes and route names and returning the correspondig page*/}
       {/* map through the array with an authenticated and unauthenticated user and returning the correspondig page*/}
 
@@ -57,13 +63,7 @@ const RightNav = ({ open }) => {
         })
       )}
         {/* Left this lines here for a visual effect because the ones above do not display anything yet */}
-          <ul open={open}>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li>Sign In</li>
-            <li>Sign Up</li>
-          </ul>
+          
     </div>
   )
 }
