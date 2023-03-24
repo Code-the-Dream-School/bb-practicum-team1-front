@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import RightNav from './RightNav';
+// import "./Burger.scss";
 
 const StyledBurger = styled.div`
     width: 2rem;
@@ -45,14 +46,14 @@ const Burger = () => {
     const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <div className={`${open ? 'openClass' : 'closeClass'}`}>
         <StyledBurger open={open} onClick={() => setOpen(!open)}>
             <div className='burger-layer'/>
             <div className='burger-layer'/>
             <div className='burger-layer'/>
         </StyledBurger>
         <RightNav open={open} />
-    </>
+    </div>
     
   )
 }

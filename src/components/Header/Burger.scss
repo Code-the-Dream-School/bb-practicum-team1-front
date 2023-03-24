@@ -1,0 +1,72 @@
+div {
+    width: 2rem;
+    height: 2rem;
+    position: fixed;
+    top: 25px;
+    right: 20px;
+    
+    z-index: 20;
+    display: none;
+
+    @media (max-width: 768px) {
+        display: flex;
+        justify-content: space-around;
+        flex-flow: column nowrap;}
+
+    .burger-layer {
+        width: 2rem;
+        height: 0.25rem;
+        // background-color: ${({ open }) => open ? '#ccc' : '#333'};
+
+        .openClass {
+            background-color: '#ccc';
+        }
+    
+        .closeClass {
+            background-color: '#333';
+        }
+
+        border-radius: 10px;
+        transform-origin: 1px;
+        transition: all 0.3s linear;
+        cursor: pointer;
+
+        &:nth-child(1) {
+            // transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
+        
+            .openClass {
+                transform: rotate(45deg);
+            }
+        
+            .closeClass {
+                transform: rotate(0);
+            }
+        }
+
+        &:nth-child(2) {
+            .openClass {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        
+            .closeClass {
+                transform: translateX(0%);
+                opacity: 1;
+            }
+
+            // transform: ${({ open }) => open ? 'translateX(100%)' : 'translateX(0%)'};
+            // opacity: ${({ open }) => open ? 0 : 1};
+        }
+
+        &:nth-child(3) {
+            .openClass {
+                transform: rotate(-45deg);
+            }
+        
+            .closeClass {
+                transform: rotate(0);
+            }
+            // transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
+        }
+    }
+}
