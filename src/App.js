@@ -18,13 +18,6 @@ function App() {
     };
   }, []);
 
-  const [userName, setUserName] = useState({
-    userName: " "
-  });
-  const [password, setPassword] = useState({
-    password: " "
-  });
-
   return (
     <div>
       <form >
@@ -32,15 +25,11 @@ function App() {
         <h1>Log in</h1>
         <label>
           <p> User Name: </p>
-          <input
-            type="text"
-            onChange={(e) => setUserName(e.target.value)}
-            name="userName"
-          />
+          <input/>
         </label>
         <label>
           <p> Password</p>
-          <input onChange={(e) => setPassword(e.target.value)} name="password" type="password"/>
+          <input/>
           <br />
         </label>
         <div>
