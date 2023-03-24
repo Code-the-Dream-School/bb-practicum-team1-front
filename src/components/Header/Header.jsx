@@ -1,6 +1,5 @@
 import React from 'react';
 import Burger from './Burger';
-import { forLoggedInUser, forSignedOutUser } from '../../constants';
 import './Header.css';
 import logo from './logo.png'
 
@@ -17,20 +16,6 @@ const Header = () => {
                     <Burger />
                 </div>
             </div>
-
-            {/* map through the array with routes and route names and returning the correspondig page*/}
-            {forLoggedInUser.map(function(user) {
-                // return (
-                //     <Home />
-                // )
-            })}
-
-            {/* map through the array with an authenticated and unauthenticated user and returning the correspondig page*/}
-             {forSignedOutUser.map(function(user) {
-                // return (
-                //     <Login />
-                // )
-            })}
         </>
     )
 }
