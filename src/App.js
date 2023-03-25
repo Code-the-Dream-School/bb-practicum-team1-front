@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { getAllData } from "./util/index";
+import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { getAllData } from './util/index';
+import { HomePage } from './components/HomePage/HomePage';
+import { LoginPage } from './components/LoginPage/LoginPage';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import {setCookie, getCookie, deleteCookie} from './util/Authentication';
 
 
 function App() {
-  const [, setMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -20,7 +25,7 @@ function App() {
     <div>
       <form >
   
-        <h1>Log in</h1>
+        <h1>{message}</h1>
         <label>
           <p> User Name: </p>
           <input/>

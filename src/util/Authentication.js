@@ -22,17 +22,4 @@ function deleteCookie(cName){
     setCookie(cName, null, null)
 }
 
-function checkCookie() {
-  let user = getCookie("username");
-  if (user !== ""){
-    alert ("Welcome back!" + user);
-  } else {
-    user = prompt("Please enter your username", " ");
-    if(user !== "" && user != null){
-      setCookie("username", user, 365);
-    }
-  }
-  
-}
-
 
