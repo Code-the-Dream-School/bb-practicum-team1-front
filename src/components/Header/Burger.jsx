@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import styled from 'styled-components';
 import RightNav from './RightNav';
-import "./Burger.scss";
+import "./_Burger.scss";
 
 // const StyledBurger = styled.div`
 //     width: 2rem;
@@ -43,18 +43,22 @@ import "./Burger.scss";
 // ` 
 
 const Burger = () => {
-    const [open, setOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <div className='burger'>
-        <div open={open} onClick={() => setOpen(!open)} className={`${open ? 'openClass' : 'closeClass'}`}>
-            <div className='burger-layer'/>
-            <div className='burger-layer'/>
-            <div className='burger-layer'/>
+    return (
+        <div className='burger'>
+            <div className={`${isOpen ? 'openClassBurger' : 'closeClassBurger'}`} open={isOpen} onClick={() => setIsOpen(!isOpen)} >
+                <div/>
+                <div/>
+                <div/>
+                <h3>test</h3>
+                <h3>test</h3>
+                <h3>test</h3>
+            </div>
+           
+            <RightNav open={isOpen} />
         </div>
-        <RightNav open={open} className={`${open ? 'openClass' : 'closeClass'}`}/>
-    </div>
-  )
+    )
 }
 
-export default Burger
+export default Burger;

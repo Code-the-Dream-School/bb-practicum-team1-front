@@ -1,0 +1,114 @@
+.nav-list ul { 
+    @media (max-width: 768px) {
+        .openClassR {
+            transform: translateX(100%);
+            background-color: aqua;
+            
+        }
+        
+        .closeClassR {
+            transform: translateX(0);
+            list-style: none;
+            background-color: brown;
+        }}
+
+    list-style: none;
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 0;
+ 
+
+.nav-list ul li {
+    padding: 28px 15px;
+    font-size: 1.7rem;
+}
+
+@media (max-width: 768px) {
+    .nav-list ul {
+        flex-flow: column nowrap;
+        background-color: black;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 300px;
+        padding-top: 3.5rem;
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    // .openClassR {
+    //     transform: translateX(100%);
+    //     background-color: aqua;
+        
+    // }
+    
+    // .closeClassR {
+    //     transform: translateX(0);
+    //     list-style: none;
+    //     background-color: brown;
+    // }
+
+    li {
+    color: #fff;
+    cursor: pointer;
+    }
+}
+ }
+
+
+// .nav-list {
+//     @media (max-width: 768px) {
+        
+//       .openClass {
+//         transform: translateX(0);
+//         background-color: aqua;
+        
+//       }
+    
+//       .closeClass {
+//         transform: translateX(100%);
+//         background-color: brown;
+//       }
+//     }
+//   }
+
+// ul {
+//   list-style: none;
+//   display: flex;
+//   flex-flow: row nowrap;
+//   margin-top: 0;
+
+//   li {
+//     padding: 28px 15px;
+//     font-size: 1.7rem;
+//   }
+
+//   @media (max-width: 768px) {
+//     flex-flow: column nowrap;
+//     background-color: black;
+//     position: fixed;
+
+//     .openClass {
+//         transform: translateX(0);
+//         background-color: aqua;
+        
+//       }
+    
+//       .closeClass {
+//         transform: translateX(100%);
+//         background-color: brown;
+//       }
+
+//     top: 0;
+//     right: 0;
+//     height: 100vh;
+//     width: 300px;
+//     padding-top: 3.5rem;
+//     transition: transform 0.3s ease-in-out;
+
+//     li {
+//       color: #fff;
+//       cursor: pointer;
+//     }
+//   }
+// }

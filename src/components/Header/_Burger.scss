@@ -1,4 +1,4 @@
-.burger {
+.burger div {
     width: 2rem;
     height: 2rem;
     position: fixed;
@@ -9,19 +9,23 @@
     display: none;
 
     @media (max-width: 768px) {
-        display: flex;
-        justify-content: space-around;
-        flex-flow: column nowrap;}
+        .burger {
+            display: flex;
+            justify-content: space-around;
+            flex-flow: column nowrap;
+        }
+    }
 
-    .burger-layer {
+    div {
         width: 2rem;
         height: 0.25rem;
+        background-color: red;
 
-        .openClass {
+        .openClassBurger {
             background-color: '#ccc';
         }
     
-        .closeClass {
+        .closeClassBurger {
             background-color: '#333';
         }
 
@@ -31,33 +35,33 @@
         cursor: pointer;
 
         &:nth-child(1) {        
-            .openClass {
+            .openClassBurger {
                 transform: rotate(45deg);
             }
         
-            .closeClass {
+            .closeClassBurger {
                 transform: rotate(0);
             }
         }
 
         &:nth-child(2) {
-            .openClass {
+            .openClassBurger {
                 transform: translateX(100%);
                 opacity: 0;
             }
         
-            .closeClass {
-                transform: translateX(0%);
+            .closeClassBurger {
+                transform: translateX(0);
                 opacity: 1;
             }
         }
 
         &:nth-child(3) {
-            .openClass {
+            .openClassBurger {
                 transform: rotate(-45deg);
             }
         
-            .closeClass {
+            .closeClassBurger {
                 transform: rotate(0);
             }
         }

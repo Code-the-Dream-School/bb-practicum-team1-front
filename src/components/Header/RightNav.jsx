@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { forLoggedInUser, forSignedOutUser } from '../../constants';
-import "./RightNav.scss";
+import "./_RightNav.scss";
 // import styled from 'styled-components';
 
 // const Ul = styled.ul`
@@ -38,8 +38,8 @@ const RightNav = ({ open }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <div className={`${open ? 'openClass' : 'closeClass'}`}>
-      <ul open={open} className={`${open ? 'openClass' : 'closeClass'}`}>
+    <div className='nav-list'>
+      <ul open={open} className={`${open ? 'openClassR' : 'closeClassR'}`} >
         <li>Home</li>
         <li>About</li>
         <li>Contact</li>
