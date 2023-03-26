@@ -4,6 +4,7 @@ import { getAllData } from './util/index';
 import { HomePage } from './components/HomePage/HomePage';
 import { LoginPage } from './components/LoginPage/LoginPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import './sass/app.scss';
 
 const URL = 'http://localhost:8000/api/v1/';
 
