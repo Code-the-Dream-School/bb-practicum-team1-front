@@ -1,13 +1,18 @@
 import React, { useState, useEffect, createContext } from "react";
 import TextInput from "./components/inputs/TextInput";
+import { Routes, Route } from 'react-router-dom';
 import { getAllData } from "./util/index";
 import Dropdowninput from "./components/inputs/DropdownInput";
-
+import { HomePage } from './components/HomePage/HomePage';
+import { LoginPage } from './components/LoginPage/LoginPage';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import './sass/app.scss';
 export const inputContext = createContext({});
+
 
 const URL = "http://localhost:8000/api/v1/";
 
-function App() {
+const App = () => {
   const [message, setMessage] = useState("");
   const [inputs, setInputs] = useState({});
 
@@ -58,6 +63,18 @@ function App() {
           options={options}
         />
       </inputContext.Provider>
+      
+      <Routes>
+        <Route 
+          exact path="/" 
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route  path="/login" element={<LoginPage />} />
+      </Routes> 
     </>
   );
 }
