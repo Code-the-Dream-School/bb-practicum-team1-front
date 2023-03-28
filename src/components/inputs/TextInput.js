@@ -1,14 +1,9 @@
-// - Should have state tied to react context
-// - Should take in an id that determines what key it will be stored under in the context object
-// - Should have a value for textarea set to false by default
 import { useContext } from "react";
 import { inputContext } from "../../App";
 import "./inputStyles.css";
 
 const TextInput = ({ type, placeholder, label, id, textarea }) => {
   const { inputs, handleInputChange } = useContext(inputContext);
-
-  console.log("INPUTS FROM TextInput.js", inputs);
 
   return (
     <>
@@ -24,7 +19,6 @@ const TextInput = ({ type, placeholder, label, id, textarea }) => {
             id={id}
             name={id}
           />
-          {/* <p>place for errors</p> */}
         </label>
       ) : (
         <label className="text-input-label" htmlFor={id}>
@@ -38,7 +32,6 @@ const TextInput = ({ type, placeholder, label, id, textarea }) => {
             id={id}
             name={id}
           />
-          {/* <p>place for errors</p> */}
         </label>
       )}
     </>

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import TextInput from "./components/inputs/TextInput";
 import { getAllData } from "./util/index";
-import { createContext } from "react";
-import DropdownTest from "./components/inputs/DropdownTest";
+import Dropdowninput from "./components/inputs/DropdownInput";
 
 export const inputContext = createContext({});
 
@@ -53,9 +52,9 @@ function App() {
           placeholder="Enter text here"
           textarea={true}
         />
-        <DropdownTest
-          label="Test Dropdown"
-          id="testDropdown"
+        <Dropdowninput
+          label="Dropdown Menu"
+          id="DropdownMenu"
           options={options}
         />
       </inputContext.Provider>
