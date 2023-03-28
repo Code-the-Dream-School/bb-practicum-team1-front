@@ -4,7 +4,7 @@ export const fetchAPIData = async (url, method, body, headers) => {
         method,
         body: JSON.stringify(body),
         Headers: {
-            Authorization: 'Bearer ${token}',
+            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
             ...headers,
         },
