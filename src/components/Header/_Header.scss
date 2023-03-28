@@ -36,13 +36,13 @@
   cursor: pointer;
   border-radius: 50%;
   transition: 0.3s ease;
-  padding: 2.4em;
+  padding: 1.8em;
   margin-right: 40px;
   display: none;
 }
 
 .hamBox:hover {
-  background: grey;
+  background: #EAF4F4;
 }
 
 .hamBoxOpen {
@@ -56,7 +56,7 @@
   width: 2.4rem;
   height: 4px;
   border-radius: 10px;
-  background: brown;
+  background: #364958;
   left: 0;
   right: 0;
   transform: rotate(0deg);
@@ -64,23 +64,23 @@
 }
 
 .lineTop {
-  top: 2.2em;
+  top: 1.6em;
   z-index: 4;
 }
 
 .lineBottom {
-  bottom: 2.2em;
+  bottom: 1.6em;
   z-index: 4;
 }
 
 .lineTop.spin {
-  top: 2.45em;
+  top: 2.30em;
   transform: rotate(135deg);
   background: #fff;
 }
 
 .lineBottom.spin {
-  bottom: 2.35em;
+  bottom: 1.30em;
   transform: rotate(225deg);
   background: #fff;
 }
