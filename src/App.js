@@ -25,8 +25,7 @@ const [message, setMessage] = useState('');
   return (
     <>
       <Header />
-      <h1>{message}</h1>
-      
+            
       <Footer />
     </>
   );

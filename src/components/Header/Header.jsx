@@ -1,23 +1,30 @@
-import React from 'react';
-import Burger from './Burger';
-import './Header.css';
+import React, { useState } from 'react';
+import './_Header.scss';
 import logo from './logo.png'
+import RightNav from './RightNav';
 
 // Header should always display even when scrolling and should be visible on every page.
 
 const Header = () => {
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <>
-            {/* Header should include a simple logo (just text is fine) */}
-            <div className='header'>
-                <div className='nav'>
-                    <div className='logo'><img src={logo} alt="logo" /></div>
-                    <Burger />
+        <div className='nav'>
+            <div className='nav-container'>
+                <div className='navbar'>
+                    <div className='logo-pic'><img src={logo} alt="logo" /></div>
+                    <div className='menu-toggle' onClick={() => setIsOpen(!isOpen)}>
+                        <div className={isOpen ? 'hamBox hamBoxOpen' : 'hamBox'}>
+                            <span className={isOpen ? 'lineTop spin' : 'lineTop'}></span>
+                            <span className={isOpen ? 'lineBottom spin' : 'lineBottom'}></span>                        
+                        </div>
+                        <RightNav open={isOpen} />
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
+
 
 export default Header;

@@ -1,6 +1,5 @@
 import React from 'react';
-import './Footer.css';
-import styled from 'styled-components';
+import './_Footer.scss';
 
 // Footer should include a copyright logo. If desktop or mobile only should include a disclaimer that it was designed as such. 
 // Should be visible on every page
@@ -19,14 +18,7 @@ const Footer = () => {
                 <a href="https://github.com/cecerodrgz"><img src="https://ca.slack-edge.com/T07EHJ738-U02V69WEB98-81e1d9faa462-512" alt="Cecilia"/></a>
                 <a href="https://github.com/SimonjShurety"><img src="https://avatars.githubusercontent.com/u/102368650?v=4" alt="Simon"/></a>
                 <a href="https://github.com/koral14"><img src="https://avatars.githubusercontent.com/u/105457134?v=4" alt="Olga"/></a>
-                
             </div>
-          
-                <p className='disclaimer-desktop'>Desktop Only</p>
-            
-                <p className='disclaimer-mobile'>Mobile Only</p>
-
-            
         </div>
     )
 }

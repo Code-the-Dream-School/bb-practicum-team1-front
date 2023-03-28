@@ -1,0 +1,39 @@
+@media (max-width: 768px) {
+    .openClass {
+        transform: translateX(0);
+    }
+
+    .closeClass {
+        transform: translateX(100%);
+    }
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: 0;
+        
+  li {
+    padding: 28px 15px;
+    font-size: 1.7rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    background-color:gray;
+    position: fixed;
+    transform: translateX(0);
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 300px;
+    padding-top: 3.5rem;
+    transition: transform 0.3s ease-in-out;
+
+    li {
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}
