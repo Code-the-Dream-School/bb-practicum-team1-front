@@ -8,15 +8,31 @@
     }
 }
 
+a {
+  text-decoration: none;
+  font-size: 2rem;
+  margin-right: 10px;
+  color:#3f586b;
+}
+
 ul {
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
   margin-top: 0;
-        
+ 
   li {
     padding: 28px 15px;
     font-size: 1.7rem;
+  }
+
+  a li {
+    margin-top: 20px;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: rgb(211, 192, 255);
   }
 
   @media (max-width: 768px) {
@@ -30,10 +46,23 @@ ul {
     width: 300px;
     padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
+    padding-top: 110px;
 
     li {
-      color: #fff;
       cursor: pointer;
+      margin-top: 30px; 
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 2.2rem;
+    }
+
+    a:hover {
+      background-color: #3f586b;
+      padding: 20px;
+      
     }
   }
 }

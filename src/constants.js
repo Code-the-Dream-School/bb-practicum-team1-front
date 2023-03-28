@@ -7,6 +7,14 @@ export const forLoggedInUser = [
         name: 'My Profile', 
         route: '/my-profile'
     },
+    {
+        name: 'About', 
+        route: '/about'
+    },
+    {
+        name: 'Contact', 
+        route: '/contact'
+    }
 ];
 
 export const forSignedOutUser = [
@@ -18,4 +26,12 @@ export const forSignedOutUser = [
         name: 'Login', 
         route: '/login'
     },
+    {
+        name: 'About', 
+        route: '/about'
+    },
+    {
+        name: 'Contact', 
+        route: '/contact'
+    }
 ];

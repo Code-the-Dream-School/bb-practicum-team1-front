@@ -43,6 +43,7 @@
 
 .hamBox:hover {
   background: #EAF4F4;
+  z-index: 5;
 }
 
 .hamBoxOpen {
@@ -74,13 +75,13 @@
 }
 
 .lineTop.spin {
-  top: 2.30em;
+  top: 1.90em;
   transform: rotate(135deg);
   background: #fff;
 }
 
 .lineBottom.spin {
-  bottom: 1.30em;
+  bottom: 1.70em;
   transform: rotate(225deg);
   background: #fff;
 }
