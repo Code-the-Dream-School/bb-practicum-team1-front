@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getAllData } from './util/index';
-import { HomePage } from './components/HomePage/HomePage';
+import HomePage from './components/HomePage/HomePage';
 import { LoginPage } from './components/LoginPage/LoginPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import './sass/app.scss';
@@ -12,18 +12,18 @@ const App = () => {
 
 const [message, setMessage] = useState(''); 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    (async () => {
-      const myData = await getAllData(URL)
-      setMessage(myData.data);
-    })();
+  //   (async () => {
+  //     const myData = await getAllData(URL)
+  //     setMessage(myData.data);
+  //   })();
       
-    return () => {
-      console.log('unmounting');
-    }
+  //   return () => {
+  //     console.log('unmounting');
+  //   }
 
-  }, []);
+  // }, []);
 
   return (
     <>
@@ -33,9 +33,9 @@ const [message, setMessage] = useState('');
         <Route 
           exact path="/" 
           element={
-            <ProtectedRoute>
+//            <ProtectedRoute>
               <HomePage />
-            </ProtectedRoute>
+ //           </ProtectedRoute>
           } 
         />
         <Route  path="/login" element={<LoginPage />} />

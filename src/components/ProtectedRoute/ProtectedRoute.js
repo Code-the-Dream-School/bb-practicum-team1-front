@@ -13,7 +13,7 @@ const ProtectedRoute = ({ children, requiredAuthLevel = 'user' }) => {
     };
 
     if (requiredAuthLevel === "anonymous") {
-        return <Navigate to="/" />;
+        return <Navigate to="/home" />;
     };
 };
 
