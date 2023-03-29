@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getAllData } from './util/index';
 import { HomePage } from './components/HomePage/HomePage';
-import { LoginPage } from './components/LoginPage/LoginPage';
+import LoginPage from './components/LoginPage/LoginPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 const URL = 'http://localhost:8000/api/v1/';
