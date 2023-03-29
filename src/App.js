@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer';
 import { HomePage } from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import {setCookie, getCookie, deleteCookie} from './util/Authentication';
 import './sass/app.scss'
 export const InputContext = createContext({})
 
@@ -34,6 +35,7 @@ const App = () => {
           console.log('unmounting')
       }
   }, [])
+
 
   return (
     <>
@@ -85,6 +87,7 @@ const App = () => {
       </InputContext.Provider>  
       <Footer />
     </>
+
   );
 }
 
