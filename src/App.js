@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { getAllData } from './util/index';
 import { HomePage } from './components/HomePage/HomePage';
 import { LoginPage } from './components/LoginPage/LoginPage';
+import CreateBook from './components/CreateBook/CreateBook';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import './sass/app.scss';
 
@@ -38,7 +39,14 @@ const [message, setMessage] = useState('');
             </ProtectedRoute>
           } 
         />
-        <Route  path="/login" element={<LoginPage />} />
+        <Route  
+          path="/login" 
+          element={<LoginPage />} 
+        />
+        <Route  
+          path="/createBook" 
+          element={<CreateBook />} 
+        />
       </Routes> 
     </>
   );
