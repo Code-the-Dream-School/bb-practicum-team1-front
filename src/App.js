@@ -1,9 +1,9 @@
-import React, { useState, useEffect, createContext } from 'react'
-import { getAllData } from './util/index'
-import { LoginPage } from './components/LoginPage/LoginPage'
-import { Routes, Route } from 'react-router-dom'
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import { HomePage } from './components/HomePage/HomePage'
+import React, { useState, useEffect, createContext } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { getAllData } from './util/index';
+import { HomePage } from './components/HomePage/HomePage';
+import LoginPage from './components/LoginPage/LoginPage';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import './sass/app.scss'
 export const InputContext = createContext({})
 
