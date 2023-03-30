@@ -1,17 +1,17 @@
 import React from 'react';
+import styles from './_BookItem.scss';
 
 const BookItem = ({ item }) => {
     return (
-        <li>
-            {item.title},
-            {item.language},
-            {item.ageRange},
-            {item.publishingYear},
-            {item.status},
-            {item.image},
-            {item.description},
-            {item.genre},
-            {item.author}
+        <li className='book-item'>
+            <div>{item.title}</div>
+            <div>{item.language}</div>
+            <div>{item.ageRange}</div>
+            <div>{item.publishingYear}</div>
+            <div>{item.status}</div>
+            <div>{item.image}</div>
+            <div>{item.description}</div>
+            <div>{item.genre}</div>
         </li>
     );
 };
