@@ -1,0 +1,38 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 85px;
+    background-color: azure;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    
+}
+
+a {
+    padding-right: 5px;
+    width: 200px;
+}
+
+a img {
+    width: 30px;
+}
+    
+.copyright {
+    margin-top: 50px;
+    font-family: 'Lucida Sans';
+}
+.git-links {
+    text-align: right;
+    margin-right: 25px;
+    font-family: 'Lucida Sans';
+}
+
+@media (max-width: 768px) {
+    a img {
+        width: 20px;
+    }
+}
