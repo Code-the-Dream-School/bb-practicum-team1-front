@@ -1,8 +1,47 @@
-.label {
-    color: #393F3F;
-    padding: 20px;
+form {
+    margin-left: 2rem;
+    margin-bottom: 7rem;
 }
 
-.inputTitle {
+h1 {
+    color: #F2F2F2;
+    ;
+    font-size: 2rem;
+    text-align: center;
+    padding: 10px;
+    background-color: #55828B;
+}
+
+.text-input-label {
+    // color: $primaryColor;
+    color: #393F3F;
+    font-family: Arial;
+    // font-family: $fontPrimary;
+}
+
+.dropdown-select, option {
+    color: #393F3F;
+    font-family: cursive;
+    text-align:left;
+}
+
+.text-input {
+    font-size: 1.2rem;
+
+}
+
+.textarea-input {
+    height: 7rem;
+    width: 70%;
+    font-size: 1.2rem;
+}
+
+.addButton {
     margin-top: 20px;
+    border-radius: 10%;
+    background-color: #55828B;
+}
+
+.addButton:hover {
+    background-color: #77b0bb;
 }

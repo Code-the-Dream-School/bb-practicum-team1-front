@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './_Header.scss';
-import logo from './logo.png'
+import logo from './logo.png';
+// import logo from '../../../images/logo'
 import RightNav from './RightNav';
 
 // Header should always display even when scrolling and should be visible on every page.

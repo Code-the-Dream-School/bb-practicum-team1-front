@@ -24,6 +24,8 @@ a img {
 .copyright {
     margin-top: 50px;
     font-family: 'Lucida Sans';
+    margin-left: 10px;
+    color: #55828B;
 }
 .git-links {
     text-align: right;
@@ -31,8 +33,17 @@ a img {
     font-family: 'Lucida Sans';
 }
 
+.git-links p {
+    padding-top: 10px;
+    color: #55828B;
+}
+
+.git-links img {
+    padding-top: 10px;
+}
+
 @media (max-width: 768px) {
     a img {
-        width: 20px;
+        padding-top: 10px;
     }
 }

@@ -4,7 +4,7 @@ import { getAllData } from './util/index';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { HomePage } from './components/HomePage/HomePage';
-import { LoginPage } from './components/LoginPage/LoginPage';
+import LoginPage from './components/LoginPage/LoginPage';
 import CreateBook from './components/CreateBook/CreateBook';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import './sass/app.scss'
@@ -91,6 +91,10 @@ const App = () => {
             path="/login" 
             element={<LoginPage />} 
           />
+          <Route  
+          path="/createBook" 
+          element={<CreateBook />} 
+        />
       </Routes> 
       </InputContext.Provider>  
       <Footer />
