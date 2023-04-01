@@ -1,5 +1,5 @@
 export const fetchAPIData = async (url, method, body, headers) => {
-    const token = getCookie(" ")
+    const token = getCookie("shelf-share-session")
     const data = await fetch(url, {
         method,
         body: JSON.stringify(body),
@@ -9,6 +9,7 @@ export const fetchAPIData = async (url, method, body, headers) => {
             ...headers,
         },
     })
+    console.log('data', data)
     const response = await data.json();
     return response; 
 }
