@@ -1,22 +1,23 @@
-import React, { useState, useEffect, createContext } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { getAllData } from './util/index';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import { HomePage } from './components/HomePage/HomePage';
-import LoginPage from './components/LoginPage/LoginPage';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import {setCookie, getCookie, deleteCookie} from './util/Authentication';
+import React, { useState, useEffect, createContext } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { getAllData } from './util/index'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+import { HomePage } from './components/HomePage/HomePage'
+import { LoginPage } from './components/LoginPage/LoginPage'
+import { SignUp } from './components/SignUpPage/SignUp'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import { setCookie, getCookie, deleteCookie } from './util/Authentication'
 import './sass/app.scss'
 export const InputContext = createContext({})
 
 const URL = 'http://localhost:8000/api/v1/'
 
 const App = () => {
-  const [message, setMessage] = useState('')
-  const [inputs, setInputs] = useState({})
+    const [message, setMessage] = useState('')
+    const [inputs, setInputs] = useState({})
 
-  /* EXAMPLE: DropdownInput selection options
+    /* EXAMPLE: DropdownInput selection options
   
   const options = [
       { value: 'chocolate', label: 'Chocolate' },
@@ -25,29 +26,28 @@ const App = () => {
   ]
   */
 
-  useEffect(() => {
-      ;(async () => {
-          const myData = await getAllData(URL)
-          setMessage(myData.data)
-      })()
+    useEffect(() => {
+        ;(async () => {
+            const myData = await getAllData(URL)
+            setMessage(myData.data)
+        })()
 
-      return () => {
-          console.log('unmounting')
-      }
-  }, [])
+        return () => {
+            console.log('unmounting')
+        }
+    }, [])
 
-
-  return (
-    <>
-      <Header />
-      <InputContext.Provider
-        value={{
-            inputs,
-            handleInputChange: (inputName, inputValue) =>
-                setInputs({ ...inputs, [inputName]: inputValue }),
-        }}
-      >
-        {/* EXAMPLE: How to add TextInput and DropdownInput
+    return (
+        <>
+            <Header />
+            <InputContext.Provider
+                value={{
+                    inputs,
+                    handleInputChange: (inputName, inputValue) =>
+                        setInputs({ ...inputs, [inputName]: inputValue }),
+                }}
+            >
+                {/* EXAMPLE: How to add TextInput and DropdownInput
         
         <TextInput
             label="Text Input"
@@ -69,26 +69,32 @@ const App = () => {
             options={options}
         /> */}
 
-        <Routes>
-          <Route 
-            exact 
-            path="/" 
-            element={
-              <ProtectedRoute>
-                <HomePage />
-              </ProtectedRoute>
-            } 
-          />
-          <Route  
-            path="/login" 
-            element={<LoginPage />} 
-          />
-      </Routes> 
-      </InputContext.Provider>  
-      <Footer />
-    </>
+                <Routes>
+                    <Route
+                        exact
+                        path="/"
+                        element={
+                            <ProtectedRoute>
+                                <HomePage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/login"
+                        element={
+                            //Uncomment protected route when authentication is done
 
-  );
+                            // <ProtectedRoute requiredAuthLevel='anonymous'>
+                            <LoginPage />
+                            // </ProtectedRoute>
+                        }
+                    />
+                    <Route path="/sign-up" element={<SignUp />} />
+                </Routes>
+            </InputContext.Provider>
+            <Footer />
+        </>
+    )
 }
 
-export default App;
+export default App
