@@ -9,11 +9,11 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import {setCookie, getCookie, deleteCookie} from './util/Authentication';
 import './sass/app.scss'
 export const InputContext = createContext({})
-import {signUpAdopter} from './adapters/auth-adapters'
+
 
 const URL = 'http://localhost:8000/api/v1/'
 
-signUpAdopter()
+
 const App = () => {
   const [message, setMessage] = useState('')
   const [inputs, setInputs] = useState({})
