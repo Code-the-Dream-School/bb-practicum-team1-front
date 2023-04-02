@@ -1,8 +1,12 @@
-export function setCookie(cName: string, value: string, days: number): void {
+export function setCookie(cName: string, value: string | null, days: number | null): void {
     const date = new Date()
+    if(days !== null){
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
     const expires = 'expires=' + date.toUTCString()
     document.cookie = `${cName}= ${value}; ${expires}; "path=/"`
+    }else{
+      document.cookie = `${cName}= ${value};"path=/"`
+    }
 }
 
 export function getCookie(cName: string): object | null{
@@ -28,5 +32,5 @@ export function getCookie(cName: string): object | null{
 }
 
 export function deleteCookie(cName: string): void {
-    setCookie(cName,'', 1) 
+    setCookie(cName, null , null) 
 }

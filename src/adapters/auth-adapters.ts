@@ -1,24 +1,5 @@
 import {getCookie , setCookie, deleteCookie} from '../util/Authentication'
-
-const API_URL = 'http://localhost:8000/api/v1'
-let endpoint = ''
-export const fetchAPIData = async (url: string, method: string, body:object , headers?:object) => {
-    const token = getCookie('shelf-share-session')
-    console.log('token',token)
-    const data = await fetch(API_URL + endpoint , {
-        method,
-        body: JSON.stringify(body),
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-            ...headers,
-        },
-    })
-    const response = await data.json();
-    console.log('res', response)
-    setCookie('shelf-share-session', JSON.stringify(body) , 1 )
-    return response; 
-}
+import {fetchAPIData} from '../util/fetch'
 
 
 //signUp
@@ -54,7 +35,7 @@ type SignUpInput = {
 *   username: "John",
 *   givenName: "JohnAB",
 *   familyName: "ABC",
-*   dateOfBirth: new Date("1991-12-02"),
+*   dateOfBirth: 1991-12-02,
 *   address: "6015 Farrington Ave, Alexandria, VA  22304, United States",
 *   role: 'user',
 *   latitude: 38.797667,
@@ -66,10 +47,9 @@ type SignUpInput = {
 * @returns {Promise<Object>} A promise that resolves to the user's signup information.
 */
 export const signUpAdapter = async (signUpInput: SignUpInput) =>{
-    endpoint = `/user/sign-up`
-    //console.log('tesst', url)
-    const data = await fetchAPIData(endpoint, 'POST', signUpInput)
-    setCookie('shelf-share-session', 'data', 1)
+    const url = `http://localhost:8000/api/v1/user/sign-up`
+    const data = await fetchAPIData(url , 'POST', signUpInput)
+    setCookie('shelf-share-session', JSON.stringify(data) , 1)
     return data
 }
 
@@ -79,6 +59,7 @@ type LoginInputs = {
    email: string,
    password: string,    
 }
+
 
 /**
 This function login a user with the provided information.
@@ -101,9 +82,9 @@ This function login a user with the provided information.
 
 */
 export const loginAdapter = async (loginInput: LoginInputs ) => {
-    endpoint =`/user/authentication`
-    const data = await fetchAPIData(endpoint , 'POST', loginInput)
-    setCookie('shelf-share-session', 'data', 1)
+    const url =`http://localhost:8000/api/v1/user/authentication`
+    const data = await fetchAPIData(url , 'POST', loginInput)
+    setCookie('shelf-share-session', JSON.stringify(data), 1)
     return data
 
 }
