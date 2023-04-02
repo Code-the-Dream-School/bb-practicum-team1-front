@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import DropdownInput from '../inputs/DropdownInput';
 import TextInput from '../inputs/TextInput';
-import "./_CreateBook.scss";
 
 const addButton = '➕';
 
-const optionsAge = [
+const optionsStatus = [
     { value: 'open', label: 'Open' },
     { value: 'borrowed', label: 'Borrowed' },
 ];
 
-const optionsStatus = [
+const optionsAge = [
     { value: 'kids', label: 'Kids' },
     { value: 'adults', label: 'Adults' },
 ];
@@ -55,6 +54,8 @@ const optionsGenre = [
 
 const CreateBook = ({ bookId }) => {
 
+    const [selectedImage, setSelectedImage] = useState(null);
+
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
@@ -64,69 +65,113 @@ const CreateBook = ({ bookId }) => {
     }
 
     const loadBookData = (title, language, description, author, ageRange, genre, publishingYear) => {
-        return (
-            title = bookId.title,
-            language = bookId.language,
-            description = bookId.description,
-            author = bookId.author, 
-            ageRange = bookId.ageRange, 
-            genre = bookId.ageRange,
-            publishingYear = bookId.ageRange
-        );
+        if (bookId = undefined) {
+            return (
+                title = '',
+                language = '',
+                description = '',
+                author = '', 
+                ageRange = '', 
+                genre = '',
+                publishingYear = ''
+            )  
+        } else {
+            return (
+                title = bookId.title,
+                language = bookId.language,
+                description = bookId.description,
+                author = bookId.author, 
+                ageRange = bookId.ageRange, 
+                genre = bookId.ageRange,
+                publishingYear = bookId.ageRange
+            ) 
+        }
     };
 
     return (
         <>
             <h1>Add Your Book</h1>
             <form onSubmit={handleFormSubmit} onChange={(bookId) => loadBookData()}>
-                <TextInput 
-                    type='text'
-                    placeholder='title here'
-                    label='Title'
-                    id='title'
-                    className='title'
+                <div className='inputFields'>
+                    <TextInput 
+                        type='text'
+                        placeholder='title here'
+                        label='Title'
+                        id='title'
+                        className='title'
+                    />
+                    <TextInput 
+                        type='text'
+                        placeholder='language here...'
+                        label='Language'
+                        id='language'
+                    />
+                    <TextInput 
+                        type='text'
+                        placeholder='name of the author here...'
+                        label='Author'
+                        id='author'
+                    />
+                    <DropdownInput 
+                        label = 'Age Range'
+                        id = 'ageRange'
+                        options={optionsAge}
+                    />
+                    <DropdownInput 
+                        label = 'Status'
+                        id = 'status'
+                        options={optionsStatus}
+                    />
+                    <DropdownInput 
+                        label = 'Genre'
+                        id = 'genre'
+                        options={optionsGenre}
+                    />
+                    <TextInput 
+                        type='text'
+                        placeholder='ex. 2005'
+                        label='Publishing Year'
+                        id='publishingYear'
+                    />
+                </div>
+                
+                <div className='cover'>
+                    <TextInput 
+                        type='text'
+                        placeholder='description here...'
+                        label='Description'
+                        id='description'
+                        textarea
+                    />
+                    <h2>Upload Cover</h2>
+                    {selectedImage && (
+                    <div>
+                        <img
+                            alt="cover"
+                            width={"250px"}
+                            src={URL.createObjectURL(selectedImage)}
+                        />
+                        <br />
+                        <button onClick={() => setSelectedImage(null)}>Remove</button>
+                    </div>
+                    )}
+
+                    <br />
+                    <br />
+                
+                    <input
+                        type="file"
+                        className='buttonChooseFile'
+                        name="myImage"
+                        onChange={(event) => {
+                        console.log(event.target.files[0]);
+                        setSelectedImage(event.target.files[0]);
+                    }}
                 />
-                <TextInput 
-                    type='text'
-                    placeholder='language here...'
-                    label='Language'
-                    id='language'
-                />
-                <TextInput 
-                    type='text'
-                    placeholder='description here...'
-                    label='Description'
-                    id='description'
-                    textarea
-                />
-                <TextInput 
-                    type='text'
-                    // placeholder='author name here...'
-                    label='Author'
-                    id='author'
-                />
-                <DropdownInput 
-                    label = 'Age Range'
-                    id = 'ageRange'
-                    options={optionsAge}
-                />
-                <DropdownInput 
-                    label = 'Status'
-                    id = 'status'
-                    options={optionsStatus}
-                />
-                <DropdownInput 
-                    label = 'Genre'
-                    id = 'genre'
-                    options={optionsGenre}
-                />
-                <TextInput 
-                    type='text'
-                    placeholder=' '
-                    label='Publishing Year'
-                    id='publishingYear'
-                />
-                <button className='addButton'>{addButton}</button>
+                </div>
+                <div className='button'>
+                    <button className='addButton'>{addButton}</button>
+                </div>
             </form>
         </>
     )

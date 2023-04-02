@@ -1,5 +1,4 @@
 import React from 'react';
-import './_Footer.scss';
 
 // Footer should include a copyright logo. If desktop or mobile only should include a disclaimer that it was designed as such. 
 // Should be visible on every page

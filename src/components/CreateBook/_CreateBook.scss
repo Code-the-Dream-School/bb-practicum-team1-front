@@ -1,33 +1,43 @@
 form {
     margin-left: 2rem;
-    margin-bottom: 7rem;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
 }
 
 h1 {
-    color: #F2F2F2;
-    ;
+    color: $white;
     font-size: 2rem;
     text-align: center;
     padding: 10px;
-    background-color: #55828B;
+    background-color: $tertiaryColor;
+}
+
+h2 {
+    color: $tertiaryColor;
+    font-size: 1.5rem;
+    font-family: 'Lucida Sans';
 }
 
 .text-input-label {
-    // color: $primaryColor;
-    color: #393F3F;
-    font-family: Arial;
-    // font-family: $fontPrimary;
+    color: $tertiaryColor;
+    font-family: $fontPrimary;
+    font-size:x-large;
 }
 
 .dropdown-select, option {
     color: #393F3F;
     font-family: cursive;
     text-align:left;
+    width: 250px;
 }
 
 .text-input {
     font-size: 1.2rem;
-
+    width: 250px;
 }
 
 .textarea-input {
@@ -37,11 +47,101 @@ h1 {
 }
 
 .addButton {
-    margin-top: 20px;
-    border-radius: 10%;
-    background-color: #55828B;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #008000;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
 }
 
 .addButton:hover {
+    background-color: #3e8e41;
+}
+
+.addButton:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.cover img {
+    border: solid 5px #77b0bb;
+}
+
+.cover h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: #4f6a6a;
+    color: $white;
+    width: 250px;
+    padding: 10px;
+    text-align: center;
+}
+
+.button {
+    width: 250px;
+    text-align: center;
+}
+
+.button button {
+    margin-bottom: 100px;
+}
+
+.cover div button {
+    background-color:rgb(162, 110, 110);
+    color: $white;
+    border-radius: 10%;
+    margin: 20px 0px 20px 0px;
+}
+
+.cover div button:hover {
+    background-color: red;
+    color: $primaryColor;
+}
+
+.buttonChooseFile {
     background-color: #77b0bb;
+    color: red;
+}
+
+.inputFields {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    form {
+        display: inline;
+    }
+
+    .inputFields, .cover {
+        margin-left: 20px;
+    }
+
+    .cover {
+        margin-bottom: 50px;
+    }
+
+    .textarea-input {
+        width: 250px;
+    }
+
+    .addButton {
+        margin-top: -15px;
+        margin-bottom: 100px;
+    }
+
+    .cover div button {
+        margin-bottom: 0px;
+    }
+
+    .button {
+        width: 300px;
+    }
 }
