@@ -25,8 +25,12 @@ const App = () => {
   ]
   */
 
-    function TestButton() {
-        return <button onClick={() => console.log('Click')}>Test Button</button>
+    function TestButtonHeader() {
+        return (
+            <button onClick={() => console.log('Header Click')}>
+                Test Button
+            </button>
+        )
     }
 
     useEffect(() => {
@@ -42,7 +46,7 @@ const App = () => {
 
     return (
         <>
-            <TestButton />
+            <TestButtonHeader />
             <Header />
             <InputContext.Provider
                 value={{

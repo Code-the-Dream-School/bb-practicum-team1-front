@@ -6,13 +6,17 @@ import './_Footer.scss'
 // Should always be at the very bottom of the page regardless of content length.
 
 const Footer = () => {
-    function TestButton() {
-        return <button onClick={() => console.log('Click')}>Test Button</button>
+    function TestButtonFooter() {
+        return (
+            <button onClick={() => console.log('Footer Click')}>
+                Test Button
+            </button>
+        )
     }
 
     return (
         <div className="footer">
-            <TestButton />
+            <TestButtonFooter />
             <p className="copyright">© 2023 BookSwap</p>
             <div className="git-links">
                 <p>Follow Us on GitHub</p>
