@@ -25,7 +25,7 @@ const App = () => {
   ]
   */
 
-    function TestButtonHeader() {
+    function TestButtonAppjs() {
         return (
             <button onClick={() => console.log('Header Click')}>
                 Test Button
@@ -46,7 +46,7 @@ const App = () => {
 
     return (
         <>
-            <TestButtonHeader />
+            <TestButtonAppjs />
             <Header />
             <InputContext.Provider
                 value={{
