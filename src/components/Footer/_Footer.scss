@@ -10,15 +10,6 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
-
-a {
-    padding-right: 5px;
-    width: 200px;
-}
-
-a img {
-    width: 30px;
-}
     
 .copyright {
     margin-top: 50px;
@@ -40,6 +31,7 @@ a img {
 .git-links img {
     padding-top: 10px;
     width: 35px;
+    margin: 5px;
 }
 
 @media (max-width: 768px) {
@@ -50,6 +42,5 @@ a img {
     .git-links img {
         margin-right: -15px;
         width: 25px;
-        padding: 0px;
     }
 }
