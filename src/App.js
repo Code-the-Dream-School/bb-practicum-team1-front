@@ -7,6 +7,7 @@ import { HomePage } from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import {setCookie, getCookie, deleteCookie} from './util/Authentication';
+import DebouncedSearch from './util/DebouncedSearch';
 import './sass/app.scss'
 export const InputContext = createContext({})
 
@@ -83,6 +84,11 @@ const App = () => {
             path="/login" 
             element={<LoginPage />} 
           />
+          <Route  
+            path="/debounce" 
+            element={<DebouncedSearch />} 
+          />
+
       </Routes> 
       </InputContext.Provider>  
       <Footer />
