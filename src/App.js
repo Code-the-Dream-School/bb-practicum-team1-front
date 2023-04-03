@@ -10,9 +10,7 @@ import {setCookie, getCookie, deleteCookie} from './util/Authentication';
 import './sass/app.scss'
 export const InputContext = createContext({})
 
-
 const URL = 'http://localhost:8000/api/v1/'
-
 
 const App = () => {
   const [message, setMessage] = useState('')

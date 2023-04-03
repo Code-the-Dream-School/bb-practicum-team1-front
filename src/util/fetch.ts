@@ -1,9 +1,10 @@
+import { error } from 'console'
 import {getCookie , setCookie, deleteCookie} from '../util/Authentication'
 
 export const fetchAPIData = async (url: string, method: string, body:object , headers?:object) => {
     const cookie = getCookie('shelf-share-session')as { token: string }
-    const token = cookie.token
-    const data = await fetch(url , {
+    const token = cookie?.token
+    const response = await fetch(url , {
         method,
         body: JSON.stringify(body),
         headers: {
@@ -12,7 +13,16 @@ export const fetchAPIData = async (url: string, method: string, body:object , he
             ...headers,
         },
     })
-    const response = await data.json();
-    setCookie('shelf-share-session', JSON.stringify(body) , 1 )
-    return response; 
+    
+    if(response.status.toString().startsWith('4'||'5')){
+      console.log("Error", response.status)
+    }
+    else{
+      const data = await response.json();  
+      setCookie('shelf-share-session', JSON.stringify(body) , 1 )
+      return data; 
+    }
+    
+   
+    
 }
