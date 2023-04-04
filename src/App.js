@@ -4,8 +4,8 @@ import { getAllData } from './util/index'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import { HomePage } from './components/HomePage/HomePage'
-import { LoginPage } from './components/LoginPage/LoginPage'
-import { SignUp } from './components/SignUpPage/SignUp'
+import { NewLogin } from './components/LoginPage/LoginPage'
+import { NewSignUp } from './components/SignUpPage/SignUp'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { setCookie, getCookie, deleteCookie } from './util/Authentication'
 import './sass/app.scss'
@@ -16,7 +16,7 @@ const URL = 'http://localhost:8000/api/v1/'
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
-
+    console.log("inputs", inputs)
     /* EXAMPLE: DropdownInput selection options
   
   const options = [
@@ -85,11 +85,11 @@ const App = () => {
                             //Uncomment protected route when authentication is done
 
                             // <ProtectedRoute requiredAuthLevel='anonymous'>
-                            <LoginPage />
+                            <NewLogin />
                             // </ProtectedRoute>
                         }
                     />
-                    <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/sign-up" element={<NewSignUp/>} />
                 </Routes>
             </InputContext.Provider>
             <Footer />

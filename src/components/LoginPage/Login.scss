@@ -2,6 +2,18 @@
 @import '../../sass/variables';
 @import '../../sass/elements';
 
+.login-container{
+    background-color: $secondaryColor;
+    width: fit-content;
+    padding: 50px;
+    margin: 0 auto;
+    button{
+        margin-top: 10px;
+        position: relative;
+        left: 42px;
+    }
+}
+
 @media all and (min-width: 480px){
     .Login{
         padding: 60px 0;
