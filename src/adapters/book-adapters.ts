@@ -1,26 +1,4 @@
-import { setCookie, getCookie }from'../util/Authentication'
-export const fetchAPIData = async (url: string, method: string, body:object | undefined , headers?:object) => {
-    const cookie = getCookie('shelf-share-session')as { token: string }
-    const token = cookie?.token
-    const response = await fetch(url , {
-        method,
-        body: JSON.stringify(body),
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-            ...headers,
-        },
-    })
-    
-    if(response.status.toString().startsWith('4')||response.status.toString().startsWith('5')){
-      console.log("Error", response.status)
-    }
-    else{
-      const data = await response.json();  
-      return data; 
-    }   
-    
-}
+import { fetchAPIData } from '../util/fetch'
 // Create book adapter
 type bookInput = {
     title: string,
@@ -77,7 +55,10 @@ type queryBook = {
     fields?:string, 
     searchRadius?:number, 
     latitude?: number, 
-    longitude?: number
+    longitude?: number,
+    page?: number,
+    limit?: number,
+    skip?: number,
 }
 
 type booksSchema ={
@@ -111,6 +92,9 @@ type booksSchema ={
  * @param {Number} queryBook.searchRadius - Search radius as query parameter.
  * @param {Number} queryBook.latitude - Latitude as query parameter.
  * @param {Number} queryBook.longitude - Longitude as query parameter.
+ * @param {Number} queryBook.page - Page as query parameter.
+ * @param {Number} queryBook.limit - Limit as query parameter.
+ * @param {Number} queryBook.skip - Skip as query parameter.
  * @example
  * const queryBook = {
  *  title = "Pachinko",
@@ -119,12 +103,15 @@ type booksSchema ={
  *  fields = "Genre",
  *  searchRadius = 25,
  *  latitude = 20,
- *  longitude = 40
+ *  longitude = 40,
+ *  page = 1,
+ *  limit = 5,
+ *  skip = 5
  * };
  * export const getAllBooksAdapter = async(queryBook) => {
  * // function implementation here
  * };
- * @returns {Promise<Object>} A promise that resolves get all books(for users) information.
+ * @returns {Promise<bookSchema[]>} A promise that resolves get all books(for users) information.
  */
 // Get all books for users
 export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise<booksSchema[]> => {
@@ -148,7 +135,7 @@ export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise
  * export const getAllBooksOwnerAdapter = async() =>{
  * // function implementation here 
  * };
- * @returns {Promise<Object>} A promise that resolves get all books (for owner) information.
+ * @returns {Promise<booksSchema[]>} A promise that resolves get all books (for owner) information.
  */
 // Get all books for owner 
 export const getAllBooksOwnerAdapter = async():Promise<booksSchema[]> => {
@@ -169,7 +156,7 @@ export const getAllBooksOwnerAdapter = async():Promise<booksSchema[]> => {
  * @returns {Promise<Object>} A promise that resolves get single book information.
  */
 // get single book adapter
-export const getSingleBookAdapter = async(bookId:string): Promise<booksSchema[]>=>{
+export const getSingleBookAdapter = async(bookId:string): Promise<booksSchema>=>{
     const url = `http://localhost:8000/api/v1/books/${bookId}` 
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
@@ -205,7 +192,7 @@ type bookParams = {
       
 }
 /**
- * This function will upadte the book with the provided information
+ * This function will upadate the book with the provided information
  * @param {String} bookParams - The params object containing information for updating a book.
  * @param {String} bookParams.id - Book's id.
  * @param {String} bookParams.title - Book's title.
@@ -219,7 +206,7 @@ type bookParams = {
  * @param {String} bookParams.imageURL - Book's image.
  * @example
  * const bookParams = {
- *  id = "642269aef562cad511ed0a73",
+ *  id = "642269e6f562cad511ed0a75",
  *  title = "Pachinko",
  *  language = "English",
  *  ageRange = "Adults",
@@ -237,7 +224,7 @@ type bookParams = {
  * @returns {Promise<Object>} - A promise that resolves updating book information.
  */
 // update book adapter
-export const updateBookAdapter = async(bookParams:bookParams): Promise<booksSchema[]>=>{
+export const updateBookAdapter = async(bookParams:bookParams): Promise<booksSchema>=>{
     const bookId = bookParams.id
     const url = `http://localhost:8000/api/v1/books/${bookId}`
     const data = await fetchAPIData(url, 'POST', bookParams)
