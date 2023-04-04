@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './_BookItem.scss';
+import './_BookItem.scss';
 
 const BookItem = ({ item }) => {
     return (
