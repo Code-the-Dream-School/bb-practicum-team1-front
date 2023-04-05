@@ -64,34 +64,27 @@ const CreateBook = ({ bookId }) => {
         )
     }
 
-    const loadBookData = (title, language, description, author, ageRange, genre, publishingYear) => {
-        if (bookId = undefined) {
-            return (
-                title = '',
-                language = '',
-                description = '',
-                author = '', 
-                ageRange = '', 
-                genre = '',
-                publishingYear = ''
-            )  
-        } else {
-            return (
-                title = bookId.title,
-                language = bookId.language,
-                description = bookId.description,
-                author = bookId.author, 
-                ageRange = bookId.ageRange, 
-                genre = bookId.ageRange,
-                publishingYear = bookId.ageRange
-            ) 
+    const loadBookData = (bookObj) => {
+        const bookData =  {
+            title: "test",
+            description: "language",
+            author: "test",
+            ageRange: "kids",
+            publishingYear: "1990",
+            status1: "open",
+            genre: "Fantasy",
         }
+        return bookData; 
     };
+
+    if (bookId) {
+        loadBookData();     // need to fetch bookObj
+    }
 
     return (
         <>
             <h1>Add Your Book</h1>
-            <form onSubmit={handleFormSubmit} onChange={(bookId) => loadBookData()}>
+            <form onSubmit={handleFormSubmit}>
                 <div className='inputFields'>
                     <TextInput 
                         type='text'
