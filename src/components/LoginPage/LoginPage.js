@@ -14,7 +14,6 @@ export const NewLogin = () =>{
     return (
         <div className="login-container"  >
             <form onSubmit={(e) => handleSubmit(e)}>
-
                 <TextInput
                     placeholder="Email"
                     type="email"
@@ -22,7 +21,6 @@ export const NewLogin = () =>{
                     label="Email"
                     textarea={false}
                 />
-
                 <TextInput
                     placeholder="Password"
                     type="password"
@@ -30,7 +28,6 @@ export const NewLogin = () =>{
                     label="Password"
                     textarea={false}
                 />
-
                 <TextInput
                     placeholder="Confirm Password"
                     type="password"
@@ -48,52 +45,3 @@ export const NewLogin = () =>{
 
 
 }
-
-// export const LoginPage = () => {
-//     const [email, setEmail] = useState('')
-//     const [password, setPassword] = useState('')
-
-//     function validateForm() {
-//         return email.length > 0 && password.length > 0
-//     }
-
-//     function handleSubmit(event) {
-//         event.preventDefault()
-//         console.log(email, password)
-//     }
-
-//     <div>
-//         <h1>This is the Login Page</h1>
-//     </div>
-//     return (
-//         <div className="Login">
-//             <Form onSubmit={handleSubmit}>
-//                 <Form.Group size="lg" controlId="email">
-//                     <Form.Label>Email</Form.Label>
-//                     <Form.Control
-//                         autoFocus
-//                         type="email"
-//                         value={email}
-//                         onChange={(e) => setEmail(e.target.value)}
-//                     />
-//                 </Form.Group>
-//                 <Form.Group>
-//                     <Form.Label>Password</Form.Label>
-//                     <Form.Control
-//                         type="password"
-//                         value={password}
-//                         onChange={(e) => setPassword(e.target.value)}
-//                     />
-//                 </Form.Group>
-//                 <Button
-//                     block="true"
-//                     size="lg"
-//                     type="submit"
-//                     disabled={!validateForm}
-//                 >
-//                     Login
-//                 </Button>
-//             </Form>
-//         </div>
-//     )
-// }
