@@ -19,9 +19,7 @@ export const fetchAPIData = async (url: string, method: string, body:object | un
       const data = await response.json();  
       return data; 
     }
-    
-   
-    
+        
 }
 // Create book adapter
 type bookInput = {
