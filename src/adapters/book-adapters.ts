@@ -31,7 +31,9 @@ type bookInput = {
     image?: Buffer,
     description: string,
     genre: string,
-    author:string
+    author: string,
+    worldcatURL?: string,
+    ISBN?: string
 }
 /**
  * This function will create a book with the provided information.
@@ -45,8 +47,10 @@ type bookInput = {
  * @param {String} bookInput.description - Book's description.
  * @param {String} bookInput.genre - Book's genre.
  * @param {String} bookInput.author - Book's author.
+ * @param {String} bookInput.worldcatURL - URL for worldcat(optional).
+ * @param {String} bookInput.ISBN - Book's ISBN(optional).
  * @example
- * const bookInput = {
+ * createBookAdapter(bookInput) = {
  *  title = "Pachinko",
  *  language = "English",
  *  ageRange = "Adults",
@@ -99,6 +103,8 @@ type booksSchema ={
     description: string,
     genre: string,
     author: string,
+    worldcatURL?: string,
+    ISBN?: string,
     createdAt: string,
     updatedAt: string,
     __v: number,
@@ -118,7 +124,7 @@ type booksSchema ={
  * @param {Number} queryBook.limit - Limit as query parameter.
  * @param {Number} queryBook.skip - Skip as query parameter.
  * @example
- * const queryBook = {
+ * getAllBooksAdapter(queryBook) = {
  *  title = "Pachinko",
  *  author = "Min Jin Lee",
  *  sort = "CreatedAt",
@@ -171,7 +177,7 @@ export const getAllBooksOwnerAdapter = async():Promise<booksSchema[]> => {
  * This function will get a single book with the provided information
  * @param {String} bookId - Id of the book.
  * @example
- * const bookId = "642269aef562cad511ed0a73" 
+ * getSingleBookAdapter(bookId) = "642269aef562cad511ed0a73" 
  * export const getSingleBookAdapter = async(bookId)=>{
  * // function implementation here
  * };
@@ -187,7 +193,7 @@ export const getSingleBookAdapter = async(bookId:string): Promise<booksSchema>=>
  * This function will delete book with the provided information
  * @param {String} bookId - Id of the book.
  * @example
- * const bookId = "642269aef562cad511ed0a73" 
+ * deleteBookAdapter(bookId) = "642269aef562cad511ed0a73" 
  * export const deleteBook = async(bookId)=>{
  * // function implementation here
  * };
@@ -210,6 +216,8 @@ type bookParams = {
     description?: string,
     genre?: string,
     author?: string,
+    worldcatURL?: string,
+    ISBN?: string,
     imageURL?: string
       
 }
@@ -225,9 +233,11 @@ type bookParams = {
  * @param {String} bookParams.description - Book's description.
  * @param {String} bookParams.genre - Book's genre.
  * @param {String} bookParams.author - Book's author.
+ * @param {String} bookInput.worldcatURL - URL for worldcat(optional).
+ * @param {String} bookInput.ISBN - Book's ISBN(optional).
  * @param {String} bookParams.imageURL - Book's image.
  * @example
- * const bookParams = {
+ * updateBookAdapter(bookParams) = {
  *  id = "642269e6f562cad511ed0a75",
  *  title = "Pachinko",
  *  language = "English",
@@ -238,6 +248,8 @@ type bookParams = {
  *  Published in 2017, Pachinko is an epic historical fiction novel following a Korean family who immigrates to Japan.",
  *  genre = "Historical Fiction",
  *  author = "Min Jin Lee",
+ *  worldcatURL = "https://www.worldcat.org/title/1015968617",
+ *  ISBN = "9781455563920"
  *  imageURL = "/api/v1/books/image/642269e6f562cad511ed0a75"
  * };
  * export const updateBookAdapter= async(bookParams) =>{
