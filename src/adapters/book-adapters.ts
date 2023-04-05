@@ -50,7 +50,7 @@ type bookInput = {
  * @param {String} bookInput.worldcatURL - URL for worldcat(optional).
  * @param {String} bookInput.ISBN - Book's ISBN(optional).
  * @example
- * createBookAdapter(bookInput) = {
+ * const bookInput = {
  *  title = "Pachinko",
  *  language = "English",
  *  ageRange = "Adults",
@@ -61,16 +61,13 @@ type bookInput = {
  *  genre = "Historical Fiction",
  *  author = "Min Jin Lee"
  * };
- * export const createBookAdapter = async (bookInput) => {
- *  // function implementation here
- * };
+ * createBookAdapter(bookInput)
  * @returns {Promise<Object>} A promise that resolves book's creation information.
  */
 export const createBookAdapter = async(bookInput:bookInput) =>{
     const url = 'http://localhost:8000/api/v1/books'
     const data = await fetchAPIData(url, 'POST', bookInput )
-    return data
-    
+    return data   
 }
 
 // Get all books for all users and all books owner adapter
@@ -124,7 +121,7 @@ type booksSchema ={
  * @param {Number} queryBook.limit - Limit as query parameter.
  * @param {Number} queryBook.skip - Skip as query parameter.
  * @example
- * getAllBooksAdapter(queryBook) = {
+ * const queryBook = {
  *  title = "Pachinko",
  *  author = "Min Jin Lee",
  *  sort = "CreatedAt",
@@ -136,9 +133,7 @@ type booksSchema ={
  *  limit = 5,
  *  skip = 5
  * };
- * export const getAllBooksAdapter = async(queryBook) => {
- * // function implementation here
- * };
+ * getAllBooksAdapter(queryBook) 
  * @returns {Promise<bookSchema[]>} A promise that resolves get all books(for users) information.
  */
 // Get all books for users
@@ -160,9 +155,7 @@ export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise
 /**
  * Get all books for owner based on the authentication route.
  * @example
- * export const getAllBooksOwnerAdapter = async() =>{
- * // function implementation here 
- * };
+ * getAllBooksOwnerAdapter() 
  * @returns {Promise<booksSchema[]>} A promise that resolves get all books (for owner) information.
  */
 // Get all books for owner 
@@ -177,10 +170,8 @@ export const getAllBooksOwnerAdapter = async():Promise<booksSchema[]> => {
  * This function will get a single book with the provided information
  * @param {String} bookId - Id of the book.
  * @example
- * getSingleBookAdapter(bookId) = "642269aef562cad511ed0a73" 
- * export const getSingleBookAdapter = async(bookId)=>{
- * // function implementation here
- * };
+ * const bookId = "642269aef562cad511ed0a73" 
+ * getSingleBookAdapter(bookId) 
  * @returns {Promise<Object>} A promise that resolves get single book information.
  */
 // get single book adapter
@@ -193,10 +184,8 @@ export const getSingleBookAdapter = async(bookId:string): Promise<booksSchema>=>
  * This function will delete book with the provided information
  * @param {String} bookId - Id of the book.
  * @example
- * deleteBookAdapter(bookId) = "642269aef562cad511ed0a73" 
- * export const deleteBook = async(bookId)=>{
- * // function implementation here
- * };
+ * const bookId = "642269aef562cad511ed0a73" 
+ * deleteBookAdapter(bookId)
  * @returns {Promise<Object>} A promise that resolves the delete book information.
  */
 // delete book adapter
@@ -237,7 +226,7 @@ type bookParams = {
  * @param {String} bookInput.ISBN - Book's ISBN(optional).
  * @param {String} bookParams.imageURL - Book's image.
  * @example
- * updateBookAdapter(bookParams) = {
+ * const bookParams = {
  *  id = "642269e6f562cad511ed0a75",
  *  title = "Pachinko",
  *  language = "English",
@@ -252,9 +241,7 @@ type bookParams = {
  *  ISBN = "9781455563920"
  *  imageURL = "/api/v1/books/image/642269e6f562cad511ed0a75"
  * };
- * export const updateBookAdapter= async(bookParams) =>{
- * // function implementation here
- * };
+ * updateBookAdapter(bookParams)
  * @returns {Promise<Object>} - A promise that resolves updating book information.
  */
 // update book adapter
