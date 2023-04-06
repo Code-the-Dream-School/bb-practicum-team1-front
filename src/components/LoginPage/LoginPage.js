@@ -28,13 +28,7 @@ export const NewLogin = () =>{
                     label="Password"
                     textarea={false}
                 />
-                <TextInput
-                    placeholder="Confirm Password"
-                    type="password"
-                    id="logInConfirmPassword"
-                    label="Confirm Password"
-                    textarea={false}
-                />
+            
 
                 <button type="submit">Log In</button>
             </form>

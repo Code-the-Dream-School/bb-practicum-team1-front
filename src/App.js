@@ -16,7 +16,7 @@ const URL = 'http://localhost:8000/api/v1/'
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
-    console.log("inputs", inputs)
+    console.log('inputs', inputs)
     /* EXAMPLE: DropdownInput selection options
   
   const options = [
@@ -89,7 +89,16 @@ const App = () => {
                             // </ProtectedRoute>
                         }
                     />
-                    <Route path="/sign-up" element={<NewSignUp/>} />
+                    <Route
+                        path="/sign-up"
+                        element={
+                            // <ProtectedRoute>
+
+                                <NewSignUp />
+
+                            // </ProtectedRoute> 
+                        }
+                    />
                 </Routes>
             </InputContext.Provider>
             <Footer />
