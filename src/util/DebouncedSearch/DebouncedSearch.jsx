@@ -9,20 +9,21 @@ import { InputContext } from "../../App";
 // If another change occurs before the timer is expired, the timer should be restarted. 
 // When the timer reaches zero, onDebounce should be called.
 
-const DebouncedSearch = () => {
+const DebouncedSearch = ({ id, handleDebounce }) => {
     const { inputs, handleInputChange } = useContext(InputContext); 
     
     const debouncedSearch = debounce(onDebounce, 1000);
 
     useEffect(() => {
         debouncedSearch(inputs);
-    }, [inputs, debouncedSearch]);
+    }, [inputs[id], debouncedSearch]);
 
-    function onSearchChange(event) {
-        handleInputChange(event.target.value);
-    }
-    function onDebounce(searchTerm) {
+    // function onSearchChange(event) {
+    //     handleInputChange(event.target.value);
+    // }
+    function onDebounce() {
         // perform the search here
+        handleDebounce(inputs[id]);
     }
 
     return (
@@ -31,9 +32,8 @@ const DebouncedSearch = () => {
                 label="Search your book: "
                 placeholder='write here...'
                 type='text'
-                id='searchInput'
-                name='searchInput'
-                onDebounce={onSearchChange}
+                id={id}
+                name={id}
             />    
             {console.log(inputs)}           
         </>
