@@ -45,6 +45,9 @@ const App = () => {
             inputs,
             handleInputChange: (inputName, inputValue) =>
                 setInputs({ ...inputs, [inputName]: inputValue }),
+
+            handleBulkInput: (inputObj) => 
+                setInputs({ ...inputs, ...inputObj }),
         }}
       >
         {/* EXAMPLE: How to add TextInput and DropdownInput

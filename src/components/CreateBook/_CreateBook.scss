@@ -16,12 +16,6 @@ h1 {
     background-color: $tertiaryColor;
 }
 
-h2 {
-    color: $tertiaryColor;
-    font-size: 1.5rem;
-    font-family: 'Lucida Sans';
-}
-
 .text-input-label {
     color: $tertiaryColor;
     font-family: $fontPrimary;
@@ -95,10 +89,11 @@ h2 {
 }
 
 .cover div button {
-    background-color:rgb(162, 110, 110);
+    background-color:crimson;
     color: $white;
     border-radius: 10%;
-    margin: 20px 0px 20px 0px;
+    margin: 0px 0px 0px 20px;
+    cursor: pointer;
 }
 
 .cover div button:hover {
@@ -106,13 +101,29 @@ h2 {
     color: $primaryColor;
 }
 
-.buttonChooseFile {
-    background-color: #77b0bb;
-    color: red;
-}
-
 .inputFields {
     margin-bottom: 20px;
+}
+
+// for the custom-file-upload button
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 12px 12px;
+    border-bottom: #3e8e41;
+    border-bottom: 5px solid greenyellow;
+    font-size: 1.5rem;
+    font-family: 'Lucida Sans';
+    background-color: #4f6a6a;
+    color: $white;
+    cursor: pointer;
+}
+
+.custom-file-upload::before {
+    content: 'Upload Cover';
 }
 
 @media (max-width: 768px) {

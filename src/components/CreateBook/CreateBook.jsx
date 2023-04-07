@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import DropdownInput from '../inputs/DropdownInput';
 import TextInput from '../inputs/TextInput';
+import { InputContext } from '../../App';
 
 const addButton = '➕';
+var remove = '\u2718';
+
+const bookData =  {
+    title: "test",
+    description: "language",
+    language: 'Romanian',
+    author: "test",
+    ageRange: "kids",
+    publishingYear: "1990",
+    status: "open",
+    genre: "Fantasy",
+}
 
 const optionsStatus = [
     { value: 'open', label: 'Open' },
@@ -54,32 +67,25 @@ const optionsGenre = [
 
 const CreateBook = ({ bookId }) => {
 
+    const { inputs, handleBulkInput } = useContext(InputContext);
+
+    // placeholder for book update
+    const [testBook, setTestBook] = useState(bookData);
+
     const [selectedImage, setSelectedImage] = useState(null);
+
+    // console.log(inputs);
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-
         return (
             console.log('this is the submit form')
         )
-    }
-
-    const loadBookData = (bookObj) => {
-        const bookData =  {
-            title: "test",
-            description: "language",
-            author: "test",
-            ageRange: "kids",
-            publishingYear: "1990",
-            status1: "open",
-            genre: "Fantasy",
-        }
-        return bookData; 
     };
 
-    if (bookId) {
-        loadBookData();     // need to fetch bookObj
-    }
+    useEffect(() => {
+        handleBulkInput(testBook);
+    }, [testBook]);
 
     return (
         <>
@@ -135,31 +141,33 @@ const CreateBook = ({ bookId }) => {
                         id='description'
                         textarea
                     />
-                    <h2>Upload Cover</h2>
+                  
+                    <br />
                     {selectedImage && (
-                    <div>
-                        <img
-                            alt="cover"
-                            width={"250px"}
-                            src={URL.createObjectURL(selectedImage)}
-                        />
-                        <br />
-                        <button onClick={() => setSelectedImage(null)}>Remove</button>
-                    </div>
+                        <div>
+                            <img
+                                alt="cover"
+                                width={"250px"}
+                                src={URL.createObjectURL(selectedImage)}
+                            />
+                            {/* <br /> */}
+                            <button onClick={() => setSelectedImage(null)}>{remove}</button>
+                        </div>
                     )}
 
                     <br />
-                    <br />
-                
-                    <input
-                        type="file"
-                        className='buttonChooseFile'
-                        name="myImage"
-                        onChange={(event) => {
-                        console.log(event.target.files[0]);
-                        setSelectedImage(event.target.files[0]);
-                    }}
-                />
+                    <label htmlFor='file-upload' className='custom-file-upload'>
+                        <input
+                            type="file"
+                            id='file-upload'
+                            className='buttonChooseFile'
+                            name="myImage"
+                            onChange={(event) => {
+                            console.log(event.target.files[0]);
+                            setSelectedImage(event.target.files[0]);
+                        }}
+                        />
+                    </label>
                 </div>
                 <div className='button'>
                     <button className='addButton'>{addButton}</button>
