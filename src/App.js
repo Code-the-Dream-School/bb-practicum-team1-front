@@ -4,7 +4,8 @@ import { getAllData } from './util/index';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
-import LoginPage from './components/LoginPage/LoginPage';
+import { NewLogin } from './components/LoginPage/LoginPage';
+import { NewSignUp } from './SignupPage/SingUp';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import {setCookie, getCookie, deleteCookie} from './util/Authentication';
 import './sass/app.scss'
@@ -79,10 +80,21 @@ const App = () => {
               // </ProtectedRoute>
             } 
           />
+          {/* <ProtectedRoute> */}
           <Route  
             path="/login" 
-            element={<LoginPage />} 
+            element={<NewLogin />} 
           />
+          {/* </ProtectedRoute> */}
+
+          {/* <ProtectedRoute> */}
+
+            <Route
+            path="/sign-up"
+            element={<NewSignUp />}
+            />
+
+          {/* </ProtectedRoute> */}
       </Routes> 
       </InputContext.Provider>  
       <Footer />
