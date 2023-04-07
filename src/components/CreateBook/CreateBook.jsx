@@ -70,14 +70,12 @@ const testBook = {
 const CreateBook = ({ bookId }) => {
     const [selectedImage, setSelectedImage] = useState(null)
     const [bookInfo, setBookInfo] = useState(testBook)
-    const { inputs, handleInputChange } = useContext(InputContext)
+    const { inputs, handleInputChange, handleBulkInputChange } = useContext(InputContext)
 
     console.log('INPUTS', inputs)
 
     useEffect(() => {
-       Object.entries(bookInfo).forEach((input) =>
-            handleInputChange(input[0], input[1])
-        )
+        handleBulkInputChange(bookInfo)
     }, [bookInfo])
 
     const handleFormSubmit = (event) => {
