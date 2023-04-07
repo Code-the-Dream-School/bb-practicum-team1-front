@@ -1,4 +1,4 @@
-import TextInput from "../components/inputs/TextInput"
+import TextInput from "../inputs/TextInput"
 
 export function NewSignUp() {
     function handleSubmit(event) {

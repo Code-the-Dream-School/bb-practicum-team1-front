@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
 import { NewLogin } from './components/LoginPage/LoginPage';
-import { NewSignUp } from './SignupPage/SingUp';
+import { NewSignUp } from './components/SignupPage/SingUp';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import {setCookie, getCookie, deleteCookie} from './util/Authentication';
 import './sass/app.scss'
