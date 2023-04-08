@@ -82,9 +82,9 @@ const App = () => {
                         exact
                         path="/"
                         element={
-                            <ProtectedRoute>
-                                <HomePage />
-                            </ProtectedRoute>
+                            // <ProtectedRoute>
+                            <HomePage />
+                            // </ProtectedRoute>
                         }
                     />
                     <Route path="/login" element={<LoginPage />} />
