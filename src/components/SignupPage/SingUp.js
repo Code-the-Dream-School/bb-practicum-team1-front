@@ -3,8 +3,10 @@ import TextInput from '../inputs/TextInput'
 export function NewSignUp() {
     function handleSubmit(event) {
         event.preventDefault()
-        const formData = new FormData(event.target)
-        const formProps = Object.fromEntries(formData)
+        // const formData = new FormData(event.target)
+        // const formProps = Object.fromEntries(formData)
+        // console.log('You signed up!')
+        // console.log(formProps)
     }
 
     return (
@@ -15,6 +17,7 @@ export function NewSignUp() {
                     type="text"
                     id="signUpFirstName"
                     label="First Name"
+                    textarea={false}
                 />
 
                 <TextInput
