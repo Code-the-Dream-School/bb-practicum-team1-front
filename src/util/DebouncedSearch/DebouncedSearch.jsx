@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useCallback } from 'react';
 import TextInput from '../../components/inputs/TextInput';
-import debounce from 'lodash.debounce';
+import _ from 'lodash';
 import { InputContext } from "../../App";
 
 // Should use existing TextInput component. Should take a prop called onDebounce 
@@ -12,19 +12,13 @@ import { InputContext } from "../../App";
 const DebouncedSearch = ({ id, handleDebounce }) => {
     const { inputs, handleInputChange } = useContext(InputContext); 
     
-    const debouncedSearch = debounce(onDebounce, 1000);
+    const debouncedSearch = useCallback(_.debounce(query => handleDebounce(query), 500), []);
 
     useEffect(() => {
+        // cancel any previous debounce action
+        debouncedSearch.cancel();
         debouncedSearch(inputs);
-    }, [inputs[id], debouncedSearch]);
-
-    // function onSearchChange(event) {
-    //     handleInputChange(event.target.value);
-    // }
-    function onDebounce() {
-        // perform the search here
-        handleDebounce(inputs[id]);
-    }
+    }, [inputs[id], debouncedSearch(inputs)]);
 
     return (
         <>    
@@ -35,7 +29,6 @@ const DebouncedSearch = ({ id, handleDebounce }) => {
                 id={id}
                 name={id}
             />    
-            {console.log(inputs)}           
         </>
     )
 }

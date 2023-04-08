@@ -86,7 +86,10 @@ const App = () => {
           />
           <Route  
             path="/debounce" 
-            element={<DebouncedSearch />} 
+            element={<DebouncedSearch 
+              id={'Debounce'}
+              handleDebounce={(inputVal) => console.log(inputVal)}
+            />} 
           />
 
       </Routes> 
