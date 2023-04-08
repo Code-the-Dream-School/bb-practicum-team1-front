@@ -1,12 +1,10 @@
-import TextInput from "../inputs/TextInput"
+import TextInput from '../inputs/TextInput'
 
 export function NewSignUp() {
     function handleSubmit(event) {
         event.preventDefault()
         const formData = new FormData(event.target)
         const formProps = Object.fromEntries(formData)
-        console.log('You signed up!')
-        console.log(formProps)
     }
 
     return (
@@ -28,10 +26,26 @@ export function NewSignUp() {
                 />
 
                 <TextInput
+                    placeholder="Address"
+                    type="address"
+                    id="address"
+                    label="Address"
+                    textarea={false}
+                />
+
+                <TextInput
                     placeholder="Email"
                     type="email"
                     id="signUpEmail"
                     label="Email"
+                    textarea={false}
+                />
+
+                <TextInput
+                    placeholder="Username"
+                    type="username"
+                    id="userName"
+                    label="Username"
                     textarea={false}
                 />
 
