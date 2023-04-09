@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { getAllData } from './util/index';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import { HomePage } from './components/HomePage/HomePage';
+import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import {setCookie, getCookie, deleteCookie} from './util/Authentication';
@@ -75,9 +75,9 @@ const App = () => {
             exact 
             path="/" 
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <HomePage />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             } 
           />
           <Route  
