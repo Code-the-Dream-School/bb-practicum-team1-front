@@ -1,4 +1,4 @@
-@import "_reset.scss";
+@import '_reset.scss';
 @import './variables';
 @import './elements';
 // example: @import './components/nameOfScssfileForIndividualComponent';
@@ -7,4 +7,9 @@
 @import '../components/Header/Header';
 @import '../components/Header/RightNav';
 
-
+.wrapper {
+    background-color: aqua;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 65px 1fr 85px;
+}
