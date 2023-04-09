@@ -22,13 +22,15 @@ const DebouncedSearch = ({ id, handleDebounce }) => {
 
     return (
         <>    
-            <TextInput 
-                label="Search your book: "
-                placeholder='write here...'
-                type='text'
-                id={id}
-                name={id}
-            />    
+            <div className='debouncedInputField'>
+                <TextInput 
+                    label="Search: "
+                    placeholder='write here...'
+                    type='text'
+                    id={id}
+                    name={id}
+                />    
+            </div>
         </>
     )
 }
