@@ -5,10 +5,12 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/LoginPage/LoginPage';
+import CreateBook from './components/CreateBook/CreateBook';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import {setCookie, getCookie, deleteCookie} from './util/Authentication';
 import './sass/app.scss'
-export const InputContext = createContext({})
+
+export const InputContext = createContext({});
 
 const URL = 'http://localhost:8000/api/v1/'
 
@@ -45,6 +47,9 @@ const App = () => {
             inputs,
             handleInputChange: (inputName, inputValue) =>
                 setInputs({ ...inputs, [inputName]: inputValue }),
+
+            handleBulkInput: (inputObj) => 
+                setInputs({ ...inputs, ...inputObj }),
         }}
       >
         {/* EXAMPLE: How to add TextInput and DropdownInput
@@ -55,6 +60,14 @@ const App = () => {
             type="text"
             placeholder="Enter text here"
             textarea={false}
+        />
+        <Route  
+          path="/login" 
+          element={<LoginPage />} 
+        />
+        <Route  
+          path="/createBook" 
+          element={<CreateBook />} 
         />
         <TextInput
             label="Text Area"
@@ -83,6 +96,10 @@ const App = () => {
             path="/login" 
             element={<LoginPage />} 
           />
+          <Route  
+          path="/createBook" 
+          element={<CreateBook />} 
+        />
       </Routes> 
       </InputContext.Provider>  
       <Footer />
