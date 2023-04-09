@@ -84,13 +84,14 @@ const App = () => {
             path="/login" 
             element={<LoginPage />} 
           />
-          <Route  
+          {/* this is an example implementation of the DebouncedSearch component */}
+          {/* <Route  
             path="/debounce" 
             element={<DebouncedSearch 
               id={'Debounce'}
               handleDebounce={(inputVal) => console.log(inputVal)}
             />} 
-          />
+          /> */}
 
       </Routes> 
       </InputContext.Provider>  

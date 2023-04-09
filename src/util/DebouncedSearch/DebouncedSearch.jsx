@@ -12,13 +12,13 @@ import { InputContext } from "../../App";
 const DebouncedSearch = ({ id, handleDebounce }) => {
     const { inputs, handleInputChange } = useContext(InputContext); 
     
-    const debouncedSearch = useCallback(_.debounce(query => handleDebounce(query), 500), []);
+    const debounceSearch = useCallback(_.debounce(query => handleDebounce(query), 500), []);
 
     useEffect(() => {
         // cancel any previous debounce action
-        debouncedSearch.cancel();
-        debouncedSearch(inputs);
-    }, [inputs[id], debouncedSearch(inputs)]);
+        debounceSearch.cancel();
+        debounceSearch(inputs);
+    }, [inputs[id], debounceSearch(inputs)]);
 
     return (
         <>    
