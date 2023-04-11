@@ -1,6 +1,6 @@
 import TextInput from '../inputs/TextInput'
 
-export function NewSignUp() {
+export function SignUp() {
     function handleSubmit(event) {
         event.preventDefault()
         // const formData = new FormData(event.target)

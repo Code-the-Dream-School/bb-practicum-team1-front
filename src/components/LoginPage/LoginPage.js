@@ -2,7 +2,7 @@ import TextInput from '../inputs/TextInput'
 import './Login.scss'
 
 
-export const NewLogin = () =>{
+export const Login = () =>{
     function handleSubmit(event) {
         event.preventDefault()
         const formData = new FormData(event.target)
