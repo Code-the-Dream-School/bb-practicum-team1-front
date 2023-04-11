@@ -14,7 +14,7 @@ const TextInput = ({ type, placeholder, label, id, textarea }) => {
             className="text-input"
             placeholder={placeholder}
             type={type}
-            value={inputs[id]}
+            value={inputs[id] ?? ''}
             onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             id={id}
             name={id}

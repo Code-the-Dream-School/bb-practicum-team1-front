@@ -10,6 +10,7 @@ import LoginPage from './components/LoginPage/LoginPage';
 import CreateBook from './components/CreateBook/CreateBook';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import {setCookie, getCookie, deleteCookie} from './util/Authentication';
+import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch';
 import './sass/app.scss'
 
 export const InputContext = createContext({});
@@ -99,6 +100,15 @@ const App = () => {
             path="/login" 
             element={<Login />} 
           />
+          {/* this is an example implementation of the DebouncedSearch component */}
+          {/* <Route  
+            path="/debounce" 
+            element={<DebouncedSearch 
+              id={'Debounce'}
+              handleDebounce={(inputVal) => console.log(inputVal)}
+            />} 
+          /> */}
+
           {/* </ProtectedRoute> */}
 
           {/* <ProtectedRoute> */}
