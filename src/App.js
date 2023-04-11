@@ -4,6 +4,8 @@ import { getAllData } from './util/index';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
+import { Login } from './components/LoginPage/LoginPage';
+import { SignUp } from './components/SignupPage/SingUp';
 import LoginPage from './components/LoginPage/LoginPage';
 import CreateBook from './components/CreateBook/CreateBook';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
@@ -92,10 +94,21 @@ const App = () => {
               // </ProtectedRoute>
             } 
           />
+          {/* <ProtectedRoute> */}
           <Route  
             path="/login" 
-            element={<LoginPage />} 
+            element={<Login />} 
           />
+          {/* </ProtectedRoute> */}
+
+          {/* <ProtectedRoute> */}
+
+            <Route
+            path="/sign-up"
+            element={<SignUp />}
+            />
+
+          {/* </ProtectedRoute> */}
           <Route  
           path="/createBook" 
           element={<CreateBook />} 
