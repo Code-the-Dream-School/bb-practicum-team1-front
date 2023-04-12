@@ -100,7 +100,7 @@ const App = () => {
             <div>
                 <div className="buttons">
                     <button className="btn get-quote" onClick={getRandomQuote}>
-                        Generate Quote
+                        Loading Spinner Quote Button (click here)
                     </button>
                 </div>
                 {loading ? (
