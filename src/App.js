@@ -39,64 +39,154 @@ const App = () => {
     }, [])
 
     return (
-        <div className="wrapper">
+        <>
             <Header />
-            <InputContext.Provider
-                value={{
-                    inputs,
-                    handleInputChange: (inputName, inputValue) =>
-                        setInputs({ ...inputs, [inputName]: inputValue }),
+            <div className="content">
+                <InputContext.Provider
+                    value={{
+                        inputs,
+                        handleInputChange: (inputName, inputValue) =>
+                            setInputs({ ...inputs, [inputName]: inputValue }),
 
-                    handleBulkInput: (inputObj) =>
-                        setInputs({ ...inputs, ...inputObj }),
-                }}
-            >
-                {/* EXAMPLE: How to add TextInput and DropdownInput
+                        handleBulkInput: (inputObj) =>
+                            setInputs({ ...inputs, ...inputObj }),
+                    }}
+                >
+                    {/* EXAMPLE: How to add TextInput and DropdownInput
         
         <TextInput
-            label="Text Input"
-            id="testInput"
-            type="text"
-            placeholder="Enter text here"
-            textarea={false}
-            />
-            <Route  
-            path="/login" 
-            element={<LoginPage />} 
-            />
-            <Route  
-            path="/createBook" 
-            element={<CreateBook />} 
-            />
-            <TextInput
-            label="Text Area"
-            id="textArea"
-            type="textarea"
-            placeholder="Enter text here"
+        label="Text Input"
+        id="testInput"
+        type="text"
+        placeholder="Enter text here"
+        textarea={false}
+        />
+        <Route  
+        path="/login" 
+        element={<LoginPage />} 
+        />
+        <Route  
+        path="/createBook" 
+        element={<CreateBook />} 
+        />
+        <TextInput
+        label="Text Area"
+        id="textArea"
+        type="textarea"
+        placeholder="Enter text here"
             textarea={true}
             />
             <DropdownInput
             label="Dropdown Menu"
             id="DropdownMenu"
             options={options}
-          /> */}
+        /> */}
 
-                <Routes>
-                    <Route
-                        exact
-                        path="/"
-                        element={
-                            // <ProtectedRoute>
-                            <HomePage />
-                            // </ProtectedRoute>
-                        }
-                    />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/createBook" element={<CreateBook />} />
-                </Routes>
-            </InputContext.Provider>
+                    <Routes>
+                        <Route
+                            exact
+                            path="/"
+                            element={
+                                // <ProtectedRoute>
+                                <HomePage />
+                                // </ProtectedRoute>
+                            }
+                        />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/createBook" element={<CreateBook />} />
+                    </Routes>
+                </InputContext.Provider>
+                <p>
+                    -----------------START OF TEST CONTENT-------------
+                    <br />
+                    <br />
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Voluptatibus magnam culpa qui deleniti error excepturi
+                    aliquam dolores ullam nam animi quos quam repudiandae, at
+                    commodi assumenda mollitia facere itaque illo.Lorem ipsum,
+                    dolor sit amet consectetur adipisicing elit. Voluptatibus
+                    magnam culpa qui deleniti error excepturi aliquam dolores
+                    ullam nam animi quos quam repudiandae, at commodi assumenda
+                    mollitia facere itaque illo.Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Voluptatibus magnam culpa qui
+                    deleniti error excepturi aliquam dolores ullam nam animi
+                    quos quam repudiandae, at commodi assumenda mollitia facere
+                    itaque illo.Lorem ipsum, dolor sit amet consectetur
+                    adipisicing elit. Voluptatibus magnam culpa qui deleniti
+                    error excepturi aliquam dolores ullam nam animi quos quam
+                    repudiandae, at commodi assumenda mollitia facere itaque
+                    illo.Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Voluptatibus magnam culpa qui deleniti error excepturi
+                    aliquam dolores ullam nam animi quos quam repudiandae, at
+                    commodi assumenda mollitia facere itaque illo.Lorem ipsum,
+                    dolor sit amet consectetur adipisicing elit. Voluptatibus
+                    magnam culpa qui deleniti error excepturi aliquam dolores
+                    ullam nam animi quos quam repudiandae, at commodi assumenda
+                    mollitia facere itaque illo.Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Voluptatibus magnam culpa qui
+                    deleniti error excepturi aliquam dolores ullam nam animi
+                    quos quam repudiandae, at commodi assumenda mollitia facere
+                    itaque illo.Lorem ipsum, dolor sit amet consectetur
+                    adipisicing elit. Voluptatibus magnam culpa qui deleniti
+                    error excepturi aliquam dolores ullam nam animi quos quam
+                    repudiandae, at commodi assumenda mollitia facere itaque
+                    illo.Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Voluptatibus magnam culpa qui deleniti error excepturi
+                    aliquam dolores ullam nam animi quos quam repudiandae, at
+                    commodi assumenda mollitia facere itaque illo.Lorem ipsum,
+                    dolor sit amet consectetur adipisicing elit. Voluptatibus
+                    magnam culpa qui deleniti error excepturi aliquam dolores
+                    ullam nam animi quos quam repudiandae, at commodi assumenda
+                    mollitia facere itaque illo.Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Voluptatibus magnam culpa qui
+                    deleniti error excepturi aliquam dolores ullam nam animi
+                    quos quam repudiandae, at commodi assumenda mollitia facere
+                    itaque illo.Lorem ipsum, dolor sit amet consectetur
+                    adipisicing elit. Voluptatibus magnam culpa qui deleniti
+                    error excepturi aliquam dolores ullam nam animi quos quam
+                    repudiandae, at commodi assumenda mollitia facere itaque
+                    illo.Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Voluptatibus magnam culpa qui deleniti error excepturi
+                    aliquam dolores ullam nam animi quos quam repudiandae, at
+                    commodi assumenda mollitia facere itaque illo.Lorem ipsum,
+                    dolor sit amet consectetur adipisicing elit. Voluptatibus
+                    magnam culpa qui deleniti error excepturi aliquam dolores
+                    ullam nam animi quos quam repudiandae, at commodi assumenda
+                    mollitia facere itaque illo.Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Voluptatibus magnam culpa qui
+                    deleniti error excepturi aliquam dolores ullam nam animi
+                    quos quam repudiandae, at commodi assumenda mollitia facere
+                    itaque illo.Lorem ipsum, dolor sit amet consectetur
+                    adipisicing elit. Voluptatibus magnam culpa qui deleniti
+                    error excepturi aliquam dolores ullam nam animi quos quam
+                    repudiandae, at commodi assumenda mollitia facere itaque
+                    illo.Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Voluptatibus magnam culpa qui deleniti error excepturi
+                    aliquam dolores ullam nam animi quos quam repudiandae, at
+                    commodi assumenda mollitia facere itaque illo.Lorem ipsum,
+                    dolor sit amet consectetur adipisicing elit. Voluptatibus
+                    magnam culpa qui deleniti error excepturi aliquam dolores
+                    ullam nam animi quos quam repudiandae, at commodi assumenda
+                    mollitia facere itaque illo.Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Voluptatibus magnam culpa qui
+                    deleniti error excepturi aliquam dolores ullam nam animi
+                    quos quam repudiandae, at commodi assumenda mollitia facere
+                    itaque illo.Lorem ipsum, dolor sit amet consectetur
+                    adipisicing elit. Voluptatibus magnam culpa qui deleniti
+                    error excepturi aliquam dolores ullam nam animi quos quam
+                    repudiandae, at commodi assumenda mollitia facere itaque
+                    illo.Lorem ipsum, dolor sit amet consectetur adipisicing
+                    elit. Voluptatibus magnam culpa qui deleniti error excepturi
+                    aliquam dolores ullam nam animi quos quam repudiandae, at
+                    commodi assumenda mollitia facere itaque illo.
+                    <br />
+                    <br />
+                    ----------------END OF TEST CONTENT---------------
+                </p>
+                <button> TEST BUTTON</button>
+            </div>
             <Footer />
-        </div>
+        </>
     )
 }
 
