@@ -1,16 +1,13 @@
-import React, { useMemo, useState } from 'react';
-import BookItem from '../BookItem/BookItem';
+import BookItem from '../BookItem/BookItem'
 
 const BookList = ({ bookList }) => {
     return (
-        <ul>
-            {bookList.map((item) => 
-                <BookItem 
-                    item={item} 
-                />
-            )}
-        </ul>
-    );
-};
+        <section>
+            {bookList.map((item) => (
+                <BookItem key={item.id} item={item} />
+            ))}
+        </section>
+    )
+}
 
-export default BookList;
+export default BookList

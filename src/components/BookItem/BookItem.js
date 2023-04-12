@@ -14,19 +14,39 @@ const BookItem = ({ item }) => {
     }, [currentPage, item])
 
     return (
-        <li className='book-item'>
-        {bookList.map(item => (
-            <React.Fragment key={item.id}>
-            <div>{item.title}</div>
-            <div>{item.language}</div>
-            <div>{item.ageRange}</div>
-            <div>{item.publishingYear}</div>
-            <div>{item.status}</div>
-            <div> {item.image}</div>
-            <div>{item.description}</div>
-            <div>{item.genre}</div>
-            </React.Fragment>
-        ))}
+        <>
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Language</th>
+                <th>Age Range</th>
+                <th>Publish Year</th>
+                <th>Status</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Genre</th>
+            </tr>
+            </thead>
+            <tbody>
+            {bookList.map(item => {
+                return (
+                    <tr key={item.id}>
+                        <td>{item.title}</td>
+                        <td>{item.language}</td>
+                        <td>{item.ageRange}</td>
+                        <td>{item.publishingYear}</td>
+                        <td>{item.status}</td>
+                        <td>{item.image}</td>
+                        <td>{item.description}</td>
+                        <td>{item.genre}</td>
+                        <td>{item.title}</td>
+                    </tr>
+                )
+            }
+            )}
+        </tbody>
+        </table>
             <Pagination
             class="pagination-bar"
             current={currentPage}
@@ -34,7 +54,7 @@ const BookItem = ({ item }) => {
             pageSize={PageSize}
             onPageChange={page => setCurrentPage(page)}
             />
-        </li>
+        </>
     );
 };
 
