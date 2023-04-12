@@ -2,7 +2,7 @@ $peter-river: #3498db;
 $clouds: #ecf0f1;
 
 .book__container {
-    padding: 20px;
+    padding: 150px;
     background-color: $peter-river;
     display: flex;
     align-items: center;
@@ -33,8 +33,10 @@ body {
     position: relative;
     margin: 0 auto;
     border: 5px solid $clouds;
-    width: 100px;
-    height: 60px;
+    // width: 100px;
+    // height: 60px;
+    width: 200px;
+    height: 120px;
 }
 .book__page {
     position: absolute;
@@ -45,17 +47,20 @@ body {
     border-bottom: 5px solid $clouds;
     border-right: 5px solid $clouds;
     background: $peter-river;
-    width: 50px;
-    height: 60px;
+    // width: 50px;
+    // height: 60px;
+    width: 100px;
+    height: 120px;
     transform-origin: 0% 50%;
     // animation: flip 1.2s linear;
-    animation: flip 0.8s infinite linear;
+    animation: flip 1s infinite linear;
     animation-fill-mode: forwards;
 
     @for $i from 1 through 3 {
         &:nth-child(#{$i}) {
             z-index: -$i;
-            animation-delay: 1.4s * $i;
+            // animation-delay: 1.4s * $i;
+            animation-delay: 0.1s * $i;
         }
     }
 }
