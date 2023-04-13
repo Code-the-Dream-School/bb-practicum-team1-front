@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { forLoggedInUser, forSignedOutUser } from '../../constants';
-import "./_RightNav.scss";
 
 const RightNav = ({ open }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

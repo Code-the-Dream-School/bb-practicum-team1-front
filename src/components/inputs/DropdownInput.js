@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { inputContext } from '../../App'
+import { InputContext } from '../../App'
 import './inputStyles.css'
 
 export default function DropdownInput({ label, id, options }) {
-    const { inputs, handleInputChange } = useContext(inputContext)
+    const { inputs, handleInputChange } = useContext(InputContext)
 
     return (
         <label className="text-input-label" htmlFor={id}>

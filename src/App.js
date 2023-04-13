@@ -3,12 +3,17 @@ import { Routes, Route } from 'react-router-dom';
 import { getAllData } from './util/index';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import { HomePage } from './components/HomePage/HomePage';
+import HomePage from './components/HomePage/HomePage';
+import { Login } from './components/LoginPage/LoginPage';
+import { SignUp } from './components/SignupPage/SingUp';
 import LoginPage from './components/LoginPage/LoginPage';
+import CreateBook from './components/CreateBook/CreateBook';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import {setCookie, getCookie, deleteCookie} from './util/Authentication';
+import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch';
 import './sass/app.scss'
-export const InputContext = createContext({})
+
+export const InputContext = createContext({});
 
 const URL = 'http://localhost:8000/api/v1/'
 
@@ -45,6 +50,9 @@ const App = () => {
             inputs,
             handleInputChange: (inputName, inputValue) =>
                 setInputs({ ...inputs, [inputName]: inputValue }),
+
+            handleBulkInput: (inputObj) => 
+                setInputs({ ...inputs, ...inputObj }),
         }}
       >
         {/* EXAMPLE: How to add TextInput and DropdownInput
@@ -55,6 +63,14 @@ const App = () => {
             type="text"
             placeholder="Enter text here"
             textarea={false}
+        />
+        <Route  
+          path="/login" 
+          element={<LoginPage />} 
+        />
+        <Route  
+          path="/createBook" 
+          element={<CreateBook />} 
         />
         <TextInput
             label="Text Area"
@@ -74,15 +90,39 @@ const App = () => {
             exact 
             path="/" 
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <HomePage />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             } 
           />
+          {/* <ProtectedRoute> */}
           <Route  
             path="/login" 
-            element={<LoginPage />} 
+            element={<Login />} 
           />
+          {/* this is an example implementation of the DebouncedSearch component */}
+          {/* <Route  
+            path="/debounce" 
+            element={<DebouncedSearch 
+              id={'Debounce'}
+              handleDebounce={(inputVal) => console.log(inputVal)}
+            />} 
+          /> */}
+
+          {/* </ProtectedRoute> */}
+
+          {/* <ProtectedRoute> */}
+
+            <Route
+            path="/sign-up"
+            element={<SignUp />}
+            />
+
+          {/* </ProtectedRoute> */}
+          <Route  
+          path="/createBook" 
+          element={<CreateBook />} 
+        />
       </Routes> 
       </InputContext.Provider>  
       <Footer />

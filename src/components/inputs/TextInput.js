@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { inputContext } from "../../App";
+import { InputContext } from "../../App";
 import "./inputStyles.css";
 
 const TextInput = ({ type, placeholder, label, id, textarea }) => {
-  const { inputs, handleInputChange } = useContext(inputContext);
+  const { inputs, handleInputChange } = useContext(InputContext);
 
   return (
     <>
@@ -14,7 +14,7 @@ const TextInput = ({ type, placeholder, label, id, textarea }) => {
             className="text-input"
             placeholder={placeholder}
             type={type}
-            value={inputs[id]}
+            value={inputs[id] ?? ''}
             onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             id={id}
             name={id}

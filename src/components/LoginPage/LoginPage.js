@@ -1,12 +1,37 @@
-import React from 'react';
+import TextInput from '../inputs/TextInput'
+import './Login.scss'
 
-const LoginPage = () => {
-    
+
+export const Login = () =>{
+    function handleSubmit(event) {
+        event.preventDefault()
+        const formData = new FormData(event.target)
+        const formProps = Object.fromEntries(formData)
+        console.log('You logged in!')
+        console.log("formProp", formProps)
+    }
+
     return (
-        <div>
-            <h1>This is the Login Page</h1>
-        </div>
-    );
-};
+        <div className="login-container"  >
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <TextInput
+                    placeholder="Email"
+                    type="email"
+                    id="logInEmail"
+                    label="Email"
+                    textarea={false}
+                />
+                <TextInput
+                    placeholder="Password"
+                    type="password"
+                    id="logInPassword"
+                    label="Password"
+                    textarea={false}
+                />
+            
 
-export default LoginPage;
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    )
+}
