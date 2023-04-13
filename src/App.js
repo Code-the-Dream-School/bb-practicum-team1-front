@@ -6,10 +6,10 @@ import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
 import { Login } from './components/LoginPage/LoginPage';
 import { SignUp } from './components/SignupPage/SingUp';
-import LoginPage from './components/LoginPage/LoginPage';
 import CreateBook from './components/CreateBook/CreateBook';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import {setCookie, getCookie, deleteCookie} from './util/Authentication';
+import { Pagination } from './components/PagePagination/Pagination';
 import './sass/app.scss'
 
 export const InputContext = createContext({});
@@ -114,8 +114,11 @@ const App = () => {
           element={<CreateBook />} 
         />
       </Routes> 
-      </InputContext.Provider>  
-      <Footer />
+      </InputContext.Provider>   
+        {/* <Route 
+        path='/pagination' Component={<Pagination/>}
+        /> */}
+      {/* <Footer /> */}
     </>
 
   );

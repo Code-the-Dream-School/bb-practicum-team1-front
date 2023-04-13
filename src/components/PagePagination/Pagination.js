@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import BookList from '../BookList/BookList';
 import { usePagination, DOTS } from './PagePagination';
 import './PagePagination.scss';
 
@@ -69,3 +70,4 @@ export const Pagination = totalBookCount => {
 
    )
 }
+ 
