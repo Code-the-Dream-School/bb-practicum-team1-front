@@ -17,9 +17,7 @@ type Address = {
  */
 
 export const getAddressCoordinate = async(address: string): Promise<void | Address> => {
-    // Call backend API to search for given address. ${process.env.HOSTNAME} variable is used to avoid hardcoding hostname
-    // to allow running it locally or remotly without code changes.
-    // Value for HOSTNAME is provided in .env file
+    // Call backend API to search for given address
     const url = `http://localhost:8000/api/v1/address/search?address=${address}`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
@@ -34,10 +32,8 @@ export const getAddressCoordinate = async(address: string): Promise<void | Addre
  * @returns {Promise<void | Array<Address>>} A promise that is all adresses matches the given argument.
  */
 export const getAddressAutocomplete = async(address: string): Promise<void | Array<Address>> => {
-    // Call backend API to get autocomplete suggestions for given address. ${process.env.HOSTNAME} variable is used to avoid hardcoding hostname
-    // to allow running it locally or remotly without code changes.
-    // Value for HOSTNAME is provided in .env file
-    const url = `http://localhost:8000/api/v1/address/search?address=${address}`
+    // Call backend API to get autocomplete suggestions for given address. 
+    const url = `http://localhost:8000/api/v1/address/autocomplete?address=${address}`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
