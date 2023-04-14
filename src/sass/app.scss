@@ -1,4 +1,4 @@
-@import "_reset.scss";
+@import '_reset.scss';
 @import './variables';
 @import './elements';
 // example: @import './components/nameOfScssfileForIndividualComponent';
@@ -7,6 +7,9 @@
 @import '../components/Header/Header';
 @import '../components/Header/RightNav';
 
-
 @import '../util/DebouncedSearch/DebouncedSearch';
-
+.content {
+    padding-top: 65px;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+}
