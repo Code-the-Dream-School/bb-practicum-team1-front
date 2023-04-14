@@ -4,10 +4,13 @@ import { getAllData } from './util/index'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import HomePage from './components/HomePage/HomePage'
+import { Login } from './components/LoginPage/LoginPage';
+import { SignUp } from './components/SignupPage/SingUp';
 import LoginPage from './components/LoginPage/LoginPage'
 import CreateBook from './components/CreateBook/CreateBook'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { setCookie, getCookie, deleteCookie } from './util/Authentication'
+import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch';
 import './sass/app.scss'
 
 export const InputContext = createContext({})
@@ -82,24 +85,50 @@ const App = () => {
             options={options}
         /> */}
 
-                    <Routes>
-                        <Route
-                            exact
-                            path="/"
-                            element={
-                                // <ProtectedRoute>
-                                <HomePage />
-                                // </ProtectedRoute>
-                            }
-                        />
-                        <Route path="/login" element={<LoginPage />} />
-                        <Route path="/createBook" element={<CreateBook />} />
-                    </Routes>
-                </InputContext.Provider>
-            </div>
-            <Footer />
-        </>
-    )
+        <Routes>
+          <Route 
+            exact 
+            path="/" 
+            element={
+              // <ProtectedRoute>
+                <HomePage />
+              // </ProtectedRoute>
+            } 
+          />
+          {/* <ProtectedRoute> */}
+          <Route  
+            path="/login" 
+            element={<Login />} 
+          />
+          {/* this is an example implementation of the DebouncedSearch component */}
+          {/* <Route  
+            path="/debounce" 
+            element={<DebouncedSearch 
+              id={'Debounce'}
+              handleDebounce={(inputVal) => console.log(inputVal)}
+            />} 
+          /> */}
+
+          {/* </ProtectedRoute> */}
+
+          {/* <ProtectedRoute> */}
+
+            <Route
+            path="/sign-up"
+            element={<SignUp />}
+            />
+
+          {/* </ProtectedRoute> */}
+          <Route  
+          path="/createBook" 
+          element={<CreateBook />} 
+        />
+      </Routes> 
+      </InputContext.Provider>  
+      <Footer />
+    </>
+
+  );
 }
 
 export default App

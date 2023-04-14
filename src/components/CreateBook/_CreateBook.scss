@@ -19,7 +19,6 @@ h1 {
 .text-input-label {
     color: $tertiaryColor;
     font-family: $fontPrimary;
-    font-size:x-large;
 }
 
 .dropdown-select, option {
@@ -27,17 +26,20 @@ h1 {
     font-family: cursive;
     text-align:left;
     width: 250px;
+    border: 2px solid #393F3F;
 }
 
 .text-input {
     font-size: 1.2rem;
     width: 250px;
+    margin-top: 15px;
 }
 
 .textarea-input {
     height: 7rem;
     width: 70%;
     font-size: 1.2rem;
+    border: 2px solid #393F3F;
 }
 
 .addButton {
@@ -80,19 +82,23 @@ h1 {
 }
 
 .button {
-    width: 250px;
+    width: 200%;
     text-align: center;
 }
 
 .button button {
     margin-bottom: 100px;
+    width: 9rem;
 }
 
 .cover div button {
     background-color:crimson;
     color: $white;
+    border: 3px solid #77b0bb;
     border-radius: 10%;
     margin: 0px 0px 0px 20px;
+    font-size: 2rem;
+    padding: 3px 17px;
     cursor: pointer;
 }
 
@@ -120,11 +126,42 @@ input[type="file"] {
     background-color: #4f6a6a;
     color: $white;
     cursor: pointer;
+    width: 250px;
+    text-align: center;
 }
 
 .custom-file-upload::before {
     content: 'Upload Cover';
 }
+
+.container {
+    position: relative;
+    width: 30%;
+}
+
+.container img {
+    width: 100%;
+    height: auto;
+}
+
+.container button {
+    position: absolute;
+    top: 25px;
+    left: 92%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .container button:hover {
+    background-color: black;
+  }
 
 @media (max-width: 768px) {
     form {
@@ -140,7 +177,7 @@ input[type="file"] {
     }
 
     .textarea-input {
-        width: 250px;
+        width: 250px; 
     }
 
     .addButton {
@@ -153,6 +190,8 @@ input[type="file"] {
     }
 
     .button {
-        width: 300px;
+        width: 250px;
+        margin-left: 3.2rem;
     }
+
 }

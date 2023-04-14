@@ -49,7 +49,7 @@ export const createBookAdapter = async(bookInput:bookInput) =>{
     return data   
 }
 
-// Get all books for all users and all books owner adapter
+// Get all books for all users, all books owner, and by userId adapter
 type queryBook = { 
     title?:string,
     author?:string, 
@@ -86,6 +86,7 @@ type booksSchema ={
     __v: number,
     imageURL?: string
 }
+
 /**
  * This function will get all books for users with the provided information
  * @param {String} queryBook - The query object containing information for query parameters.
@@ -113,10 +114,10 @@ type booksSchema ={
  *  skip = 5
  * };
  * getAllBooksAdapter(queryBook) 
- * @returns {Promise<bookSchema[]>} A promise that resolves get all books(for users) information.
+ * @returns {Promise<booksSchema[]>} A promise that resolves get all books(for users) information.
  */
 // Get all books for users
-export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise<booksSchema[]> => {
+export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise<booksSchema[]> =>{
    let url = 'http://localhost:8000/api/v1/books'
     if(queryBook){
         const queryParams = Object.entries(queryBook).map((bookFields)=>{
@@ -144,6 +145,21 @@ export const getAllBooksOwnerAdapter = async():Promise<booksSchema[]> => {
     return data
 }
 
+/**
+ * This function will get books by userId with the provided information
+ * @param {String} userId - Id of the user.
+ * @example
+ * const userId = "6413f8ee3b117c5517f3f604"
+ * getBooksUserIdAdapter(userId)
+ * @returns {Promise<booksSchema[]>} A promise that resolves get books by userId information.
+ */
+// Get books by userId adapter
+export const getBooksUserIdAdapter = async(userId:string): Promise<booksSchema[]> =>{
+    const url = `http://localhost:8000/api/v1/books/${userId}`
+    const data = await fetchAPIData(url, 'GET', undefined)
+    return data
+}
+
 // Get single book, delete, and update adapter
 /**
  * This function will get a single book with the provided information
@@ -154,11 +170,12 @@ export const getAllBooksOwnerAdapter = async():Promise<booksSchema[]> => {
  * @returns {Promise<Object>} A promise that resolves get single book information.
  */
 // get single book adapter
-export const getSingleBookAdapter = async(bookId:string): Promise<booksSchema>=>{
+export const getSingleBookAdapter = async(bookId:string): Promise<booksSchema> =>{
     const url = `http://localhost:8000/api/v1/books/${bookId}` 
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
+
 /**
  * This function will delete book with the provided information
  * @param {String} bookId - Id of the book.
@@ -186,9 +203,9 @@ type bookParams = {
     author?: string,
     worldcatURL?: string,
     ISBN?: string,
-    imageURL?: string
-      
+    imageURL?: string     
 }
+
 /**
  * This function will upadate the book with the provided information
  * @param {String} bookParams - The params object containing information for updating a book.
@@ -224,7 +241,7 @@ type bookParams = {
  * @returns {Promise<Object>} - A promise that resolves updating book information.
  */
 // update book adapter
-export const updateBookAdapter = async(bookParams:bookParams): Promise<booksSchema>=>{
+export const updateBookAdapter = async(bookParams:bookParams): Promise<booksSchema> =>{
     const bookId = bookParams.id
     const url = `http://localhost:8000/api/v1/books/${bookId}`
     const data = await fetchAPIData(url, 'POST', bookParams)
