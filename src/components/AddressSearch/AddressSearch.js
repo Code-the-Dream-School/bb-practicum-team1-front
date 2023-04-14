@@ -18,8 +18,7 @@ const CreateAddress = ({ id }) => {
             <ul>
                 {addressSuggestions.map((item) => 
                     <li id={item} value={item}>{item}</li>
-                )
-                }
+                )}
             </ul>
         </>
     );
