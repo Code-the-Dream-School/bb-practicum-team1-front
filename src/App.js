@@ -115,9 +115,6 @@ const App = () => {
         />
       </Routes> 
       </InputContext.Provider>   
-        {/* <Route 
-        path='/pagination' Component={<Pagination/>}
-        /> */}
       <Footer />
     </>
 
