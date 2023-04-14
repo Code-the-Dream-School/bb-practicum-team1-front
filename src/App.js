@@ -118,7 +118,7 @@ const App = () => {
         {/* <Route 
         path='/pagination' Component={<Pagination/>}
         /> */}
-      {/* <Footer /> */}
+      <Footer />
     </>
 
   );
