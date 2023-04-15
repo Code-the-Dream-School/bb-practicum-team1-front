@@ -1,5 +1,6 @@
 import React from 'react';
 import BookList from '../BookList/BookList';
+import AddressSearch from '../AddressSearch/AddressSearch';
 
 const HomePage = () => {
     //Sample array of book data (test)
@@ -46,7 +47,7 @@ const HomePage = () => {
     return (
         <div>
             <h1>This is the Home Page</h1>
-
+            <AddressSearch id={"mySearch"} />
             {/* Render out the booklList on the home page */}
             <BookList bookList={bookList}/>
             <p>{dummiText}</p>

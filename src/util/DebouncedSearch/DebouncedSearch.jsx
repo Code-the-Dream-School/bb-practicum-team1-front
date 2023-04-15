@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useCallback } from 'react';
 import TextInput from '../../components/inputs/TextInput';
 import _ from 'lodash';
+//Should be passed as a prop. Child components should not import parent
 import { InputContext } from "../../App";
 
 // Should use existing TextInput component. Should take a prop called onDebounce 
@@ -15,10 +16,14 @@ const DebouncedSearch = ({ id, handleDebounce }) => {
     const debounceSearch = useCallback(_.debounce(query => handleDebounce(query), 500), []);
 
     useEffect(() => {
-        // cancel any previous debounce action
-        debounceSearch.cancel();
-        debounceSearch(inputs);
-    }, [inputs[id], debounceSearch(inputs)]);
+        //do not call search if user hasn't provided any value yet
+        if (inputs[id] !== undefined && inputs[id] !== "") {
+            // cancel any previous debounce action
+            debounceSearch.cancel();
+            debounceSearch(inputs[id]);
+        }
+        // remove dependency on call result to call search only when value in input is changed
+    }, [inputs[id]]);
 
     return (
         <>    

@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import DebouncedSearch from '../DebouncedSearch/DebouncedSearch';
-import { getAddressCoordinate, getAddressAutocomplete } from "../../adapters/address-adapter"; 
+import DebouncedSearch from '../../util/DebouncedSearch/DebouncedSearch';
+import { getAddressAutocomplete } from "../../adapters/address-adapter"; 
 
-const CreateAddress = ({ id }) => {
+const AddressSearch = ({ id }) => {
     const [addressSuggestions, setAddressSuggestions] = useState([]);
 
     const processSearch = (value) => {
+        console.log(value)
         //Unwrapping promise
-        getAddressAutocomplete(value).then(data => {
-            setAddressSuggestions(data)
-        })       
+        if (value !== "") {
+            getAddressAutocomplete(value).then(data => {
+                setAddressSuggestions(data)
+                console.log(addressSuggestions);
+            })
+        }     
     }
 
     return (
@@ -17,7 +21,7 @@ const CreateAddress = ({ id }) => {
             <DebouncedSearch id={id} handleDebounce={processSearch} />
             <ul>
                 {addressSuggestions.map((item) => 
-                    <li id={item} value={item}>{item}</li>
+                    <li id={`${item.latitude}|${item.longitude}`} value={item.address}>{item.address}</li>
                 )}
             </ul>
         </>
@@ -26,4 +30,4 @@ const CreateAddress = ({ id }) => {
 
 };
 
-export default CreateAddress;
+export default AddressSearch;
