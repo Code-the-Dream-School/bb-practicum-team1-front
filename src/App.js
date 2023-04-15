@@ -21,6 +21,20 @@ const URL = 'http://localhost:8000/api/v1/'
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
+    const [loading, setLoading] = useState(false)
+    const [quote, setQuote] = useState({})
+
+    const getRandomQuote = () => {
+        setLoading(true)
+        setTimeout(() => {
+            fetch('https://api.quotable.io/random')
+                .then((res) => res.json())
+                .then((data) => {
+                    setLoading(false)
+                    setQuote(data)
+                })
+        }, 5000)
+    }
 
     /* EXAMPLE: DropdownInput selection options
   
@@ -46,6 +60,7 @@ const App = () => {
         <>
             <Header />
             <div className="content">
+                <button>This is a button</button>
                 <InputContext.Provider
                     value={{
                         inputs,
@@ -117,6 +132,26 @@ const App = () => {
                         <Route path="/createBook" element={<CreateBook />} />
                     </Routes>
                 </InputContext.Provider>
+                <div>
+                    <div className="buttons">
+                        <button
+                            className="btn get-quote"
+                            onClick={getRandomQuote}
+                        >
+                            Loading Spinner Quote Button (click here)
+                        </button>
+                    </div>
+                    {loading ? (
+                        <LoadingSpinner />
+                    ) : (
+                        <div className="quote-section">
+                            <blockquote className="quote">
+                                {quote.content}
+                            </blockquote>{' '}
+                            <span className="author">{quote.author}</span>
+                        </div>
+                    )}
+                </div>
             </div>
             <Footer />
         </>
