@@ -4,10 +4,13 @@ import { getAllData } from './util/index'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import HomePage from './components/HomePage/HomePage'
+import { Login } from './components/LoginPage/LoginPage'
+import { SignUp } from './components/SignupPage/SingUp'
 import LoginPage from './components/LoginPage/LoginPage'
 import CreateBook from './components/CreateBook/CreateBook'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { setCookie, getCookie, deleteCookie } from './util/Authentication'
+import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
 import './sass/app.scss'
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 
@@ -16,21 +19,9 @@ export const InputContext = createContext({})
 const URL = 'http://localhost:8000/api/v1/'
 
 const App = () => {
+    const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
-    const [loading, setLoading] = useState(false)
-    const [quote, setQuote] = useState({})
 
-    const getRandomQuote = () => {
-        setLoading(true)
-        setTimeout(() => {
-            fetch('https://api.quotable.io/random')
-                .then((res) => res.json())
-                .then((data) => {
-                    setLoading(false)
-                    setQuote(data)
-                })
-        }, 5000)
-    }
     /* EXAMPLE: DropdownInput selection options
   
   const options = [
@@ -40,79 +31,92 @@ const App = () => {
   ]
   */
 
+    useEffect(() => {
+        ;(async () => {
+            const myData = await getAllData(URL)
+            setMessage(myData.data)
+        })()
+
+        return () => {
+            console.log('unmounting')
+        }
+    }, [])
+
     return (
         <>
             <Header />
-            <InputContext.Provider
-                value={{
-                    inputs,
-                    handleInputChange: (inputName, inputValue) =>
-                        setInputs({ ...inputs, [inputName]: inputValue }),
+            <div className="content">
+                <InputContext.Provider
+                    value={{
+                        inputs,
+                        handleInputChange: (inputName, inputValue) =>
+                            setInputs({ ...inputs, [inputName]: inputValue }),
 
-                    handleBulkInput: (inputObj) =>
-                        setInputs({ ...inputs, ...inputObj }),
-                }}
-            >
-                {/* EXAMPLE: How to add TextInput and DropdownInput
+                        handleBulkInput: (inputObj) =>
+                            setInputs({ ...inputs, ...inputObj }),
+                    }}
+                >
+                    {/* EXAMPLE: How to add TextInput and DropdownInput
         
         <TextInput
-            label="Text Input"
-            id="testInput"
-            type="text"
-            placeholder="Enter text here"
-            textarea={false}
+        label="Text Input"
+        id="testInput"
+        type="text"
+        placeholder="Enter text here"
+        textarea={false}
         />
         <Route  
-          path="/login" 
-          element={<LoginPage />} 
+        path="/login" 
+        element={<LoginPage />} 
         />
         <Route  
-          path="/createBook" 
-          element={<CreateBook />} 
+        path="/createBook" 
+        element={<CreateBook />} 
         />
         <TextInput
-            label="Text Area"
-            id="textArea"
-            type="textarea"
-            placeholder="Enter text here"
-            textarea={true}
-        />
-        <DropdownInput
+        label="Text Area"
+        id="textArea"
+        type="textarea"
+        placeholder="Enter text here"
+        textarea={true}
+            />
+            <DropdownInput
             label="Dropdown Menu"
             id="DropdownMenu"
             options={options}
-        /> */}
+          /> */}
 
-                <Routes>
-                    <Route
-                        exact
-                        path="/"
-                        element={
-                            // <ProtectedRoute>
-                            <HomePage />
-                            // </ProtectedRoute>
-                        }
-                    />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/createBook" element={<CreateBook />} />
-                </Routes>
-            </InputContext.Provider>
-            <div>
-                <div className="buttons">
-                    <button className="btn get-quote" onClick={getRandomQuote}>
-                        Loading Spinner Quote Button (click here)
-                    </button>
-                </div>
-                {loading ? (
-                    <LoadingSpinner />
-                ) : (
-                    <div className="quote-section">
-                        <blockquote className="quote">
-                            {quote.content}
-                        </blockquote>{' '}
-                        <span className="author">{quote.author}</span>
-                    </div>
-                )}
+                    <Routes>
+                        <Route
+                            exact
+                            path="/"
+                            element={
+                                // <ProtectedRoute>
+                                <HomePage />
+                                // </ProtectedRoute>
+                            }
+                        />
+                        {/* <ProtectedRoute> */}
+                        <Route path="/login" element={<Login />} />
+                        {/* this is an example implementation of the DebouncedSearch component */}
+                        {/* <Route  
+            path="/debounce" 
+            element={<DebouncedSearch 
+              id={'Debounce'}
+              handleDebounce={(inputVal) => console.log(inputVal)}
+              />} 
+            /> */}
+
+                        {/* </ProtectedRoute> */}
+
+                        {/* <ProtectedRoute> */}
+
+                        <Route path="/sign-up" element={<SignUp />} />
+
+                        {/* </ProtectedRoute> */}
+                        <Route path="/createBook" element={<CreateBook />} />
+                    </Routes>
+                </InputContext.Provider>
             </div>
             <Footer />
         </>
