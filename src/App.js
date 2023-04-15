@@ -60,7 +60,6 @@ const App = () => {
         <>
             <Header />
             <div className="content">
-                <button>This is a button</button>
                 <InputContext.Provider
                     value={{
                         inputs,
