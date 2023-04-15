@@ -9,7 +9,7 @@ import CreateBook from './components/CreateBook/CreateBook'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { setCookie, getCookie, deleteCookie } from './util/Authentication'
 import './sass/app.scss'
-import Flipbook from './components/LoadingSpinner/Flipbook'
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 
 export const InputContext = createContext({})
 
@@ -104,7 +104,7 @@ const App = () => {
                     </button>
                 </div>
                 {loading ? (
-                    <Flipbook />
+                    <LoadingSpinner />
                 ) : (
                     <div className="quote-section">
                         <blockquote className="quote">
