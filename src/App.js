@@ -1,18 +1,28 @@
 import React, { useState, useEffect, createContext } from 'react'
+
+// 3rd-party dependencies
 import { Routes, Route } from 'react-router-dom'
+
+// utility functions
 import { getAllData } from './util/index'
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
+import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
+import { setCookie, getCookie, deleteCookie } from './util/Authentication'
+
+// Layout
+import RootLayout from './layouts/RootLayout'
+
+// UI Components
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
+
+// Page components
 import HomePage from './components/HomePage/HomePage'
 import { Login } from './components/LoginPage/LoginPage'
 import { SignUp } from './components/SignupPage/SingUp'
 import LoginPage from './components/LoginPage/LoginPage'
 import CreateBook from './components/CreateBook/CreateBook'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import { setCookie, getCookie, deleteCookie } from './util/Authentication'
-import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
+
 import './sass/app.scss'
-import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 
 export const InputContext = createContext({})
 
@@ -45,20 +55,19 @@ const App = () => {
   ]
   */
 
-    useEffect(() => {
-        ;(async () => {
-            const myData = await getAllData(URL)
-            setMessage(myData.data)
-        })()
+    // useEffect(() => {
+    //     ;(async () => {
+    //         const myData = await getAllData(URL)
+    //         setMessage(myData.data)
+    //     })()
 
-        return () => {
-            console.log('unmounting')
-        }
-    }, [])
+    //     return () => {
+    //         console.log('unmounting')
+    //     }
+    // }, [])
 
     return (
         <>
-            <Header />
             <div className="content">
                 <InputContext.Provider
                     value={{
@@ -106,14 +115,16 @@ const App = () => {
                             path="/"
                             element={
                                 // <ProtectedRoute>
-                                <HomePage />
+                                <RootLayout />
+
                                 // </ProtectedRoute>
                             }
-                        />
-                        {/* <ProtectedRoute> */}
-                        <Route path="/login" element={<Login />} />
-                        {/* this is an example implementation of the DebouncedSearch component */}
-                        {/* <Route  
+                        >
+                            <Route path="" element={<HomePage />} />
+                            {/* <ProtectedRoute> */}
+                            <Route path="login" element={<Login />} />
+                            {/* this is an example implementation of the DebouncedSearch component */}
+                            {/* <Route  
             path="/debounce" 
             element={<DebouncedSearch 
               id={'Debounce'}
@@ -121,14 +132,15 @@ const App = () => {
               />} 
             /> */}
 
-                        {/* </ProtectedRoute> */}
+                            {/* </ProtectedRoute> */}
 
-                        {/* <ProtectedRoute> */}
+                            {/* <ProtectedRoute> */}
 
-                        <Route path="/sign-up" element={<SignUp />} />
+                            <Route path="sign-up" element={<SignUp />} />
 
-                        {/* </ProtectedRoute> */}
-                        <Route path="/createBook" element={<CreateBook />} />
+                            {/* </ProtectedRoute> */}
+                            <Route path="createBook" element={<CreateBook />} />
+                        </Route>
                     </Routes>
                 </InputContext.Provider>
                 <div>
@@ -152,7 +164,6 @@ const App = () => {
                     )}
                 </div>
             </div>
-            <Footer />
         </>
     )
 }
