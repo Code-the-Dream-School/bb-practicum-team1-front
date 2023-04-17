@@ -54,7 +54,6 @@
 }
 
 .hamBox:hover {
-    background: #d1e9e9;
     z-index: 5;
 }
 
@@ -100,19 +99,24 @@
 }
 
 @media (max-width: 768px) {
-    .nav-container {
-        display: inline;
-        padding-top: 59px;
-    }
+    .nav {padding: 10px}
 
     .hamBox {
+        position: absolute;
+        top: 0;
+        right: 0;
         display: flex;
-        margin-left: 20rem;
-        margin-top: -5.4rem;
     }    
 
     .navbar {
-        top: 0;
-        left: 0;
+        background-color: red;
+        margin-bottom: 50px;
+        width: fit-content;
+    }
+    
+    .menu-toggle{
+        position: relative;
+        
     }
 }
+
