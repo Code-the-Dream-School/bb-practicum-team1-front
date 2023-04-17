@@ -71,9 +71,10 @@ const optionsGenre = [
 const CreateBook = ({ bookId }) => {
 
     const routeParams = useParams();
-    console.log(routeParams);
+    console.log(routeParams)
 
     const { inputs, handleBulkInput } = useContext(InputContext);
+
 
     // placeholder for book update
     const [testBook, setTestBook] = useState(bookData);
@@ -87,7 +88,32 @@ const CreateBook = ({ bookId }) => {
         return (
             <>
                 {console.log('this is the submit form')}
-                {routeParams ? <updateBookAdapter /> : <createBookAdapter />}
+                {routeParams.testBook ? 
+                    (updateBookAdapter(                         
+                        bookId.id, 
+                        bookId.title, 
+                        bookId.language, 
+                        bookId.ageRange, 
+                        bookId.publishingYear, 
+                        bookId.status, 
+                        bookId.description, 
+                        bookId.genre, 
+                        bookId.author, 
+                        bookId.worldcatURL, 
+                        bookId.ISBN, 
+                        bookId.imageURL
+                    )) 
+                    : (createBookAdapter(
+                        bookId.title, 
+                        bookId.language, 
+                        bookId.ageRange, 
+                        bookId.publishingYear, 
+                        bookId.status, 
+                        bookId.description, 
+                        bookId.genre, 
+                        bookId.author
+                    ))
+                }
             </>
         )
     };
