@@ -18,6 +18,7 @@ const TextInput = ({ type, placeholder, label, id, textarea }) => {
             onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             id={id}
             name={id}
+            required
           />
         </label>
       ) : (

@@ -1,12 +1,21 @@
-import TextInput from '../inputs/TextInput'
+import TextInput from '../inputs/TextInput';
+import { sub } from "date-fns/fp";
+
+const yourValidationSchema = yup.object().shape({
+    name: yup.string().required(),
+    dob: yup
+      .date()
+      .required()
+      .max(sub({ years: 18 }, new Date()), "User must be over 18 years old"),
+})
 
 export function SignUp() {
     function handleSubmit(event) {
         event.preventDefault()
-        // const formData = new FormData(event.target)
-        // const formProps = Object.fromEntries(formData)
-        // console.log('You signed up!')
-        // console.log(formProps)
+        const formData = new FormData(event.target)
+        const formProps = Object.fromEntries(formData)
+        console.log('You signed up!')
+        console.log(formProps)
     }
 
     return (
@@ -55,9 +64,10 @@ export function SignUp() {
                 <TextInput
                     placeholder="Date of Birth"
                     type="date"
-                    id="dateOfBirth"
+                    id={yourValidationSchema}
                     label="Date of Birth"
                     textarea={false}
+                    min={yourValidationSchema}
                 />
 
                 <TextInput
