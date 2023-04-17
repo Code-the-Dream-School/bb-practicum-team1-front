@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import DropdownInput from '../inputs/DropdownInput';
 import TextInput from '../inputs/TextInput';
+import { useParams } from 'react-router-dom';
+import { createBookAdapter, updateBookAdapter } from '../../adapters/book-adapters';
+
 import { InputContext } from '../../App';
 
 const addButton = '➕';
@@ -67,6 +70,9 @@ const optionsGenre = [
 
 const CreateBook = ({ bookId }) => {
 
+    const routeParams = useParams();
+    console.log(routeParams);
+
     const { inputs, handleBulkInput } = useContext(InputContext);
 
     // placeholder for book update
@@ -79,7 +85,10 @@ const CreateBook = ({ bookId }) => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         return (
-            console.log('this is the submit form')
+            <>
+                {console.log('this is the submit form')}
+                {routeParams ? <updateBookAdapter /> : <createBookAdapter />}
+            </>
         )
     };
 

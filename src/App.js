@@ -113,7 +113,8 @@ const App = () => {
                         <Route path="/sign-up" element={<SignUp />} />
 
                         {/* </ProtectedRoute> */}
-                        <Route path="/createBook" element={<CreateBook />} />
+                        <Route path="/books/create" element={<CreateBook />} />
+                        <Route path="/books/edit/:bookId" element={<CreateBook />} />
                     </Routes>
                 </InputContext.Provider>
             </div>
