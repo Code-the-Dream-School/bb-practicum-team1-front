@@ -1,0 +1,19 @@
+.cardsList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+}
+
+@media (max-width: 768px) {
+    .cardsList {
+        background-color: transparent;
+        width: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        overflow: auto;
+        padding-bottom: 70px;
+        margin-top: -40px;
+    }
+}
