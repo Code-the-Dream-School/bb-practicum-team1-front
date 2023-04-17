@@ -3,6 +3,7 @@ import TextInput from '../../components/inputs/TextInput';
 import _ from 'lodash';
 //Should be passed as a prop. Child components should not import parent
 import { InputContext } from "../../App";
+import DropdownInput from '../../components/inputs/DropdownInput';
 
 // Should use existing TextInput component. Should take a prop called onDebounce 
 // (as well as any props necessary to setup the TextInput component). 
@@ -34,7 +35,7 @@ const DebouncedSearch = ({ id, handleDebounce }) => {
                     type='text'
                     id={id}
                     name={id}
-                />    
+                />
             </div>
         </>
     )

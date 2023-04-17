@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DebouncedSearch from '../../util/DebouncedSearch/DebouncedSearch';
+import DropdownInput from '../inputs/DropdownInput'
 import { getAddressAutocomplete } from "../../adapters/address-adapter"; 
 
 const AddressSearch = ({ id }) => {
@@ -11,19 +12,26 @@ const AddressSearch = ({ id }) => {
         if (value !== "") {
             getAddressAutocomplete(value).then(data => {
                 setAddressSuggestions(data)
-                console.log(addressSuggestions);
             })
         }     
+    }
+
+    const convert = (raw) => {
+        const data = raw.map((item) => {
+            const val = {};
+            val.value = item.address;
+            return val;
+        })
+        return data;
     }
 
     return (
         <>
             <DebouncedSearch id={id} handleDebounce={processSearch} />
-            <ul>
-                {addressSuggestions.map((item) => 
-                    <li id={`${item.latitude}|${item.longitude}`} value={item.address}>{item.address}</li>
-                )}
-            </ul>
+            <DropdownInput 
+                    id={id}
+                    options={convert(addressSuggestions)}
+                />
         </>
     );
 
