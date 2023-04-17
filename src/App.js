@@ -12,6 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { setCookie, getCookie, deleteCookie } from './util/Authentication'
 import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
 import './sass/app.scss'
+import SearchPage from './components/SearchPage/SearchPage'
 
 export const InputContext = createContext({})
 
@@ -97,7 +98,7 @@ const App = () => {
                         />
                         {/* <ProtectedRoute> */}
                         <Route path="/login" element={<Login />} />
-                        <Route path="/search" element={<SearchPage />}
+                        <Route path="/search" element={< SearchPage/>} />
                         {/* this is an example implementation of the DebouncedSearch component */}
                         {/* <Route  
             path="/debounce" 
