@@ -97,6 +97,7 @@ const App = () => {
                         />
                         {/* <ProtectedRoute> */}
                         <Route path="/login" element={<Login />} />
+                        <Route path="/search" element={<SearchPage />}
                         {/* this is an example implementation of the DebouncedSearch component */}
                         {/* <Route  
             path="/debounce" 
