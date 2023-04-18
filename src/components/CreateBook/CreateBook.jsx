@@ -84,36 +84,35 @@ const CreateBook = ({ bookId }) => {
     // console.log(inputs);
 
     const handleFormSubmit = (event) => {
-        event.preventDefault();
         return (
-            <>
-                {routeParams.bookId ? 
-                    (updateBookAdapter(                    
-                        inputs.id, 
-                        inputs.title, 
-                        inputs.language, 
-                        inputs.ageRange, 
-                        inputs.publishingYear, 
-                        inputs.status, 
-                        inputs.description, 
-                        inputs.genre, 
-                        inputs.author, 
-                        inputs.worldcatURL, 
-                        inputs.ISBN, 
-                        inputs.imageURL
-                    )) 
-                    : (createBookAdapter(
-                        inputs.title, 
-                        inputs.language, 
-                        inputs.ageRange, 
-                        inputs.publishingYear, 
-                        inputs.status, 
-                        inputs.description, 
-                        inputs.genre, 
-                        inputs.author
-                    ))
-                }
-            </>
+            routeParams.bookId ? 
+                (updateBookAdapter( 
+                    { 
+                        id: inputs.id, 
+                        title: inputs.title, 
+                        language: inputs.language, 
+                        ageRange: inputs.ageRange, 
+                        publishingYear: inputs.publishingYear, 
+                        status: inputs.status, 
+                        description: inputs.description, 
+                        genre: inputs.genre, 
+                        author: inputs.author, 
+                        worldcatURL: inputs.worldcatURL, 
+                        ISBN: inputs.ISBN, 
+                        imageURL: inputs.imageURL
+                    }                   
+                )) : (createBookAdapter(
+                    {
+                        title: inputs.title, 
+                        language: inputs.language, 
+                        ageRange: inputs.ageRange, 
+                        publishingYear: inputs.publishingYear, 
+                        status: inputs.status, 
+                        description: inputs.description, 
+                        genre: inputs.genre, 
+                        author: inputs.author
+                    }
+                ))    
         )
     };
 
