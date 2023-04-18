@@ -1,8 +1,31 @@
 import TextInput from '../inputs/TextInput';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export function SignUp() {
+    const [input, setInput] = useState({
+        userName: '',
+        signUpPassword: '',
+        signUpConfirmPassword: ''
+      });
+     
+      const [error, setError] = useState({
+        userName: '',
+        signUpPassword: '',
+        signUpConfirmPassword: ''
+      })
+     
+      const onInputChange = e => {
+     
+      }
+     
+      const validateInput = e => {
+     
+      }
+
+
+
+
     function handleSubmit(event) {
         event.preventDefault()
         // const formData = new FormData(event.target)
@@ -26,6 +49,7 @@ export function SignUp() {
                     type="text"
                     id="signUpFirstName"
                     label="First Name"
+                    
                     // textarea={false}
                 />
 
