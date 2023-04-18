@@ -3,9 +3,10 @@ import BookItem from '../BookItem/BookItem';
 
 const BookList = ({ bookList }) => {
     return (
-        <ul>
+        <ul className='cardsList'>
             {bookList.map((item) => 
                 <BookItem 
+                    key={item.title}
                     item={item} 
                 />
             )}

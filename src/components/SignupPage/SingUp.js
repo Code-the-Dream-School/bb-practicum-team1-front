@@ -2,11 +2,11 @@ import TextInput from '../inputs/TextInput'
 
 export function SignUp() {
     function handleSubmit(event) {
-        event.preventDefault()
-        // const formData = new FormData(event.target)
-        // const formProps = Object.fromEntries(formData)
-        // console.log('You signed up!')
-        // console.log(formProps)
+        event.preventDefault();
+        const formData = new FormData(event.target)
+        const formProps = Object.fromEntries(formData)
+        console.log('You signed up!')
+        console.log(formProps)
     }
 
     return (
@@ -17,6 +17,7 @@ export function SignUp() {
                     type="text"
                     id="signUpFirstName"
                     label="First Name"
+                    required
                     textarea={false}
                 />
 
@@ -25,6 +26,7 @@ export function SignUp() {
                     type="text"
                     id="signUpLastName"
                     label="Last Name"
+                    required
                     textarea={false}
                 />
 
@@ -33,6 +35,7 @@ export function SignUp() {
                     type="address"
                     id="address"
                     label="Address"
+                    required
                     textarea={false}
                 />
 
@@ -41,6 +44,7 @@ export function SignUp() {
                     type="email"
                     id="signUpEmail"
                     label="Email"
+                    required
                     textarea={false}
                 />
 
@@ -49,6 +53,7 @@ export function SignUp() {
                     type="username"
                     id="userName"
                     label="Username"
+                    required
                     textarea={false}
                 />
 
@@ -57,6 +62,7 @@ export function SignUp() {
                     type="date"
                     id="dateOfBirth"
                     label="Date of Birth"
+                    required
                     textarea={false}
                 />
 
@@ -65,6 +71,7 @@ export function SignUp() {
                     type="password"
                     id="signUpPassword"
                     label="Password"
+                    required
                     textarea={false}
                 />
 
@@ -73,6 +80,7 @@ export function SignUp() {
                     type="password"
                     id="signUpConfirmPassword"
                     label="Confirm Password"
+                    required
                     textarea={false}
                 />
 
