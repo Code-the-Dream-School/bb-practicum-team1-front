@@ -1,6 +1,4 @@
-import TextInput from '../inputs/TextInput'
-import './Login.scss'
-
+import TextInput from '../inputs/TextInput';
 
 export const Login = () =>{
     function handleSubmit(event) {
@@ -30,7 +28,7 @@ export const Login = () =>{
                 />
             
 
-                <button type="submit">Log In</button>
+                <button type="submit" className='buttonLoginPage'>Log In</button>
             </form>
         </div>
     )
