@@ -87,31 +87,30 @@ const CreateBook = ({ bookId }) => {
         event.preventDefault();
         return (
             <>
-                {console.log('this is the submit form')}
-                {routeParams.testBook ? 
-                    (updateBookAdapter(                         
-                        bookId.id, 
-                        bookId.title, 
-                        bookId.language, 
-                        bookId.ageRange, 
-                        bookId.publishingYear, 
-                        bookId.status, 
-                        bookId.description, 
-                        bookId.genre, 
-                        bookId.author, 
-                        bookId.worldcatURL, 
-                        bookId.ISBN, 
-                        bookId.imageURL
+                {routeParams.bookId ? 
+                    (updateBookAdapter(                    
+                        inputs.id, 
+                        inputs.title, 
+                        inputs.language, 
+                        inputs.ageRange, 
+                        inputs.publishingYear, 
+                        inputs.status, 
+                        inputs.description, 
+                        inputs.genre, 
+                        inputs.author, 
+                        inputs.worldcatURL, 
+                        inputs.ISBN, 
+                        inputs.imageURL
                     )) 
                     : (createBookAdapter(
-                        bookId.title, 
-                        bookId.language, 
-                        bookId.ageRange, 
-                        bookId.publishingYear, 
-                        bookId.status, 
-                        bookId.description, 
-                        bookId.genre, 
-                        bookId.author
+                        inputs.title, 
+                        inputs.language, 
+                        inputs.ageRange, 
+                        inputs.publishingYear, 
+                        inputs.status, 
+                        inputs.description, 
+                        inputs.genre, 
+                        inputs.author
                     ))
                 }
             </>
