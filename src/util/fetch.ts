@@ -1,27 +1,32 @@
 import { error } from 'console'
-import {getCookie , setCookie, deleteCookie} from '../util/Authentication'
+// Exported cookie name to easily use the same name for the same cookie accross all application to avoid misprints
+import { getCookie , setCookie, deleteCookie, cookieName } from '../util/Authentication';
 
-export const fetchAPIData = async (url: string, method: string, body:object | undefined , headers?:object) => {
-    const cookie = getCookie('shelf-share-session')as { token: string }
-    const token = cookie?.token
+// Very first call to SignUp/Login will not have cookie, so there should be an option skip getting cookie from session
+export const fetchAPIData = async (url: string, method: string, body:object | undefined , hasCookie=true, headers?:object) => {
+    let requestHeaders:HeadersInit = {
+      'Content-Type': 'application/json',
+      ...headers,
+    }
+    if (hasCookie) {
+      const cookie = getCookie(cookieName)as { token: string }
+      const token = cookie?.token
+      requestHeaders.Authorization = `Bearer ${token}`
+    }
+    
     const response = await fetch(url , {
         method,
         body: JSON.stringify(body),
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-            ...headers,
-        },
+        headers: requestHeaders,
     })
     
-    if(response.status.toString().startsWith('4')||response.status.toString().startsWith('5')){
+
+    //Status is numeric
+    if(response.status >= 400 && response.status <= 599){
       console.log("Error", response.json())
     }
     else{
       const data = await response.json();  
       return data; 
     }
-    
-   
-    
 }

@@ -1,22 +1,32 @@
+import React, { useState } from 'react';
 import TextInput from '../inputs/TextInput'
 import './Login.scss'
 import { loginAdapter } from '../../adapters/auth-adapters';
+import { getCookie , setCookie, deleteCookie, cookieName } from '../../util/Authentication';
 
 
-export const Login = () =>{
+export const Login = () => {
+
+    const [errorMsg, setErrorMsg] = useState('');
+
     function handleSubmit(event) {
         event.preventDefault()
         const formData = new FormData(event.target)
         const formProps = Object.fromEntries(formData)
-        console.log('You logged in!');
-        console.log("formProp", formProps);
-
         const data = {};
         data.email = formProps.logInEmail;
         data.password = formProps.logInPassword;
         
         // Call loginAdapter
-        loginAdapter(data);
+        loginAdapter(data).then(result => {
+            if (result) {
+                setErrorMsg('')
+                console.log("You are here")
+            }   
+        }).catch(e => {
+            console.log(e);
+            setErrorMsg('Login failed') 
+        });
     }
 
     return (
@@ -40,6 +50,8 @@ export const Login = () =>{
 
                 <button type="submit">Log In</button>
             </form>
+            // Handling Error Message
+            {errorMsg !== '' ? <p>{errorMsg}</p> : null}
         </div>
     )
 }
