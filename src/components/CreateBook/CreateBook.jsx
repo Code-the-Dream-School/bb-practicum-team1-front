@@ -75,7 +75,6 @@ const CreateBook = ({ bookId }) => {
 
     const { inputs, handleBulkInput } = useContext(InputContext);
 
-
     // placeholder for book update
     const [testBook, setTestBook] = useState(bookData);
 
@@ -84,6 +83,7 @@ const CreateBook = ({ bookId }) => {
     // console.log(inputs);
 
     const handleFormSubmit = (event) => {
+        event.preventDefault();
         return (
             routeParams.bookId ? 
                 (updateBookAdapter( 
