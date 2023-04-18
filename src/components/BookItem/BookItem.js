@@ -6,20 +6,29 @@ import NoPic from './images/picture-not-available.jpg';
 import Available from './images/available.jpg';
 import ZeroPlus from './images/zeroPlus.png';
 import Unavailable from './images/unavailable.jpg';
+import { Link } from 'react-router-dom';
 
 const BookItem = ({ item }) => {
+  // console.log('this is item ', item);
+    // const adult = item.ageRange === 'adults';
+    // const noImg = item.image === false;
+    // const status = item.status === 'open';
+
+    // if (!item) {
+    //   item = testBook;
+    // }
     const adult = item.ageRange === 'adults';
     const noImg = item.image === false;
     const status = item.status === 'open';
-  
+
     return (
       <div className='book-item'>
         <p className='kidsAdults'>
           {adult ? <img src={Adults} alt="Adults" title='Not appropriate for kids'/>  : <img src={ZeroPlus} alt="Kids" title='Kid friendly'/> }
         </p>
-        <a href={item.image} title='Press to open'>
+        <Link to="/books/individual/:bookId" className='linkToIndividualBook' title='Press to open'>
           {noImg ? <img src={NoPic} alt="No_Picture_available" className='coverImage' /> : <img src={Ghosts} alt="Cover image" className='coverImage' />}
-        </a>
+        </Link>
         <div className="book-item-body">
           <div>
             <p className='titleAndYear'>

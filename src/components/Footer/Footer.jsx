@@ -7,7 +7,6 @@ import React from 'react';
 const Footer = () => {
     return (
         <div className='footer'>
-           
             <p className='copyright'>© 2023 ShelfShare</p>
             <div className='git-links'>
                 <p>Follow Us on GitHub:</p>

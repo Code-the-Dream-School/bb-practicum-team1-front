@@ -12,6 +12,19 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { setCookie, getCookie, deleteCookie } from './util/Authentication'
 import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
 import './sass/app.scss'
+import BookItem from './components/BookItem/BookItem'
+
+const testBook = {
+    title: 'Cinderella',
+    language: 'English',
+    ageRange: 'kids',
+    publishingYear: 2022,
+    status: 'open',
+    image: true,
+    description: 'Colorful book with a lot of beautiful pictures',
+    genre: 'Literary Fiction', 
+    author: 'Charles Perrault',
+}
 
 export const InputContext = createContext({})
 
@@ -30,16 +43,16 @@ const App = () => {
   ]
   */
 
-    useEffect(() => {
-        ;(async () => {
-            const myData = await getAllData(URL)
-            setMessage(myData.data)
-        })()
+    // useEffect(() => {
+    //     ;(async () => {
+    //         const myData = await getAllData(URL)
+    //         setMessage(myData.data)
+    //     })()
 
-        return () => {
-            console.log('unmounting')
-        }
-    }, [])
+    //     return () => {
+    //         console.log('unmounting')
+    //     }
+    // }, [])
 
     return (
         <>
@@ -113,9 +126,10 @@ const App = () => {
                         <Route path="/sign-up" element={<SignUp />} />
 
                         {/* </ProtectedRoute> */}
-                        <Route path="/createBook" element={<CreateBook />} />
+                        {/* <Route path="/createBook" element={<CreateBook />} /> */}
                         <Route path="/books/create" element={<CreateBook />} />
                         <Route path="/books/edit/:bookId" element={<CreateBook />} />
+                        <Route path="/books/individual/:bookId" element={<BookItem item={testBook} />} />
                     </Routes>
                 </InputContext.Provider>
             </div>

@@ -84,7 +84,7 @@ const CreateBook = ({ bookId }) => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        return (
+        
             routeParams.bookId ? 
                 (updateBookAdapter( 
                     { 
@@ -113,7 +113,7 @@ const CreateBook = ({ bookId }) => {
                         author: inputs.author
                     }
                 ))    
-        )
+        
     };
 
     useEffect(() => {
