@@ -1,5 +1,6 @@
 import TextInput from '../inputs/TextInput'
 import './Login.scss'
+import { loginAdapter } from '../../adapters/auth-adapters';
 
 
 export const Login = () =>{
@@ -7,8 +8,15 @@ export const Login = () =>{
         event.preventDefault()
         const formData = new FormData(event.target)
         const formProps = Object.fromEntries(formData)
-        console.log('You logged in!')
-        console.log("formProp", formProps)
+        console.log('You logged in!');
+        console.log("formProp", formProps);
+
+        const data = {};
+        data.email = formProps.logInEmail;
+        data.password = formProps.logInPassword;
+        
+        // Call loginAdapter
+        loginAdapter(data);
     }
 
     return (

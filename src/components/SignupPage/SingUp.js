@@ -1,12 +1,16 @@
 import TextInput from '../inputs/TextInput'
+import { signUpAdapter } from '../../adapters/auth-adapters';
 
 export function SignUp() {
     function handleSubmit(event) {
         event.preventDefault()
-        // const formData = new FormData(event.target)
-        // const formProps = Object.fromEntries(formData)
-        // console.log('You signed up!')
-        // console.log(formProps)
+        const formData = new FormData(event.target)
+        const formProps = Object.fromEntries(formData)
+        console.log('You signed up!')
+        console.log(formProps)
+
+        // Call signUpAdapter
+        signUpAdapter(formProps);
     }
 
     return (

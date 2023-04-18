@@ -15,7 +15,7 @@ export const fetchAPIData = async (url: string, method: string, body:object | un
     })
     
     if(response.status.toString().startsWith('4')||response.status.toString().startsWith('5')){
-      console.log("Error", response.status)
+      console.log("Error", response.json())
     }
     else{
       const data = await response.json();  
