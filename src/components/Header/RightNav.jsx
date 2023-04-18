@@ -5,7 +5,7 @@ const RightNav = ({ open }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     return (
-        <div>
+        <div className='rightNav'>
             <ul className={`${open ? 'openClass' : 'closeClass'}`}>
                 {isLoggedIn
                     ? forLoggedInUser.map(function (routeObj) {

@@ -90,7 +90,7 @@ const CreateBook = ({ bookId }) => {
     return (
         <>
             <h1>Add Your Book</h1>
-            <form onSubmit={handleFormSubmit}>
+            <form className='createBookForm' onSubmit={handleFormSubmit}>
                 <div className='inputFields'>
                     <TextInput 
                         type='text'
@@ -149,10 +149,11 @@ const CreateBook = ({ bookId }) => {
                                 <img
                                     alt="cover"
                                     width={"250px"}
+                                    className='imageCover'
                                     src={URL.createObjectURL(selectedImage)}
                                 />
                                 
-                                <button onClick={() => setSelectedImage(null)}>{remove}</button>
+                                <button className='removeButton' onClick={() => setSelectedImage(null)}>{remove}</button>
                             </div>
                         )}
 

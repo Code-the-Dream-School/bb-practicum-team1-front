@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import logo from './logo.png'
+import logo1 from './logo1.png'
 import RightNav from './RightNav'
-import { Link } from 'react-router-dom'
+
+// Header should always display even when scrolling and should be visible on every page.
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -10,12 +12,9 @@ const Header = () => {
         <div className="nav">
             <div className="nav-container">
                 <div className="logo-pic">
-                    <Link to="/">
-                        <img src={logo} alt="logo" />
-                    </Link>
+                    <img src={logo1} alt="logo" />
                 </div>
                 <div className="navbar">
-                    <div></div>
                     <div
                         className="menu-toggle"
                         onClick={() => setIsOpen(!isOpen)}
