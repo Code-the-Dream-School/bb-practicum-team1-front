@@ -1,45 +1,39 @@
 import TextInput from '../inputs/TextInput';
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import validator from 'validator';
 
 export function SignUp() {
-    const [input, setInput] = useState({
-        userName: '',
-        signUpPassword: '',
-        signUpConfirmPassword: ''
-      });
-     
-      const [error, setError] = useState({
-        userName: '',
-        signUpPassword: '',
-        signUpConfirmPassword: ''
-      })
-     
-      const onInputChange = e => {
-     
-      }
-     
-      const validateInput = e => {
-     
-      }
 
-
-
-
-    function handleSubmit(event) {
-        event.preventDefault()
-        // const formData = new FormData(event.target)
-        // const formProps = Object.fromEntries(formData)
-        // console.log('You signed up!')
-        // console.log(formProps)
-        console.log(event)
+    const [errorMessage, setErrorMessage] = useState('')
+ 
+    const validate = (value) => {
+ 
+        if (validator.isStrongPassword(value, {
+            minLength: 8, minLowercase: 1,
+            minUppercase: 1, minNumbers: 1, minSymbols: 1
+        })) {
+            setErrorMessage('Is Strong Password')
+        } else {
+            setErrorMessage('Is Not Strong Password')
+        }
     }
-
-    // const { register, getValues, watch, formState: { errors } } = useForm();
-
-    // const [password, setPassword] = useState('');
-
-    const {register, watch} = useForm();
+  
+    function handleSubmit(event, value) {
+        event.preventDefault()
+        const formData = new FormData(event.target)
+        const formProps = Object.fromEntries(formData)
+        console.log('You signed up!')
+        console.log(formProps)
+        console.log(event)
+        // validate()
+        console.log(formProps.signUpPassword)
+        console.log(formProps.signUpConfirmPassword)
+        if (formProps.signUpPassword !== formProps.signUpConfirmPassword ) {
+            setErrorMessage('The Password do not match');
+        } else {
+            setErrorMessage('Is Not Strong Password')
+        }
+    }
 
     return (
         <div className="login-container">
@@ -49,8 +43,6 @@ export function SignUp() {
                     type="text"
                     id="signUpFirstName"
                     label="First Name"
-                    
-                    // textarea={false}
                 />
 
                 <TextInput
@@ -58,7 +50,6 @@ export function SignUp() {
                     type="text"
                     id="signUpLastName"
                     label="Last Name"
-                    // textarea={false}
                 />
 
                 <TextInput
@@ -93,42 +84,24 @@ export function SignUp() {
                     type="password"
                     id="signUpPassword"
                     label="Password"
-
-                    {...register("password", {
-                        required: true
-                    })}
                     placeholder="********"
-
+                    onChange={(e) => validate(e.target.value)}
                 />
-                {/* {errors?.password?.type === "required" && <p>This field is required</p>}
-                {errors?.password?.type === "minLength" && (
-                <p>password cannot less than 5 characters</p>
-                )} */}
-                {/* include validation with required or other standard HTML validation rules */}
 
                 <TextInput
-                    // {...register("password_repeat", { required: true })}
                     placeholder="********"
                     type="password"
                     id="signUpConfirmPassword"
                     label="Confirm Password"
-                    {...register("confirm_password", {
-                        required: true,
-                        validate: (val) => {
-                          if (watch('password') != val) {
-                            return "Your passwords do no match";
-                          }
-                        },
-                       })}
-                    // textarea={false}
+                    onChange={(e) => validate(e.target.value)}
                 />
-                {/* errors will return when field validation fails  */}
-                {/* here we watch the both password and confirm password filed and if both not match, trigger the validation */}
-                {/* {watch("password_repeat") !== watch("password") &&
-                getValues("password_repeat") ? (
-                <p>password not match</p>
-                ) : null} */}
-
+                
+                {errorMessage === '' ? null :
+                <span style={{
+                fontWeight: 'bold',
+                color: 'red',
+                }}>{errorMessage}</span>}
+                
                 <button type="submit" className="submitButton">Submit</button>
             </form>
         </div>
