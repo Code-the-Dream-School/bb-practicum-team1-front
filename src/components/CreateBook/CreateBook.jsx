@@ -102,18 +102,25 @@ const CreateBook = ({ bookId }) => {
             ))    
     };
 
+    // var 1
+    // let newBook; 
+    // useEffect(() => {
+    //     if (routeParams.bookId) {
+    //         newBook = getSingleBookAdapter(routeParams.bookId);
+    //     }
+    //     setBookInformation(newBook);
+    // }, []);
+
+    // var 2
     useEffect(() => {
+        console.log('this is routeParams.bookId', routeParams.bookId)
         if (routeParams.bookId) {
-            fetch(getSingleBookAdapter(routeParams.bookId))
-                // .then(res => {
-                //     return res.json();
-                // })
-                .then(data => {
-                    console.log(data)
-                    // setBookInformation(data);
-                })
+            const newBook = getSingleBookAdapter(routeParams.bookId);
+            setBookInformation(newBook);
         }
     }, []);
+
+
 
     useEffect(() => {
         handleBulkInput(bookInformation);
