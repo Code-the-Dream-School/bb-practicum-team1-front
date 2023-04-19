@@ -90,7 +90,7 @@ const CreateBook = ({ bookId }) => {
     return (
         <>
             <h1>Add Your Book</h1>
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleFormSubmit} className='form-create-book'>
                 <div className='inputFields'>
                     <TextInput 
                         type='text'
