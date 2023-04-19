@@ -104,7 +104,7 @@ const CreateBook = ({ bookId }) => {
 
     useEffect(() => {
         if (routeParams.bookId) {
-            fetch(getSingleBookAdapter(bookId))
+            fetch(getSingleBookAdapter())
                 .then(res => {
                     return res.json();
                 })
