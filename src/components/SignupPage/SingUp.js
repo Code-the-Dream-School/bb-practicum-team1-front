@@ -1,20 +1,45 @@
+import React, { useState } from 'react';
 import TextInput from '../inputs/TextInput'
 import { signUpAdapter } from '../../adapters/auth-adapters';
+import { getCookie , setCookie, deleteCookie, cookieName } from '../../util/Authentication';
 
 export function SignUp() {
+
+    const [errorMsg, setErrorMsg] = useState('');
+
     function handleSubmit(event) {
         event.preventDefault()
         const formData = new FormData(event.target)
         const formProps = Object.fromEntries(formData)
-        console.log('You signed up!')
-        console.log(formProps)
+
+        const data = {};
+        data.email = formProps.signUpEmail;
+        data.password = formProps.signUpPassword;
+        data.givenName = formProps.signUpFirstName;
+        data.username = formProps.userName;
+        data.dateOfBirth = formProps.dateOfBirth;
+        data.familyName = formProps.signUpLastName;
+        data.address = formProps.address;
+        data.role = 'user';
+        // test data
+        data.latitude = 12.12;
+        data.longitude = 11.11;
 
         // Call signUpAdapter
-        signUpAdapter(formProps);
+        signUpAdapter(data).then(result => {
+            if (result) {
+                setErrorMsg('');
+            }   
+        }).catch(e => {
+            setErrorMsg(JSON.parse(e.message).msg) 
+        });
     }
 
     return (
         <div className="login-container">
+            {/* Handling Error Message */}
+            {errorMsg !== '' ? <p display='block' >{errorMsg}</p> : null}
+            
             <form onSubmit={(e) => handleSubmit(e)}>
                 <TextInput
                     placeholder="First Name"
@@ -81,7 +106,7 @@ export function SignUp() {
                 />
 
                 <button type="submit">Submit</button>
-            </form>
+            </form>        
         </div>
     )
 }

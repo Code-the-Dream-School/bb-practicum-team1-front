@@ -13,6 +13,7 @@ export const Login = () => {
         event.preventDefault()
         const formData = new FormData(event.target)
         const formProps = Object.fromEntries(formData)
+
         const data = {};
         data.email = formProps.logInEmail;
         data.password = formProps.logInPassword;
@@ -20,17 +21,18 @@ export const Login = () => {
         // Call loginAdapter
         loginAdapter(data).then(result => {
             if (result) {
-                setErrorMsg('')
-                console.log("You are here")
+                setErrorMsg('');
             }   
         }).catch(e => {
-            console.log(e);
-            setErrorMsg('Login failed') 
+            setErrorMsg(JSON.parse(e.message).msg) 
         });
     }
 
     return (
         <div className="login-container"  >
+            {/* Handling Error Message */}
+            {errorMsg !== '' ? <p>{errorMsg}</p> : null}
+
             <form onSubmit={(e) => handleSubmit(e)}>
                 <TextInput
                     placeholder="Email"
@@ -50,8 +52,6 @@ export const Login = () => {
 
                 <button type="submit">Log In</button>
             </form>
-            // Handling Error Message
-            {errorMsg !== '' ? <p>{errorMsg}</p> : null}
         </div>
     )
 }

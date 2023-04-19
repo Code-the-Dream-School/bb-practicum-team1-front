@@ -23,7 +23,8 @@ export const fetchAPIData = async (url: string, method: string, body:object | un
 
     //Status is numeric
     if(response.status >= 400 && response.status <= 599){
-      console.log("Error", response.json())
+      const errorMsg = await response.text();
+      throw new Error(errorMsg)
     }
     else{
       const data = await response.json();  
