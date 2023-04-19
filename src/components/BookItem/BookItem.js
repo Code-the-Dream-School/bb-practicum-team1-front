@@ -5,7 +5,7 @@ import Adults from '../images/18plus.png';
 import NoPic from '../images/Image-Not-Available.png';
 // import Available from '../images/available.jpg';
 import ZeroPlus from '../images/zeroPlus.png';
-import Unavailable from '../images/unavailable.jpg';
+// import Unavailable from '../images/unavailable.jpg';
 import { Link } from 'react-router-dom';
 
 const BookItem = ({ item }) => {
@@ -19,7 +19,7 @@ const BookItem = ({ item }) => {
           {adult ? <img src={Adults} alt="Adults" title='Not appropriate for kids'/>  : <img src={ZeroPlus} alt="Kids" title='Kid friendly'/> }
         </p>
         <span className={status ? 'available' : 'unavailable'}>
-          <Link to="/books/:bookId" className='linkToIndividualBook' data-id={status ? 'Press to open' : 'Borrowed'}>
+          <Link to="/books/:bookId" className={status ? 'linkToAvailableBook' : 'linkToUnavailableBook'} data-id={status ? 'Press to open' : 'Borrowed'}>
             {noImg ? <img src={NoPic} alt="No_Picture_available" className='coverImage' /> : <img src={Ghosts} alt="Cover image" className='coverImage' />}
           </Link>
         </span>

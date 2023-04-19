@@ -23,6 +23,7 @@
     }
     .coverImage {
       max-height: 340px;
+      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
       max-width: 75%;
     }
     .coverImage:hover {
@@ -85,26 +86,51 @@
   opacity: 1;
 }
 
-.linkToIndividualBook{
+.linkToAvailableBook{
   position: relative;
   width: 200px;
   padding-bottom: 10px;
 }
 
-.linkToIndividualBook:after {
-  content: 'Availability: ' attr(data-id);
+.linkToAvailableBook:after {
+  content: attr(data-id);
   position: absolute;
-  top: -22px;
-  left: 10px;
-  background: black;
+  top: -150px;
+  left: 60px;
+  background: green;
   color: white;
-  padding: 2px;
+  padding: 5px;
+  font-size: larger;
   border: 1px solid #eee;
   opacity: 0;
   transition: 0.5s opacity;
 }
 
-.linkToIndividualBook:hover:after {
+.linkToAvailableBook:hover:after {
+  opacity: 1;
+}
+
+.linkToUnavailableBook{
+  position: relative;
+  width: 200px;
+  padding-bottom: 10px;
+}
+
+.linkToUnavailableBook:after {
+  content: 'Availability: ' attr(data-id);
+  position: absolute;
+  top: -150px;
+  left: 30px;
+  background: red;
+  color: white;
+  font-size: larger;
+  padding: 5px;
+  border: 1px solid #eee;
+  opacity: 0;
+  transition: 0.5s opacity;
+}
+
+.linkToUnavailableBook:hover:after {
   opacity: 1;
 }
 
@@ -119,7 +145,7 @@
   position: absolute;
   top: -15px;
   left: 10px;
-  background: green;
+  background: rgb(26, 21, 75);
   color: white;
   padding: 2px;
   border: 1px solid #eee;
