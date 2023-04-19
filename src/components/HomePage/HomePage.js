@@ -42,14 +42,12 @@ const HomePage = () => {
         },
     ];
 
-    const bigBookArray = [...bookList, ...bookList, ...bookList, ...bookList, ...bookList, ...bookList, ...bookList, ...bookList, ...bookList, ...bookList, ...bookList, ...bookList,...bookList, ...bookList]
     return (
         <div>
             <h1>This is the Home Page</h1>
 
             {/* Render out the booklList on the home page */}
-            <BookList bookList={booklist} />
-            {/* <BookList bookList={bigBookArray}/> */}
+            <BookList bookList={bookList}/>
         </div>
     );
 };

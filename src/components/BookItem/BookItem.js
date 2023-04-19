@@ -12,7 +12,6 @@ const BookItem = ({ item }) => {
             <div>{item.image}</div>
             <div>{item.description}</div>
             <div>{item.genre}</div>
-            
         </li>
     );
 };

@@ -1,73 +1,48 @@
-import classnames from 'classnames';
-import BookList from '../BookList/BookList';
-import { usePagination, DOTS } from './PagePagination';
-import './PagePagination.scss';
+import React, {useState} from "react";
+import ReactPaginate from 'react-paginate'
+import './Pagination.scss'
 
-export const Pagination = totalBookCount => {
-   const {
-    onPageChange,
-    totalCount,
-    siblingCount = 1,
-    currentPage,
-    pageSize,
-    className
-   } = totalBookCount;
+export const PagePagination = ({books = []}) => {
+    const [pageNumber, setPageNumber] = useState(0);
 
-   const paginationRange = usePagination({
-    currentPage,
-    totalCount,
-    siblingCount,
-    pageSize
-   });
+    const booksPerPage = 10;
+    const pagesVisited = pageNumber * booksPerPage;
 
-   if (currentPage === 0 || paginationRange.length < 2){
-    return null;
-   }
-
-   const onNext = () => {
-    onPageChange(currentPage + 1);
-   }
-
-   const onPrevious = () =>{
-    onPageChange(currentPage - 1);
-   }
-
-   let lastPage = paginationRange[paginationRange.length - 1];
-   return (
-    
-    <ul className={classnames('pagination-container', {[className]: className})}>
-       
-        <li className={classnames('pagination-item', {
-            disabled: currentPage === 1
-        })}
-        onClick={onPrevious}
-        >
-            <div className="arrow left"/>
-        </li>
-        {paginationRange.map(pageNumber => {
-         if (pageNumber === DOTS){
-            return<li className="pagination-item dots">&#8230;</li>
-         }   
-         return(
-            <li className={classnames("pagination-item", {
-                selected: pageNumber === currentPage
-            })}
-            onClick={() => onPageChange(pageNumber)}
-            >
-                {pageNumber}
+    const displayBooks = books
+    .slice(pagesVisited, pagesVisited + booksPerPage)
+    .map((book) => {
+        return(
+            <li className="book" key={book.id}>
+                <div>{book.title}</div>
+                <div>{book.author}</div>
+                <div>{book.description}</div>
+                <div>{book.genre}</div>
             </li>
-         )
-        })}
-        <li
-        className={classnames("pagination-item", {
-            disabled: currentPage === lastPage
-        })}
-        onClick={onNext}
-        >
-            <div className="arrow right"/>
-        </li>
-    </ul>   
+        )
+    });
 
-   )
+    const pageCount = Math.ceil(books.length / booksPerPage);
+
+    const changePage = ({selected}) => {
+        setPageNumber(selected);
+    };
+
+    return(
+        <div className="Pagination">
+            {displayBooks}
+            <ReactPaginate
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={"paginationBttns"}
+            previousLinkClassName={"previousBttns"}
+            nextLinkClassName={"nextBttn"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"}
+            />
+
+        </div>
+    )
+    
 }
- 

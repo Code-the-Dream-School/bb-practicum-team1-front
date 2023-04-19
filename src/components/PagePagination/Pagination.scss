@@ -1,0 +1,60 @@
+.Pagination {
+    // display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: auto;
+
+    .book {
+        padding: 0 12px;
+        height: 50px;
+        text-align: center;
+        margin: auto 4px;
+        color: rgba(0, 0, 0, 0.87);
+        display: flex;
+        box-sizing: border-box;
+        align-items: center;
+        letter-spacing: 0.01071em;
+        border-radius: 16px;
+        line-height: 1.43;
+        font-size: 13px;
+        min-width: 32px;
+        margin-bottom: 15px;
+        margin-top: 25px;
+        margin-left: 90px;
+        margin-right: 80px;
+    }
+    .paginationBttns {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 70px;
+        margin-top: 30px;
+    }
+
+    .paginationBttns a {
+        padding: 10px;
+        margin: 8px;
+        color: black;
+        cursor: pointer;
+    }
+
+    .paginationBttns a:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+        cursor: pointer;
+    }
+
+    &.selected {
+        background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .paginationDisabled a {
+        pointer-events: none;
+
+        &:hover {
+            background-color: transparent;
+            cursor: default;
+        }
+    }
+}
