@@ -75,7 +75,7 @@ const CreateBook = ({ bookId }) => {
         routeParams.bookId ? 
             (updateBookAdapter( 
                 { 
-                    id: routeParams.id, 
+                    id: routeParams.bookId, 
                     title: inputs.title, 
                     language: inputs.language, 
                     ageRange: inputs.ageRange, 
