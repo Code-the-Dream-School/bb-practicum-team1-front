@@ -10,8 +10,9 @@
 @import '../components/BookList/BookList';
 @import '../util/DebouncedSearch/DebouncedSearch';
 @import '../components/HomePage/HomePage';
+@import '../components/SingleBook/SingleBook';
 .content {
     padding-top: 65px;
-    margin-bottom: 50px;
+    margin-bottom: 5px;
     padding-bottom: 50px;
 }

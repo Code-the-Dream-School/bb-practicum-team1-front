@@ -80,40 +80,37 @@ const CreateBook = ({ bookId }) => {
 
     const [selectedImage, setSelectedImage] = useState(null);
 
-    // console.log(inputs);
-
     const handleFormSubmit = (event) => {
         event.preventDefault();
         
-            routeParams.bookId ? 
-                (updateBookAdapter( 
-                    { 
-                        id: inputs.id, 
-                        title: inputs.title, 
-                        language: inputs.language, 
-                        ageRange: inputs.ageRange, 
-                        publishingYear: inputs.publishingYear, 
-                        status: inputs.status, 
-                        description: inputs.description, 
-                        genre: inputs.genre, 
-                        author: inputs.author, 
-                        worldcatURL: inputs.worldcatURL, 
-                        ISBN: inputs.ISBN, 
-                        imageURL: inputs.imageURL
-                    }                   
-                )) : (createBookAdapter(
-                    {
-                        title: inputs.title, 
-                        language: inputs.language, 
-                        ageRange: inputs.ageRange, 
-                        publishingYear: inputs.publishingYear, 
-                        status: inputs.status, 
-                        description: inputs.description, 
-                        genre: inputs.genre, 
-                        author: inputs.author
-                    }
-                ))    
-        
+        routeParams.bookId ? 
+            (updateBookAdapter( 
+                { 
+                    id: inputs.id, 
+                    title: inputs.title, 
+                    language: inputs.language, 
+                    ageRange: inputs.ageRange, 
+                    publishingYear: inputs.publishingYear, 
+                    status: inputs.status, 
+                    description: inputs.description, 
+                    genre: inputs.genre, 
+                    author: inputs.author, 
+                    worldcatURL: inputs.worldcatURL, 
+                    ISBN: inputs.ISBN, 
+                    imageURL: inputs.imageURL
+                }                   
+            )) : (createBookAdapter(
+                {
+                    title: inputs.title, 
+                    language: inputs.language, 
+                    ageRange: inputs.ageRange, 
+                    publishingYear: inputs.publishingYear, 
+                    status: inputs.status, 
+                    description: inputs.description, 
+                    genre: inputs.genre, 
+                    author: inputs.author
+                }
+            ))    
     };
 
     useEffect(() => {

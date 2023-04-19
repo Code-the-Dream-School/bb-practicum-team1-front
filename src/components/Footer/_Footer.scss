@@ -3,7 +3,7 @@
     bottom: 0;
     width: 100%;
     height: fit-content;
-    background-color: $primaryColor;
+    background-color: $secondaryColor;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
@@ -13,10 +13,10 @@
 }
 
 .copyright {
-    margin-top: 30px;
+    margin-top: 12px;
     font-family: 'Lucida Sans';
     margin-left: 10px;
-    color: #55828b;
+    color: $white;
     font-size: 24px;
 }
 .git-links {
@@ -34,19 +34,23 @@
     width: 35px;
     margin: 3px;
     border: 2px solid transparent;
-    background-color: #55828b;
+    background-color: $white;
     border-radius: 50%;
+}
+
+.git-links img:hover {
+    border: 5px solid transparent;
 }
 
 @media (max-width: 768px) {
     .footer {
         width: 100%;
-        height: 40px;
+        height: 28px;
     }
 
     .copyright {
         font-size: 15px;
-        margin-top: 18px;
+        margin-top: 5px;
     }
 
     .git-links p {
@@ -61,6 +65,7 @@
 
     .git-links img {
         width: 20px;
+        height: 20px;
     }
 }
 
