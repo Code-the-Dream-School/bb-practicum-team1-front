@@ -2,23 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import DropdownInput from '../inputs/DropdownInput';
 import TextInput from '../inputs/TextInput';
 import { useParams } from 'react-router-dom';
-import { createBookAdapter, updateBookAdapter } from '../../adapters/book-adapters';
+import { createBookAdapter, getSingleBookAdapter, updateBookAdapter } from '../../adapters/book-adapters';
 
 import { InputContext } from '../../App';
 
 const addButton = '➕';
 var remove = '\u2718';
-
-const bookData =  {
-    title: "test",
-    description: "language",
-    language: 'Romanian',
-    author: "test",
-    ageRange: "kids",
-    publishingYear: "1990",
-    status: "open",
-    genre: "Fantasy",
-}
 
 const optionsStatus = [
     { value: 'open', label: 'Open' },
@@ -76,7 +65,7 @@ const CreateBook = ({ bookId }) => {
     const { inputs, handleBulkInput } = useContext(InputContext);
 
     // placeholder for book update
-    const [testBook, setTestBook] = useState(bookData);
+    const [bookInformation, setBookInformation] = useState({});
 
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -86,7 +75,7 @@ const CreateBook = ({ bookId }) => {
         routeParams.bookId ? 
             (updateBookAdapter( 
                 { 
-                    id: inputs.id, 
+                    id: routeParams.id, 
                     title: inputs.title, 
                     language: inputs.language, 
                     ageRange: inputs.ageRange, 
@@ -114,8 +103,21 @@ const CreateBook = ({ bookId }) => {
     };
 
     useEffect(() => {
-        handleBulkInput(testBook);
-    }, [testBook]);
+        if (routeParams.bookId) {
+            fetch(getSingleBookAdapter(bookId))
+                .then(res => {
+                    return res.json();
+                })
+                .then(data => {
+                    console.log(data)
+                    // setBookInformation(data);
+                })
+        }
+    }, []);
+
+    useEffect(() => {
+        handleBulkInput(bookInformation);
+    }, [bookInformation]);
 
     return (
         <>
