@@ -5,7 +5,7 @@ import { loginAdapter } from '../../adapters/auth-adapters';
 import { getCookie , setCookie, deleteCookie, cookieName } from '../../util/Authentication';
 
 
-export const Login = () => {
+export const Login = ({ setSessionObject }) => {
 
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -22,6 +22,7 @@ export const Login = () => {
         loginAdapter(data).then(result => {
             if (result) {
                 setErrorMsg('');
+                setSessionObject(getCookie());
             }   
         }).catch(e => {
             setErrorMsg(JSON.parse(e.message).msg) 

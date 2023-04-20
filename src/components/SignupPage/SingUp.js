@@ -3,7 +3,7 @@ import TextInput from '../inputs/TextInput'
 import { signUpAdapter } from '../../adapters/auth-adapters';
 import { getCookie , setCookie, deleteCookie, cookieName } from '../../util/Authentication';
 
-export function SignUp() {
+export function SignUp({ setSessionObject } ) {
 
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -29,8 +29,10 @@ export function SignUp() {
         signUpAdapter(data).then(result => {
             if (result) {
                 setErrorMsg('');
+                setSessionObject(getCookie());
             }   
         }).catch(e => {
+            console.log(e);
             setErrorMsg(JSON.parse(e.message).msg) 
         });
     }
