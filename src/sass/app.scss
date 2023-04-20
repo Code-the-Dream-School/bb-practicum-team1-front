@@ -6,12 +6,16 @@
 @import '../components/Footer/Footer';
 @import '../components/Header/Header';
 @import '../components/Header/RightNav';
-
+@import '../components/BookItem/BookItem';
+@import '../components/BookList/BookList';
 @import '../util/DebouncedSearch/DebouncedSearch';
-@import '../components/LoginPage/Login';
+@import '../components/LoginPage/_Login';
 @import '../components/SignupPage/SignUp';
+@import '../components/HomePage/HomePage';
+@import '../components/SingleBook/SingleBook';
 .content {
     padding-top: 65px;
-    margin-bottom: 50px;
+    margin-bottom: 5px;
     padding-bottom: 50px;
+    // background-image: url('./hero-icon-bg.svg');
 }
