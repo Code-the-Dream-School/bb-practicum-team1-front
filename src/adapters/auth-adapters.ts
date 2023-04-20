@@ -49,7 +49,9 @@ type SignUpInput = {
 export const signUpAdapter = async (signUpInput: SignUpInput) =>{
     const url = `http://localhost:8000/api/v1/user/sign-up`
     const data = await fetchAPIData(url , 'POST', signUpInput, false)
-    setCookie(cookieName, JSON.stringify(data) , 1)
+    if (data) {
+        setCookie(cookieName, JSON.stringify(data), 1)
+    }
     return data
 }
 
@@ -85,8 +87,7 @@ export const loginAdapter = async (loginInput: LoginInputs ) => {
     const url =`http://localhost:8000/api/v1/user/authentication`
     const data = await fetchAPIData(url , 'POST', loginInput, false)
     if (data) {
-        setCookie(cookieName, JSON.stringify(data.token), 1)
-        console.log("Cookie set")
+        setCookie(cookieName, JSON.stringify(data), 1)
     }
     return data
 }
