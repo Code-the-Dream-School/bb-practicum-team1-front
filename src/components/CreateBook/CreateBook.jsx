@@ -102,25 +102,12 @@ const CreateBook = ({ bookId }) => {
             ))    
     };
 
-    // var 1
-    // let newBook; 
-    // useEffect(() => {
-    //     if (routeParams.bookId) {
-    //         newBook = getSingleBookAdapter(routeParams.bookId);
-    //     }
-    //     setBookInformation(newBook);
-    // }, []);
-
-    // var 2
-    useEffect(() => {
-        console.log('this is routeParams.bookId', routeParams.bookId)
+    useEffect(async () => {
         if (routeParams.bookId) {
-            const newBook = getSingleBookAdapter(routeParams.bookId);
+            const newBook = await getSingleBookAdapter(routeParams.bookId);
             setBookInformation(newBook);
         }
-    }, []);
-
-
+    }, [routeParams.bookId]);
 
     useEffect(() => {
         handleBulkInput(bookInformation);
