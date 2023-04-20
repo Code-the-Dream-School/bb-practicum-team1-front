@@ -25,6 +25,7 @@
     .coverImage-single {
         width: 200px;
         max-height: 55%;
+        box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
     }
     .book-item-body-single {
       padding: 10px 20px;
@@ -49,9 +50,9 @@
         }
     }
   }
-.titleAndYear-single {
-    font-weight: bold;
-    }
+// .titleAndYear-single {
+//     font-weight: bold;
+//     }
 .genre-single {
     text-align: right;
 }
@@ -114,6 +115,11 @@
     color:darkred;
     font-family: $fontButton;
     font-weight: $fontBold;
+  }
+
+  .book-item-single .book-item-body-single > div p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular';
+    font-size: 35px;
   }
 
 @media (max-width: 768px) {

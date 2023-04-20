@@ -123,6 +123,7 @@ const CreateBook = ({ bookId }) => {
                         placeholder='title here'
                         label='Title'
                         id='title'
+                        className='title'
                     />
                     <TextInput 
                         type='text'
