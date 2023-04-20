@@ -106,6 +106,13 @@ export function SignUp() {
                     />
 
                     <TextInput
+                        placeholder="Country/city/street"
+                        type="search"
+                        id="searchAddress"
+                        label="Geolocation"
+                    />
+
+                    <TextInput
                         type="password"
                         id="signUpPassword"
                         label="Password"
