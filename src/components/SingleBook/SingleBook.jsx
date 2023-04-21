@@ -28,8 +28,9 @@ const SingleBook = ({ item }) => {
             <a href={item.description} className='link-to-owner-single' data-id='Contact the owner'><img src={Message} alt="message_me" /></a>
           </div>
           <p className='description-single'>{item.description}</p>
-          <p className='genre-paragraph-single'>Language: {item.language}</p>
-          <p className='genre-paragraph2-single'>Genre: {item.genre}</p>
+          <p className='author-p-single'>Author: {item.author}</p>
+          <p className='lang-p-single'>Language: {item.language}</p>
+          <p className='genre-p-single'>Genre: {item.genre}</p>
           
         </div>
     </div>

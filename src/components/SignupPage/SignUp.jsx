@@ -105,12 +105,12 @@ export function SignUp() {
                         max={today}
                     />
 
-                    <TextInput
+                    {/* <TextInput
                         placeholder="Country/city/street"
                         type="search"
                         id="searchAddress"
                         label="Geolocation"
-                    />
+                    /> */}
 
                     <TextInput
                         type="password"
