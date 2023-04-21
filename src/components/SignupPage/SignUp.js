@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextInput from '../inputs/TextInput'
 import { signUpAdapter } from '../../adapters/auth-adapters';
-import { getCookie , setCookie, deleteCookie, cookieName } from '../../util/Authentication';
+import { getCookie } from '../../util/Authentication';
 
 export function SignUp({ setSessionObject } ) {
 
@@ -48,6 +48,7 @@ export function SignUp({ setSessionObject } ) {
                     type="text"
                     id="signUpFirstName"
                     label="First Name"
+                    required
                     textarea={false}
                 />
 
@@ -56,6 +57,7 @@ export function SignUp({ setSessionObject } ) {
                     type="text"
                     id="signUpLastName"
                     label="Last Name"
+                    required
                     textarea={false}
                 />
 
@@ -64,6 +66,7 @@ export function SignUp({ setSessionObject } ) {
                     type="address"
                     id="address"
                     label="Address"
+                    required
                     textarea={false}
                 />
 
@@ -72,6 +75,7 @@ export function SignUp({ setSessionObject } ) {
                     type="email"
                     id="signUpEmail"
                     label="Email"
+                    required
                     textarea={false}
                 />
 
@@ -80,6 +84,7 @@ export function SignUp({ setSessionObject } ) {
                     type="username"
                     id="userName"
                     label="Username"
+                    required
                     textarea={false}
                 />
 
@@ -88,6 +93,7 @@ export function SignUp({ setSessionObject } ) {
                     type="date"
                     id="dateOfBirth"
                     label="Date of Birth"
+                    required
                     textarea={false}
                 />
 
@@ -96,6 +102,7 @@ export function SignUp({ setSessionObject } ) {
                     type="password"
                     id="signUpPassword"
                     label="Password"
+                    required
                     textarea={false}
                 />
 
@@ -104,6 +111,7 @@ export function SignUp({ setSessionObject } ) {
                     type="password"
                     id="signUpConfirmPassword"
                     label="Confirm Password"
+                    required
                     textarea={false}
                 />
 

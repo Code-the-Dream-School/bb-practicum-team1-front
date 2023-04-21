@@ -18,6 +18,7 @@ const TextInput = ({ type, placeholder, label, id, textarea }) => {
             onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             id={id}
             name={id}
+            required
           />
         </label>
       ) : (
@@ -30,6 +31,7 @@ const TextInput = ({ type, placeholder, label, id, textarea }) => {
             value={inputs[id]}
             onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             id={id}
+            required
             name={id}
           />
         </label>
