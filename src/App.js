@@ -8,21 +8,21 @@ import { getAllData } from './util/index'
 import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
 import { setCookie, getCookie, deleteCookie } from './util/Authentication'
 
-// Layout
-import RootLayout from './layouts/RootLayout'
-
 // UI Components
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 
 // Page components
 import HomePage from './components/HomePage/HomePage'
 import { Login } from './components/LoginPage/LoginPage'
-import { SignUp } from './components/SignupPage/SingUp'
+import { SignUp } from './components/SignupPage/SignUp'
 import LoginPage from './components/LoginPage/LoginPage'
 import CreateBook from './components/CreateBook/CreateBook'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 import './sass/app.scss'
+import About from './components/About/About'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 
 export const InputContext = createContext({})
 
@@ -108,23 +108,13 @@ const App = () => {
             id="DropdownMenu"
             options={options}
           /> */}
-
+                    <Header />
                     <Routes>
-                        <Route
-                            exact
-                            path="/"
-                            element={
-                                // <ProtectedRoute>
-                                <RootLayout />
-
-                                // </ProtectedRoute>
-                            }
-                        >
-                            <Route path="" element={<HomePage />} />
-                            {/* <ProtectedRoute> */}
-                            <Route path="login" element={<Login />} />
-                            {/* this is an example implementation of the DebouncedSearch component */}
-                            {/* <Route  
+                        <Route path="" element={<HomePage />} />
+                        {/* <ProtectedRoute> */}
+                        <Route path="login" element={<Login />} />
+                        {/* this is an example implementation of the DebouncedSearch component */}
+                        {/* <Route  
             path="/debounce" 
             element={<DebouncedSearch 
               id={'Debounce'}
@@ -132,16 +122,17 @@ const App = () => {
               />} 
             /> */}
 
-                            {/* </ProtectedRoute> */}
+                        {/* </ProtectedRoute> */}
 
-                            {/* <ProtectedRoute> */}
+                        {/* <ProtectedRoute> */}
 
-                            <Route path="sign-up" element={<SignUp />} />
+                        <Route path="sign-up" element={<SignUp />} />
 
-                            {/* </ProtectedRoute> */}
-                            <Route path="createBook" element={<CreateBook />} />
-                        </Route>
+                        <Route path="about" element={<About />} />
+                        {/* </ProtectedRoute> */}
+                        <Route path="createBook" element={<CreateBook />} />
                     </Routes>
+                    <Footer />
                 </InputContext.Provider>
                 <div>
                     <div className="buttons">
