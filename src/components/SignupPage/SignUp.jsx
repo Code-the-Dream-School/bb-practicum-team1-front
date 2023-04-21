@@ -54,7 +54,7 @@ export function SignUp() {
             setErrorMessage('You signed up!');
             setState(true);
         }
-        // console.log(state)
+       
     }
 
     return (
@@ -66,6 +66,7 @@ export function SignUp() {
                         type="text"
                         id="signUpFirstName"
                         label="First Name"
+                        isRequired={true}
                     />
 
                     <TextInput
@@ -73,6 +74,7 @@ export function SignUp() {
                         type="text"
                         id="signUpLastName"
                         label="Last Name"
+                        isRequired={true}
                     />
 
                     <TextInput
@@ -80,6 +82,7 @@ export function SignUp() {
                         type="address"
                         id="address"
                         label="Address"
+                        isRequired={true}
                     />
 
                     <TextInput
@@ -87,6 +90,7 @@ export function SignUp() {
                         type="email"
                         id="signUpEmail"
                         label="Email"
+                        isRequired={true}
                     />
 
                     <TextInput
@@ -94,6 +98,7 @@ export function SignUp() {
                         type="username"
                         id="userName"
                         label="Username"
+                        isRequired={true}
                     />
 
                     <TextInput
@@ -101,6 +106,7 @@ export function SignUp() {
                         type="date"
                         id="DateOfBirth"
                         label="Date of Birth"
+                        isRequired={true}
                         min={minDate} 
                         max={today}
                     />
