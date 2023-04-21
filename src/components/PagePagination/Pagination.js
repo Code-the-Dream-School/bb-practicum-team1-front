@@ -41,7 +41,6 @@ export const PagePagination = ({books = []}) => {
             disabledClassName={"paginationDisabled"}
             activeClassName={"paginationActive"}
             />
-
         </div>
     )
     
