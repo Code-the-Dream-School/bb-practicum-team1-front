@@ -1,21 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import DropdownInput from '../inputs/DropdownInput';
 import TextInput from '../inputs/TextInput';
+import { useParams } from 'react-router-dom';
+import Book from './book-solid.svg'
+import { createBookAdapter, getSingleBookAdapter, updateBookAdapter } from '../../adapters/book-adapters';
 import { InputContext } from '../../App';
 
-const addButton = '➕';
+const addButton = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>;
 var remove = '\u2718';
-
-const bookData =  {
-    title: "test",
-    description: "language",
-    language: 'Romanian',
-    author: "test",
-    ageRange: "kids",
-    publishingYear: "1990",
-    status: "open",
-    genre: "Fantasy",
-}
 
 const optionsStatus = [
     { value: 'open', label: 'Open' },
@@ -67,36 +59,71 @@ const optionsGenre = [
 
 const CreateBook = ({ bookId }) => {
 
+    const routeParams = useParams();
+    console.log(routeParams)
+
     const { inputs, handleBulkInput } = useContext(InputContext);
 
     // placeholder for book update
-    const [testBook, setTestBook] = useState(bookData);
+    const [bookInformation, setBookInformation] = useState({});
 
     const [selectedImage, setSelectedImage] = useState(null);
 
-    // console.log(inputs);
-
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        return (
-            console.log('this is the submit form')
-        )
+        
+        routeParams.bookId ? 
+            (updateBookAdapter( 
+                { 
+                    id: routeParams.bookId, 
+                    title: inputs.title, 
+                    language: inputs.language, 
+                    ageRange: inputs.ageRange, 
+                    publishingYear: inputs.publishingYear, 
+                    status: inputs.status, 
+                    description: inputs.description, 
+                    genre: inputs.genre, 
+                    author: inputs.author, 
+                    worldcatURL: inputs.worldcatURL, 
+                    ISBN: inputs.ISBN, 
+                    imageURL: inputs.imageURL
+                }                   
+            )) : (createBookAdapter(
+                {
+                    title: inputs.title, 
+                    language: inputs.language, 
+                    ageRange: inputs.ageRange, 
+                    publishingYear: inputs.publishingYear, 
+                    status: inputs.status, 
+                    description: inputs.description, 
+                    genre: inputs.genre, 
+                    author: inputs.author
+                }
+            ))    
     };
 
+    useEffect(async () => {
+        if (routeParams.bookId) {
+            const newBook = await getSingleBookAdapter(routeParams.bookId);
+            setBookInformation(newBook);
+        }
+    }, [routeParams.bookId]);
+
     useEffect(() => {
-        handleBulkInput(testBook);
-    }, [testBook]);
+        handleBulkInput(bookInformation);
+    }, [bookInformation]);
 
     return (
         <>
-            <h1>Add Your Book</h1>
-            <form onSubmit={handleFormSubmit}>
+            <h1 className='h1-createBook'>Your {<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>} here</h1>
+            <form className='createBookForm' onSubmit={handleFormSubmit}>
                 <div className='inputFields'>
                     <TextInput 
                         type='text'
                         placeholder='title here'
                         label='Title'
                         id='title'
+                        className='title'
                     />
                     <TextInput 
                         type='text'
@@ -143,34 +170,37 @@ const CreateBook = ({ bookId }) => {
                     />
                   
                     <br />
-                    {selectedImage && (
-                        <div>
-                            <img
-                                alt="cover"
-                                width={"250px"}
-                                src={URL.createObjectURL(selectedImage)}
-                            />
-                            {/* <br /> */}
-                            <button onClick={() => setSelectedImage(null)}>{remove}</button>
-                        </div>
-                    )}
+                    <div className='addCover'>
+                        {selectedImage && (
+                            <div className='container'>
+                                <img
+                                    alt="cover"
+                                    width={"250px"}
+                                    className='imageCover'
+                                    src={URL.createObjectURL(selectedImage)}
+                                />
+                                
+                                <button className='removeButton' onClick={() => setSelectedImage(null)} title='Remove' >{remove}</button>
+                            </div>
+                        )}
 
-                    <br />
-                    <label htmlFor='file-upload' className='custom-file-upload'>
-                        <input
-                            type="file"
-                            id='file-upload'
-                            className='buttonChooseFile'
-                            name="myImage"
-                            onChange={(event) => {
-                            console.log(event.target.files[0]);
-                            setSelectedImage(event.target.files[0]);
-                        }}
-                        />
-                    </label>
+                        <br />
+                        <label htmlFor='file-upload' className='custom-file-upload' title='Press to upload cover'>
+                            <input
+                                type="file"
+                                id='file-upload'
+                                className='buttonChooseFile'
+                                name="myImage"
+                                onChange={(event) => {
+                                console.log(event.target.files[0]);
+                                setSelectedImage(event.target.files[0]);
+                            }}
+                            />
+                        </label>
+                    </div>
                 </div>
                 <div className='button'>
-                    <button className='addButton'>{addButton}</button>
+                    <button className='addButton' title='Press to Add'>{addButton}</button>
                 </div>
             </form>
         </>

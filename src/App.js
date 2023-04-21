@@ -56,11 +56,10 @@ const bigBookArray = [
     ...bookArr,
 ]
 
-const URL = 'http://localhost:8000/api/v1/'
-
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
+   
 
     /* EXAMPLE: DropdownInput selection options
   
@@ -70,7 +69,7 @@ const App = () => {
       { value: 'vanilla', label: 'Vanilla' },
   ]
   */
-
+  
     useEffect(() => {
         ;(async () => {
             const myData = await getAllData(URL)
