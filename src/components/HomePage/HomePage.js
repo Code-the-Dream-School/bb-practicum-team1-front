@@ -171,6 +171,8 @@ const HomePage = () => {
 
             {/* Render out the booklList on the home page */}
             <BookList bookList={bookList} />
+            <BookList bookList={bookList} />
+
         </div>
     )
 }
