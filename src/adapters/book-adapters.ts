@@ -155,7 +155,7 @@ export const getAllBooksOwnerAdapter = async():Promise<booksSchema[]> => {
  */
 // Get books by userId adapter
 export const getBooksUserIdAdapter = async(userId:string): Promise<booksSchema[]> =>{
-    const url = `http://localhost:8000/api/v1/books/${userId}`
+    const url = `http://localhost:8000/api/v1/books/user/${userId}`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
