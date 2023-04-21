@@ -40,12 +40,14 @@ const testBook = {
 }
 
 export const InputContext = createContext({})
+export const SessionContext = createContext({});
 
 const URL = 'http://localhost:8000/api/v1/'
 
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
+    const [sessionObject, setSessionObject] = useState(getCookie());
     const [loading, setLoading] = useState(false)
     const [quote, setQuote] = useState({})
 
@@ -84,68 +86,25 @@ const App = () => {
     return (
         <>
             <div className="content">
-                <InputContext.Provider
-                    value={{
-                        inputs,
-                        handleInputChange: (inputName, inputValue) =>
-                            setInputs({ ...inputs, [inputName]: inputValue }),
-
-                        handleBulkInput: (inputObj) =>
-                            setInputs({ ...inputs, ...inputObj }),
-                    }}
+                <SessionContext.Provider
+                    value={{sessionObject, setSessionObject}}
                 >
-                    {/* EXAMPLE: How to add TextInput and DropdownInput
-        
-        <TextInput
-        label="Text Input"
-        id="testInput"
-        type="text"
-        placeholder="Enter text here"
-        textarea={false}
-        />
-        <Route  
-        path="/login" 
-        element={<LoginPage />} 
-        />
-        <Route  
-        path="/createBook" 
-        element={<CreateBook />} 
-        />
-        <TextInput
-        label="Text Area"
-        id="textArea"
-        type="textarea"
-        placeholder="Enter text here"
-        textarea={true}
-            />
-            <DropdownInput
-            label="Dropdown Menu"
-            id="DropdownMenu"
-            options={options}
-          /> */}
+                    <InputContext.Provider
+                        value={{
+                            inputs,
+                            handleInputChange: (inputName, inputValue) =>
+                                setInputs({ ...inputs, [inputName]: inputValue }),
+
+                            handleBulkInput: (inputObj) =>
+                                setInputs({ ...inputs, ...inputObj }),
+                        }}
+                    >
                     <Header />
                     <Routes>
                         <Route path="" element={<HomePage />} />
-                        {/* <ProtectedRoute> */}
-                        <Route path="login" element={<Login />} />
-                        {/* this is an example implementation of the DebouncedSearch component */}
-                        {/* <Route  
-            path="/debounce" 
-            element={<DebouncedSearch 
-              id={'Debounce'}
-              handleDebounce={(inputVal) => console.log(inputVal)}
-              />} 
-            /> */}
-
-                        {/* </ProtectedRoute> */}
-
-                        {/* <ProtectedRoute> */}
-
-                        <Route path="sign-up" element={<SignUp />} />
-
-                        <Route path="about" element={<About />} />
-                        {/* </ProtectedRoute> */}
-                        {/* <Route path="/createBook" element={<CreateBook />} /> */}
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
+                        <Route path="/about" element={<About />} />
                         <Route path="/books/create" element={<CreateBook />} />
                         <Route
                             path="/books/edit/:bookId"
@@ -155,9 +114,10 @@ const App = () => {
                             path="/books/:bookId"
                             element={<SingleBook item={testBook} />}
                         />
-                    </Routes>
-                    <Footer />
-                </InputContext.Provider>
+                        </Routes>
+                    </InputContext.Provider>
+                </SessionContext.Provider>
+                <Footer />
                 <div>
                     <div className="buttons">
                         <button
