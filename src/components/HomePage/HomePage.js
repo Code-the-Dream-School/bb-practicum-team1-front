@@ -28,7 +28,7 @@ const bookList = [
         author: 'Charles Perrault',
     },
     {
-        title: 'War and Peace',
+        title: 'War and Peace1',
         language: 'Russian',
         ageRange: 'adults',
         publishingYear: 1988,
@@ -39,7 +39,7 @@ const bookList = [
         author: 'Leo Tolstoy',
     },
     {
-        title: 'War and Peace',
+        title: 'War and Peace2',
         language: 'Russian',
         ageRange: 'adults',
         publishingYear: 1988,
@@ -50,7 +50,7 @@ const bookList = [
         author: 'Leo Tolstoy',
     },
     {
-        title: 'War and Peace',
+        title: 'War and Peace3',
         language: 'Russian',
         ageRange: 'adults',
         publishingYear: 1988,
@@ -61,7 +61,7 @@ const bookList = [
         author: 'Leo Tolstoy',
     },
     {
-        title: 'War and Peace',
+        title: 'War and Peace4',
         language: 'Russian',
         ageRange: 'adults',
         publishingYear: 1988,
@@ -72,7 +72,7 @@ const bookList = [
         author: 'Leo Tolstoy',
     },
     {
-        title: 'War and Peace',
+        title: 'War and Peace5',
         language: 'Russian',
         ageRange: 'adults',
         publishingYear: 1988,
@@ -83,7 +83,7 @@ const bookList = [
         author: 'Leo Tolstoy',
     },
     {
-        title: 'War and Peace',
+        title: 'War and Peace6',
         language: 'Russian',
         ageRange: 'adults',
         publishingYear: 1988,
@@ -94,7 +94,7 @@ const bookList = [
         author: 'Leo Tolstoy',
     },
     {
-        title: 'War and Peace',
+        title: 'War and Peace7',
         language: 'Russian',
         ageRange: 'adults',
         publishingYear: 1988,
@@ -105,7 +105,7 @@ const bookList = [
         author: 'Leo Tolstoy',
     },
     {
-        title: 'War and Peace',
+        title: 'War and Peace8',
         language: 'Russian',
         ageRange: 'adults',
         publishingYear: 1988,
@@ -127,58 +127,54 @@ const randomArr = (arr) => {
     return arr[getRandom(0, arr.length - 1)];
 };
 
-// const get5RandomBooks = () => {
-//     return randomArr(bookList);
-// };
 
-// const get5RecentBooks = () => {
-//     const breed = randomArr(bookList);
-//     return breed.id;
-// };
 
-// const getRandomCatImage = async () => {
-//     return await getCatImage(getCatBreed());
-// }
+// console.log("books", get5RecentBooks())
 
 const HomePage = () => {
     //Sample array of book data (test)
     const { inputs, handleBulkInput } = useContext(InputContext);
 
-    const randomBooks = (max) => {
-        let random5Books = [];
-        for (let i = 0; i < max; i++) (
-            random5Books = randomArr (
-                getAllBooksAdapter(
-                    { 
-                        title: inputs.title, 
-                        author: inputs.author, 
-                        sort: inputs.sort,
-                        fields: inputs.fields,
-                        searchRadius: inputs.searchRadius,
-                        latitude: inputs.latitude,
-                        longitude: inputs.longitude,
-                        page: inputs.page,
-                        limit: inputs.limit,
-                        skip: inputs.skip
-                    }     
-                )
-            )  
-        )
-        return random5Books;
+    const get5RecentBooks = () => {
+        const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
+        const shuffledBooks = shuffle(bookList);
+        let arrayOf5 = [];
+        for (let i = 0; i < 5; i++) {
+            arrayOf5.push(shuffledBooks[i])
+            
+        }
+        return arrayOf5;
     }
 
-    console.log('this is inputs', inputs)
-    console.log(randomBooks(5))
+    console.log(get5RecentBooks())
+    
+        const getAllBooks = () => {
+            getAllBooksAdapter(
+                { 
+                    title: inputs.title, 
+                    author: inputs.author, 
+                    sort: inputs.sort,
+                    fields: inputs.fields,
+                    searchRadius: inputs.searchRadius,
+                    latitude: inputs.latitude,
+                    longitude: inputs.longitude,
+                    page: inputs.page,
+                    limit: inputs.limit,
+                    skip: inputs.skip
+                }     
+            )
+        }        
+
     return (
         <div className="homePage">
             {/* <h1 className='homePageCards'>Welcome to ShelfShare</h1> */}
 
             {/* Render out the booklList on the home page */}
-            <BookList bookList={bookList} />
+            <BookList bookList={get5RecentBooks()} />
             <BookList bookList={bookList} />
 
         </div>
     )
 }
 
-export default HomePage
+export default HomePage;
