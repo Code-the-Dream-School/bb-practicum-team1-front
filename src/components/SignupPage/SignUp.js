@@ -34,27 +34,9 @@ export function SignUp({ setSessionObject } ) {
         setState(false);
         const formData = new FormData(event.target);
         const formProps = Object.fromEntries(formData);
-        const bday = formProps.DateOfBirth;
-        const newPassword = formProps.signUpPassword;
-        const confirmPass = formProps.signUpConfirmPassword;
-        
-        if (newPassword.length < minNumberofChars || newPassword.length > maxNumberofChars) {
-            setErrorMessage('The length of the Password should be between 8 and 16 characters');
-            setState(false);
-        } if (bday > today) {
-            setErrorMessage('The birthday is incorrect')
-            console.log(bday, today)
-            setState(false)
-        } else if (newPassword !== confirmPass) {
-            setErrorMessage('The passwords do not match');
-            setState(false);
-        } else if (!regularExpression.test(newPassword)) {
-            setErrorMessage('The password should contain at least one uppercase letter, one lowercase letter, and one number');
-            setState(false);
-        } else {
-            setErrorMessage('You signed up!');
-            setState(true);
-        }
+        // const bday = formProps.DateOfBirth;
+        // const newPassword = formProps.signUpPassword;
+        // const confirmPass = formProps.signUpConfirmPassword;
 
         const data = {};
         data.email = formProps.signUpEmail;
@@ -65,6 +47,26 @@ export function SignUp({ setSessionObject } ) {
         data.familyName = formProps.signUpLastName;
         data.address = formProps.address;
         data.role = 'user';
+        data.confirmPass = formProps.signUpConfirmPassword;
+
+        if (data.password.length < minNumberofChars || data.password.length > maxNumberofChars) {
+            setErrorMessage('The length of the Password should be between 8 and 16 characters');
+            setState(false);
+        } if (data.dateOfBirth > today) {
+            setErrorMessage('The birthday is incorrect')
+            console.log(data.dateOfBirth, today)
+            setState(false)
+        } else if (data.password !== data.confirmPass) {
+            setErrorMessage('The passwords do not match');
+            setState(false);
+        } else if (!regularExpression.test(data.password)) {
+            setErrorMessage('The password should contain at least one uppercase letter, one lowercase letter, and one number');
+            setState(false);
+        } else {
+            setErrorMessage('You signed up!');
+            setState(true);
+        }
+
         // test data
         data.latitude = 12.12;
         data.longitude = 11.11;
