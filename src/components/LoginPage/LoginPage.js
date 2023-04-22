@@ -1,16 +1,39 @@
-import TextInput from '../inputs/TextInput';
+import React, { useState } from 'react';
+import TextInput from '../inputs/TextInput'
+import './Login.scss'
+import { loginAdapter } from '../../adapters/auth-adapters';
+import { getCookie , setCookie, deleteCookie, cookieName } from '../../util/Authentication';
 
-export const Login = () =>{
+
+export const Login = ({ setSessionObject }) => {
+
+    const [errorMsg, setErrorMsg] = useState('');
+
     function handleSubmit(event) {
         event.preventDefault()
         const formData = new FormData(event.target)
         const formProps = Object.fromEntries(formData)
-        console.log('You logged in!')
-        console.log("formProp", formProps)
+
+        const data = {};
+        data.email = formProps.logInEmail;
+        data.password = formProps.logInPassword;
+        
+        // Call loginAdapter
+        loginAdapter(data).then(result => {
+            if (result) {
+                setErrorMsg('');
+                setSessionObject(getCookie());
+            }   
+        }).catch(e => {
+            setErrorMsg(JSON.parse(e.message).msg) 
+        });
     }
 
     return (
         <div className="login-container"  >
+            {/* Handling Error Message */}
+            {errorMsg !== '' ? <p>{errorMsg}</p> : null}
+
             <form onSubmit={(e) => handleSubmit(e)}>
                 <TextInput
                     placeholder="Email"

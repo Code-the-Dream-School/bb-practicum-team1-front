@@ -1,12 +1,14 @@
-import TextInput from '../inputs/TextInput';
 import React, { useState } from 'react';
+import TextInput from '../inputs/TextInput'
+import { signUpAdapter } from '../../adapters/auth-adapters';
+import { getCookie } from '../../util/Authentication';
 
+export function SignUp({ setSessionObject } ) {
 
-export function SignUp() {
-
+    const [errorMsg, setErrorMsg] = useState('');
     const [errorMessage, setErrorMessage] = useState('')
     const [state, setState] = useState(false);
-  
+
     var minNumberofChars = 8;
     var maxNumberofChars = 16;
     var regularExpression  = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
@@ -28,15 +30,14 @@ export function SignUp() {
     var minDate = "1900-05-25"
 
     function handleSubmit(event) {
-        event.preventDefault()
+        event.preventDefault();
         setState(false);
-        const formData = new FormData(event.target)
-        const formProps = Object.fromEntries(formData)
+        const formData = new FormData(event.target);
+        const formProps = Object.fromEntries(formData);
         const bday = formProps.DateOfBirth;
         const newPassword = formProps.signUpPassword;
         const confirmPass = formProps.signUpConfirmPassword;
-        console.log(newPassword, confirmPass)
-            
+        
         if (newPassword.length < minNumberofChars || newPassword.length > maxNumberofChars) {
             setErrorMessage('The length of the Password should be between 8 and 16 characters');
             setState(false);
@@ -54,11 +55,36 @@ export function SignUp() {
             setErrorMessage('You signed up!');
             setState(true);
         }
-       
+
+        const data = {};
+        data.email = formProps.signUpEmail;
+        data.password = formProps.signUpPassword;
+        data.givenName = formProps.signUpFirstName;
+        data.username = formProps.userName;
+        data.dateOfBirth = formProps.dateOfBirth;
+        data.familyName = formProps.signUpLastName;
+        data.address = formProps.address;
+        data.role = 'user';
+        // test data
+        data.latitude = 12.12;
+        data.longitude = 11.11;
+
+        // Call signUpAdapter
+        signUpAdapter(data).then(result => {
+            if (result) {
+                setErrorMsg('');
+                setSessionObject(getCookie());
+            }   
+        }).catch(e => {
+            console.log(e);
+            setErrorMsg(JSON.parse(e.message).msg) 
+        });
     }
 
     return (
         <div className="signUP-container">
+            {/* Handling Error Message */}
+            {errorMsg !== '' ? <p display='block' >{errorMsg}</p> : null}
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className='textInputs'>
                     <TextInput
@@ -66,7 +92,8 @@ export function SignUp() {
                         type="text"
                         id="signUpFirstName"
                         label="First Name"
-                        isRequired={true}
+                        required
+                        textarea={false}
                     />
 
                     <TextInput
@@ -74,7 +101,8 @@ export function SignUp() {
                         type="text"
                         id="signUpLastName"
                         label="Last Name"
-                        isRequired={true}
+                        required
+                        textarea={false}
                     />
 
                     <TextInput
@@ -82,7 +110,8 @@ export function SignUp() {
                         type="address"
                         id="address"
                         label="Address"
-                        isRequired={true}
+                        required
+                        textarea={false}
                     />
 
                     <TextInput
@@ -90,7 +119,8 @@ export function SignUp() {
                         type="email"
                         id="signUpEmail"
                         label="Email"
-                        isRequired={true}
+                        required
+                        textarea={false}
                     />
 
                     <TextInput
@@ -98,46 +128,39 @@ export function SignUp() {
                         type="username"
                         id="userName"
                         label="Username"
-                        isRequired={true}
+                        required
+                        textarea={false}
                     />
 
                     <TextInput
                         placeholder="Date of Birth"
                         type="date"
-                        id="DateOfBirth"
+                        id="dateOfBirth"
                         label="Date of Birth"
-                        isRequired={true}
-                        min={minDate} 
-                        max={today}
+                        required
+                        textarea={false}
                     />
 
-                    {/* <TextInput
-                        placeholder="Country/city/street"
-                        type="search"
-                        id="searchAddress"
-                        label="Geolocation"
-                    /> */}
-
                     <TextInput
+                        placeholder="Password"
                         type="password"
                         id="signUpPassword"
                         label="Password"
-                        placeholder="********"
-                        onChange={(e) => handleSubmit(e.target.value)}
+                        required
+                        textarea={false}
                     />
 
                     <TextInput
-                        placeholder="********"
+                        placeholder="Confirm Password"
                         type="password"
                         id="signUpConfirmPassword"
                         label="Confirm Password"
-                        onChange={(e) => handleSubmit(e.target.value)}
+                        required
+                        textarea={false}
                     />
-                    
                 </div><br/>
                 <button type="submit" className="submitButton">Submit</button>
-            </form>
-
+            </form>        
             {errorMessage === '' ? null :
                     <span className='error-message'>{errorMessage}</span>}
         </div>
