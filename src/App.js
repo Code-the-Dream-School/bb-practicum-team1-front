@@ -43,23 +43,33 @@ export const InputContext = createContext({})
 
 const URL = 'http://localhost:8000/api/v1/'
 
+const useFetch = (url) => {
+    const [loading, setLoading] = useState(false)
+    const [data, setData] = useState()
+
+    const fetcher = () => {
+        setLoading(true)
+        setTimeout(() => {
+            fetch(url)
+                .then((res) => res.json())
+                .then((fetchedData) => {
+                    setLoading(false)
+                    setData(fetchedData)
+                })
+        }, 1000)
+    }
+    return [fetcher, loading, data]
+}
+
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
-    const [loading, setLoading] = useState(false)
-    const [quote, setQuote] = useState({})
 
-    const getRandomQuote = () => {
-        setLoading(true)
-        setTimeout(() => {
-            fetch('https://api.quotable.io/random')
-                .then((res) => res.json())
-                .then((data) => {
-                    setLoading(false)
-                    setQuote(data)
-                })
-        }, 5000)
-    }
+    const [getRandomQuote, loadingQuote, quote] = useFetch(
+        'https://api.quotable.io/random'
+    )
+
+    // const [getCat, loadingCat, cat] = useFetch('https://api.cat.random')
 
     /* EXAMPLE: DropdownInput selection options
   
@@ -158,6 +168,7 @@ const App = () => {
                     </Routes>
                     <Footer />
                 </InputContext.Provider>
+
                 <div>
                     <div className="buttons">
                         <button
@@ -167,9 +178,7 @@ const App = () => {
                             Loading Spinner Quote Button (click here)
                         </button>
                     </div>
-                    {loading ? (
-                        <LoadingSpinner />
-                    ) : (
+                    {quote && (
                         <div className="quote-section">
                             <blockquote className="quote">
                                 {quote.content}
@@ -179,6 +188,7 @@ const App = () => {
                     )}
                 </div>
             </div>
+            <LoadingSpinner loading={loadingQuote} />
         </>
     )
 }

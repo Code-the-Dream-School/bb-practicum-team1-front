@@ -1,6 +1,8 @@
 import './LoadingSpinner.scss'
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ loading }) => {
+    if (!loading) return null
+
     return (
         <div className="container__for__container">
             <div className="book__container">
