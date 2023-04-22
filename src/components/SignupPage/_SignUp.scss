@@ -7,6 +7,7 @@
     padding: 20px;
     margin: 20px;
     background-color: antiquewhite;
+    position: relative;
 }
 
 .signUP-container{
@@ -15,17 +16,18 @@
 }
 
 .input-checkbox {
-    position: relative;
+    // position: relative;
 }
 
 .show-pass-btn {
-    background-color: transparent;
+    background-color: red;
     
 }
 
 .show-pass-btn > span {
-    position: absolute;
+    // position: absolute;
     right: 0;
+    
     border-radius: 50%;
     font-size: 20px;
     margin-right: 20px;

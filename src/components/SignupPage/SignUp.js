@@ -84,6 +84,7 @@ export function SignUp({ setSessionObject } ) {
             setErrorMsg(JSON.parse(e.message).msg) 
         });
     }
+    
     const togglePassword = () => {
         // When the handler is invoked inverse the boolean state of passwordShown
         setPasswordShown(!passwordShown);
@@ -156,7 +157,7 @@ export function SignUp({ setSessionObject } ) {
                             label="Password"
                             isRequired={true}
                         />
-                        <button onClick={togglePassword} className='show-pass-btn'>{passwordShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button>
+                        
                     </div>
                     
                     <div className='input-checkbox'> 
@@ -167,11 +168,13 @@ export function SignUp({ setSessionObject } ) {
                             label="Confirm Password"
                             isRequired={true}
                         />
-                        <button onClick={togglePasswordConf} className='show-pass-btn'>{passwordConfShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button>
+                        
                     </div>
                 </div><br/>
                 <button type="submit" className="submitButton">Submit</button>
-            </form>        
+            </form>       
+            <button onClick={togglePassword} className='show-pass-btn'>{passwordShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button> 
+            <button onClick={togglePasswordConf} className='show-pass-btn'>{passwordConfShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button>
             {errorMessage === '' ? null :
                     <span className='error-message'>{errorMessage}</span>}
         </div>
