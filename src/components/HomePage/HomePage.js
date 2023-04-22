@@ -132,10 +132,10 @@ const randomArr = (arr) => {
 // console.log("books", get5RecentBooks())
 
 const HomePage = () => {
-    //Sample array of book data (test)
+   
     const { inputs, handleBulkInput } = useContext(InputContext);
 
-    const get5RecentBooks = () => {
+    const get5RandomBooks = () => {
         const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
         const shuffledBooks = shuffle(bookList);
         let arrayOf5 = [];
@@ -146,8 +146,14 @@ const HomePage = () => {
         return arrayOf5;
     }
 
-    console.log(get5RecentBooks())
-    
+    console.log(get5RandomBooks())
+
+    const get5RecentBooks = () => {
+        return bookList.slice(Math.max(bookList.length - 5, 0))
+    }
+
+    console.log('recent', get5RecentBooks())
+
         const getAllBooks = () => {
             getAllBooksAdapter(
                 { 
@@ -170,8 +176,8 @@ const HomePage = () => {
             {/* <h1 className='homePageCards'>Welcome to ShelfShare</h1> */}
 
             {/* Render out the booklList on the home page */}
+            <BookList bookList={get5RandomBooks()} />
             <BookList bookList={get5RecentBooks()} />
-            <BookList bookList={bookList} />
 
         </div>
     )
