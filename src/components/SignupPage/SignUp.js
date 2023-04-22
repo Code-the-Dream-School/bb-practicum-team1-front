@@ -92,8 +92,7 @@ export function SignUp({ setSessionObject } ) {
                         type="text"
                         id="signUpFirstName"
                         label="First Name"
-                        required
-                        textarea={false}
+                        isRequired={true}
                     />
 
                     <TextInput
@@ -101,8 +100,7 @@ export function SignUp({ setSessionObject } ) {
                         type="text"
                         id="signUpLastName"
                         label="Last Name"
-                        required
-                        textarea={false}
+                        isRequired={true}
                     />
 
                     <TextInput
@@ -110,8 +108,7 @@ export function SignUp({ setSessionObject } ) {
                         type="address"
                         id="address"
                         label="Address"
-                        required
-                        textarea={false}
+                        isRequired={true}
                     />
 
                     <TextInput
@@ -119,8 +116,7 @@ export function SignUp({ setSessionObject } ) {
                         type="email"
                         id="signUpEmail"
                         label="Email"
-                        required
-                        textarea={false}
+                        isRequired={true}
                     />
 
                     <TextInput
@@ -128,8 +124,7 @@ export function SignUp({ setSessionObject } ) {
                         type="username"
                         id="userName"
                         label="Username"
-                        required
-                        textarea={false}
+                        isRequired={true}
                     />
 
                     <TextInput
@@ -137,7 +132,7 @@ export function SignUp({ setSessionObject } ) {
                         type="date"
                         id="dateOfBirth"
                         label="Date of Birth"
-                        required
+                        isRequired={true}
                         textarea={false}
                     />
 
@@ -146,8 +141,7 @@ export function SignUp({ setSessionObject } ) {
                         type="password"
                         id="signUpPassword"
                         label="Password"
-                        required
-                        textarea={false}
+                        isRequired={true}
                     />
 
                     <TextInput
@@ -155,8 +149,7 @@ export function SignUp({ setSessionObject } ) {
                         type="password"
                         id="signUpConfirmPassword"
                         label="Confirm Password"
-                        required
-                        textarea={false}
+                        isRequired={true}
                     />
                 </div><br/>
                 <button type="submit" className="submitButton">Submit</button>
