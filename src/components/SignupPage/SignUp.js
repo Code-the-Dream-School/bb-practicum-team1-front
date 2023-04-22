@@ -3,40 +3,42 @@ import TextInput from '../inputs/TextInput'
 import { signUpAdapter } from '../../adapters/auth-adapters';
 import { getCookie } from '../../util/Authentication';
 
+const showPass = '\u25C9';
+const hidePass = '\u25CE';
+
+var minNumberofChars = 8;
+var maxNumberofChars = 16;
+var regularExpression  = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; 
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+    dd = '0' + dd
+}
+
+if (mm < 10) {
+    mm = '0' + mm
+}
+
+today = yyyy + '-' + mm + '-' + dd;
+var minDate = "1900-05-25"
+
 export function SignUp({ setSessionObject } ) {
 
     const [errorMsg, setErrorMsg] = useState('');
     const [errorMessage, setErrorMessage] = useState('')
     const [state, setState] = useState(false);
-
-    var minNumberofChars = 8;
-    var maxNumberofChars = 16;
-    var regularExpression  = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; 
-    var yyyy = today.getFullYear();
-
-    if (dd < 10) {
-        dd = '0' + dd
-    }
-
-    if (mm < 10) {
-        mm = '0' + mm
-    }
-
-    today = yyyy + '-' + mm + '-' + dd;
-    var minDate = "1900-05-25"
+    const [passwordShown, setPasswordShown] = useState(false);
+    const [passwordConfShown, setPasswordConfShown] = useState(false);
 
     function handleSubmit(event) {
         event.preventDefault();
         setState(false);
         const formData = new FormData(event.target);
         const formProps = Object.fromEntries(formData);
-        // const bday = formProps.DateOfBirth;
-        // const newPassword = formProps.signUpPassword;
-        // const confirmPass = formProps.signUpConfirmPassword;
 
         const data = {};
         data.email = formProps.signUpEmail;
@@ -82,6 +84,15 @@ export function SignUp({ setSessionObject } ) {
             setErrorMsg(JSON.parse(e.message).msg) 
         });
     }
+    const togglePassword = () => {
+        // When the handler is invoked inverse the boolean state of passwordShown
+        setPasswordShown(!passwordShown);
+    };
+
+    const togglePasswordConf = () => {
+        // When the handler is invoked inverse the boolean state of passwordConfShown
+        setPasswordConfShown(!passwordConfShown);
+      };
 
     return (
         <div className="signUP-container">
@@ -106,7 +117,7 @@ export function SignUp({ setSessionObject } ) {
                     />
 
                     <TextInput
-                        placeholder="Address"
+                        placeholder="ex. 2200 Engle Rd"
                         type="address"
                         id="address"
                         label="Address"
@@ -137,22 +148,27 @@ export function SignUp({ setSessionObject } ) {
                         isRequired={true}
                         textarea={false}
                     />
-
-                    <TextInput
-                        placeholder="Password"
-                        type="password"
-                        id="signUpPassword"
-                        label="Password"
-                        isRequired={true}
-                    />
-
-                    <TextInput
-                        placeholder="Confirm Password"
-                        type="password"
-                        id="signUpConfirmPassword"
-                        label="Confirm Password"
-                        isRequired={true}
-                    />
+                    <div className='input-checkbox'>
+                        <TextInput
+                            placeholder="**********"
+                            type={passwordShown ? "text" : "password"}
+                            id="signUpPassword"
+                            label="Password"
+                            isRequired={true}
+                        />
+                        <button onClick={togglePassword} className='show-pass-btn'>{passwordShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button>
+                    </div>
+                    
+                    <div className='input-checkbox'> 
+                        <TextInput
+                            placeholder="**********"
+                            type={passwordConfShown ? "text" : "password"}
+                            id="signUpConfirmPassword"
+                            label="Confirm Password"
+                            isRequired={true}
+                        />
+                        <button onClick={togglePasswordConf} className='show-pass-btn'>{passwordConfShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button>
+                    </div>
                 </div><br/>
                 <button type="submit" className="submitButton">Submit</button>
             </form>        
