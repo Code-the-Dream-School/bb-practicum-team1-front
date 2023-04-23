@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import {ProfilePicture} from '../ProfilePage/ProfilePicture'
-// import './StyledHeader.js'
-import { catchErrors } from "./catchErrors";
 import BookList from "../BookList/BookList";
 
 
-const ProfilePage = () => {
+
+const ProfilePage = ({myProfile = false}) => {
     const [user, setUser] = useState(null);
 
     // useEffect(() => {
@@ -15,7 +13,6 @@ const ProfilePage = () => {
     //         BookList={BookList}
     //     }
     // })
-
 
     
 }

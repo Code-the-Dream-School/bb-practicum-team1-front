@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import Avatar from 'react-avatar-edit';
 
+//This could be used if needed
+
 export const ProfilePicture = () => {
     const [src, setSrc] = useState(null);
     const [preview, setPreview] = useState(null);

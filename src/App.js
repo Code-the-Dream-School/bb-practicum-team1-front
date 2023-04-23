@@ -115,7 +115,8 @@ const App = () => {
 
                         {/* </ProtectedRoute> */}
                         <Route path="/createBook" element={<CreateBook />} />
-                        <Route path='/profile' element={<ProfilePage />}/>
+                        <Route path='/my-profile' element={<ProfilePage myProfile={true} />}/>
+                        <Route path='/profile/:userid' element={<ProfilePage  />} />
                     </Routes>
                 </InputContext.Provider>
             </div>
