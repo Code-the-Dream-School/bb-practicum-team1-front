@@ -102,7 +102,7 @@ const App = () => {
                     <Header />
                     <Routes>
                         <Route path="" element={<HomePage />} />
-                        <Route path="/login" element={<Login />} />
+                        <Route path="/login" element={<Login setSessionObject={setSessionObject} />} />
                         <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/books/create" element={<CreateBook />} />
