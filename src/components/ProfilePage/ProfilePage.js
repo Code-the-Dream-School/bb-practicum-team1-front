@@ -2,33 +2,20 @@ import { useState, useEffect } from "react";
 import {ProfilePicture} from '../ProfilePage/ProfilePicture'
 import {StyledHeader} from './StyledHeader.js'
 import { catchErrors } from "./catchErrors";
+import BookList from "../BookList/BookList";
 
 
-export const Profile = () => {
-    const [profile, setProfile] = useState(null);
+export const User = () => {
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const {data} = await ProfilePicture();
-            catchErrors(setProfile(data));
+            const {user, BookList, } = await getUserInfo();
+            setUser(user);
+            BookList={BookList}
         }
-        fetchData();
-    }, [])
+    })
 
-    return(
-        <>
-        <div className="StyledHeader">
-        {profile && (
-            <>
-            <div>
-            {ProfilePicture}
-            </div>
-            </>
-        )}
 
-        </div>
-        </>
-
-    )
-
+    
 }
