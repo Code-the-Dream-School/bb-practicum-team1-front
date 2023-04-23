@@ -8,5 +8,6 @@ const BookList = ({ bookList }) => {
             ))}
         </section>
     )
-}
-export default BookList
+};
+
+export default BookList;

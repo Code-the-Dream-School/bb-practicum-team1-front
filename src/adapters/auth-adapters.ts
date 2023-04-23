@@ -1,4 +1,4 @@
-import {getCookie , setCookie, deleteCookie} from '../util/Authentication'
+import {getCookie , setCookie, deleteCookie, cookieName} from '../util/Authentication'
 import {fetchAPIData} from '../util/fetch'
 
 
@@ -48,8 +48,10 @@ type SignUpInput = {
 */
 export const signUpAdapter = async (signUpInput: SignUpInput) =>{
     const url = `http://localhost:8000/api/v1/user/sign-up`
-    const data = await fetchAPIData(url , 'POST', signUpInput)
-    setCookie('shelf-share-session', JSON.stringify(data) , 1)
+    const data = await fetchAPIData(url , 'POST', signUpInput, false)
+    if (data) {
+        setCookie(cookieName, JSON.stringify(data), 1)
+    }
     return data
 }
 
@@ -83,10 +85,11 @@ This function login a user with the provided information.
 */
 export const loginAdapter = async (loginInput: LoginInputs ) => {
     const url =`http://localhost:8000/api/v1/user/authentication`
-    const data = await fetchAPIData(url , 'POST', loginInput)
-    setCookie('shelf-share-session', JSON.stringify(data), 1)
+    const data = await fetchAPIData(url , 'POST', loginInput, false)
+    if (data) {
+        setCookie(cookieName, JSON.stringify(data), 1)
+    }
     return data
-
 }
 
 //logout
