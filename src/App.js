@@ -50,6 +50,7 @@ const App = () => {
     const [sessionObject, setSessionObject] = useState(getCookie());
     const [loading, setLoading] = useState(false)
     const [quote, setQuote] = useState({})
+    const [night, setNight] = useState(false);
 
     const getRandomQuote = () => {
         setLoading(true)
@@ -99,7 +100,8 @@ const App = () => {
                                 setInputs({ ...inputs, ...inputObj }),
                         }}
                     >
-                    <Header />
+                    <Header night={night} setNight={setNight} />
+                    <div className={night ? "" : "nigt-mode-bg"}>
                     <Routes>
                         <Route path="" element={<HomePage />} />
                         <Route path="/login" element={<Login />} />
@@ -115,6 +117,7 @@ const App = () => {
                             element={<SingleBook item={testBook} />}
                         />
                         </Routes>
+                        </div>
                     </InputContext.Provider>
                 </SessionContext.Provider>
                 <Footer />

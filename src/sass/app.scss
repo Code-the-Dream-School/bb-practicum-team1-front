@@ -12,8 +12,11 @@
 @import '../components/HomePage/HomePage';
 @import '../components/SingleBook/SingleBook';
 .content {
-    padding-top: 65px;
+    padding-top: 55px;
     margin-bottom: 5px;
     padding-bottom: 50px;
-    // background-image: url('./hero-icon-bg.svg');
+}
+
+.nigt-mode-bg {
+    background-color: cadetblue;
 }

@@ -99,6 +99,32 @@
     background: #fff;
 }
 
+.night-mode {
+    padding: 10px;
+    width: 50px;
+    background-color: transparent;
+}
+
+.day-mode {
+    padding: 10px;
+    background-color: transparent;
+    width: 50px;
+}
+
+.nigt-mode-header {
+    top: 0;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    height: 65px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #364958;
+    border-bottom: 5px solid $tertiaryColor;
+} 
+
 @media (max-width: 768px) {
     .nav {
         padding: 10px;
