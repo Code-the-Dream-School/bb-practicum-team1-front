@@ -1,39 +1,43 @@
 .signUP-container form {
     max-width: 700px;
     min-width: 700px;
-    height: 70vh;
+    height: 650px;
     border-radius: 15px;
     box-shadow: 0 9px #999;
     padding: 20px;
     margin: 20px;
-    background-color: antiquewhite;
+    background-color: #EAF4F4;
     position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
 
-.signUP-container{
+.signUP-container {
     border: none;
     width: 100vw;
 }
 
 .input-checkbox {
-    // position: relative;
+    position: relative;
 }
 
 .show-pass-btn {
-    background-color: red;
-    
+    position: absolute;
+    background-color: transparent;
+    margin-left: 180px;
+    margin-top: -38px;
+    cursor: pointer;
 }
 
 .show-pass-btn > span {
-    // position: absolute;
-    right: 0;
-    
-    border-radius: 50%;
     font-size: 20px;
-    margin-right: 20px;
+    margin-left: 20px;
 }
 
-.wrapper{
+.wrapper {
     width: 100vw;
     height: 100vh;
     background-color: #ffe3f6;
@@ -43,10 +47,10 @@
     overflow: hidden;
   }
   
-  .input-field{
+  .input-field {
     width: 330px;
     height: 55px;
-    background-color: #fff;
+    background-color: #EAF4F4;
     border-radius: 24px;
     display: flex;
     justify-content: space-between;
@@ -55,7 +59,7 @@
     box-shadow: #fdd6f1 0px 5px 15px;  
   }
   
-  .input-field input{
+  .input-field input {
     width: 100%;
     height: 100%;
     background-color: transparent;
@@ -66,17 +70,14 @@
     padding: 5px;  
   }
   
-  .input-field span{
+  .input-field span {
     cursor: pointer;
   }
-
-
-  
 
 .textInputs {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     grid-column-gap: 140px;
     grid-row-gap: 0px;
 }
@@ -94,8 +95,9 @@
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
-    margin-top: 80px;
-    // grid-area: 5 / 1 / 6 / 3;
+    width: fit-content;
+    margin-left: 40%;
+    margin-bottom: 10px;
 }
 
 .submitButton:hover {
@@ -113,14 +115,26 @@
     text-align: center;
 }
 
+.error-container {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
 .error-message {
     font-weight: $fontBold;
     color: red;
-    border-bottom: 8px solid black;
-    width: 200px;
-    margin-top: 50px;
+    border: 2px solid black;
+    width: fit-content;
+    margin-top: 20px;
     padding: 10px;
-    margin-left: 250px;
+}
+
+.error-message2 {
+    color: red;
+    margin-left: 20px;
+    margin-top: 30px;
 }
 
 @media (max-width: 768px) {
