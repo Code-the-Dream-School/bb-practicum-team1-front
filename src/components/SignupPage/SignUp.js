@@ -33,6 +33,8 @@ export function SignUp({ setSessionObject } ) {
     const [state, setState] = useState(false);
     const [passwordShown, setPasswordShown] = useState(false);
     const [passwordConfShown, setPasswordConfShown] = useState(false);
+    const [password, setPassword] = useState('');
+    const [passwordConf, setPasswordConf] = useState('');
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -42,31 +44,27 @@ export function SignUp({ setSessionObject } ) {
 
         const data = {};
         data.email = formProps.signUpEmail;
-        data.password = formProps.signUpPassword;
+        // data.password = formProps.signUpPassword;
         data.givenName = formProps.signUpFirstName;
         data.username = formProps.userName;
         data.dateOfBirth = formProps.dateOfBirth;
         data.familyName = formProps.signUpLastName;
         data.address = formProps.address;
         data.role = 'user';
-        data.confirmPass = formProps.signUpConfirmPassword;
+        // data.confirmPass = formProps.signUpConfirmPassword;
 
-        if (data.password.length < minNumberofChars || data.password.length > maxNumberofChars) {
+        if (password.length < minNumberofChars || password.length > maxNumberofChars) {
             setErrorMessage('The length of the Password should be between 8 and 16 characters');
             setState(false);
         } if (data.dateOfBirth > today) {
             setErrorMessage('Birthday should be in the past')
-            console.log(data.dateOfBirth, today)
             setState(false)
-        } else if (data.password !== data.confirmPass) {
-            setErrorMessage('!!! Passwords do not match');
+        } else if (password !== passwordConf) {
+            setErrorMessage('Passwords do not match');
             setState(false);
-        } else if (!regularExpression.test(data.password)) {
+        } else if (!regularExpression.test(password)) {
             setErrorMessage('Password should contain at least one uppercase letter, one lowercase letter, and one number');
             setState(false);
-        } else {
-            setErrorMessage('You signed up!');
-            setState(true);
         }
 
         // test data
@@ -78,7 +76,10 @@ export function SignUp({ setSessionObject } ) {
             if (result) {
                 setErrorMsg('');
                 setSessionObject(getCookie());
-            }   
+            } else {
+                setErrorMessage('You signed up!');
+                setState(true);
+            }
         }).catch(e => {
             console.log(e);
             setErrorMsg(JSON.parse(e.message).msg) 
@@ -156,6 +157,8 @@ export function SignUp({ setSessionObject } ) {
                                 id="signUpPassword"
                                 label="Password"
                                 isRequired={true}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <button type="button" onClick={togglePassword} className='show-pass-btn'>{passwordShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button> 
                         </div>
@@ -167,6 +170,8 @@ export function SignUp({ setSessionObject } ) {
                                 id="signUpConfirmPassword"
                                 label="Confirm Password"
                                 isRequired={true}
+                                value={passwordConf}
+                                onChange={(e) => setPasswordConf(e.target.value)}
                             />
                             <button type="button" onClick={togglePasswordConf} className='show-pass-btn'>{passwordConfShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button>
                         </div>
