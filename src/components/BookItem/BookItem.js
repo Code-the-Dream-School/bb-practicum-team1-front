@@ -1,7 +1,7 @@
 import React from 'react';
 import Message from '../images/message.jpg';
 import Ghosts from '../images/ghosts.png';
-import Adults from '../images/18plus.png';
+import Adults from '../images/13plus.png';
 import NoPic from '../images/Image-Not-Available.png';
 // import Available from '../images/available.jpg';
 import ZeroPlus from '../images/zeroPlus.png';
@@ -20,7 +20,7 @@ const BookItem = ({ item }) => {
         </p>
         <span className={status ? 'available' : 'unavailable'}>
           <Link to="/books/:bookId" className={status ? 'linkToAvailableBook' : 'linkToUnavailableBook'} data-id={status ? 'Press to open' : 'Borrowed'}>
-            {noImg ? <img src={NoPic} alt="No_Picture_available" className='coverImage' /> : <img src={Ghosts} alt="Cover image" className='coverImage' />}
+            {noImg ? <img src={NoPic} alt="No_Picture_available" className='coverImage' /> : <img src={item.image} alt="Cover image" className='coverImage' />}
           </Link>
         </span>
         <div className="book-item-body">

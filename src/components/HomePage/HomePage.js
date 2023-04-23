@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BookList from '../BookList/BookList'
 import { Link } from 'react-router-dom'
 import { getAllBooksAdapter } from '../../adapters/book-adapters'
+import { all } from 'axios'
 
 const bookList = [
     {
@@ -117,21 +118,27 @@ const bookList = [
 ]
 
 const HomePage = () => {
-
-    const get5RecentBooks = () => {
+    const [books, setBooks] = useState([]);
+    const [sortBy, setSortBy] = useState('');
+    
+    useEffect(() => {
         getAllBooksAdapter({
-                limit: 5,
+            limit: 8,
+            sort: {sortBy},
+        }).then(result => {
+            if(result) {
+                setBooks(result.books)
+            }
         })
-    }   
-    console.log("get 5 books", get5RecentBooks())
-    const books = get5RecentBooks()
+    }, [])
+
     return (
         <div className="homePage">
             {/* <h1 className='homePageCards'>Welcome to ShelfShare</h1> */}
 
             {/* Render out the booklList on the home page */}
-            {/* <BookList bookList={get5RandomBooks()} /> */}
-            <BookList bookList={books} />
+            <BookList bookList={books} sortBy='createdAt' />
+            <BookList bookList={books} sortBy='language' />
         </div>
     )
 }
