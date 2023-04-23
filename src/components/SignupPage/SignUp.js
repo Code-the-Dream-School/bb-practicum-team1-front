@@ -59,7 +59,7 @@ export function SignUp({ setSessionObject } ) {
             console.log(data.dateOfBirth, today)
             setState(false)
         } else if (data.password !== data.confirmPass) {
-            setErrorMessage('Passwords do not match');
+            setErrorMessage('!!! Passwords do not match');
             setState(false);
         } else if (!regularExpression.test(data.password)) {
             setErrorMessage('Password should contain at least one uppercase letter, one lowercase letter, and one number');
@@ -96,89 +96,90 @@ export function SignUp({ setSessionObject } ) {
       };
 
     return (
-        <div className="signUP-container">
-            {/* Handling Error Message */}
-            {errorMsg !== '' ? <p display='block' className='error-message2'>{errorMsg}</p> : null}
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div className='textInputs'>
-                    <TextInput
-                        placeholder="First Name"
-                        type="text"
-                        id="signUpFirstName"
-                        label="First Name"
-                        isRequired={true}
-                    />
-
-                    <TextInput
-                        placeholder="Last Name"
-                        type="text"
-                        id="signUpLastName"
-                        label="Last Name"
-                        isRequired={true}
-                    />
-
-                    <TextInput
-                        placeholder="ex. 2200 Engle Rd"
-                        type="address"
-                        id="address"
-                        label="Address"
-                        isRequired={true}
-                    />
-
-                    <TextInput
-                        placeholder="Email"
-                        type="email"
-                        id="signUpEmail"
-                        label="Email"
-                        isRequired={true}
-                    />
-
-                    <TextInput
-                        placeholder="Username"
-                        type="username"
-                        id="userName"
-                        label="Username"
-                        isRequired={true}
-                    />
-
-                    <TextInput
-                        placeholder="Date of Birth"
-                        type="date"
-                        id="dateOfBirth"
-                        label="Date of Birth"
-                        isRequired={true}
-                        textarea={false}
-                    />
-                    <div className='input-checkbox'>
+        <>
+            <h1 className='h1-sign-up'>Create an Account</h1>
+            <div className="signUP-container">
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    <div className='textInputs'>
                         <TextInput
-                            placeholder="**********"
-                            type={passwordShown ? "text" : "password"}
-                            id="signUpPassword"
-                            label="Password"
+                            placeholder="First Name"
+                            type="text"
+                            id="signUpFirstName"
+                            label="First Name"
                             isRequired={true}
                         />
-                        <button type="button" onClick={togglePassword} className='show-pass-btn'>{passwordShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button> 
-                    </div>
-                    
-                    <div className='input-checkbox'> 
+
                         <TextInput
-                            placeholder="**********"
-                            type={passwordConfShown ? "text" : "password"}
-                            id="signUpConfirmPassword"
-                            label="Confirm Password"
+                            placeholder="Last Name"
+                            type="text"
+                            id="signUpLastName"
+                            label="Last Name"
                             isRequired={true}
                         />
-                        <button type="button" onClick={togglePasswordConf} className='show-pass-btn'>{passwordConfShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button>
+
+                        <TextInput
+                            placeholder="ex. 2200 Engle Rd"
+                            type="address"
+                            id="address"
+                            label="Address"
+                            isRequired={true}
+                        />
+
+                        <TextInput
+                            placeholder="Email"
+                            type="email"
+                            id="signUpEmail"
+                            label="Email"
+                            isRequired={true}
+                        />
+
+                        <TextInput
+                            placeholder="Username"
+                            type="username"
+                            id="userName"
+                            label="Username"
+                            isRequired={true}
+                        />
+
+                        <TextInput
+                            placeholder="Date of Birth"
+                            type="date"
+                            id="dateOfBirth"
+                            label="Date of Birth"
+                            isRequired={true}
+                            textarea={false}
+                        />
+                        <div className='input-checkbox'>
+                            <TextInput
+                                placeholder="**********"
+                                type={passwordShown ? "text" : "password"}
+                                id="signUpPassword"
+                                label="Password"
+                                isRequired={true}
+                            />
+                            <button type="button" onClick={togglePassword} className='show-pass-btn'>{passwordShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button> 
+                        </div>
+                        
+                        <div className='input-checkbox'> 
+                            <TextInput
+                                placeholder="**********"
+                                type={passwordConfShown ? "text" : "password"}
+                                id="signUpConfirmPassword"
+                                label="Confirm Password"
+                                isRequired={true}
+                            />
+                            <button type="button" onClick={togglePasswordConf} className='show-pass-btn'>{passwordConfShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button>
+                        </div>
+                    </div><br/>
+                    {/* Handling Error Message */}         
+                    <div className='error-container'>
+                        {errorMsg !== '' ? <p display='block' className='error-message'>{errorMsg}</p> : null}
+                        {errorMessage === '' ? null :
+                            <span className='error-message'>{errorMessage}</span>}
                     </div>
-                </div><br/>
-
-                <div className='error-container'>
-                    {errorMessage === '' ? null :
-                        <span className='error-message'>{errorMessage}</span>}
-                </div>
-
-                <button type="submit" className="submitButton">Submit</button>
-            </form>                   
-        </div>
+                    <button type="submit" className="submitButton">Register</button>
+                </form>                   
+            </div>
+        </>
     )
 }
