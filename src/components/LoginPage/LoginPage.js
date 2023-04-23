@@ -30,9 +30,9 @@ export const Login = ({ setSessionObject }) => {
     }
 
     return (
-        <div className="login-container"  >
+        <div className="login-container" >
             {/* Handling Error Message */}
-            {errorMsg !== '' ? <p>{errorMsg}</p> : null}
+            {errorMsg !== '' ? <p className="login-error">{errorMsg}</p> : null}
 
             <form onSubmit={(e) => handleSubmit(e)}>
                 <TextInput
