@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import TextInput from '../inputs/TextInput'
-import './Login.scss'
 import { loginAdapter } from '../../adapters/auth-adapters';
 import { getCookie , setCookie, deleteCookie, cookieName } from '../../util/Authentication';
 
