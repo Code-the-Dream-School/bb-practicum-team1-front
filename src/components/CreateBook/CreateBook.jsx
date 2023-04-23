@@ -163,7 +163,7 @@ const CreateBook = ({ bookId }) => {
                 <div className='cover'>
                     <TextInput 
                         type='text'
-                        placeholder='description here...'
+                        placeholder='description...'
                         label='Description'
                         id='description'
                         textarea
