@@ -101,7 +101,7 @@ const App = () => {
                         }}
                     >
                     <Header night={night} setNight={setNight} />
-                    <div className={night ? "" : "nigt-mode-bg"}>
+                    <div className={night ? "nigt-mode-bg" : ""}>
                     <Routes>
                         <Route path="" element={<HomePage />} />
                         <Route path="/login" element={<Login />} />
