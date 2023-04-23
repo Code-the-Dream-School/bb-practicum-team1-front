@@ -8,8 +8,6 @@ const hidePass = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><
 
 var minNumberofChars = 8;
 var maxNumberofChars = 16;
-var regularExpression  = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth() + 1; 
@@ -33,38 +31,40 @@ export function SignUp({ setSessionObject } ) {
     const [state, setState] = useState(false);
     const [passwordShown, setPasswordShown] = useState(false);
     const [passwordConfShown, setPasswordConfShown] = useState(false);
-    const [password, setPassword] = useState('');
-    const [passwordConf, setPasswordConf] = useState('');
 
     function handleSubmit(event) {
         event.preventDefault();
         setState(false);
         const formData = new FormData(event.target);
         const formProps = Object.fromEntries(formData);
-
         const data = {};
         data.email = formProps.signUpEmail;
-        // data.password = formProps.signUpPassword;
+        data.password = formProps.signUpPassword;
         data.givenName = formProps.signUpFirstName;
         data.username = formProps.userName;
         data.dateOfBirth = formProps.dateOfBirth;
         data.familyName = formProps.signUpLastName;
         data.address = formProps.address;
         data.role = 'user';
-        // data.confirmPass = formProps.signUpConfirmPassword;
+        data.confirmPass = formProps.signUpConfirmPassword;
 
-        if (password.length < minNumberofChars || password.length > maxNumberofChars) {
-            setErrorMessage('The length of the Password should be between 8 and 16 characters');
+        if (data.password.length < minNumberofChars || data.password.length > maxNumberofChars) {
+            setErrorMessage('');
             setState(false);
+            setErrorMessage('Password length should be between 8 and 16 characters');
+            return <p display='block' className='error-message'>{errorMessage}</p> 
         } if (data.dateOfBirth > today) {
-            setErrorMessage('Birthday should be in the past')
-            setState(false)
-        } else if (password !== passwordConf) {
+            setErrorMessage('');
+            setState(false);
+            setErrorMessage('Birthday should be in the past');
+            return <p display='block' className='error-message'>{errorMessage}</p> 
+        } else if (data.password !== data.confirmPass) {
+            setErrorMessage('');
+            setState(false);
             setErrorMessage('Passwords do not match');
-            setState(false);
-        } else if (!regularExpression.test(password)) {
-            setErrorMessage('Password should contain at least one uppercase letter, one lowercase letter, and one number');
-            setState(false);
+            return <p display='block' className='error-message'>{errorMessage}</p> 
+        } else {
+            setErrorMessage('');
         }
 
         // test data
@@ -76,10 +76,13 @@ export function SignUp({ setSessionObject } ) {
             if (result) {
                 setErrorMsg('');
                 setSessionObject(getCookie());
-            } else {
-                setErrorMessage('You signed up!');
+                setErrorMessage('Congrats! You Signed Up!');
+                return console.log('Congrats! You Signed Up!')                
+            }  else {
+                setErrorMessage('');
                 setState(true);
-            }
+                // return <p className='error-message'>Congratulations! You Signed Up</p> 
+            } 
         }).catch(e => {
             console.log(e);
             setErrorMsg(JSON.parse(e.message).msg) 
@@ -157,8 +160,6 @@ export function SignUp({ setSessionObject } ) {
                                 id="signUpPassword"
                                 label="Password"
                                 isRequired={true}
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <button type="button" onClick={togglePassword} className='show-pass-btn'>{passwordShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button> 
                         </div>
@@ -170,8 +171,6 @@ export function SignUp({ setSessionObject } ) {
                                 id="signUpConfirmPassword"
                                 label="Confirm Password"
                                 isRequired={true}
-                                value={passwordConf}
-                                onChange={(e) => setPasswordConf(e.target.value)}
                             />
                             <button type="button" onClick={togglePasswordConf} className='show-pass-btn'>{passwordConfShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button>
                         </div>
