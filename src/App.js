@@ -12,7 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { setCookie, getCookie, deleteCookie } from './util/Authentication'
 import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
 import './sass/app.scss'
-import { Profile } from './components/ProfilePage/ProfilePage'
+import ProfilePage from './components/ProfilePage/ProfilePage'
 
 export const InputContext = createContext({})
 
@@ -115,7 +115,7 @@ const App = () => {
 
                         {/* </ProtectedRoute> */}
                         <Route path="/createBook" element={<CreateBook />} />
-                        <Route path='/profile' element={<Profile />}/>
+                        <Route path='/profile' element={<ProfilePage />}/>
                     </Routes>
                 </InputContext.Provider>
             </div>
