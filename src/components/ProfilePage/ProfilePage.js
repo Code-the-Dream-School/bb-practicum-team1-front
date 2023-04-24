@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import BookList from "../BookList/BookList";
+import './Profile.scss'
 
 //Get userid from url then use UserAdapter to get the user
 
@@ -150,7 +151,7 @@ const bookList = [
 ];
 
 const testUser = {
-    userName: "jhonnyD",
+    userName: "JhonnyD",
     givenName: "John",
     familyName: "Doe",
     address: "839 Brookhannah Ct, Fuquay-Varina NC",
@@ -165,13 +166,13 @@ const ProfilePage = ({myProfile = false}) => {
     //     const fetchData = async () => {
     //         const {user, BookList, } = await getUserInfo();
     //         setUser(user);
-    //         BookList={BookList}
     //     }
     // })
 return(
-    <div>
-        <h2>Hello {testUser.userName}</h2>
-        <h3>Addres {testUser.address}</h3>
+    <div className="Profile">
+        <h1>My Profile</h1>
+        <h2 className="user">Username: {testUser.userName}</h2>
+        <h3 className="address">Address: {testUser.address}</h3>
         <BookList bookList={bookList} />
     </div>
 )
