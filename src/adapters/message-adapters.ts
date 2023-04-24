@@ -2,8 +2,8 @@ import { fetchAPIData } from '../util/fetch'
 
 // Create(send) message adapter
 type messageInput ={
-    receivedByUser: string,
-    messageContent: string
+    receivedByUser: String,
+    messageContent: String
 }
 /**
  * This function will create a message with the provided information.
@@ -26,15 +26,15 @@ export const createMessageAdapter = async(messageInput:messageInput)=>{
 
 // Get all conversation(messages) adapter
 type messageSchema ={
-    _id: string,
-    postedByUser: string,
-    receivedByUser: string,
-    messageContent: string,
-    messageRead: boolean,
-    readAt: string,
-    createdAt: string,
-    updatedAt: string,
-    __v: number
+    _id: String,
+    postedByUser: String,
+    receivedByUser: String,
+    messageContent: String,
+    messageRead: Boolean,
+    readAt: Date,
+    createdAt: String,
+    updatedAt: String,
+    __v: Number
 }
 
 /**
