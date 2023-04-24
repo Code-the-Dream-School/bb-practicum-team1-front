@@ -103,12 +103,14 @@
     padding: 10px;
     width: 50px;
     background-color: transparent;
+    margin-left: 20px;
 }
 
 .day-mode {
     padding: 10px;
     background-color: transparent;
     width: 50px;
+    margin-left: 20px;
 }
 
 .nigt-mode-header {
@@ -131,10 +133,12 @@
     }
 
     .hamBox {
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         display: flex;
+        margin-top: 10px;
+        margin-right: 10px;
     }
 
     .navbar {
@@ -145,5 +149,21 @@
 
     .menu-toggle {
         position: relative;
+    }
+
+    .night-mode {
+        width: 40px;
+    }
+
+    .day-mode {
+        width: 40px;
+    }
+
+    .lineTop, .lineBottom {
+        background-color: teal;
+    }
+
+    .logo-pic img {
+        height: 50px;
     }
 }
