@@ -98,7 +98,14 @@ const App = () => {
                         />
                         {/* <ProtectedRoute> */}
                         <Route path="/login" element={<Login />} />
-                        <Route path="/search" element={< SearchPage/>} />
+                        <Route path="/search" element={<InputContext.Provider value={{
+                        inputs,
+                        handleInputChange: (inputName, inputValue) =>
+                            setInputs({ ...inputs, [inputName]: inputValue }),
+
+                        handleBulkInput: (inputObj) =>
+                            setInputs({ ...inputs, ...inputObj }),
+                    }}>< SearchPage inputs={inputs}/> </InputContext.Provider>} />
                         {/* this is an example implementation of the DebouncedSearch component */}
                         {/* <Route  
             path="/debounce" 

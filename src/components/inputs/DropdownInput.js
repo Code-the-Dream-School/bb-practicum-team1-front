@@ -4,7 +4,6 @@ import './inputStyles.css'
 
 export default function DropdownInput({ label, id, options, defaultValue, showPlaceholder }) {
     const { inputs, handleInputChange } = useContext(InputContext)
-    console.log(options)
     return (
         <label className="text-input-label" htmlFor={id}>
             {label}
