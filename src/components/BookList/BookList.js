@@ -2,7 +2,7 @@ import React from 'react';
 import BookItem from '../BookItem/BookItem';
 
 const BookList = ({ bookList }) => {
-    console.log('test from Book list', bookList)
+    
     return (
         <ul className='cardsList'>
             {bookList.map((item) => 

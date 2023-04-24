@@ -118,29 +118,36 @@ const bookList = [
 ]
 
 const HomePage = () => {
-    const [books, setBooks] = useState([]);
-    const [sortBy, setSortBy] = useState('');
+    const [books1, setBooks1] = useState([]);
+    const [books2, setBooks2] = useState([]);
     
     useEffect(() => {
         getAllBooksAdapter({
-            limit: 8,
-            sort: {sortBy},
+            limit: 5,
         }).then(result => {
             if(result) {
-                setBooks(result.books)
+                setBooks2(result.books)
             }
         })
     }, [])
 
-    console.log('this is ...books: ', [...books])
+    useEffect(() => {
+        getAllBooksAdapter({
+            limit: 5,
+            sort: 'CreatedAt',
+        }).then(result => {
+            if(result) {
+                setBooks1(result.books)
+            }
+        })
+    }, [])
 
     return (
         <div className="homePage">
             {/* <h1 className='homePageCards'>Welcome to ShelfShare</h1> */}
-
             {/* Render out the booklList on the home page */}
-            <BookList bookList={books} sortBy='createdAt' />
-            <BookList bookList={books} sortBy='language' />
+            <BookList bookList={books1} />
+            <BookList bookList={books2} />
         </div>
     )
 }

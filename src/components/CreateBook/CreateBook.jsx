@@ -97,7 +97,8 @@ const CreateBook = ({ bookId }) => {
                     status: inputs.status, 
                     description: inputs.description, 
                     genre: inputs.genre, 
-                    author: inputs.author
+                    author: inputs.author,
+                    selectedImage: inputs.imageURL
                 }
             ))    
     };

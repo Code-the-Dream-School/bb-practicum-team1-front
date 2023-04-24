@@ -13,7 +13,6 @@ const BookItem = ({ item }) => {
     const noImg = item.imageURL === false;
     const status = item.status === 'open';
     const image = item.imageURL;
-    console.log('what is in item: ', item)
 
     return (
       <div className='book-item'>
