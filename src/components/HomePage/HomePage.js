@@ -132,6 +132,8 @@ const HomePage = () => {
         })
     }, [])
 
+    console.log('this is ...books: ', [...books])
+
     return (
         <div className="homePage">
             {/* <h1 className='homePageCards'>Welcome to ShelfShare</h1> */}

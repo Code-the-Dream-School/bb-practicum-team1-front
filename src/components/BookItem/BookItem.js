@@ -10,8 +10,10 @@ import { Link } from 'react-router-dom';
 
 const BookItem = ({ item }) => {
     const adult = item.ageRange === 'adults';
-    const noImg = item.image === false;
+    const noImg = item.imageURL === false;
     const status = item.status === 'open';
+    const image = item.imageURL;
+    console.log('what is in item: ', item)
 
     return (
       <div className='book-item'>
@@ -20,7 +22,7 @@ const BookItem = ({ item }) => {
         </p>
         <span className={status ? 'available' : 'unavailable'}>
           <Link to="/books/:bookId" className={status ? 'linkToAvailableBook' : 'linkToUnavailableBook'} data-id={status ? 'Press to open' : 'Borrowed'}>
-            {noImg ? <img src={NoPic} alt="No_Picture_available" className='coverImage' /> : <img src={item.image} alt="Cover image" className='coverImage' />}
+            {noImg ? <img src={NoPic} alt="No_Picture_available" className='coverImage' /> : <img src={item.imageURL} alt="Cover image" className='coverImage' />}
           </Link>
         </span>
         <div className="book-item-body">
