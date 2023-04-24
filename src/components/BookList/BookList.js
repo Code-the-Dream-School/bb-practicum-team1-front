@@ -1,5 +1,5 @@
-import React from 'react';
-import BookItem from '../BookItem/BookItem';
+import React from "react";
+import BookItem from "../BookItem/BookItem"
 
 const BookList = ({ bookList }) => {
     return (
@@ -12,6 +12,6 @@ const BookList = ({ bookList }) => {
             )}
         </ul>
     );
-};
+}
 
 export default BookList;
