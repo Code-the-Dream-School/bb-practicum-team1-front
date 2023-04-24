@@ -1,17 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import DebouncedSearch from '../../util/DebouncedSearch/DebouncedSearch';
 import DropdownInput from '../../components/inputs/DropdownInput';
 import { PagePagination } from '../PagePagination/Pagination';
 import { getAllBooksAdapter } from '../../adapters/book-adapters';
-import { InputContext } from '../../App'
 
 const SearchPage = () => {
-    const inputs = useContext(InputContext)
-    const [books, setBooks] = useState([])
+    const [books, setBooks] = useState([]);
+
+    // Depending on the value of dropdown it searchs either by title or by author
     const processSearch = (e) => {
         let type = e.searchType;
         if (!e.searchPageDebouncedSearch) {
-            setBooks([])
+            setBooks([]);
             return;
         }
         let bookInput = {};
@@ -24,25 +24,25 @@ const SearchPage = () => {
         getAllBooksAdapter(bookInput)
         .then(data => {
             if (data) {
-                setBooks(data.books)
+                setBooks(data.books);
             } else {
-                setBooks([])
+                setBooks([]);
             }
         });
     };
 
     return (
         <>
-                <DebouncedSearch 
-                    id={'searchPageDebouncedSearch'}
-                    handleDebounce={processSearch}
-                />
-                <DropdownInput 
-                    label={'Choose:'}
-                    id={'searchType'}
-                    options={[{value: 'title', label: 'Search by title'}, {value: 'author', label: 'Search by author'}]}
-                    defaultValue={'title'} showPlaceholder={false}
-                />
+            <DebouncedSearch 
+                id={'searchPageDebouncedSearch'}
+                handleDebounce={processSearch}
+            />
+            <DropdownInput 
+                label={'Choose:'}
+                id={'searchType'}
+                options={[{value: 'title', label: 'Search by title'}, {value: 'author', label: 'Search by author'}]}
+                defaultValue={'title'} showPlaceholder={false}
+            />
             <PagePagination books={books}/>   
         </>
     );
