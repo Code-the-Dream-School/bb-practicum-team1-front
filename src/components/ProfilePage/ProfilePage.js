@@ -160,8 +160,6 @@ const testUser = {
 
 const ProfilePage = ({myProfile = false}) => {
     const [user, setUser] = useState(null);
-
-
     // useEffect(() => {
     //     const fetchData = async () => {
     //         const {user, BookList, } = await getUserInfo();
