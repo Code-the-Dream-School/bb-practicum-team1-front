@@ -1,18 +1,17 @@
 import React, { useContext, useState } from 'react';
 import DebouncedSearch from '../../util/DebouncedSearch/DebouncedSearch';
 import DropdownInput from '../../components/inputs/DropdownInput';
-//import PaginatedResults from '../PagePagination/PagePagination';
+import { PagePagination } from '../PagePagination/Pagination';
 import { getAllBooksAdapter } from '../../adapters/book-adapters';
 import { InputContext } from '../../App'
 
 const SearchPage = () => {
-    const [inputs, handleChange] = useContext(InputContext)
+    const inputs = useContext(InputContext)
     const [books, setBooks] = useState([])
     const processSearch = (e) => {
-        let type = inputs['searchType'];
-        console.log(`Search type ${type}`)
-        console.log(`Search value ${e.searchPageDebouncedSearch}`)
+        let type = e.searchType;
         if (!e.searchPageDebouncedSearch) {
+            setBooks([])
             return;
         }
         let bookInput = {};
@@ -24,8 +23,11 @@ const SearchPage = () => {
         }
         getAllBooksAdapter(bookInput)
         .then(data => {
-            console.log(data);
-            setBooks(data)
+            if (data) {
+                setBooks(data.books)
+            } else {
+                setBooks([])
+            }
         });
     };
 
@@ -41,8 +43,7 @@ const SearchPage = () => {
                     options={[{value: 'title', label: 'Search by title'}, {value: 'author', label: 'Search by author'}]}
                     defaultValue={'title'} showPlaceholder={false}
                 />
-            {//<PaginatedResults />
-            }           
+            <PagePagination books={books}/>   
         </>
     );
 };

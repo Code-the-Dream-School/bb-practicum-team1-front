@@ -1,5 +1,6 @@
-import React from 'react';
-import BookList from '../BookList/BookList';
+import React from 'react'
+import BookList from '../BookList/BookList'
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
     //Sample array of book data (test)
@@ -12,7 +13,7 @@ const HomePage = () => {
             status: 'open',
             image: true,
             description: 'Colorful book with a lot of beautiful pictures',
-            genre: 'Literary Fiction', 
+            genre: 'Literary Fiction',
             author: 'Charles Perrault',
         },
         {
@@ -23,7 +24,7 @@ const HomePage = () => {
             status: 'open',
             image: false,
             description: 'Colorful book with a lot of beautiful pictures',
-            genre: 'Literary Fiction', 
+            genre: 'Literary Fiction',
             author: 'Charles Perrault',
         },
         {
@@ -34,7 +35,29 @@ const HomePage = () => {
             status: 'borrowed',
             image: true,
             description: 'The classic of world literature',
-            genre: 'Graphic Novel', 
+            genre: 'Graphic Novel',
+            author: 'Leo Tolstoy',
+        },
+        {
+            title: 'War and Peace',
+            language: 'Russian',
+            ageRange: 'adults',
+            publishingYear: 1988,
+            status: 'open',
+            image: true,
+            description: 'The classic of world literature',
+            genre: 'Graphic Novel',
+            author: 'Leo Tolstoy',
+        },
+        {
+            title: 'War and Peace',
+            language: 'Russian',
+            ageRange: 'adults',
+            publishingYear: 1988,
+            status: 'open',
+            image: true,
+            description: 'The classic of world literature',
+            genre: 'Graphic Novel',
             author: 'Leo Tolstoy',
         },
         {
@@ -45,7 +68,7 @@ const HomePage = () => {
             status: 'borrowed',
             image: true,
             description: 'The classic of world literature',
-            genre: 'Graphic Novel', 
+            genre: 'Graphic Novel',
             author: 'Leo Tolstoy',
         },
         {
@@ -56,7 +79,18 @@ const HomePage = () => {
             status: 'borrowed',
             image: true,
             description: 'The classic of world literature',
-            genre: 'Graphic Novel', 
+            genre: 'Graphic Novel',
+            author: 'Leo Tolstoy',
+        },
+        {
+            title: 'War and Peace',
+            language: 'Russian',
+            ageRange: 'adults',
+            publishingYear: 1988,
+            status: 'open',
+            image: true,
+            description: 'The classic of world literature',
+            genre: 'Graphic Novel',
             author: 'Leo Tolstoy',
         },
         {
@@ -67,7 +101,7 @@ const HomePage = () => {
             status: 'borrowed',
             image: true,
             description: 'The classic of world literature',
-            genre: 'Graphic Novel', 
+            genre: 'Graphic Novel',
             author: 'Leo Tolstoy',
         },
         {
@@ -78,29 +112,7 @@ const HomePage = () => {
             status: 'borrowed',
             image: true,
             description: 'The classic of world literature',
-            genre: 'Graphic Novel', 
-            author: 'Leo Tolstoy',
-        },
-        {
-            title: 'War and Peace',
-            language: 'Russian',
-            ageRange: 'adults',
-            publishingYear: 1988,
-            status: 'borrowed',
-            image: true,
-            description: 'The classic of world literature',
-            genre: 'Graphic Novel', 
-            author: 'Leo Tolstoy',
-        },
-        {
-            title: 'War and Peace',
-            language: 'Russian',
-            ageRange: 'adults',
-            publishingYear: 1988,
-            status: 'borrowed',
-            image: true,
-            description: 'The classic of world literature',
-            genre: 'Graphic Novel', 
+            genre: 'Graphic Novel',
             author: 'Leo Tolstoy',
         },
         {
@@ -110,8 +122,9 @@ const HomePage = () => {
             publishingYear: 1901,
             status: 'open',
             image: false,
-            description: 'The Christian scriptures, consisting of the Old and New Testaments',
-            genre: 'Religion & Spirituality', 
+            description:
+                'The Christian scriptures, consisting of the Old and New Testaments',
+            genre: 'Religion & Spirituality',
             author: 'unknown',
         },
         {
@@ -121,8 +134,9 @@ const HomePage = () => {
             publishingYear: 1901,
             status: 'open',
             image: false,
-            description: 'The Christian scriptures, consisting of the Old and New Testaments',
-            genre: 'Religion & Spirituality', 
+            description:
+                'The Christian scriptures, consisting of the Old and New Testaments',
+            genre: 'Religion & Spirituality',
             author: 'unknown',
         },
         {
@@ -132,8 +146,9 @@ const HomePage = () => {
             publishingYear: 1901,
             status: 'open',
             image: false,
-            description: 'The Christian scriptures, consisting of the Old and New Testaments',
-            genre: 'Religion & Spirituality', 
+            description:
+                'The Christian scriptures, consisting of the Old and New Testaments',
+            genre: 'Religion & Spirituality',
             author: 'unknown',
         },
         {
@@ -143,21 +158,21 @@ const HomePage = () => {
             publishingYear: 1901,
             status: 'open',
             image: false,
-            description: 'The Christian scriptures, consisting of the Old and New Testaments',
-            genre: 'Religion & Spirituality', 
+            description:
+                'The Christian scriptures, consisting of the Old and New Testaments',
+            genre: 'Religion & Spirituality',
             author: 'unknown',
         },
-    ];
+    ]
 
     return (
-        <div className='homePage'>
+        <div className="homePage">
             {/* <h1 className='homePageCards'>Welcome to ShelfShare</h1> */}
 
             {/* Render out the booklList on the home page */}
-            <BookList bookList={bookList}/>
-            
+            <BookList bookList={bookList} />
         </div>
-    );
-};
+    )
+}
 
-export default HomePage; 
+export default HomePage

@@ -34,3 +34,5 @@ export function getCookie(cName: string): object | null{
 export function deleteCookie(cName: string): void {
     setCookie(cName, null , null) 
 }
+
+export const cookieName = 'shelf-share-session'
