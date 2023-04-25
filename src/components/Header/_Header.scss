@@ -20,7 +20,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #faf9f9;
+    background-color: #364958;
     border-bottom: 5px solid $tertiaryColor;
 }
 
@@ -99,16 +99,46 @@
     background: #fff;
 }
 
+.night-mode {
+    padding: 10px;
+    width: 50px;
+    background-color: transparent;
+    margin-left: 20px;
+}
+
+.day-mode {
+    padding: 10px;
+    background-color: transparent;
+    width: 50px;
+    margin-left: 20px;
+}
+
+.nigt-mode-header {
+    top: 0;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    height: 65px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $white;
+    border-bottom: 5px solid $tertiaryColor;
+} 
+
 @media (max-width: 768px) {
     .nav {
         padding: 10px;
     }
 
     .hamBox {
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         display: flex;
+        margin-top: 10px;
+        margin-right: 10px;
     }
 
     .navbar {
@@ -119,5 +149,21 @@
 
     .menu-toggle {
         position: relative;
+    }
+
+    .night-mode {
+        width: 40px;
+    }
+
+    .day-mode {
+        width: 40px;
+    }
+
+    .lineTop, .lineBottom {
+        background-color: teal;
+    }
+
+    .logo-pic img {
+        height: 50px;
     }
 }
