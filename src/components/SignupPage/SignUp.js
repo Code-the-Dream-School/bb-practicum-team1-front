@@ -12,6 +12,7 @@ var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth() + 1; 
 var yyyy = today.getFullYear();
+var regularExpression  = /^[A-Za-z0-9]{3,16}$/;
 
 if (dd < 10) {
     dd = '0' + dd
@@ -49,22 +50,25 @@ export function SignUp({ setSessionObject } ) {
         data.confirmPass = formProps.signUpConfirmPassword;
 
         if (data.password.length < minNumberofChars || data.password.length > maxNumberofChars) {
-            setErrorMessage('');
             setState(false);
-            setErrorMessage('Password length should be between 8 and 16 characters');
-            return <p display='block' className='error-message'>{errorMessage}</p> 
+            setErrorMessage('The length of the Password should be between 8 and 16 characters');
+            return 
         } if (data.dateOfBirth > today) {
-            setErrorMessage('');
             setState(false);
             setErrorMessage('Birthday should be in the past');
-            return <p display='block' className='error-message'>{errorMessage}</p> 
+            return 
         } else if (data.password !== data.confirmPass) {
-            setErrorMessage('');
             setState(false);
             setErrorMessage('Passwords do not match');
-            return <p display='block' className='error-message'>{errorMessage}</p> 
+            return 
+        } else if (regularExpression.test(data.password)) {
+            setErrorMessage('Password should contain at least one uppercase letter, one lowercase letter, and one number');
+            setState(false);
+            console.log('not strong')
+            return
         } else {
             setErrorMessage('');
+            setState(true);
         }
 
         // test data
