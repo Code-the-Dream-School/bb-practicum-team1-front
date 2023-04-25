@@ -1,5 +1,5 @@
 import React from 'react';
-import Message from '../images/message.jpg';
+import Message from '../images/message.png';
 import Ghosts from '../images/ghosts.png';
 import Adults from '../images/18plus.png';
 import NoPic from '../images/Image-Not-Available.png';

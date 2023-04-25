@@ -62,7 +62,7 @@ export function SignUp({ setSessionObject } ) {
             setErrorMessage('Passwords do not match');
             return 
         } else if (regularExpression.test(data.password)) {
-            setErrorMessage('Password should contain at least one uppercase letter, one lowercase letter, and one number');
+            setErrorMessage('Password should contain at least one uppercase letter, one lowercase letter, one special character, and one number');
             setState(false);
             console.log('not strong')
             return

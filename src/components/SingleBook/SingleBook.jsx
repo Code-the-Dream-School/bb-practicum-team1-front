@@ -1,11 +1,9 @@
 import React from 'react';
-import Message from '../images/message.jpg';
+import Message from '../images/message.png';
 import Ghosts from '../images/ghosts.png';
 import Adults from '../images/18plus.png';
 import NoPic from '../images/Image-Not-Available.png';
-// import Available from '../images/available.jpg';
 import ZeroPlus from '../images/zeroPlus.png';
-import Unavailable from '../images/unavailable.jpg';
 import { Link } from 'react-router-dom';
 
 const SingleBook = ({ item }) => {
