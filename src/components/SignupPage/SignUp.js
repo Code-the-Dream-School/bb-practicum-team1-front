@@ -40,7 +40,7 @@ export function SignUp({ setSessionObject } ) {
     return (
         <div className="login-container">
             {/* Handling Error Message */}
-            {errorMsg !== '' ? <p display='block' >{errorMsg}</p> : null}
+            {errorMsg !== '' ? <p display='block' className="signup-error">{errorMsg}</p> : null}
             
             <form onSubmit={(e) => handleSubmit(e)}>
                 <TextInput

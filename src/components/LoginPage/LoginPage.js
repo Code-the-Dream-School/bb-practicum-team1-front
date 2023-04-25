@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TextInput from '../inputs/TextInput'
 import './Login.scss'
 import { loginAdapter } from '../../adapters/auth-adapters';
-import { getCookie , setCookie, deleteCookie, cookieName } from '../../util/Authentication';
+import { getCookie } from '../../util/Authentication';
 
 
 export const Login = ({ setSessionObject }) => {
@@ -16,7 +16,7 @@ export const Login = ({ setSessionObject }) => {
 
         const data = {};
         data.email = formProps.logInEmail;
-        data.password = formProps.logInPassword;
+        data.password = formProps.logInPassword;      
         
         // Call loginAdapter
         loginAdapter(data).then(result => {
@@ -30,9 +30,9 @@ export const Login = ({ setSessionObject }) => {
     }
 
     return (
-        <div className="login-container"  >
+        <div className="login-container" >
             {/* Handling Error Message */}
-            {errorMsg !== '' ? <p>{errorMsg}</p> : null}
+            {errorMsg !== '' ? <p className="login-error">{errorMsg}</p> : null}
 
             <form onSubmit={(e) => handleSubmit(e)}>
                 <TextInput
