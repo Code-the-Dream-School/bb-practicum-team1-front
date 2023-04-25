@@ -1,7 +1,7 @@
 .book-item-single {
     max-width: 600px;
     min-width: 600px;
-    height: 750px;
+    height: 810px;
     padding-top: 5px;
     padding-bottom: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -23,7 +23,7 @@
         }
     }
     .coverImage-single {
-        width: 200px;
+        width: 250px;
         max-height: 55%;
         box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
     }
@@ -50,9 +50,7 @@
         }
     }
   }
-// .titleAndYear-single {
-//     font-weight: bold;
-//     }
+
 .genre-single {
     text-align: right;
 }
@@ -94,23 +92,29 @@
     opacity: 1;
   }
 
-  .genre-paragraph-single {
+  .lang-p-single {
     position: absolute;
-    bottom: 3;
-    right: 1;
     font-size: 22px;
-    padding-top: 85px;
+    padding-top: 75px;
     padding-bottom: 15px;
     color:darkred;
     font-family: $fontButton;
     font-weight: $fontBold;
   }
-  .genre-paragraph2-single {
+  .genre-p-single {
     position: absolute;
-    bottom: 4;
-    right: 2;
     font-size: 22px;
     padding-top: 45px;
+    padding-bottom: 25px;
+    color:darkred;
+    font-family: $fontButton;
+    font-weight: $fontBold;
+  }
+
+  .author-p-single{
+    position: absolute;
+    font-size: 22px;
+    padding-top: 15px;
     padding-bottom: 25px;
     color:darkred;
     font-family: $fontButton;
@@ -123,44 +127,50 @@
   }
 
 @media (max-width: 768px) {
-  .genre-paragraph-single {
+  .lang-p-single {
+    padding-top: 65px;
+    font-size: smaller;
+  }
+
+  .genre-p-single {
     padding-top: 45px;
     font-size: smaller;
   }
 
-  .genre-paragraph2-single {
-    padding-top: 15px;
+  .author-p-single{
+    padding-top: 25px;
     font-size: smaller;
   }
-    .coverImage-single {
-        width: 180px;
-        opacity: 80%;
-    }
-    .book-item-single {
-        height: 530px;   
-        min-width: 330px;
-        max-width: 330px;
-        margin-right: 20px;
-        margin-left: 20px;
-        overflow: visible; 
-        padding-bottom: 10px;
-        padding-top: 10px;
-    }
-    .book-item-single .book-item-body-single > div p {
-        font-size: 15px;
-    }
-    .book-item-single .coverImage-single {
-        width: 150px;
-    }
-    .book-item-single .book-item-body-single > div img {
-        width: 50px;
-    }
 
-    .description-single {
-        line-height: 1.2rem;
-        font-size: 14px;
-    }
+  .coverImage-single {
+      width: 180px;
+      opacity: 80%;
+  }
+  .book-item-single {
+      height: 700px;   
+      min-width: 350px;
+      max-width: 350px;
+      margin-right: 20px;
+      margin-left: 20px;
+      overflow: visible; 
+      padding-bottom: 10px;
+      padding-top: 10px;
+  }
+  .book-item-single .book-item-body-single > div p {
+      font-size: 15px;
+  }
+  .book-item-single .coverImage-single {
+      width: 200px;
+  }
+  .book-item-single .book-item-body-single > div img {
+      width: 50px;
+  }
 
+  .description-single {
+      line-height: 1.2rem;
+      font-size: 14px;
+      -webkit-line-clamp: 10;
+  }
 }
 
 
