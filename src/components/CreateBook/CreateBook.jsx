@@ -69,6 +69,8 @@ const CreateBook = ({ bookId }) => {
 
     const [selectedImage, setSelectedImage] = useState(null);
 
+
+    // imageURL: inputs.imageURL or imageURL: imageURL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     const handleFormSubmit = (event) => {
         event.preventDefault();
         
@@ -98,7 +100,7 @@ const CreateBook = ({ bookId }) => {
                     description: inputs.description, 
                     genre: inputs.genre, 
                     author: inputs.author,
-                    selectedImage: inputs.imageURL
+                    image: inputs.selectedImage
                 }
             ))    
     };
