@@ -1,37 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import DebouncedSearch from '../../util/DebouncedSearch/DebouncedSearch';
-import DropdownInput from '../inputs/DropdownInput'
 import { getAddressAutocomplete } from "../../adapters/address-adapter"; 
+import { InputContext } from '../../App';
 
 const AddressSearch = ({ id }) => {
     const [addressSuggestions, setAddressSuggestions] = useState([]);
+    const inputs = useContext(InputContext);
 
-    const processSearch = (value) => {
-        console.log(value)
+    const processSearch = async (value) => {
         //Unwrapping promise
         if (value !== "") {
-            getAddressAutocomplete(value).then(data => {
-                setAddressSuggestions(data)
+            getAddressAutocomplete(value).then(r => {              
+                setAddressSuggestions(r);             
             })
         }     
     }
 
-    const convert = (raw) => {
-        const data = raw.map((item) => {
-            const val = {};
-            val.value = item.address;
-            return val;
-        })
-        return data;
+    const onSelect = (selected) => {
+        inputs[id] = JSON.parse(selected.target.value);
+        inputs[`${id}Debounce`] = JSON.parse(selected.target.value).address;
+        console.log(inputs[id]);
     }
 
     return (
         <>
-            <DebouncedSearch id={id} handleDebounce={processSearch} />
-            <DropdownInput 
-                    id={id}
-                    options={convert(addressSuggestions)}
-                />
+            <DebouncedSearch id={`${id}Debounce`} handleDebounce={processSearch} />
+            <select onChange={onSelect}>
+                <option value={JSON.stringify({})} selected>
+                    Select address
+                </option>
+                {addressSuggestions.map(e => {
+                    return <option 
+                                value={JSON.stringify(e)} 
+                                id={e.address} 
+                                key={e.address}
+                            >
+                                {e.address}
+                            </option>
+                })}
+            </select>
         </>
     );
 

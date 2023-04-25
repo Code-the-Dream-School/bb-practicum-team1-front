@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useCallback } from 'react';
 import TextInput from '../../components/inputs/TextInput';
 import _ from 'lodash';
-//Should be passed as a prop. Child components should not import parent
 import { InputContext } from "../../App";
-import DropdownInput from '../../components/inputs/DropdownInput';
 
 // Should use existing TextInput component. Should take a prop called onDebounce 
 // (as well as any props necessary to setup the TextInput component). 
@@ -23,8 +21,7 @@ const DebouncedSearch = ({ id, handleDebounce }) => {
             debounceSearch.cancel();
             debounceSearch(inputs[id]);
         }
-        // remove dependency on call result to call search only when value in input is changed
-    }, [inputs[id]]);
+    }, [inputs, debounceSearch]);
 
     return (
         <>    
