@@ -5,30 +5,49 @@ import { InputContext } from '../../App';
 
 const AddressSearch = ({ id }) => {
     const [addressSuggestions, setAddressSuggestions] = useState([]);
-    const inputs = useContext(InputContext);
+    const {inputs, handleInputChange} = useContext(InputContext);
+
+    const shouldShowDropdown = (values, currentValue) => {
+        if (!currentValue) {
+            return false;
+        }
+        if (!values || values.length == 0) {
+            return false;
+        }
+        if (values.length == 1 && values[0].address === currentValue) {
+            return false;
+        }
+        return true;
+    }
 
     const processSearch = async (value) => {
         //Unwrapping promise
-        if (value !== "") {
+        if (value && value !== "") {
             getAddressAutocomplete(value).then(r => {              
-                setAddressSuggestions(r);             
+                setAddressSuggestions(r || []);             
             })
-        }     
+        } else {
+            setAddressSuggestions([])
+        }    
     }
 
     const onSelect = (selected) => {
         inputs[id] = JSON.parse(selected.target.value);
-        inputs[`${id}Debounce`] = JSON.parse(selected.target.value).address;
-        console.log(inputs[id]);
+        setAddressSuggestions([])
+        if (inputs[`${id}Debounce`] !== JSON.parse(selected.target.value).address) {
+            handleInputChange(`${id}Debounce`, JSON.parse(selected.target.value).address);           
+        }
     }
 
     return (
         <>
             <DebouncedSearch id={`${id}Debounce`} handleDebounce={processSearch} />
-            <select onChange={onSelect}>
-                <option value={JSON.stringify({})} selected>
-                    Select address
-                </option>
+            {shouldShowDropdown(addressSuggestions, inputs[`${id}Debounce`]) ?
+            <select className="addressSearchDropdown" onChange={onSelect}>
+                <option value={JSON.stringify({})} 
+                                id='empty' 
+                                key='empty'
+                    >Select value...</option>
                 {addressSuggestions.map(e => {
                     return <option 
                                 value={JSON.stringify(e)} 
@@ -39,6 +58,7 @@ const AddressSearch = ({ id }) => {
                             </option>
                 })}
             </select>
+            : null}
         </>
     );
 

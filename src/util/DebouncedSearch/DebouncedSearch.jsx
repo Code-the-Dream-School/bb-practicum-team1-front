@@ -15,13 +15,10 @@ const DebouncedSearch = ({ id, handleDebounce }) => {
     const debounceSearch = useCallback(_.debounce(query => handleDebounce(query), 500), []);
 
     useEffect(() => {
-        //do not call search if user hasn't provided any value yet
-        if (inputs[id] !== undefined && inputs[id] !== "") {
-            // cancel any previous debounce action
-            debounceSearch.cancel();
-            debounceSearch(inputs[id]);
-        }
-    }, [inputs, debounceSearch]);
+        // cancel any previous debounce action
+        debounceSearch.cancel();
+        debounceSearch(inputs[id]);
+    }, [inputs[id], debounceSearch]);
 
     return (
         <>    
