@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom'
 
-const ProtectedRoute = ({ children, requiredAuthLevel = 'user' }) => {
+const ProtectedRoute = ({ requiredAuthLevel = 'user' }) => {
     // Placeholder to actually check if user is authenticated
-    const [userAuthenticated, setUserAuthenticated] = useState(false);
+    // const [userAuthenticated, setUserAuthenticated] = useState(false)
+    // console.log(!sessionObject)
 
-    if (requiredAuthLevel === "user") {
-        if (!userAuthenticated) {
-            return <Navigate to="/login" />;
-        }
-        return children;
-    };
+    if (requiredAuthLevel === 'anonymous') return <Navigate to="/" />
+    // if (!sessionObject) return <Navigate to="/login" />
 
-    if (requiredAuthLevel === "anonymous") {
-        return <Navigate to="/" />;
-    };
-};
+    return <Outlet />
 
-export default ProtectedRoute;
+    //     if (requiredAuthLevel === 'user') {
+    //         if (!userAuthenticated) {
+    //             return <Navigate to="/login" />
+    //         }
+
+    //         return <Outlet />
+    //     }
+
+    //     if (requiredAuthLevel === 'anonymous') {
+    //         return <Navigate to="/" />
+    //     }
+}
+
+export default ProtectedRoute

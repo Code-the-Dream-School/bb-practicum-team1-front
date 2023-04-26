@@ -25,29 +25,17 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import BookItem from './components/BookItem/BookItem'
 import SingleBook from './components/SingleBook/SingleBook'
+import ViewDashboard from './components/Dashboard/ViewDashboard'
 
-const testBook = {
-    title: 'Cinderella',
-    language: 'English',
-    ageRange: 'kids',
-    publishingYear: 2022,
-    status: 'open',
-    image: true,
-    description:
-        "Catrina and her family are moving to the coast of Northern California because her little sister, Maya, is sick. Cat isn't happy about leaving her friends for Bahía de la Luna, but Maya has cystic fibrosis and will benefit from the cool, salty air that blows in from the sea. As the girls explore their new home, a neighbor lets them in on a secret: There are ghosts in Bahía de la Luna. Maya is determined to meet one, but Cat wants nothing to do with them. As the time of year when ghosts reunite with their loved ones approaches, Cat must figure out how to put aside her fears for her sisters sake -- and her own.Raina Telgemeier has masterfully created a moving and insightful story about the power of family and friendship, and how it gives us the courage to do what we never thought possible.",
-    genre: 'Literary Fiction',
-    author: 'Charles Perrault',
-}
+import { BOOK_DATA } from './fixtures/bookData'
 
 export const InputContext = createContext({})
-export const SessionContext = createContext({});
 
 const URL = 'http://localhost:8000/api/v1/'
 
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
-    const [sessionObject, setSessionObject] = useState(getCookie());
     const [loading, setLoading] = useState(false)
     const [quote, setQuote] = useState({})
 
@@ -86,37 +74,51 @@ const App = () => {
     return (
         <>
             <div className="content">
-                <SessionContext.Provider
-                    value={{sessionObject, setSessionObject}}
-                >
-                    <InputContext.Provider
-                        value={{
-                            inputs,
-                            handleInputChange: (inputName, inputValue) =>
-                                setInputs({ ...inputs, [inputName]: inputValue }),
+                <InputContext.Provider
+                    value={{
+                        inputs,
+                        handleInputChange: (inputName, inputValue) =>
+                            setInputs({
+                                ...inputs,
+                                [inputName]: inputValue,
+                            }),
 
-                            handleBulkInput: (inputObj) =>
-                                setInputs({ ...inputs, ...inputObj }),
-                        }}
-                    >
+                        handleBulkInput: (inputObj) =>
+                            setInputs({ ...inputs, ...inputObj }),
+                    }}
+                >
                     <Header />
+
                     <Routes>
-                        <Route path="" element={<HomePage />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/books/create" element={<CreateBook />} />
-                        <Route
-                            path="/books/edit/:bookId"
-                            element={<CreateBook />}
-                        />
-                        <Route
-                            path="/books/:bookId"
-                            element={<SingleBook item={testBook} />}
-                        />
-                        </Routes>
-                    </InputContext.Provider>
-                </SessionContext.Provider>
+                        <Route element={<ProtectedRoute />}>
+                            <Route path="" element={<HomePage />} />
+                            <Route
+                                path="/dashboard"
+                                element={<ViewDashboard />}
+                            />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/sign-up" element={<SignUp />} />
+                            <Route path="/about" element={<About />} />
+                            <Route
+                                path="/contact"
+                                element={<div>Contact</div>}
+                            />
+                            <Route
+                                path="/books/create"
+                                element={<CreateBook />}
+                            />
+                            <Route
+                                path="/books/edit/:bookId"
+                                element={<CreateBook />}
+                            />
+                            <Route
+                                path="/books/:bookId"
+                                element={<SingleBook item={BOOK_DATA} />}
+                            />
+                        </Route>
+                    </Routes>
+                </InputContext.Provider>
+
                 <Footer />
                 <div>
                     <div className="buttons">

@@ -1,15 +1,19 @@
-export function setCookie(cName: string, value: string | null, days: number | null): void {
+export function setCookie(
+    cName: string,
+    value: string | null,
+    days: number | null
+): void {
     const date = new Date()
-    if(days !== null){
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
-    const expires = 'expires=' + date.toUTCString()
-    document.cookie = `${cName}= ${value}; ${expires}; "path=/"`
-    }else{
-      document.cookie = `${cName}= ${value};"path=/"`
+    if (days !== null) {
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+        const expires = 'expires=' + date.toUTCString()
+        document.cookie = `${cName}= ${value}; ${expires}; "path=/"`
+    } else {
+        document.cookie = `${cName}= ${value};"path=/"`
     }
 }
 
-export function getCookie(cName: string): object | null{
+export function getCookie(cName: string) {
     const cDecoded = decodeURIComponent(document.cookie)
     const cArray = cDecoded.split('; ')
     let result = null
@@ -22,17 +26,17 @@ export function getCookie(cName: string): object | null{
 
     let jsonObj = null
     try {
-        if( result !== null){
-        jsonObj = JSON.parse(result)
+        if (result !== null) {
+            jsonObj = JSON.parse(result)
         }
     } catch (error) {
         console.error('Invalid JSON string:', error)
     }
-    return jsonObj;
+    return jsonObj
 }
 
 export function deleteCookie(cName: string): void {
-    setCookie(cName, null , null) 
+    setCookie(cName, null, null)
 }
 
 export const cookieName = 'shelf-share-session'
