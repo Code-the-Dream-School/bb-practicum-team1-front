@@ -45,8 +45,26 @@ type bookInput = {
  */
 export const createBookAdapter = async(bookInput:bookInput) =>{
     const url = 'http://localhost:8000/api/v1/books'
-    const data = await fetchAPIData(url, 'POST', bookInput )
-    return data   
+    // convert body to form data type
+    const formData = new FormData()
+    // add the fields from book input object to form data object by converting bookInput obj to an array and iterate each key-value pair
+    Object.entries(bookInput).forEach(([key, value]) =>{
+        if(key === 'image' && value instanceof Buffer){  // instanceof -->used to test if the property(Buffer) appears anywhere in an object
+            // convert buffer to Blob because the method expects the argument to be string or Blob(based on error msg)
+            formData.append(key, new Blob([value]))    
+        } else {
+        // convert value to string because publishingYear is number and the method expects the argument to be string or Blob 
+        formData.append(key, value.toString())
+        }
+    })
+     // send form data to server 
+     const data = await fetch(url,{
+        method: 'POST',
+        body: formData
+     })
+
+     // parse data and return the result
+     return data.json()
 }
 
 // Get all books for all users, all books owner, and by userId adapter
