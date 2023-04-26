@@ -8,12 +8,13 @@ import { Login } from './components/LoginPage/LoginPage'
 import { SignUp } from './components/SignupPage/SignUp'
 import CreateBook from './components/CreateBook/CreateBook'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import { setCookie, getCookie, deleteCookie } from './util/Authentication'
+import { setCookie, getCookie, deleteCookie, cookieName } from './util/Authentication'
 import './sass/app.scss'
 import { PagePagination } from './components/PagePagination/Pagination'
 import  ProfilePage  from './components/ProfilePage/ProfilePage'
-
 export const InputContext = createContext({})
+export const SessionContext = createContext({});
+
 
 //This is for testing//
 const bookArr = [
@@ -60,6 +61,8 @@ const bigBookArray = [
 const URL = 'http://localhost:8000/api/v1/'
 
 const App = () => {
+    console.log(getCookie(cookieName))
+    const [sessionObject, setSessionObject] = useState(getCookie(cookieName));
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
 
@@ -86,6 +89,10 @@ const App = () => {
     return (
         <>
             <Header />
+            <SessionContext.Provider
+                    value={{sessionObject, setSessionObject}}
+                >
+
             <InputContext.Provider
                 value={{
                     inputs,
@@ -154,6 +161,7 @@ const App = () => {
                         <Route path='/profile/:userid' element={<ProfilePage  />} />
                 </Routes>
             </InputContext.Provider>
+            </SessionContext.Provider>
             <Footer />
         </>
     )

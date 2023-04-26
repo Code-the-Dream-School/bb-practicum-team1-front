@@ -1,180 +1,41 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import BookList from "../BookList/BookList";
 import './Profile.scss'
-
-//Get userid from url then use UserAdapter to get the user
-
-const bookList = [
-    {
-        title: 'Cinderella',
-        language: 'English',
-        ageRange: 'kids',
-        publishingYear: 2022,
-        status: 'open',
-        image: true,
-        description: 'Colorful book with a lot of beautiful pictures',
-        genre: 'Literary Fiction', 
-        author: 'Charles Perrault',
-    },
-    {
-        title: 'Cinderella',
-        language: 'English',
-        ageRange: 'kids',
-        publishingYear: 2022,
-        status: 'open',
-        image: false,
-        description: 'Colorful book with a lot of beautiful pictures',
-        genre: 'Literary Fiction', 
-        author: 'Charles Perrault',
-    },
-    {
-        title: 'War and Peace',
-        language: 'Russian',
-        ageRange: 'adults',
-        publishingYear: 1988,
-        status: 'borrowed',
-        image: true,
-        description: 'The classic of world literature',
-        genre: 'Graphic Novel', 
-        author: 'Leo Tolstoy',
-    },
-    {
-        title: 'War and Peace',
-        language: 'Russian',
-        ageRange: 'adults',
-        publishingYear: 1988,
-        status: 'borrowed',
-        image: true,
-        description: 'The classic of world literature',
-        genre: 'Graphic Novel', 
-        author: 'Leo Tolstoy',
-    },
-    {
-        title: 'War and Peace',
-        language: 'Russian',
-        ageRange: 'adults',
-        publishingYear: 1988,
-        status: 'borrowed',
-        image: true,
-        description: 'The classic of world literature',
-        genre: 'Graphic Novel', 
-        author: 'Leo Tolstoy',
-    },
-    {
-        title: 'War and Peace',
-        language: 'Russian',
-        ageRange: 'adults',
-        publishingYear: 1988,
-        status: 'borrowed',
-        image: true,
-        description: 'The classic of world literature',
-        genre: 'Graphic Novel', 
-        author: 'Leo Tolstoy',
-    },
-    {
-        title: 'War and Peace',
-        language: 'Russian',
-        ageRange: 'adults',
-        publishingYear: 1988,
-        status: 'borrowed',
-        image: true,
-        description: 'The classic of world literature',
-        genre: 'Graphic Novel', 
-        author: 'Leo Tolstoy',
-    },
-    {
-        title: 'War and Peace',
-        language: 'Russian',
-        ageRange: 'adults',
-        publishingYear: 1988,
-        status: 'borrowed',
-        image: true,
-        description: 'The classic of world literature',
-        genre: 'Graphic Novel', 
-        author: 'Leo Tolstoy',
-    },
-    {
-        title: 'War and Peace',
-        language: 'Russian',
-        ageRange: 'adults',
-        publishingYear: 1988,
-        status: 'borrowed',
-        image: true,
-        description: 'The classic of world literature',
-        genre: 'Graphic Novel', 
-        author: 'Leo Tolstoy',
-    },
-    {
-        title: 'Bible',
-        language: 'Chinese',
-        ageRange: 'adults',
-        publishingYear: 1901,
-        status: 'open',
-        image: false,
-        description: 'The Christian scriptures, consisting of the Old and New Testaments',
-        genre: 'Religion & Spirituality', 
-        author: 'unknown',
-    },
-    {
-        title: 'Bible',
-        language: 'Chinese',
-        ageRange: 'adults',
-        publishingYear: 1901,
-        status: 'open',
-        image: false,
-        description: 'The Christian scriptures, consisting of the Old and New Testaments',
-        genre: 'Religion & Spirituality', 
-        author: 'unknown',
-    },
-    {
-        title: 'Bible',
-        language: 'Chinese',
-        ageRange: 'adults',
-        publishingYear: 1901,
-        status: 'open',
-        image: false,
-        description: 'The Christian scriptures, consisting of the Old and New Testaments',
-        genre: 'Religion & Spirituality', 
-        author: 'unknown',
-    },
-    {
-        title: 'Bible',
-        language: 'Chinese',
-        ageRange: 'adults',
-        publishingYear: 1901,
-        status: 'open',
-        image: false,
-        description: 'The Christian scriptures, consisting of the Old and New Testaments',
-        genre: 'Religion & Spirituality', 
-        author: 'unknown',
-    },
-];
-
-const testUser = {
-    userName: "JhonnyD",
-    givenName: "John",
-    familyName: "Doe",
-    address: "839 Brookhannah Ct, Fuquay-Varina NC",
-    _id: 1
-}
+import { getAllBooksOwnerAdapter } from "../../adapters/book-adapters";
+import { SessionContext } from "../../App";
+import { PagePagination } from "../PagePagination/Pagination";
+import { loginAdapter } from "../../adapters/auth-adapters";
+import { Login } from "../LoginPage/LoginPage";
 
 const ProfilePage = ({myProfile = false}) => {
-    const [user, setUser] = useState(null);
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const {user, BookList, } = await getUserInfo();
-    //         setUser(user);
-    //     }
-    // })
-return(
-    <div className="Profile">
-        <h1>My Profile</h1>
-        <h2 className="user">Username: {testUser.userName}</h2>
-        <h3 className="address">Address: {testUser.address}</h3>
-        <BookList bookList={bookList} />
-    </div>
-)
-    
+    const [userData, setUserData] = useState({});
+    const [usersBooks, setUsersBooks] = useState([]);
+    const fetchUserBooks = async () => {
+       const booksData = await getAllBooksOwnerAdapter()
+       setUsersBooks(booksData.books)
+    }
+    const fetchUser = async () => {
+      const userData = await loginAdapter()
+      setUserData(userData.user)
+    }
+
+    useEffect( () => {
+        fetchUserBooks()
+        fetchUser()
+    }, [])
+
+    const {sessionObject} = useContext(SessionContext)
+    console.log(sessionObject)
+
+
+    return (
+        <div className="Profile">
+          <h1>My Profile</h1>
+          <BookList bookList={usersBooks} />
+          <Login setSessionObject={userData} />
+          <PagePagination bookList={usersBooks}/>
+        </div>
+      );
 }
 
 export default ProfilePage;
