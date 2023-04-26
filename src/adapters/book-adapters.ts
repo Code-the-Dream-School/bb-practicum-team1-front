@@ -43,20 +43,19 @@ type bookInput = {
  * createBookAdapter(bookInput)
  * @returns {Promise<Object>} A promise that resolves book's creation information.
  */
-export const createBookAdapter = async(bookInput:bookInput) =>{
+export const createBookAdapter = async(bookInput:bookInput, file:File) =>{
     const url = 'http://localhost:8000/api/v1/books'
     // convert body to form data type
     const formData = new FormData()
     // add the fields from book input object to form data object by converting bookInput obj to an array and iterate each key-value pair
     Object.entries(bookInput).forEach(([key, value]) =>{
-        if(key === 'image' && value instanceof Buffer){  // instanceof -->used to test if the property(Buffer) appears anywhere in an object
-            // convert buffer to Blob because the method expects the argument to be string or Blob(based on error msg)
-            formData.append(key, new Blob([value]))    
-        } else {
         // convert value to string because publishingYear is number and the method expects the argument to be string or Blob 
         formData.append(key, value.toString())
-        }
+        
     })
+    // add the file to form data
+    formData.append('image', file)
+    
      // send form data to server 
      const data = await fetch(url,{
         method: 'POST',
