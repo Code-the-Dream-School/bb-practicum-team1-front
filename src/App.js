@@ -50,6 +50,7 @@ const App = () => {
     const [sessionObject, setSessionObject] = useState(getCookie());
     const [loading, setLoading] = useState(false)
     const [quote, setQuote] = useState({})
+    const [night, setNight] = useState(false);
 
     const getRandomQuote = () => {
         setLoading(true)
@@ -99,22 +100,24 @@ const App = () => {
                                 setInputs({ ...inputs, ...inputObj }),
                         }}
                     >
-                    <Header />
-                    <Routes>
-                        <Route path="" element={<HomePage />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/books/create" element={<CreateBook />} />
-                        <Route
-                            path="/books/edit/:bookId"
-                            element={<CreateBook />}
-                        />
-                        <Route
-                            path="/books/:bookId"
-                            element={<SingleBook item={testBook} />}
-                        />
+                    <Header night={night} setNight={setNight} />
+                    <div className={!night ? "" : "night-mode-bg"}>
+                        <Routes>
+                            <Route path="" element={<HomePage />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/books/create" element={<CreateBook />} />
+                            <Route
+                                path="/books/edit/:bookId"
+                                element={<CreateBook />}
+                            />
+                            <Route
+                                path="/books/:bookId"
+                                element={<SingleBook item={testBook} />}
+                            />
                         </Routes>
+                    </div>
                     </InputContext.Provider>
                 </SessionContext.Provider>
                 <Footer />

@@ -3,7 +3,7 @@
     bottom: 0;
     width: 100%;
     height: fit-content;
-    background-color: $secondaryColor;
+    background-color: $tertiaryColor;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
@@ -42,6 +42,10 @@
     border: 5px solid transparent;
 }
 
+.made-by span {
+    padding-bottom: 20px;
+}
+
 @media (max-width: 768px) {
     .footer {
         width: 100%;
@@ -51,6 +55,10 @@
     .copyright {
         font-size: 15px;
         margin-top: 5px;
+    }
+
+    .made-by > span {
+        display: none;
     }
 
     .git-links p {

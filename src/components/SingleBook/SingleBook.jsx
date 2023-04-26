@@ -1,5 +1,5 @@
 import React from 'react';
-import Message from '../images/message.jpg';
+import Message from '../images/message.png';
 import Ghosts from '../images/ghosts.png';
 import Adults from '../images/13plus.png';
 import NoPic from '../images/Image-Not-Available.png';
@@ -15,7 +15,7 @@ const SingleBook = ({ item }) => {
     return (
       <div className='book-item-single'>
         <p className='kidsAdults-single'>
-          {adult ? <img src={Adults} alt="Adults" title='Not appropriate for kids'/>  : <img src={ZeroPlus} alt="Kids" title='Kid friendly'/> }
+          {adult ? <img src={Adults} alt="Adults" title='Not appropriate for under 13 years old'/>  : <img src={ZeroPlus} alt="Kids" title='Kid friendly'/> }
         </p>
         {noImg ? <img src={NoPic} alt="No_Picture_available" className='coverImage-single' /> : <img src={Ghosts} alt="Cover image" className='coverImage-single' />}
         <div className="book-item-body-single">
@@ -26,8 +26,9 @@ const SingleBook = ({ item }) => {
             <a href={item.description} className='link-to-owner-single' data-id='Contact the owner'><img src={Message} alt="message_me" /></a>
           </div>
           <p className='description-single'>{item.description}</p>
-          <p className='genre-paragraph-single'>Language: {item.language}</p>
-          <p className='genre-paragraph2-single'>Genre: {item.genre}</p>
+          <p className='author-p-single'>Author: {item.author}</p>
+          <p className='lang-p-single'>Language: {item.language}</p>
+          <p className='genre-p-single'>Genre: {item.genre}</p>
           
         </div>
     </div>

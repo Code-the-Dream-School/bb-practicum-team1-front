@@ -9,6 +9,7 @@
 
 .button-17 a {
     text-decoration: none;
+    min-width: 95px;
 }
 .button-17 {
     align-items: center;
@@ -87,7 +88,7 @@ ul {
     margin-top: 0;
     @media (max-width: 768px) {
         flex-flow: column nowrap;
-        background-color: #364958;
+        background-color: $tertiaryColor;
         position: fixed;
         transform: translateX(0);
         padding-top: 8rem;

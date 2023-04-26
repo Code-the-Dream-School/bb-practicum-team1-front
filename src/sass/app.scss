@@ -9,11 +9,16 @@
 @import '../components/BookItem/BookItem';
 @import '../components/BookList/BookList';
 @import '../util/DebouncedSearch/DebouncedSearch';
+@import '../components/LoginPage/Login';
+@import '../components/SignupPage/SignUp';
 @import '../components/HomePage/HomePage';
 @import '../components/SingleBook/SingleBook';
 .content {
-    padding-top: 65px;
+    padding-top: 55px;
     margin-bottom: 5px;
-    padding-bottom: 50px;
-    // background-image: url('./hero-icon-bg.svg');
+    // padding-bottom: 50px;
+}
+
+.night-mode-bg {
+    background-color: cadetblue;
 }

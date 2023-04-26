@@ -26,6 +26,8 @@
 .text-input-label {
     color: $tertiaryColor;
     font-family: $fontPrimary;
+    font-weight: bold;
+    font-size: 1.6rem;
 }
 
 .dropdown-select, option {
@@ -170,8 +172,12 @@ input[type="file"] {
         grid-template-columns: repeat(1, 1fr);
     }
 
+    .text-input-label {
+        font-size: 1.2rem;
+    }
+
     .inputFields {
-        width: 250px;
+        // width: 250px;
     }
 
     .addButton {
@@ -190,6 +196,6 @@ input[type="file"] {
     }
     
     .textarea-input {
-        width: fit-content;
+        // width: fit-content;
     }
 }
