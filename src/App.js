@@ -42,8 +42,8 @@ const testBook = {
 export const InputContext = createContext({})
 export const SessionContext = createContext({});
 
-const URL = 'http://localhost:8000/api/v1/'
-// const URL = window.location.hostname === 'localhost'? 'http://localhost:8000/api/v1/': 'https://shelf-share.onrender.com'
+// const URL = 'http://localhost:8000/api/v1/'
+const baseURL = window.location.hostname === 'localhost'? 'http://localhost:8000/api/v1/': 'https://shelf-share.onrender.com'
 
 const App = () => {
     const [message, setMessage] = useState('')

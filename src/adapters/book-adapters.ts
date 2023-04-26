@@ -1,4 +1,5 @@
 import { fetchAPIData } from "../util/fetch"
+const baseURL = window.location.hostname === 'localhost'? 'http://localhost:8000/api/v1': 'https://shelf-share.onrender.com'
 
 // Create book adapter
 type bookInput = {
@@ -44,7 +45,7 @@ type bookInput = {
  * @returns {Promise<Object>} A promise that resolves book's creation information.
  */
 export const createBookAdapter = async(bookInput:bookInput) =>{
-    const url = 'http://localhost:8000/api/v1/books'
+    const url = `${baseURL}/books`
     const data = await fetchAPIData(url, 'POST', bookInput )
     return data   
 }
@@ -118,7 +119,7 @@ type booksSchema ={
  */
 // Get all books for users
 export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise<booksSchema[]> =>{
-   let url = 'http://localhost:8000/api/v1/books'
+   let url = `${baseURL}/books`
     if(queryBook){
         const queryParams = Object.entries(queryBook).map((bookFields)=>{
             const key = bookFields[0]
@@ -126,7 +127,7 @@ export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise
             return `${key}=${value}`
         }).join('&') 
        
-        url = `http://localhost:8000/api/v1/books?${queryParams}`
+        url = `${baseURL}/books?${queryParams}`
     }
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
@@ -140,7 +141,7 @@ export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise
  */
 // Get all books for owner 
 export const getAllBooksOwnerAdapter = async():Promise<booksSchema[]> => {
-    const url = 'http://localhost:8000/api/v1/books/user'
+    const url = `${baseURL}/books/user`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
@@ -155,7 +156,7 @@ export const getAllBooksOwnerAdapter = async():Promise<booksSchema[]> => {
  */
 // Get books by userId adapter
 export const getBooksUserIdAdapter = async(userId:string): Promise<booksSchema[]> =>{
-    const url = `http://localhost:8000/api/v1/books/user/${userId}`
+    const url = `${baseURL}/books/user/${userId}`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
@@ -171,7 +172,7 @@ export const getBooksUserIdAdapter = async(userId:string): Promise<booksSchema[]
  */
 // get single book adapter
 export const getSingleBookAdapter = async(bookId:string): Promise<booksSchema> =>{
-    const url = `http://localhost:8000/api/v1/books/${bookId}` 
+    const url = `${baseURL}/books/${bookId}` 
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
@@ -186,7 +187,7 @@ export const getSingleBookAdapter = async(bookId:string): Promise<booksSchema> =
  */
 // delete book adapter
 export const deleteBookAdapter = async(bookId:string)=>{
-    const url = `http://localhost:8000/api/v1/books/${bookId}`
+    const url = `${baseURL}/books/${bookId}`
     const data = await fetchAPIData(url, 'DELETE', undefined)
     return data
 }
@@ -243,7 +244,7 @@ type bookParams = {
 // update book adapter
 export const updateBookAdapter = async(bookParams:bookParams): Promise<booksSchema> =>{
     const bookId = bookParams.id
-    const url = `http://localhost:8000/api/v1/books/${bookId}`
+    const url = `${baseURL}/books/${bookId}`
     const data = await fetchAPIData(url, 'POST', bookParams)
     return data
 }
