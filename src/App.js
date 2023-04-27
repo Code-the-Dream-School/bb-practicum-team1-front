@@ -78,20 +78,20 @@ const App = () => {
     const [inputs, setInputs] = useState({})
     const [sessionObject, setSessionObject] = useState(getCookie());
     const [loading, setLoading] = useState(false)
-    const [quote, setQuote] = useState({})
+    // const [quote, setQuote] = useState({})
     const [night, setNight] = useState(false);
 
-    const getRandomQuote = () => {
-        setLoading(true)
-        setTimeout(() => {
-            fetch('https://api.quotable.io/random')
-                .then((res) => res.json())
-                .then((data) => {
-                    setLoading(false)
-                    setQuote(data)
-                })
-        }, 5000)
-    }
+    // const getRandomQuote = () => {
+    //     setLoading(true)
+    //     setTimeout(() => {
+    //         fetch('https://api.quotable.io/random')
+    //             .then((res) => res.json())
+    //             .then((data) => {
+    //                 setLoading(false)
+    //                 setQuote(data)
+    //             })
+    //     }, 5000)
+    // }
 
     /* EXAMPLE: DropdownInput selection options
   
@@ -150,15 +150,15 @@ const App = () => {
                     </InputContext.Provider>
                 </SessionContext.Provider>
                 <Footer />
-                <div>
-                    <div className="buttons">
+                {/* <div> */}
+                    {/* <div className="buttons">
                         <button
                             className="btn get-quote"
                             onClick={getRandomQuote}
                         >
                             Loading Spinner Quote Button (click here)
                         </button>
-                    </div>
+                    </div> */}
                     {/* {loading ? (
                         <LoadingSpinner />
                     ) : (
@@ -169,7 +169,7 @@ const App = () => {
                             <span className="author">{quote.author}</span>
                         </div>
                     )} */}
-                </div>
+                {/* </div> */}
             </div>
         </>
     )
