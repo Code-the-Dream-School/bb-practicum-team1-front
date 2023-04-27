@@ -40,7 +40,7 @@ const AddressSearch = ({ id }) => {
     }
 
     return (
-        <>
+        <div className="debounced-search">
             <DebouncedSearch 
                 id={`${id}Debounce`} 
                 handleDebounce={processSearch} 
@@ -61,7 +61,7 @@ const AddressSearch = ({ id }) => {
                     })}
                 </ul>
             : null}
-        </>
+        </div>
     );
 
 
