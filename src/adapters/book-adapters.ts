@@ -51,29 +51,31 @@ export const createBookAdapter = async(bookInput:bookInput, file:File) =>{
     Object.entries(bookInput).forEach(([key, value]) =>{
         // convert value to string because publishingYear is number and the method expects the argument to be string or Blob 
         formData.append(key, value.toString())
-        
     })
     // add the file to form data
     formData.append('image', file)
     
      // send form data to server 
-     const data = await fetch(url,{
-        method: 'POST',
-        body: formData
-     })
+     const data = await fetchAPIData(url, 'POST',formData, true, undefined, true)
 
      // parse data and return the result
-     const result = await data.json()
-     return result
+     try{
+        const result = await data.json()
+        return result
+        }catch (error) {
+           console.error(error)
+           throw new Error('Failed to parse the response')
+        }
 }
 
 // Get all books for all users, all books owner, and by userId adapter
 type queryBook = { 
-    title?:string,
-    author?:string, 
-    sort?:string, 
-    fields?:string, 
-    searchRadius?:number, 
+    titles?: string,
+    authors?: string, 
+    genres?: string
+    sort?: string, 
+    fields?: string, 
+    searchRadius?: number, 
     latitude?: number, 
     longitude?: number,
     page?: number,
@@ -108,10 +110,11 @@ type booksSchema ={
 /**
  * This function will get all books for users with the provided information
  * @param {String} queryBook - The query object containing information for query parameters.
- * @param {String} queryBook.title - Book's title as query parameter.
- * @param {String} queryBook.author - Book's author as query parameter.
- * @param {String} queryBook.sort - Sort as query parameter.
- * @param {String} queryBook.fields - Fields as query parameter.
+ * @param {String} queryBook.titles - Book's titles as query parameters.
+ * @param {String} queryBook.authors - Book's authors as query parameters.
+ * @param {String} queryBook.genres - Book's genres as query parameters.
+ * @param {String} queryBook.sort - Sort as query parameters.
+ * @param {String} queryBook.fields - Fields as query parameters.
  * @param {Number} queryBook.searchRadius - Search radius as query parameter.
  * @param {Number} queryBook.latitude - Latitude as query parameter.
  * @param {Number} queryBook.longitude - Longitude as query parameter.
@@ -221,7 +224,6 @@ type bookParams = {
     author?: string,
     worldcatURL?: string,
     ISBN?: string,
-    imageURL?: string     
 }
 
 /**
@@ -238,7 +240,6 @@ type bookParams = {
  * @param {String} bookParams.author - Book's author.
  * @param {String} bookInput.worldcatURL - URL for worldcat(optional).
  * @param {String} bookInput.ISBN - Book's ISBN(optional).
- * @param {String} bookParams.imageURL - Book's image.
  * @example
  * const bookParams = {
  *  id = "642269e6f562cad511ed0a75",
@@ -253,15 +254,31 @@ type bookParams = {
  *  author = "Min Jin Lee",
  *  worldcatURL = "https://www.worldcat.org/title/1015968617",
  *  ISBN = "9781455563920"
- *  imageURL = "/api/v1/books/image/642269e6f562cad511ed0a75"
  * };
  * updateBookAdapter(bookParams)
  * @returns {Promise<Object>} - A promise that resolves updating book information.
  */
 // update book adapter
-export const updateBookAdapter = async(bookParams:bookParams): Promise<booksSchema> =>{
+export const updateBookAdapter = async(bookParams:bookParams, file:File): Promise<booksSchema> =>{
     const bookId = bookParams.id
     const url = `http://localhost:8000/api/v1/books/${bookId}`
-    const data = await fetchAPIData(url, 'POST', bookParams)
-    return data
+    
+    const formData = new FormData()
+    Object.entries(bookParams).forEach(([key, value]) =>{
+         formData.append(key, value.toString())  
+    })
+    // add the file to form data
+    formData.append('image', file)
+    
+     // send form data to server 
+     const data = await fetchAPIData(url, 'POST', formData, true, undefined, true)
+     console.log(data)
+     // parse data and return the result
+     try{
+     const result = await data.json()
+     return result
+     }catch (error) {
+        console.error(error)
+        throw new Error('Failed to parse the response')
+     }
 }
