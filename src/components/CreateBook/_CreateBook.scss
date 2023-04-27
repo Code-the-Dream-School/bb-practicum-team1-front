@@ -1,14 +1,14 @@
-form {
+.createBookForm {
     margin-left: 2rem;
     display: grid;
-    height: 100vh;
+    height: 80vh;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
 }
 
-h1 {
+.h1-createBook {
     color: $white;
     font-size: 2rem;
     text-align: center;
@@ -16,9 +16,18 @@ h1 {
     background-color: $tertiaryColor;
 }
 
+.h1-createBook svg {
+    width: 30px;
+    fill: $white;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
 .text-input-label {
     color: $tertiaryColor;
     font-family: $fontPrimary;
+    font-weight: bold;
+    font-size: 1.6rem;
 }
 
 .dropdown-select, option {
@@ -57,6 +66,11 @@ h1 {
     box-shadow: 0 9px #999;
 }
 
+.addButton svg {
+    width: 25px;
+    fill: $white;
+}
+
 .addButton:hover {
     background-color: #3e8e41;
 }
@@ -65,10 +79,6 @@ h1 {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-}
-
-.cover img {
-    border: solid 5px #77b0bb;
 }
 
 .cover h2 {
@@ -91,23 +101,8 @@ h1 {
     width: 9rem;
 }
 
-.cover div button {
-    background-color:crimson;
-    color: $white;
-    border: 3px solid #77b0bb;
-    border-radius: 10%;
-    margin: 0px 0px 0px 20px;
-    font-size: 2rem;
-    padding: 3px 17px;
-    cursor: pointer;
-}
-
-.cover div button:hover {
-    background-color: red;
-    color: $primaryColor;
-}
-
 .inputFields {
+    width: fit-content;
     margin-bottom: 20px;
 }
 
@@ -130,68 +125,77 @@ input[type="file"] {
     text-align: center;
 }
 
+.custom-file-upload:hover {
+    border-bottom: 5px solid rgb(119, 149, 119);
+}
+
 .custom-file-upload::before {
     content: 'Upload Cover';
 }
 
-.container {
+.addCover {
     position: relative;
-    width: 30%;
+    width: fit-content;
 }
 
-.container img {
-    width: 100%;
-    height: auto;
+.container {
+    width: fit-content;
+    position: relative;
 }
 
-.container button {
+.imageCover {
+    position: relative;
+    max-height: 500px;
+}
+
+.removeButton {
     position: absolute;
-    top: 25px;
-    left: 92%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    background-color: #555;
+    top: 0;
+    right: 0;
+    background-color: rgb(219, 69, 69);;
     color: white;
-    font-size: 16px;
-    padding: 12px 24px;
-    border: none;
+    font-size: 24px;
+    padding: 6px 12px;
+    border: 1px solid $tertiaryColor;
     cursor: pointer;
     border-radius: 5px;
   }
   
-  .container button:hover {
-    background-color: black;
+  .container .removeButton:hover {
+    background-color: red;
   }
 
 @media (max-width: 768px) {
-    form {
-        display: inline;
+    .createBookForm {
+        padding-left: 35px;
+        width: fit-content;
+        grid-template-columns: repeat(1, 1fr);
     }
 
-    .inputFields, .cover {
-        margin-left: 20px;
+    .text-input-label {
+        font-size: 1.2rem;
     }
 
-    .cover {
-        margin-bottom: 50px;
-    }
-
-    .textarea-input {
-        width: 250px; 
+    .inputFields {
+        // width: 250px;
     }
 
     .addButton {
-        margin-top: -15px;
-        margin-bottom: 100px;
-    }
-
-    .cover div button {
-        margin-bottom: 0px;
+        margin-top: 20px;
+        height: 50px;
     }
 
     .button {
+        padding-bottom: 20px;
         width: 250px;
-        margin-left: 3.2rem;
+        height: 30px;
     }
 
+    .button button {
+        margin-bottom: 70px;
+    }
+    
+    .textarea-input {
+        // width: fit-content;
+    }
 }

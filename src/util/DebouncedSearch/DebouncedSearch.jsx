@@ -9,7 +9,7 @@ import { InputContext } from "../../App";
 // If another change occurs before the timer is expired, the timer should be restarted. 
 // When the timer reaches zero, onDebounce should be called.
 
-const DebouncedSearch = ({ id, handleDebounce }) => {
+const DebouncedSearch = ({ id, handleDebounce, label, placeholder }) => {
     const { inputs, handleInputChange } = useContext(InputContext); 
     
     const debounceSearch = useCallback(_.debounce(query => handleDebounce(query), 500), []);
@@ -24,8 +24,8 @@ const DebouncedSearch = ({ id, handleDebounce }) => {
         <>    
             <div className='debouncedInputField'>
                 <TextInput 
-                    label="Search: "
-                    placeholder='write here...'
+                    label={label}
+                    placeholder={placeholder}
                     type='text'
                     id={id}
                     name={id}

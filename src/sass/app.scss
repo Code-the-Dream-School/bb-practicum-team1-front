@@ -1,4 +1,4 @@
-@import "_reset.scss";
+@import '_reset.scss';
 @import './variables';
 @import './elements';
 // example: @import './components/nameOfScssfileForIndividualComponent';
@@ -6,7 +6,20 @@
 @import '../components/Footer/Footer';
 @import '../components/Header/Header';
 @import '../components/Header/RightNav';
-
-
+@import '../components/BookItem/BookItem';
+@import '../components/BookList/BookList';
 @import '../util/DebouncedSearch/DebouncedSearch';
+@import '../components/LoginPage/Login';
+@import '../components/SignupPage/SignUp';
+@import '../components/HomePage/HomePage';
+@import '../components/SingleBook/SingleBook';
+@import '../components/AddressSearch/AddressSearch';
+.content {
+    padding-top: 55px;
+    margin-bottom: 5px;
+    // padding-bottom: 50px;
+}
 
+.night-mode-bg {
+    background-color: cadetblue;
+}
