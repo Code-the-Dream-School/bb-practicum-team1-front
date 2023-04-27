@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DebouncedSearch from '../../util/DebouncedSearch/DebouncedSearch';
 import DropdownInput from '../../components/inputs/DropdownInput';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { PagePagination } from '../PagePagination/Pagination';
 import { getAllBooksAdapter } from '../../adapters/book-adapters';
 
@@ -8,6 +9,7 @@ const SearchPage = () => {
     const [books, setBooks] = useState([]);
     const [direction, setDirection] = useState('az');
     const [attribute, setAttribute] = useState('title');
+    const [loading, setLoading] = useState(false);
 
     // Depending on the value of dropdown it searchs either by title or by author
     const processSearch = (e) => {
@@ -23,6 +25,7 @@ const SearchPage = () => {
         if (type === 'author') {
             bookInput.author = e.searchPageDebouncedSearch;
         }
+        setLoading(true)
         getAllBooksAdapter(bookInput)
         .then(data => {
             if (data) {
@@ -30,14 +33,15 @@ const SearchPage = () => {
             } else {
                 setBooks([]);
             }
+            setLoading(false)
         });
     };
 
     const sort = (array, direction, attribute) => {
         if (attribute === 'title') {
-            sortByTitle(array, direction);
+            return sortByTitle(array, direction);
         } else {
-            sortByAuthor(array, direction);
+            return sortByAuthor(array, direction);
         }
     }
 
@@ -54,6 +58,7 @@ const SearchPage = () => {
                 a.title.toLowerCase() === b.title.toLowerCase() ? 0 : 
                 a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1); 
         }
+        return array;
     }
 
     //Sorting function. Sort books by "Author" from A-to-Z / Z-to-A
@@ -69,6 +74,7 @@ const SearchPage = () => {
                 a.author.toLowerCase() === b.author.toLowerCase() ? 0 : 
                 a.author.toLowerCase() < b.author.toLowerCase() ? -1 : 1); 
         } 
+        return array;
     };
 
     return (
@@ -84,7 +90,8 @@ const SearchPage = () => {
                 options={[{value: 'title', label: 'Search by title'}, {value: 'author', label: 'Search by author'}]}
                 defaultValue={'title'} showPlaceholder={false}
             />
-            <PagePagination books={books}/>   
+            <PagePagination books={sort(books,  direction, attribute)}/>   
+            {loading ? <LoadingSpinner /> : null}
         </>
     );
 };
