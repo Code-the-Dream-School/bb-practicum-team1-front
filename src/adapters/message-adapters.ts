@@ -1,6 +1,5 @@
 import { fetchAPIData } from '../util/fetch'
-const baseURL = window.location.hostname === 'localhost'? 'http://localhost:8000/api/v1': 'https://shelf-share.onrender.com'
-
+import { baseURL } from "../util/fetch";
 // Create(send) message adapter
 type messageInput ={
     receivedByUser: String,
@@ -20,7 +19,7 @@ type messageInput ={
  * @returns {Promise<Object>} A promise that resolves message's creation information. 
  */
 export const createMessageAdapter = async(messageInput:messageInput)=>{
-    const url = `${baseURL}/messages`
+    const url = `${baseURL}messages`
     const data = await fetchAPIData(url, 'POST', messageInput )
     return data   
 }
@@ -45,7 +44,7 @@ type messageSchema ={
  * @returns {Promise<messageSchema[]>} A promise that resolves get all conversation information.
  */
 export const getAllConversationAdapter = async():Promise<messageSchema[]> => {
-    const url = `${baseURL}/messages`
+    const url = `${baseURL}messages`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
