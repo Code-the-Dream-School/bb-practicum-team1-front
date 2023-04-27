@@ -127,7 +127,7 @@ export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise
             return `${key}=${value}`
         }).join('&') 
        
-        url = `${baseURL}/books?${queryParams}`
+        url = `${baseURL}books?${queryParams}`
     }
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
