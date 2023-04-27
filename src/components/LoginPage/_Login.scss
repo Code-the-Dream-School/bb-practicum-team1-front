@@ -1,11 +1,12 @@
 .login-container {
-    padding: 20px; 
+    padding: 10px; 
+    height: 100vh;
 }
 
 .login-container form {
     background-color: $primaryColor;
     max-width: 1000px;
-    height: 850px;
+    height: 650px;
     padding: 50px;
     margin: 20px auto;
     display: grid;
@@ -39,12 +40,13 @@
 }
 
 .h1-login {
-    color: $white;
+    color: $tertiaryColor;
     font-size: 3rem;
     text-align: center;
     padding: 10px;
-    background-color: $tertiaryColor;
+    padding-top: 40px;
     letter-spacing: 5px;
+    font-weight: $fontBold;
 }
 
 .buttonLoginPage {
@@ -82,11 +84,15 @@
 .error-container-login {
     width: 500px;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     margin-top: 5px;
-    margin-bottom: 50px;
+    // margin-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.link-to-login {
+    font-size: 20px;
 }
 
 .error-message-login {
@@ -121,6 +127,7 @@
     margin-bottom: 10px;
     padding-bottom: 10px;
     padding-top: 10px;
+    font-size: 20px;
 }
 
 @media (max-width: 768px) {

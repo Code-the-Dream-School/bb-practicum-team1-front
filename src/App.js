@@ -87,6 +87,7 @@ const App = () => {
     return (
         <>
             <div className="content">
+                <div className={!night ? "" : "night-mode-bg"}>
                 <SessionContext.Provider
                     value={{sessionObject, setSessionObject}}
                 >
@@ -101,7 +102,6 @@ const App = () => {
                         }}
                     >
                     <Header night={night} setNight={setNight} />
-                    <div className={!night ? "" : "night-mode-bg"}>
                         <Routes>
                             <Route path="" element={<HomePage />} />
                             <Route path="/login" element={<Login />} />
@@ -117,9 +117,10 @@ const App = () => {
                                 element={<SingleBook item={testBook} />}
                             />
                         </Routes>
-                    </div>
+                    
                     </InputContext.Provider>
                 </SessionContext.Provider>
+                </div>
                 <Footer />
                 {/* <div> */}
                     {/* <div className="buttons">
