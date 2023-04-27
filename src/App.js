@@ -49,19 +49,20 @@ const App = () => {
     const [inputs, setInputs] = useState({})
     const [sessionObject, setSessionObject] = useState(getCookie());
     const [loading, setLoading] = useState(false)
-    const [quote, setQuote] = useState({})
+    // const [quote, setQuote] = useState({})
+    const [night, setNight] = useState(false);
 
-    const getRandomQuote = () => {
-        setLoading(true)
-        setTimeout(() => {
-            fetch('https://api.quotable.io/random')
-                .then((res) => res.json())
-                .then((data) => {
-                    setLoading(false)
-                    setQuote(data)
-                })
-        }, 5000)
-    }
+    // const getRandomQuote = () => {
+    //     setLoading(true)
+    //     setTimeout(() => {
+    //         fetch('https://api.quotable.io/random')
+    //             .then((res) => res.json())
+    //             .then((data) => {
+    //                 setLoading(false)
+    //                 setQuote(data)
+    //             })
+    //     }, 5000)
+    // }
 
     /* EXAMPLE: DropdownInput selection options
   
@@ -99,35 +100,37 @@ const App = () => {
                                 setInputs({ ...inputs, ...inputObj }),
                         }}
                     >
-                    <Header />
-                    <Routes>
-                        <Route path="" element={<HomePage />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/books/create" element={<CreateBook />} />
-                        <Route
-                            path="/books/edit/:bookId"
-                            element={<CreateBook />}
-                        />
-                        <Route
-                            path="/books/:bookId"
-                            element={<SingleBook item={testBook} />}
-                        />
+                    <Header night={night} setNight={setNight} />
+                    <div className={!night ? "" : "night-mode-bg"}>
+                        <Routes>
+                            <Route path="" element={<HomePage />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/books/create" element={<CreateBook />} />
+                            <Route
+                                path="/books/edit/:bookId"
+                                element={<CreateBook />}
+                            />
+                            <Route
+                                path="/books/:bookId"
+                                element={<SingleBook item={testBook} />}
+                            />
                         </Routes>
+                    </div>
                     </InputContext.Provider>
                 </SessionContext.Provider>
                 <Footer />
-                <div>
-                    <div className="buttons">
+                {/* <div> */}
+                    {/* <div className="buttons">
                         <button
                             className="btn get-quote"
                             onClick={getRandomQuote}
                         >
                             Loading Spinner Quote Button (click here)
                         </button>
-                    </div>
-                    {loading ? (
+                    </div> */}
+                    {/* {loading ? (
                         <LoadingSpinner />
                     ) : (
                         <div className="quote-section">
@@ -136,8 +139,8 @@ const App = () => {
                             </blockquote>{' '}
                             <span className="author">{quote.author}</span>
                         </div>
-                    )}
-                </div>
+                    )} */}
+                {/* </div> */}
             </div>
         </>
     )

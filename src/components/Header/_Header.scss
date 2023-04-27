@@ -20,7 +20,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #364958;
+    background-color: $tertiaryColor;
     border-bottom: 5px solid $tertiaryColor;
 }
 
@@ -52,10 +52,12 @@
     transition: 0.3s ease;
     padding: 1.5em;
     display: none;
+    z-index: 6;
 }
 
 .hamBox:hover {
     z-index: 5;
+    background-color:azure;
 }
 
 .hamBoxOpen {
@@ -113,6 +115,10 @@
     margin-left: 20px;
 }
 
+.day-mode > span {
+    fill: $white;
+}
+
 .nigt-mode-header {
     top: 0;
     position: fixed;
@@ -123,7 +129,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $white;
+    background-color:rgb(246, 249, 249);
     border-bottom: 5px solid $tertiaryColor;
 } 
 
@@ -142,7 +148,6 @@
     }
 
     .navbar {
-        background-color: red;
         margin-bottom: 50px;
         width: fit-content;
     }
@@ -160,7 +165,7 @@
     }
 
     .lineTop, .lineBottom {
-        background-color: teal;
+        background-color: $black;
     }
 
     .logo-pic img {

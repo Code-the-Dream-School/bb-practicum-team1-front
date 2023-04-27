@@ -1,12 +1,12 @@
 .signUP-container form {
-    max-width: 700px;
-    min-width: 700px;
-    height: 650px;
+    max-width: 1000px;
+    height: 850px;
     border-radius: 15px;
-    box-shadow: 0 9px #999;
-    padding: 20px;
-    margin: 20px;
-    background-color: $white;
+    box-shadow: inset 0 -3em 3em rgba(193, 205, 224, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(114, 147, 218, 0.3);
+    padding: 50px;
+    margin: 20px auto;
+    background-color:#f2f7f8;
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
@@ -17,15 +17,21 @@
 
 .h1-sign-up {
     color: $white;
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
     padding: 10px;
     background-color: $tertiaryColor;
+    letter-spacing: 5px;
 }
 
 .signUP-container {
     border: none;
     width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;  
 }
 
 .input-checkbox {
@@ -35,55 +41,38 @@
 .show-pass-btn {
     position: absolute;
     background-color: transparent;
-    margin-left: 180px;
-    margin-top: -35px;
+    right: 0;
+    top: 0;
+    margin-top: 57px;
+    width: 65px;
     cursor: pointer;
 }
 
 .show-pass-btn > span {
-    font-size: 20px;
-    margin-left: 20px;
-}
-
-.wrapper {
-    width: 100vw;
-    height: 100vh;
-    background-color: #ffe3f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    fill: gray;
 }
 
 .input-field {
-width: 330px;
-height: 55px;
-background-color: #EAF4F4;
-border-radius: 24px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 15px;
-box-shadow: #fdd6f1 0px 5px 15px;  
-}
-  
-.input-field input {
-width: 100%;
-height: 100%;
-background-color: transparent;
-border: hidden;
-outline: none;
-font-size: 18px;
-text-indent: 2px;
-padding: 5px;  
-}
-
-.input-field span {
-cursor: pointer;
+    width: 330px;
+    height: 55px;
+    background-color: #EAF4F4;
+    border-radius: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    box-shadow: #fdd6f1 0px 5px 15px;  
 }
 
 .textInputs input {
-    font-size: smaller;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1.4rem;
 }
 
 .textInputs {
@@ -91,63 +80,85 @@ cursor: pointer;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-column-gap: 140px;
-    grid-row-gap: 0px;
+    grid-row-gap: 20px;
 }
 
 .submitButton {
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
+    background-color: #BFD7EA;
+    border: 2px solid #0B3954;
+    border-radius: 30px;
+    box-shadow: #0B3954 4px 4px 0 0;
+    color: #0B3954;
     cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 26px;
+    padding: 0 18px;
+    line-height: 50px;
     text-align: center;
     text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #008000;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-    width: fit-content;
-    margin-left: 35%;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;   
+    width: 14rem;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 10px;
 }
 
 .submitButton:hover {
-    background-color: #3e8e41;
+  background-color: #fff;
 }
 
 .submitButton:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
-
-.buttonContainer {
-    width: 100%;
-    text-align: center;
+  box-shadow: #0B3954 2px 2px 0 0;
+  transform: translate(2px, 2px);
 }
 
 .error-container {
     width: 500px;
     text-align: center;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 5px;
     margin-bottom: 50px;
-    margin-left: 50px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .error-message {
     font-weight: $fontBold;
     color: red;
     padding: 10px;
+    font-size: large;
 }
+
+.link-to-login {
+    color: $secondaryColor;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+::-webkit-datetime-edit-text { color: gray; padding: 0 0.5em; }
+::-webkit-datetime-edit-month-field { color: gray }
+::-webkit-datetime-edit-day-field { color: gray; }
+::-webkit-datetime-edit-year-field { color: gray; }
+::-webkit-inner-spin-button { display: none; }
 
 @media (max-width: 768px) {
     .signUP-container form {
-        height: 1000px;
+        height: fit-content;
         max-width: 350px;
-        min-width: 350px;
         grid-template-rows: repeat(1, 1fr);
+        padding-top: 20px;
+    }
+
+    .h1-sign-up {
+        font-size: 2rem;
+    }
+
+    .signUP-container {
+        margin-bottom: 20px;
     }
 
     .textInputs {
@@ -155,21 +166,38 @@ cursor: pointer;
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(8, 1fr);
         grid-column-gap: 0px;
-        padding-left: 25px;
+        grid-row-gap: 0px;
+    }
+
+    .textInputs input {
+        font-size: 1rem;
     }
 
     .error-container {
-        width: 300px;
+        width: 120%;
         text-align: center;
         padding: 5px;
         margin-top: 10px;
         margin-bottom: 10px;
-        margin-left: 0px;
+        margin-left: -20px;
+    }
+
+    .error-message {
+        font-size: 12px;
     }
 
     .submitButton {
-        margin-left: 75px;
-        width: 150px;
-        font-size: 20px;
+        min-width: 120px;
+        padding: 0 25px;
+        margin-bottom: 0px;
+    }
+      
+    .show-pass-btn {
+        margin-top: 50px;
+        width: 55px;
+    }
+
+    .signUP-container {
+        padding: 20px;
     }
 }
