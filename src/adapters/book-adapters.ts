@@ -63,7 +63,8 @@ export const createBookAdapter = async(bookInput:bookInput, file:File) =>{
      })
 
      // parse data and return the result
-     return data.json()
+     const result = await data.json()
+     return result
 }
 
 // Get all books for all users, all books owner, and by userId adapter
