@@ -40,17 +40,17 @@ const testBook = {
 }
 
 export const InputContext = createContext({})
-export const SessionContext = createContext({});
+export const SessionContext = createContext({})
 
 const URL = 'http://localhost:8000/api/v1/'
 
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
-    const [sessionObject, setSessionObject] = useState(getCookie());
+    const [sessionObject, setSessionObject] = useState(getCookie())
     const [loading, setLoading] = useState(false)
     // const [quote, setQuote] = useState({})
-    const [night, setNight] = useState(false);
+    const [night, setNight] = useState(false)
 
     // const getRandomQuote = () => {
     //     setLoading(true)
@@ -87,43 +87,101 @@ const App = () => {
     return (
         <>
             <div className="content">
-                <div className={!night ? "" : "night-mode-bg"}>
-                <SessionContext.Provider
-                    value={{sessionObject, setSessionObject}}
-                >
-                    <InputContext.Provider
-                        value={{
-                            inputs,
-                            handleInputChange: (inputName, inputValue) =>
-                                setInputs({ ...inputs, [inputName]: inputValue }),
-
-                            handleBulkInput: (inputObj) =>
-                                setInputs({ ...inputs, ...inputObj }),
-                        }}
+                <div className={!night ? '' : 'night-mode-bg'}>
+                    <SessionContext.Provider
+                        value={{ sessionObject, setSessionObject }}
                     >
-                    <Header night={night} setNight={setNight} />
-                        <Routes>
-                            <Route path="" element={<HomePage />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/books/create" element={<CreateBook />} />
-                            <Route
-                                path="/books/edit/:bookId"
-                                element={<CreateBook />}
-                            />
-                            <Route
-                                path="/books/:bookId"
-                                element={<SingleBook item={testBook} />}
-                            />
-                        </Routes>
-                    
-                    </InputContext.Provider>
-                </SessionContext.Provider>
+                        <InputContext.Provider
+                            value={{
+                                inputs,
+                                handleInputChange: (inputName, inputValue) =>
+                                    setInputs({
+                                        ...inputs,
+                                        [inputName]: inputValue,
+                                    }),
+
+                                handleBulkInput: (inputObj) =>
+                                    setInputs({ ...inputs, ...inputObj }),
+                            }}
+                        >
+                            <Header night={night} setNight={setNight} />
+                            <Routes>
+                                <Route
+                                    path=""
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="anonymous">
+                                            <HomePage />
+                                        </ProtectedRoute>
+                                    }
+                                />
+
+                                <Route
+                                    path="/login"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="anonymous">
+                                            <Login />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    // path="/sign-up"
+                                    // element={
+                                    //     <SignUp
+                                    //         setSessionObject={setSessionObject}
+                                    //     />
+                                    // }
+                                    path="/sign-up"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="anonymous">
+                                            <SignUp
+                                                setSessionObject={
+                                                    setSessionObject
+                                                }
+                                            />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/about"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="anonymous">
+                                            <About />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/books/create"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="user">
+                                            <CreateBook />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/books/edit/:bookId"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="user">
+                                            <CreateBook />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    // path="/books/:bookId"
+                                    // element={<SingleBook item={testBook} />}
+                                    path="/books/:bookId"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="user">
+                                            <SingleBook item={testBook} />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                            </Routes>
+                        </InputContext.Provider>
+                    </SessionContext.Provider>
                 </div>
                 <Footer />
                 {/* <div> */}
-                    {/* <div className="buttons">
+                {/* <div className="buttons">
                         <button
                             className="btn get-quote"
                             onClick={getRandomQuote}
@@ -131,7 +189,7 @@ const App = () => {
                             Loading Spinner Quote Button (click here)
                         </button>
                     </div> */}
-                    {/* {loading ? (
+                {/* {loading ? (
                         <LoadingSpinner />
                     ) : (
                         <div className="quote-section">
