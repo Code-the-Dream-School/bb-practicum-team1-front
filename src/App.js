@@ -49,40 +49,7 @@ const App = () => {
     const [inputs, setInputs] = useState({})
     const [sessionObject, setSessionObject] = useState(getCookie())
     const [loading, setLoading] = useState(false)
-    // const [quote, setQuote] = useState({})
     const [night, setNight] = useState(false)
-
-    // const getRandomQuote = () => {
-    //     setLoading(true)
-    //     setTimeout(() => {
-    //         fetch('https://api.quotable.io/random')
-    //             .then((res) => res.json())
-    //             .then((data) => {
-    //                 setLoading(false)
-    //                 setQuote(data)
-    //             })
-    //     }, 5000)
-    // }
-
-    /* EXAMPLE: DropdownInput selection options
-  
-  const options = [
-      { value: 'chocolate', label: 'Chocolate' },
-      { value: 'strawberry', label: 'Strawberry' },
-      { value: 'vanilla', label: 'Vanilla' },
-  ]
-  */
-
-    // useEffect(() => {
-    //     ;(async () => {
-    //         const myData = await getAllData(URL)
-    //         setMessage(myData.data)
-    //     })()
-
-    //     return () => {
-    //         console.log('unmounting')
-    //     }
-    // }, [])
 
     return (
         <>
@@ -124,12 +91,6 @@ const App = () => {
                                     }
                                 />
                                 <Route
-                                    // path="/sign-up"
-                                    // element={
-                                    //     <SignUp
-                                    //         setSessionObject={setSessionObject}
-                                    //     />
-                                    // }
                                     path="/sign-up"
                                     element={
                                         <ProtectedRoute requiredAuthLevel="anonymous">
@@ -166,8 +127,6 @@ const App = () => {
                                     }
                                 />
                                 <Route
-                                    // path="/books/:bookId"
-                                    // element={<SingleBook item={testBook} />}
                                     path="/books/:bookId"
                                     element={
                                         <ProtectedRoute requiredAuthLevel="user">
