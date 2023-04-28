@@ -3,7 +3,7 @@ import { error } from 'console'
 import { getCookie , setCookie, deleteCookie, cookieName } from '../util/Authentication';
 
 //Export the server URL
-export const baseURL = window.location.hostname === 'localhost'? 'http://localhost:8000/api/v1/': 'https://shelf-share.onrender.com/api/v1'
+export const baseURL = window.location.hostname === 'localhost'? 'http://localhost:8000/api/v1/': 'https://shelf-share.onrender.com/api/v1/'
 
 // Very first call to SignUp/Login will not have cookie, so there should be an option skip getting cookie from session
 export const fetchAPIData = async (url: string, method: string, body:object | undefined , hasCookie=true, headers?:object) => {
