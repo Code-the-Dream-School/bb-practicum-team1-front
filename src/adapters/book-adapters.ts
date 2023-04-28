@@ -49,23 +49,18 @@ export const createBookAdapter = async(bookInput:bookInput, file:File) =>{
     const formData = new FormData()
     // add the fields from book input object to form data object by converting bookInput obj to an array and iterate each key-value pair
     Object.entries(bookInput).forEach(([key, value]) =>{
-        // convert value to string because publishingYear is number and the method expects the argument to be string or Blob 
-        formData.append(key, value.toString())
+        // convert value to string because publishingYear is number and the method expects the argument to be string or Blob
+        if(value !== undefined) {
+            formData.append(key, value.toString())
+        }
+       
     })
     // add the file to form data
     formData.append('image', file)
     
      // send form data to server 
-     const data = await fetchAPIData(url, 'POST',formData, true, undefined, true)
-
-     // parse data and return the result
-     try{
-        const result = await data.json()
-        return result
-        }catch (error) {
-           console.error(error)
-           throw new Error('Failed to parse the response')
-        }
+     const data = await fetchAPIData(url, 'POST',formData, true, undefined, true)     
+    return data
 }
 
 // Get all books for all users, all books owner, and by userId adapter
@@ -265,20 +260,14 @@ export const updateBookAdapter = async(bookParams:bookParams, file:File): Promis
     
     const formData = new FormData()
     Object.entries(bookParams).forEach(([key, value]) =>{
+        if(value !== undefined){
          formData.append(key, value.toString())  
+        }
     })
     // add the file to form data
     formData.append('image', file)
     
      // send form data to server 
      const data = await fetchAPIData(url, 'POST', formData, true, undefined, true)
-     console.log(data)
-     // parse data and return the result
-     try{
-     const result = await data.json()
-     return result
-     }catch (error) {
-        console.error(error)
-        throw new Error('Failed to parse the response')
-     }
+     return data
 }
