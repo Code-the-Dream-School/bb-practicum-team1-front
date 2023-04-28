@@ -100,8 +100,8 @@ const SearchPage = () => {
                 <ToggleSwitch toggleChecked={attribute === 'author'} handleToggleChange={() => setAttribute(attribute === "title" ? "author" : "title")} 
                     labelOn={"Sort by author"} labelOff={"Sort by title"}/>
             </div>
-            <PagePagination books={sort(books,  direction, attribute)}/>   
             {loading ? <LoadingSpinner /> : null}
+            <PagePagination books={sort(books,  direction, attribute)}/>              
         </>
     );
 };
