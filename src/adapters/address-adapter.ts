@@ -1,5 +1,7 @@
 import { fetchAPIData } from "../util/fetch";
 
+import { baseURL } from "../util/fetch";
+
 // Declare Address type for object returned from backend API
 type Address = {
     address: string,
@@ -18,7 +20,7 @@ type Address = {
 
 export const getAddressCoordinate = async(address: string): Promise<void | Address> => {
     // Call backend API to search for given address
-    const url = `http://localhost:8000/api/v1/address/search?address=${address}`
+    const url = `${baseURL}address/search?address=${address}`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
@@ -33,7 +35,7 @@ export const getAddressCoordinate = async(address: string): Promise<void | Addre
  */
 export const getAddressAutocomplete = async(address: string): Promise<void | Array<Address>> => {
     // Call backend API to get autocomplete suggestions for given address. 
-    const url = `http://localhost:8000/api/v1/address/autocomplete?address=${address}`
+    const url = `${baseURL}address/autocomplete?address=${address}`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
