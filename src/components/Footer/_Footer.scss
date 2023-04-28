@@ -2,8 +2,8 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: fit-content;
-    background-color: $tertiaryColor;
+    height: 48px;
+    background-color: $secondaryColor;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);

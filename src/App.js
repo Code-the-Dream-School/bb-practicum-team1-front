@@ -49,20 +49,20 @@ const App = () => {
     const [inputs, setInputs] = useState({})
     const [sessionObject, setSessionObject] = useState(getCookie());
     const [loading, setLoading] = useState(false)
-    const [quote, setQuote] = useState({})
+    // const [quote, setQuote] = useState({})
     const [night, setNight] = useState(false);
 
-    const getRandomQuote = () => {
-        setLoading(true)
-        setTimeout(() => {
-            fetch('https://api.quotable.io/random')
-                .then((res) => res.json())
-                .then((data) => {
-                    setLoading(false)
-                    setQuote(data)
-                })
-        }, 5000)
-    }
+    // const getRandomQuote = () => {
+    //     setLoading(true)
+    //     setTimeout(() => {
+    //         fetch('https://api.quotable.io/random')
+    //             .then((res) => res.json())
+    //             .then((data) => {
+    //                 setLoading(false)
+    //                 setQuote(data)
+    //             })
+    //     }, 5000)
+    // }
 
     /* EXAMPLE: DropdownInput selection options
   
@@ -87,6 +87,7 @@ const App = () => {
     return (
         <>
             <div className="content">
+                <div className={!night ? "" : "night-mode-bg"}>
                 <SessionContext.Provider
                     value={{sessionObject, setSessionObject}}
                 >
@@ -101,7 +102,6 @@ const App = () => {
                         }}
                     >
                     <Header night={night} setNight={setNight} />
-                    <div className={!night ? "" : "night-mode-bg"}>
                         <Routes>
                             <Route path="" element={<HomePage />} />
                             <Route path="/login" element={<Login />} />
@@ -117,20 +117,21 @@ const App = () => {
                                 element={<SingleBook item={testBook} />}
                             />
                         </Routes>
-                    </div>
+                    
                     </InputContext.Provider>
                 </SessionContext.Provider>
+                </div>
                 <Footer />
-                <div>
-                    <div className="buttons">
+                {/* <div> */}
+                    {/* <div className="buttons">
                         <button
                             className="btn get-quote"
                             onClick={getRandomQuote}
                         >
                             Loading Spinner Quote Button (click here)
                         </button>
-                    </div>
-                    {loading ? (
+                    </div> */}
+                    {/* {loading ? (
                         <LoadingSpinner />
                     ) : (
                         <div className="quote-section">
@@ -139,8 +140,8 @@ const App = () => {
                             </blockquote>{' '}
                             <span className="author">{quote.author}</span>
                         </div>
-                    )}
-                </div>
+                    )} */}
+                {/* </div> */}
             </div>
         </>
     )

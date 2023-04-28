@@ -39,7 +39,7 @@ export const Login = ({ setSessionObject }) => {
 
     return (
         <>
-            <h1 className='h1-login'>Login to Your Account</h1>
+            <h1 className='h1-login'>Welcome to SelfShare</h1>
             <div className="login-container"  >
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className='form-inputs-login'>
