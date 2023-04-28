@@ -179,7 +179,7 @@ export function SignUp({ setSessionObject } ) {
                             />
                             <button type="button" onClick={togglePasswordConf} className='show-pass-btn'>{passwordConfShown ? <span>{hidePass}</span> : <span>{showPass}</span>}</button>
                         </div>
-                    </div><br/>
+                    </div>
                     <p className='link-to-login'>Have an account? <Link to="/login">Log in</Link></p>
                     {/* Handling Error Message */}         
                     <div className='error-container'>
