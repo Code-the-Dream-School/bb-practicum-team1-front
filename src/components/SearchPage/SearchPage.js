@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DebouncedSearch from '../../util/DebouncedSearch/DebouncedSearch';
 import DropdownInput from '../../components/inputs/DropdownInput';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { PagePagination } from '../PagePagination/Pagination';
 import { getAllBooksAdapter } from '../../adapters/book-adapters';
+import ToggleSwitch from '../../util/ToggleSwitch/ToggleSwitch';
 
 const SearchPage = () => {
     const [books, setBooks] = useState([]);
@@ -11,19 +12,23 @@ const SearchPage = () => {
     const [attribute, setAttribute] = useState('title');
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        sort(books, direction, attribute)
+    }, [direction, attribute, books])
+
     // Depending on the value of dropdown it searchs either by title or by author
     const processSearch = (e) => {
-        let type = e.searchType;
-        if (!e.searchPageDebouncedSearch) {
+        let type = e.inputs.searchType;
+        if (!e.inputs.searchPageDebouncedSearch) {
             setBooks([]);
             return;
         }
         let bookInput = {};
         if (!type || type === 'title') {
-            bookInput.title = e.searchPageDebouncedSearch;
+            bookInput.title = e.inputs.searchPageDebouncedSearch;
         } 
         if (type === 'author') {
-            bookInput.author = e.searchPageDebouncedSearch;
+            bookInput.author = e.inputs.searchPageDebouncedSearch;
         }
         setLoading(true)
         getAllBooksAdapter(bookInput)
@@ -81,15 +86,20 @@ const SearchPage = () => {
         <>
             <DebouncedSearch 
                 id={'searchPageDebouncedSearch'}
-                handleDebounce={processSearch}
-
+                 handleDebounce={processSearch}
             />
-            <DropdownInput 
-                label={'Choose:'}
-                id={'searchType'}
-                options={[{value: 'title', label: 'Search by title'}, {value: 'author', label: 'Search by author'}]}
-                defaultValue={'title'} showPlaceholder={false}
-            />
+            <div style={{ display: "flex" }}>
+                <DropdownInput 
+                    label={''}
+                    id={'searchType'}
+                    options={[{value: 'title', label: 'Search by title'}, {value: 'author', label: 'Search by author'}]}
+                    defaultValue={'title'} showPlaceholder={false}
+                />
+                <ToggleSwitch toggleChecked={direction === "za"} handleToggleChange={() => setDirection(direction === "az" ? "za" : "az")} 
+                    labelOn={"Z to A"} labelOff={"A to Z"}/>
+                <ToggleSwitch toggleChecked={attribute === 'author'} handleToggleChange={() => setAttribute(attribute === "title" ? "author" : "title")} 
+                    labelOn={"Sort by author"} labelOff={"Sort by title"}/>
+            </div>
             <PagePagination books={sort(books,  direction, attribute)}/>   
             {loading ? <LoadingSpinner /> : null}
         </>

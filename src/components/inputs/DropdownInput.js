@@ -6,7 +6,7 @@ export default function DropdownInput({ label, id, options, defaultValue, showPl
     const { inputs, handleInputChange } = useContext(InputContext)
     return (
         <label className="text-input-label" htmlFor={id}>
-            {label}
+            {label ? label : null}
             <select
                 className="dropdown-select"
                 id={id}

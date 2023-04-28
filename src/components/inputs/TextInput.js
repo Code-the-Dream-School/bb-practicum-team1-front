@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { InputContext } from "../../App";
 import "./inputStyles.css";
 
-const TextInput = ({ type, placeholder, label, id, textarea }) => {
+const TextInput = ({ type, placeholder, label, id, textarea, isRequired }) => {
   const { inputs, handleInputChange } = useContext(InputContext);
 
   return (
@@ -18,7 +18,7 @@ const TextInput = ({ type, placeholder, label, id, textarea }) => {
             onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             id={id}
             name={id}
-            required
+            required={isRequired}
           />
         </label>
       ) : (
