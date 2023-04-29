@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 
 const Header = ({ night, setNight }) => {
     const [isOpen, setIsOpen] = useState(false);
-   console.log(night)
     return (
         <div className={night ? "nav" : "nigt-mode-header"}>
             <div className="nav-container">

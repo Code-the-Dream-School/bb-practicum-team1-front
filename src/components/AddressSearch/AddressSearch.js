@@ -4,19 +4,19 @@ import { getAddressAutocomplete } from "../../adapters/address-adapter";
 import { InputContext } from '../../App';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
-const AddressSearch = ({ id }) => {
+const AddressSearch = ({ id, onAddressSelected }) => {
     const [addressSuggestions, setAddressSuggestions] = useState([]);
-    const {inputs, handleInputChange} = useContext(InputContext);
+    const {inputs, handleInputChange } = useContext(InputContext);
     const [loading, setLoading] = useState(false);
 
     const shouldShowDropdown = (values, currentValue) => {
         if (!currentValue || currentValue === "") {
             return false;
         }
-        if (!values || values.length == 0 || inputs[id] === "") {
+        if (!values || values.length === 0 || inputs[id] === "") {
             return false;
         }
-        if (values.length == 1 && values[0].address === currentValue ) {
+        if (values.length === 1 && values[0].address === currentValue ) {
             return false;
         }
         return true;
@@ -36,11 +36,12 @@ const AddressSearch = ({ id }) => {
     }
 
     const onSelect = (selected) => {
-        inputs[id] = selected;
-        setAddressSuggestions([])
+        onAddressSelected(selected) 
+        
         if (inputs[`${id}Debounce`] !== selected.address) {
             handleInputChange(`${id}Debounce`, selected.address);           
         }
+        setAddressSuggestions([])
     }
 
     return (
