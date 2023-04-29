@@ -23,7 +23,6 @@ useEffect(async () => {
   if (routeParams.bookId) {
       const newBook = await getSingleBookAdapter(routeParams.bookId);
       setBookInformation(newBook);
-      console.log(newBook)
   }
 }, [routeParams.bookId]);
 
