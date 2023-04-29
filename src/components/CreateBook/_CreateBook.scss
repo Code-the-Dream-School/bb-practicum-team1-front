@@ -1,11 +1,10 @@
 .createBookForm {
-    margin-left: 2rem;
     display: grid;
-    height: 80vh;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    grid-column-gap: 10px;
+    grid-column-gap: 0px;
     grid-row-gap: 10px;
+    padding-left: 70px;
 }
 
 .h1-createBook {
@@ -51,34 +50,61 @@
     border: 2px solid #393F3F;
 }
 
-.addButton {
+.upload-or-link-cover input {
+    width: 300px;
+}
+
+.cover-toggle {
     display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
+    padding: 12px 12px;
+    font-size: 0.8rem;
+    font-family: 'Lucida Sans';
+    background-color: #BFD7EA;
+    color: $black;
     cursor: pointer;
+    width: 300px;
+    text-align: center;
+}
+
+.center-cover-buttons {
+    text-align: center;
+}
+
+.addButton {
+    background-color: #BFD7EA;
+    border: 2px solid #0B3954;
+    border-radius: 30px;
+    box-shadow: #0B3954 4px 4px 0 0;
+    color: #0B3954;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 26px;
+    padding: 7px 18px;
+    line-height: 50px;
     text-align: center;
     text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #008000;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;   
+    width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
 }
 
 .addButton svg {
     width: 25px;
-    fill: $white;
+    fill: $tertiaryColor;
 }
 
 .addButton:hover {
-    background-color: #3e8e41;
+    background-color: #fff;
 }
 
 .addButton:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+    box-shadow: #0B3954 2px 2px 0 0;
+    transform: translate(2px, 2px);
 }
 
 .cover h2 {
@@ -96,11 +122,6 @@
     text-align: center;
 }
 
-.button button {
-    margin-bottom: 100px;
-    width: 9rem;
-}
-
 .inputFields {
     width: fit-content;
     margin-bottom: 20px;
@@ -111,26 +132,44 @@ input[type="file"] {
     display: none;
 }
 
+.url-field {
+   text-align: center;
+   width: 300px;
+}
+
+.plus-sign {
+    background-color: white;
+    font-size: 2rem;
+    padding: 1px 12px;
+    color: $tertiaryColor;
+    width: 300px;
+    border: none;
+}
+
+.plus-sign:hover {
+    font-size: 2.2rem;
+}
+
 .custom-file-upload {
     display: inline-block;
     padding: 12px 12px;
-    border-bottom: #3e8e41;
-    border-bottom: 5px solid greenyellow;
+    border-bottom: 5px solid $tertiaryColor;
     font-size: 1.5rem;
     font-family: 'Lucida Sans';
-    background-color: #4f6a6a;
+    background-color: $tertiaryColor;
     color: $white;
     cursor: pointer;
-    width: 250px;
+    width: 300px;
     text-align: center;
 }
 
 .custom-file-upload:hover {
-    border-bottom: 5px solid rgb(119, 149, 119);
+    border-bottom: 5px solid rgb(43, 209, 43);
+    font-size: 1.6rem;
 }
 
 .custom-file-upload::before {
-    content: 'Upload Cover';
+    content: 'Upload';
 }
 
 .addCover {
@@ -165,9 +204,20 @@ input[type="file"] {
     background-color: red;
   }
 
+  .cover-upload {
+    color: $tertiaryColor;
+    font-family: $fontPrimary;
+    font-weight: bold;
+    font-size: 1.6rem;
+  }
+
+  .cover-upload svg {
+    fill: $tertiaryColor;
+    width: 30px;
+  }
+
 @media (max-width: 768px) {
     .createBookForm {
-        padding-left: 35px;
         width: fit-content;
         grid-template-columns: repeat(1, 1fr);
     }
@@ -177,16 +227,15 @@ input[type="file"] {
     }
 
     .inputFields {
-        // width: 250px;
+        margin: 0px;
     }
 
     .addButton {
         margin-top: 20px;
-        height: 50px;
+        width: 14rem;
     }
 
     .button {
-        padding-bottom: 20px;
         width: 250px;
         height: 30px;
     }
@@ -196,6 +245,10 @@ input[type="file"] {
     }
     
     .textarea-input {
-        // width: fit-content;
+        width: fit-content;
+    }
+
+    .cover-toggle, .upload-or-link-cover input, .plus-sign, .url-field, .custom-file-upload {
+        width: 250px;
     }
 }
