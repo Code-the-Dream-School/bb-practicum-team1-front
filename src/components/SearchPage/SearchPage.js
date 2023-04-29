@@ -56,11 +56,14 @@ const SearchPage = () => {
     }
 
     const processDebounce = (e) => {
-        changeDetection(e)
-        console.log(e)
+        // changeDetection(e)
+        // console.log(e)
         if (searchValue !== e.inputs['searchPageDebouncedSearch']) {
             console.log('Search value attribute changed')
             setSearchValue(e.inputs['searchPageDebouncedSearch'])
+        } else if (!inputs.inputs['searchPageDebouncedSearch']) {
+            console.log('Search value attribute changed')
+            setSearchValue(inputs.inputs['searchPageDebouncedSearch'])    
         }
     }
 
@@ -70,7 +73,6 @@ const SearchPage = () => {
 
     useEffect(() => {
         if ((!address || !address.address || address.address === '') && (!searchValue || searchValue === '')) {
-            console.log('Nothing to search')
              //User removed all values by which we can search
             setBooks([]);
             return
@@ -85,10 +87,10 @@ const SearchPage = () => {
         if (searchValue) {
             // Depending on the value of dropdown it searchs either by title or by author
             if (!searchAttribute || searchAttribute === 'title') {
-                bookInput.title = searchValue;
+                bookInput.titles = searchValue;
             }
             if (searchAttribute === 'author') {
-                bookInput.author = searchValue;
+                bookInput.authors = searchValue;
             }
         }
 
