@@ -115,7 +115,7 @@ const App = () => {
                             />
                             <Route
                                 path="/books/:bookId"
-                                element={<SingleBook item={testBook} />}
+                                element={<SingleBook/>}
                             />
                         </Routes>
                     </div>
