@@ -1,5 +1,5 @@
 import { fetchAPIData } from '../util/fetch'
-
+import { baseURL } from "../util/fetch";
 // Create(send) message adapter
 type messageInput = {
     receivedByUser: String,
@@ -18,8 +18,9 @@ type messageInput = {
  * createMessageAdapter(messageInput)
  * @returns {Promise<Object>} A promise that resolves message's creation information. 
  */
-export const createMessageAdapter = async(messageInput:messageInput) => {
-    const url = 'http://localhost:8000/api/v1/messages'
+
+export const createMessageAdapter = async(messageInput:messageInput)=>{
+    const url = `${baseURL}messages`
     const data = await fetchAPIData(url, 'POST', messageInput )
     return data   
 }
@@ -44,7 +45,7 @@ type messageSchema = {
  * @returns {Promise<messageSchema[]>} A promise that resolves get all conversation information.
  */
 export const getAllConversationAdapter = async():Promise<messageSchema[]> => {
-    const url = 'http://localhost:8000/api/v1/messages'
+    const url = `${baseURL}messages`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
@@ -59,7 +60,7 @@ export const getAllConversationAdapter = async():Promise<messageSchema[]> => {
  * @returns {Promise<messageSchema[]>} A promise that resolves get messages as conversation information.
  */
 export const getMessageConversationAdapter = async(messagingPartnerUserId:string):Promise<messageSchema[]> => {
-    const url = `http://localhost:8000/api/v1/messages/${messagingPartnerUserId}`
+    const url = `${baseURL}messages/${messagingPartnerUserId}`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
@@ -80,7 +81,7 @@ type messageBody = {
  * @returns {Promise<messageSchema[]>} - A promise that resolves updating book information.
  */
 export const markConversationAdapter = async(messageBody:messageBody): Promise<messageSchema[]> => {
-    const url = 'http://localhost:8000/api/v1/messages'
+    const url = `${baseURL}messages`
     const data = await fetchAPIData(url, 'PATCH', messageBody)
     return data
 }
@@ -95,7 +96,7 @@ export const markConversationAdapter = async(messageBody:messageBody): Promise<m
  * @returns {Promise<Object>} A promise that resolves the delete message information.
  */
 export const deleteMessageAdapter = async(messageId:string)  =>{
-    const url = `http://localhost:8000/api/v1/books/${messageId}`
+    const url = `${baseURL}books/${messageId}`
     const data = await fetchAPIData(url, 'DELETE', undefined)
     return data
 }

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import BookList from '../BookList/BookList'
-import { Link } from 'react-router-dom'
 import { getAllBooksAdapter } from '../../adapters/book-adapters'
-import { all } from 'axios'
 
 const bookList = [
     {

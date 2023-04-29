@@ -1,5 +1,6 @@
 import { fetchAPIData } from "../util/fetch"
 
+import { baseURL } from "../util/fetch";
 // Create book adapter
 type bookInput = {
     title: string,
@@ -43,19 +44,35 @@ type bookInput = {
  * createBookAdapter(bookInput)
  * @returns {Promise<Object>} A promise that resolves book's creation information.
  */
-export const createBookAdapter = async(bookInput:bookInput) =>{
-    const url = 'http://localhost:8000/api/v1/books'
-    const data = await fetchAPIData(url, 'POST', bookInput )
-    return data   
+
+export const createBookAdapter = async(bookInput:bookInput, file:File) =>{
+    const url = `${baseURL}books`
+    // convert body to form data type
+    const formData = new FormData()
+    // add the fields from book input object to form data object by converting bookInput obj to an array and iterate each key-value pair
+    Object.entries(bookInput).forEach(([key, value]) =>{
+        // convert value to string because publishingYear is number and the method expects the argument to be string or Blob
+        if(value !== undefined) {
+            formData.append(key, value.toString())
+        }
+    })
+    
+    // add the file to form data
+    formData.append('image', file)
+    
+    // send form data to server 
+     const data = await fetchAPIData(url, 'POST', formData, true, undefined, true)     
+     return data
 }
 
 // Get all books for all users, all books owner, and by userId adapter
 type queryBook = { 
-    title?:string,
-    author?:string, 
-    sort?:string, 
-    fields?:string, 
-    searchRadius?:number, 
+    titles?: string,
+    authors?: string, 
+    genres?: string
+    sort?: string, 
+    fields?: string, 
+    searchRadius?: number, 
     latitude?: number, 
     longitude?: number,
     page?: number,
@@ -90,10 +107,11 @@ type booksSchema ={
 /**
  * This function will get all books for users with the provided information
  * @param {String} queryBook - The query object containing information for query parameters.
- * @param {String} queryBook.title - Book's title as query parameter.
- * @param {String} queryBook.author - Book's author as query parameter.
- * @param {String} queryBook.sort - Sort as query parameter.
- * @param {String} queryBook.fields - Fields as query parameter.
+ * @param {String} queryBook.titles - Book's titles as query parameters.
+ * @param {String} queryBook.authors - Book's authors as query parameters.
+ * @param {String} queryBook.genres - Book's genres as query parameters.
+ * @param {String} queryBook.sort - Sort as query parameters.
+ * @param {String} queryBook.fields - Fields as query parameters.
  * @param {Number} queryBook.searchRadius - Search radius as query parameter.
  * @param {Number} queryBook.latitude - Latitude as query parameter.
  * @param {Number} queryBook.longitude - Longitude as query parameter.
@@ -118,7 +136,7 @@ type booksSchema ={
  */
 // Get all books for users
 export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise<booksSchema[]> =>{
-   let url = 'http://localhost:8000/api/v1/books'
+   let url = `${baseURL}books`
     if(queryBook){
         const queryParams = Object.entries(queryBook).map((bookFields)=>{
             const key = bookFields[0]
@@ -126,7 +144,7 @@ export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise
             return `${key}=${value}`
         }).join('&') 
        
-        url = `http://localhost:8000/api/v1/books?${queryParams}`
+        url = `${baseURL}books?${queryParams}`
     }
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
@@ -140,7 +158,7 @@ export const getAllBooksAdapter = async(queryBook:queryBook | undefined):Promise
  */
 // Get all books for owner 
 export const getAllBooksOwnerAdapter = async():Promise<booksSchema[]> => {
-    const url = 'http://localhost:8000/api/v1/books/user'
+    const url = `${baseURL}books/user`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
@@ -155,7 +173,7 @@ export const getAllBooksOwnerAdapter = async():Promise<booksSchema[]> => {
  */
 // Get books by userId adapter
 export const getBooksUserIdAdapter = async(userId:string): Promise<booksSchema[]> =>{
-    const url = `http://localhost:8000/api/v1/books/user/${userId}`
+    const url = `${baseURL}books/user/${userId}`
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
@@ -171,7 +189,7 @@ export const getBooksUserIdAdapter = async(userId:string): Promise<booksSchema[]
  */
 // get single book adapter
 export const getSingleBookAdapter = async(bookId:string): Promise<booksSchema> =>{
-    const url = `http://localhost:8000/api/v1/books/${bookId}` 
+    const url = `${baseURL}books/${bookId}` 
     const data = await fetchAPIData(url, 'GET', undefined)
     return data
 }
@@ -186,7 +204,7 @@ export const getSingleBookAdapter = async(bookId:string): Promise<booksSchema> =
  */
 // delete book adapter
 export const deleteBookAdapter = async(bookId:string)=>{
-    const url = `http://localhost:8000/api/v1/books/${bookId}`
+    const url = `${baseURL}books/${bookId}`
     const data = await fetchAPIData(url, 'DELETE', undefined)
     return data
 }
@@ -203,7 +221,6 @@ type bookParams = {
     author?: string,
     worldcatURL?: string,
     ISBN?: string,
-    imageURL?: string     
 }
 
 /**
@@ -220,7 +237,6 @@ type bookParams = {
  * @param {String} bookParams.author - Book's author.
  * @param {String} bookInput.worldcatURL - URL for worldcat(optional).
  * @param {String} bookInput.ISBN - Book's ISBN(optional).
- * @param {String} bookParams.imageURL - Book's image.
  * @example
  * const bookParams = {
  *  id = "642269e6f562cad511ed0a75",
@@ -235,15 +251,25 @@ type bookParams = {
  *  author = "Min Jin Lee",
  *  worldcatURL = "https://www.worldcat.org/title/1015968617",
  *  ISBN = "9781455563920"
- *  imageURL = "/api/v1/books/image/642269e6f562cad511ed0a75"
  * };
  * updateBookAdapter(bookParams)
  * @returns {Promise<Object>} - A promise that resolves updating book information.
  */
 // update book adapter
-export const updateBookAdapter = async(bookParams:bookParams): Promise<booksSchema> =>{
+export const updateBookAdapter = async(bookParams:bookParams, file:File): Promise<booksSchema> =>{
     const bookId = bookParams.id
-    const url = `http://localhost:8000/api/v1/books/${bookId}`
-    const data = await fetchAPIData(url, 'POST', bookParams)
-    return data
+    const url = `${baseURL}books/${bookId}`
+    const formData = new FormData()
+    Object.entries(bookParams).forEach(([key, value]) =>{
+        if(value !== undefined){
+         formData.append(key, value.toString())  
+        }
+    })
+    
+    // add the file to form data
+    formData.append('image', file)
+    
+     // send form data to server 
+     const data = await fetchAPIData(url, 'POST', formData, true, undefined, true)
+     return data
 }
