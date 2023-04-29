@@ -31,23 +31,18 @@ const SearchPage = () => {
     //to avoid data reloading upon every (even unrelated) context change
     const changeDetection = (inputs) => {
         if (direction !== inputs.inputs['searchPageSortOrder']) {
-            console.log('Direction changed')
             setDirection(inputs.inputs['searchPageSortOrder'])
         }
         if (attribute !== inputs.inputs['searchPageSortAttribute']) {
-            console.log('Sort attribute changed')
             setAttribute(inputs.inputs['searchPageSortAttribute'])
         }
         if (searchRadius !== inputs.inputs['bookAddressSearchRadius']) {
-            console.log('Search radius changed')
             setSearchRadius(inputs.inputs['bookAddressSearchRadius'])
         }
         if (searchAttribute !== inputs.inputs['searchType']) {
-            console.log('Search attribute changed')
             setSearchAttribute(inputs.inputs['searchType'])
         }
         if (addressSearchLine !== inputs.inputs['bookAddressSearchDebounce']) {
-            console.log('Address search line changed')
             setAddressSearchLine(inputs.inputs['bookAddressSearchDebounce'])
             if (!inputs.inputs['bookAddressSearchDebounce' || inputs.inputs['bookAddressSearchDebounce'] === '']) {
                 setAddress({})
@@ -55,22 +50,22 @@ const SearchPage = () => {
         }
     }
 
+    //Passed to debounce search to detech change in debounce value
     const processDebounce = (e) => {
-        // changeDetection(e)
-        // console.log(e)
         if (searchValue !== e.inputs['searchPageDebouncedSearch']) {
-            console.log('Search value attribute changed')
             setSearchValue(e.inputs['searchPageDebouncedSearch'])
         } else if (!inputs.inputs['searchPageDebouncedSearch']) {
-            console.log('Search value attribute changed')
             setSearchValue(inputs.inputs['searchPageDebouncedSearch'])    
         }
     }
 
+    //Compare values from context with current state to detect changes and avoid unnesessary rendering of components
     useEffect(() => {
         changeDetection(inputs)
     }, [inputs])
 
+    //Main call to backend executed when any of search attributes changes
+    //If user provides no values to search for then call is not executed and list of books on the page is cleared
     useEffect(() => {
         if ((!address || !address.address || address.address === '') && (!searchValue || searchValue === '')) {
              //User removed all values by which we can search
@@ -84,6 +79,7 @@ const SearchPage = () => {
             bookInput.latitude = address.latitude;
             bookInput.longitude = address.longitude;  
         }
+        //User provided search value
         if (searchValue) {
             // Depending on the value of dropdown it searchs either by title or by author
             if (!searchAttribute || searchAttribute === 'title') {
@@ -98,10 +94,8 @@ const SearchPage = () => {
         getAllBooksAdapter(bookInput)
             .then(data => {
                 if (data) {
-
                     setBooks(data.books);
                 } else {
-                    console.log('No books')
                     setBooks([]);
                 }
                 setLoading(false)
