@@ -6,7 +6,12 @@ import { Routes, Route } from 'react-router-dom'
 // utility functions
 import { getAllData } from './util/index'
 import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
-import { setCookie, getCookie, deleteCookie } from './util/Authentication'
+import {
+    setCookie,
+    getCookie,
+    deleteCookie,
+    cookieName,
+} from './util/Authentication'
 
 // UI Components
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
@@ -30,7 +35,10 @@ import { PagePagination } from './components/PagePagination/Pagination'
 
 
 export const InputContext = createContext({})
-export const SessionContext = createContext({});
+export const SessionContext = createContext({
+    sessionObject: null,
+    setSessionObect: () => {},
+})
 
 //This is for testing//
 const bookArr = [
@@ -76,10 +84,15 @@ const bigBookArray = [
 
 const URL = 'http://localhost:8000/api/v1/'
 
+/**
+ *  level 1 - some kinda of state - dark/light mode   Provider (parent)
+ *  level 6 dark/light mode (useContext)
+ */
+
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
-    const [sessionObject, setSessionObject] = useState(getCookie());
+    const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
     const [loading, setLoading] = useState(false)
     // const [quote, setQuote] = useState({})
     const [night, setNight] = useState(false);
@@ -98,7 +111,7 @@ const App = () => {
 
     return (
         <>
-            <SessionContext.Provider value={{sessionObject, setSessionObject}}>
+            <SessionContext.Provider value={{ sessionObject, setSessionObject }} >
                 <InputContext.Provider
                     value={{
                         inputs,
@@ -109,30 +122,30 @@ const App = () => {
                             setInputs({ ...inputs, ...inputObj }),
                     }}
                 >
-                <Header night={night} setNight={setNight} />
-                <div className="content">
-                    <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
-                        <Routes>
-                            <Route path="" element={<HomePage />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
-                            <Route path="/about" element={<About />} />
-                            <Route 
-                                path="/books/create" 
-                                element={<CreateBook 
-                                            urlButton={urlButton}
-                                            setUrlButton={setUrlButton}
-                                        />} />
-                            <Route path="/books/edit/:bookId" element={<CreateBook />} />
-                            <Route path="/books/:bookId" element={<SingleBook />} />
-                        </Routes>
+                    <Header night={night} setNight={setNight} />
+                    <div className="content">
+                        <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
+                            <Routes>
+                                <Route path="" element={<HomePage />} />
+                                <Route path="/login" element={<Login />} />
+                                <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
+                                <Route path="/about" element={<About />} />
+                                <Route 
+                                    path="/books/create" 
+                                    element={<CreateBook 
+                                                urlButton={urlButton}
+                                                setUrlButton={setUrlButton}
+                                            />} />
+                                <Route path="/books/edit/:bookId" element={<CreateBook />} />
+                                <Route path="/books/:bookId" element={<SingleBook />} />
+                            </Routes>
+                        </div>
                     </div>
-                </div>
                 </InputContext.Provider>
             </SessionContext.Provider>
-                <Footer />
-                {/* <div> */}
-                    {/* <div className="buttons">
+            <Footer />
+            {/* <div> */}
+            {/* <div className="buttons">
                         <button
                             className="btn get-quote"
                             onClick={getRandomQuote}
@@ -140,7 +153,7 @@ const App = () => {
                             Loading Spinner Quote Button (click here)
                         </button>
                     </div> */}
-                    {/* {loading ? (
+            {/* {loading ? (
                         <LoadingSpinner />
                     ) : (
                         <div className="quote-section">
@@ -155,4 +168,4 @@ const App = () => {
     )
 }
 
-export default App
+export default App;

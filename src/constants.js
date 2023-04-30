@@ -1,37 +1,37 @@
 export const forLoggedInUser = [
     {
-        name: 'Home', 
-        route: '/home'
-    }, 
-    {
-        name: 'My Profile', 
-        route: '/my-profile'
+        name: 'My Profile',
+        route: '/my-profile',
     },
     {
-        name: 'About', 
-        route: '/about'
+        name: 'About',
+        route: '/about',
     },
     {
-        name: 'Contact', 
-        route: '/contact'
-    }
-];
+        name: 'Contact',
+        route: '/contact',
+    },
+    {
+        name: 'Create Book',
+        route: '/books/create',
+    },
+]
 
 export const forSignedOutUser = [
     {
-        name: 'Sign Up', 
-        route: '/sign-up'
-    }, 
-    {
-        name: 'Login', 
-        route: '/login'
+        name: 'Sign Up',
+        route: '/sign-up',
     },
     {
-        name: 'About', 
-        route: '/about'
+        name: 'Login',
+        route: '/login',
     },
     {
-        name: 'Contact', 
-        route: '/contact'
-    }
-];
+        name: 'About',
+        route: '/about',
+    },
+    {
+        name: 'Contact',
+        route: '/contact',
+    },
+]
