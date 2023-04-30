@@ -8,8 +8,6 @@ import ImageToggle from '../ImageToggle/ImageToggle';
 
 const addButton = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>;
 
-var plus = '+';
-
 const optionsStatus = [
     { value: 'open', label: 'Open' },
     { value: 'borrowed', label: 'Borrowed' },
@@ -64,7 +62,7 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
     const { inputs, handleBulkInput } = useContext(InputContext);
     const [bookInformation, setBookInformation] = useState({});
     const [selectedImage, setSelectedImage] = useState(null);
-    const [selectedURL, setSelectedURL] = useState(null);
+    const [selectedURL, setSelectedURL] = useState('' || undefined);
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -83,10 +81,9 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                     author: inputs.author, 
                     worldcatURL: inputs.worldcatURL, 
                     ISBN: inputs.ISBN, 
-                   
+                    imageURL: inputs.selectedURL
                 },
-                selectedImage,
-                selectedURL             
+                selectedImage,           
             )) : (createBookAdapter(
                 {
                     title: inputs.title, 
@@ -97,9 +94,9 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                     description: inputs.description, 
                     genre: inputs.genre, 
                     author: inputs.author,
+                    imageURL: inputs.imageURL
                 },
                 selectedImage,
-                selectedURL
             ))    
     };
 
@@ -128,39 +125,46 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                             label='Title'
                             id='title'
                             className='title'
+                            isRequired={true}
                         />
                         <TextInput 
                             type='text'
                             placeholder='language here...'
                             label='Language'
                             id='language'
+                            isRequired={true}
                         />
                         <TextInput 
                             type='text'
                             placeholder='name of the author here...'
                             label='Author'
                             id='author'
+                            isRequired={true}
                         />
                         <DropdownInput 
                             label = 'Age Range'
                             id = 'ageRange'
                             options={optionsAge}
+                            isRequiredSelect={true}
                         />
                         <DropdownInput 
                             label = 'Status'
                             id = 'status'
                             options={optionsStatus}
+                            isRequiredSelect={true}
                         />
                         <DropdownInput 
                             label = 'Genre'
                             id = 'genre'
                             options={optionsGenre}
+                            isRequiredSelect={true}
                         />
                         <TextInput 
                             type='text'
                             placeholder='ex. 2005'
                             label='Publishing Year'
                             id='publishingYear'
+                            isRequired={true}
                         />
                     </div>
                     
@@ -171,6 +175,7 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                             label='Description'
                             id='description'
                             textarea
+                            isRequired={true}
                         />
                         <br />
                         <ImageToggle 

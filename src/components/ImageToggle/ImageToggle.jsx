@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
-import TextInput from '../inputs/TextInput';
 
 var remove = '\u2718';
+var plus = '+';
 
 const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelectedURL, urlButton, setUrlButton }) => {
-    console.log('this is the state of urlButton in App.js', urlButton)
-    const handleURLToggle = () => {
-        setUrlButton(!urlButton)
-        return (
-            <>
-            {<p>test</p>}
-            <TextInput type='text' placeholder='URL here...' label='URL link' id='urlField' className='urlField' />
-            </>
-        )
-    }
+    // const handleURLToggle = () => {
+    //     setUrlButton(!urlButton)
+        // return (
+        //     <>
+        //         <TextInput 
+        //             type='text' 
+        //             placeholder='URL here...' 
+        //             label='URL link' 
+        //             value=''
+        //             id='urlField' 
+        //             className='urlField' 
+        //             onChange={(e) => setSelectedURL(e.target.value)}
+        //         />
+        //     </>
+        // )
+    // }
 
     return (
         <div className='upload-or-link-cover'>
@@ -47,35 +53,35 @@ const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelected
                                 />
                             </label>
                         </div> : <div className='url-field'>
-                                    <TextInput 
+                                    <input 
                                         type='text' 
-                                        placeholder='URL here...' 
+                                        placeholder='URL here ...' 
+                                        label='The link to the image' 
                                         id='urlField' 
+                                        className='urlField' 
+                                        onChange={(e) => setSelectedURL(e.target.value)} 
                                     />
                                     
-
                                     <div className='addCover'>
                                         {selectedURL && (
                                             <div className='container'>
                                                 <img
                                                     alt="cover"
                                                     width={"250px"}
-                                                    className='imageCover'
-                                                    src={URL.createObjectURL(selectedImage)}
+                                                    className='imageCoverUrl'
+                                                    src={(selectedURL)} // should it be only selectedURL???? without URL.createObjectURL
                                                 />
                                                 
-                                                <button className='removeButton' onClick={() => setSelectedURL(null)} title='Remove' >{remove}</button>
+                                                <button className='removeButton' onClick={() => setSelectedURL('')} title='Remove' >{remove}</button>
                                             </div>
                                         )}
                                     </div>
 
-
-
-                                    {/* <button onClick={console.log('uploaded link')} className='plus-sign'>{plus}</button> */}
+                                    {/* <button onClick={(e) => setSelectedURL(e.target.value)} className='plus-sign'>{plus}</button> */}
                                 </div>
                     }
                 </div>
-            <button className='cover-toggle' onClick={handleURLToggle}>{urlButton ? 'Upload Cover Image Instead' : 'Provide URL instead'}</button>
+            <button className='cover-toggle' onClick={() => setUrlButton(!urlButton)}>{urlButton ? 'Upload Cover Image Instead' : 'Provide URL instead'}</button>
         </div>
     )
 }

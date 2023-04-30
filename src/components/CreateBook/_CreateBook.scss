@@ -84,26 +84,6 @@
     width: 300px;
 }
 
-.upload-or-link-cover input {
-    width: 300px;
-}
-
-.cover-toggle {
-    display: inline-block;
-    padding: 12px 12px;
-    font-size: 0.8rem;
-    font-family: 'Lucida Sans';
-    background-color: #BFD7EA;
-    color: $black;
-    cursor: pointer;
-    width: 300px;
-    text-align: center;
-}
-
-.center-cover-buttons {
-    text-align: center;
-}
-
 .addButton {
     background-color: #BFD7EA;
     border: 2px solid #0B3954;
@@ -161,99 +141,6 @@
     margin-bottom: 20px;
 }
 
-// for the custom-file-upload button
-input[type="file"] {
-    display: none;
-}
-
-.url-field {
-   text-align: center;
-   width: 300px;
-}
-
-.plus-sign {
-    background-color: white;
-    font-size: 2rem;
-    padding: 1px 12px;
-    color: $tertiaryColor;
-    width: 300px;
-    border: none;
-}
-
-.plus-sign:hover {
-    font-size: 2.2rem;
-}
-
-.custom-file-upload {
-    display: inline-block;
-    padding: 12px 12px;
-    border-bottom: 5px solid $tertiaryColor;
-    font-size: 1.5rem;
-    font-family: 'Lucida Sans';
-    background-color: $tertiaryColor;
-    color: $white;
-    cursor: pointer;
-    width: 300px;
-    text-align: center;
-}
-
-.custom-file-upload:hover {
-    border-bottom: 5px solid rgb(43, 209, 43);
-    font-size: 1.6rem;
-}
-
-.custom-file-upload::before {
-    content: 'Upload';
-}
-
-.addCover {
-    position: relative;
-    width: fit-content;
-}
-
-.container {
-    width: fit-content;
-    position: relative;
-}
-
-.imageCover {
-    position: relative;
-    max-height: 500px;
-}
-
-.removeButton {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: rgb(219, 69, 69);;
-    color: white;
-    font-size: 24px;
-    padding: 6px 12px;
-    border: 1px solid $tertiaryColor;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .container .removeButton:hover {
-    background-color: red;
-  }
-
-  .cover-upload {
-    color: $tertiaryColor;
-    font-family: $fontPrimary;
-    font-weight: bold;
-    font-size: 1.6rem;
-  }
-
-  .cover-upload svg {
-    fill: $tertiaryColor;
-    width: 30px;
-  }
-
-  .upload-or-link-cover input {
-    padding-left: 10px;
-  }
-
 @media (max-width: 768px) {
     .container-create-form {
         box-shadow: none;
@@ -271,10 +158,6 @@ input[type="file"] {
 
     .text-input-label {
         font-size: 1.2rem;
-    }
-
-    optgroup {
-        font-size: 10px;
     }
 
     .inputFields {
@@ -300,14 +183,6 @@ input[type="file"] {
     
     .textarea-input {
         width: 300px;
-    }
-
-    .cover-toggle, .upload-or-link-cover input, .plus-sign, .url-field, .custom-file-upload {
-        width: 300px;
-    }
-
-    .cover-toggle, .custom-file-upload, .imageCover, .cover-upload {
-        margin-left: 10px;
     }
 
 }
