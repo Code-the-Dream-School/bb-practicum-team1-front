@@ -51,6 +51,7 @@ const App = () => {
     const [loading, setLoading] = useState(false)
     // const [quote, setQuote] = useState({})
     const [night, setNight] = useState(false);
+    const [urlButton, setUrlButton] = useState(false);
 
     // const getRandomQuote = () => {
     //     setLoading(true)
@@ -107,7 +108,10 @@ const App = () => {
                             <Route path="/login" element={<Login />} />
                             <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
                             <Route path="/about" element={<About />} />
-                            <Route path="/books/create" element={<CreateBook />} />
+                            <Route path="/books/create" element={<CreateBook 
+                                urlButton={urlButton} 
+                                setUrlButton={setUrlButton}
+                            />} />
                             <Route
                                 path="/books/edit/:bookId"
                                 element={<CreateBook />}
