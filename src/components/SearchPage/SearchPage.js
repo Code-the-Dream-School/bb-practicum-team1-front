@@ -13,17 +13,17 @@ const SearchPage = () => {
     const [direction, setDirection] = useState('az');
     const [attribute, setAttribute] = useState('title');
     const [loading, setLoading] = useState(false);
-    const [address, setAddress] = useState({})
-    const [searchRadius, setSearchRadius] = useState(10)
-    const [searchAttribute, setSearchAttribute] = useState('')
-    const [searchValue, setSearchValue] = useState('')
-    const [addressSearchLine, setAddressSearchLine] = useState('')
-    const inputs = useContext(InputContext)
+    const [address, setAddress] = useState({});
+    const [searchRadius, setSearchRadius] = useState(10);
+    const [searchAttribute, setSearchAttribute] = useState('');
+    const [searchValue, setSearchValue] = useState('');
+    const [addressSearchLine, setAddressSearchLine] = useState('');
+    const inputs = useContext(InputContext);
 
     //Sort books if sort attributes changed
     useEffect(() => {
         if (books) {
-            setBooks(sort(books, direction, attribute))
+            setBooks(sort(books, direction, attribute));
         }
     }, [direction, attribute])
 
@@ -31,21 +31,21 @@ const SearchPage = () => {
     //to avoid data reloading upon every (even unrelated) context change
     const changeDetection = (inputs) => {
         if (direction !== inputs.inputs['searchPageSortOrder']) {
-            setDirection(inputs.inputs['searchPageSortOrder'])
+            setDirection(inputs.inputs['searchPageSortOrder']);
         }
         if (attribute !== inputs.inputs['searchPageSortAttribute']) {
-            setAttribute(inputs.inputs['searchPageSortAttribute'])
+            setAttribute(inputs.inputs['searchPageSortAttribute']);
         }
         if (searchRadius !== inputs.inputs['bookAddressSearchRadius']) {
-            setSearchRadius(inputs.inputs['bookAddressSearchRadius'])
+            setSearchRadius(inputs.inputs['bookAddressSearchRadius']);
         }
         if (searchAttribute !== inputs.inputs['searchType']) {
-            setSearchAttribute(inputs.inputs['searchType'])
+            setSearchAttribute(inputs.inputs['searchType']);
         }
         if (addressSearchLine !== inputs.inputs['bookAddressSearchDebounce']) {
-            setAddressSearchLine(inputs.inputs['bookAddressSearchDebounce'])
+            setAddressSearchLine(inputs.inputs['bookAddressSearchDebounce']);
             if (!inputs.inputs['bookAddressSearchDebounce' || inputs.inputs['bookAddressSearchDebounce'] === '']) {
-                setAddress({})
+                setAddress({});
             }
         }
     }
@@ -53,15 +53,15 @@ const SearchPage = () => {
     //Passed to debounce search to detech change in debounce value
     const processDebounce = (e) => {
         if (searchValue !== e.inputs['searchPageDebouncedSearch']) {
-            setSearchValue(e.inputs['searchPageDebouncedSearch'])
+            setSearchValue(e.inputs['searchPageDebouncedSearch']);
         } else if (!inputs.inputs['searchPageDebouncedSearch']) {
-            setSearchValue(inputs.inputs['searchPageDebouncedSearch'])    
+            setSearchValue(inputs.inputs['searchPageDebouncedSearch']);    
         }
     }
 
     //Compare values from context with current state to detect changes and avoid unnesessary rendering of components
     useEffect(() => {
-        changeDetection(inputs)
+        changeDetection(inputs);
     }, [inputs])
 
     //Main call to backend executed when any of search attributes changes
@@ -150,12 +150,12 @@ const SearchPage = () => {
 
     const sortByGenre = (array, direction) => {
         if (direction === 'za') {
-            //descending alphabetical order by "Author" (Z-to-A)
+            //descending alphabetical order by "Genre" (Z-to-A)
             array.sort((a, b) => 
                 a.genre.toLowerCase() === b.genre.toLowerCase() ? 0 : 
                 a.genre.toLowerCase() < b.genre.toLowerCase() ? 1 : -1); 
         } else {
-            //ascending alphabetical order by "Author" (A-to-Z)
+            //ascending alphabetical order by "Genre" (A-to-Z)
             array.sort((a, b) => 
                 a.genre.toLowerCase() === b.genre.toLowerCase() ? 0 : 
                 a.genre.toLowerCase() < b.genre.toLowerCase() ? -1 : 1); 
@@ -164,18 +164,20 @@ const SearchPage = () => {
     };
 
     return (
-        <>
-            <DebouncedSearch 
-                id={'searchPageDebouncedSearch'}
-                handleDebounce={processDebounce}
-            />
-            <div style={{ display: "flex" }}>
+        <div className='search-page'>
+            <div className='search-input'>
                 <DropdownInput 
                     label={''}
                     id={'searchType'}
                     options={[{value: 'title', label: 'Search by title'}, {value: 'author', label: 'Search by author'}]}
                     defaultValue={'title'} showPlaceholder={false}
                 />
+                <DebouncedSearch 
+                    id={'searchPageDebouncedSearch'}
+                    handleDebounce={processDebounce}
+                />
+            </div>
+            <div>
                 <DropdownInput id={'searchPageSortOrder'} defaultValue={'A to Z'} label={''}
                     options={[{value: "az", label: "Sort A to Z"}, {value: "za", label: "Sort Z to A"}]} />
                 <DropdownInput id={'searchPageSortAttribute'} defaultValue={'Title'} label={''}
@@ -193,7 +195,7 @@ const SearchPage = () => {
             </div>
             {loading ? <LoadingSpinner /> : null}
             <PagePagination books={sort(books,  direction, attribute)} />              
-        </>
+        </div>
     );
 };
 
