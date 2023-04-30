@@ -150,9 +150,11 @@
 @media (max-width: 768px) {
     .signUP-container form {
         height: fit-content;
-        max-width: 350px;
+        max-width: 490px;
         grid-template-rows: repeat(1, 1fr);
         padding-top: 20px;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
     }
 
     .h1-sign-up {

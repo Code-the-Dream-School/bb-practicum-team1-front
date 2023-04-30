@@ -214,6 +214,37 @@ const CreateBook = ({ bookId }) => {
                                                         placeholder='URL here...' 
                                                         id='urlField' 
                                                     />
+                                                    
+
+                                                    {/* <div className='addCover'>
+                                                        {selectedImage && (
+                                                            <div className='container'>
+                                                                <img
+                                                                    alt="cover"
+                                                                    width={"250px"}
+                                                                    className='imageCover'
+                                                                    src={URL.createObjectURL(selectedImage)}
+                                                                />
+                                                                
+                                                                <button className='removeButton' onClick={() => setSelectedImage(null)} title='Remove' >{remove}</button>
+                                                            </div>
+                                                        )}
+                                                        <br />
+                                                        <label htmlFor='file-upload' className='custom-file-upload' title='Press to upload cover'>
+                                                            <input
+                                                                type="file"
+                                                                id='file-upload'
+                                                                className='buttonChooseFile'
+                                                                name="myImage"
+                                                                onChange={(event) => {
+                                                                console.log(event.target.files[0]);
+                                                                setSelectedImage(event.target.files[0]);
+                                                            }}
+                                                            />
+                                                        </label>
+                                                    </div> */}
+
+
 
                                                     {/* <button onClick={console.log('uploaded link')} className='plus-sign'>{plus}</button> */}
                                                 </div>

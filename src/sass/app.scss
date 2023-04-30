@@ -17,17 +17,18 @@
 .content {
     padding-top: 55px;
     margin-bottom: 5px;
-    width: 100vw;
-    height: 100vh;
 }
 
 .night-mode-bg {
     background-color: cadetblue;
+    height: 100vh;
+    padding-top: 5px;
+    padding-bottom: 30px;
 }
 
-@media (max-width: 768px) {
-    .content {
-        width: 100%;
-        height: 100wh;
-    }
+.day-mode-bg {
+    background: 100vh;
+    height: 100vh;
+    padding-top: 5px;
+    padding-bottom: 30px;
 }
