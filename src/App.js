@@ -11,6 +11,7 @@ import HomePage from './components/HomePage/HomePage'
 import { Login } from './components/LoginPage/LoginPage'
 import { SignUp } from './components/SignupPage/SignUp'
 import CreateBook from './components/CreateBook/CreateBook'
+import SingleBook from './components/SingleBook/SingleBook'
 
 import './sass/app.scss'
 import SearchPage from './components/SearchPage/SearchPage'
