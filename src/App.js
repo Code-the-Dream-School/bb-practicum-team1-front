@@ -86,27 +86,54 @@ const App = () => {
                         >
                             <Routes>
                                 <Route path="" element={<HomePage />} />
-                                <Route path="/login" element={<Login />} />
+                                <Route
+                                    path="/login"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="anonymous">
+                                            <Login
+                                                setSessionObject={
+                                                    setSessionObject
+                                                }
+                                            />
+                                        </ProtectedRoute>
+                                    }
+                                />
                                 <Route
                                     path="/sign-up"
                                     element={
-                                        <SignUp
-                                            setSessionObject={setSessionObject}
-                                        />
+                                        <ProtectedRoute requiredAuthLevel="anonymous">
+                                            <SignUp
+                                                setSessionObject={
+                                                    setSessionObject
+                                                }
+                                            />
+                                        </ProtectedRoute>
                                     }
                                 />
                                 <Route path="/about" element={<About />} />
                                 <Route
                                     path="/books/create"
-                                    element={<CreateBook />}
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="user">
+                                            <CreateBook />
+                                        </ProtectedRoute>
+                                    }
                                 />
                                 <Route
                                     path="/books/edit/:bookId"
-                                    element={<CreateBook />}
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="user">
+                                            <CreateBook />
+                                        </ProtectedRoute>
+                                    }
                                 />
                                 <Route
                                     path="/books/:bookId"
-                                    element={<SingleBook />}
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="user">
+                                            <SingleBook item={testBook} />
+                                        </ProtectedRoute>
+                                    }
                                 />
                             </Routes>
                         </div>
