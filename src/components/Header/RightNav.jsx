@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { forLoggedInUser, forSignedOutUser } from '../../constants'
+import { Link } from 'react-router-dom'
 
 const RightNav = ({ open }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -11,14 +12,14 @@ const RightNav = ({ open }) => {
                     ? forLoggedInUser.map(function (routeObj) {
                           return (
                               <li key={routeObj.route} className="button-17">
-                                  <a href={routeObj.route}>{routeObj.name}</a>
+                                  <Link to={routeObj.route}>{routeObj.name}</Link>
                               </li>
                           )
                       })
                     : forSignedOutUser.map(function (routeObj) {
                           return (
                               <li key={routeObj.route} className="button-17">
-                                  <a href={routeObj.route}>{routeObj.name}</a>
+                                  <Link to={routeObj.route}>{routeObj.name}</Link>
                               </li>
                           )
                       })}

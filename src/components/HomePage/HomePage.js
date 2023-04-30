@@ -144,7 +144,7 @@ const HomePage = () => {
         <div className="homePage">
             {/* <h1 className='homePageCards'>Welcome to ShelfShare</h1> */}
             {/* Render out the booklList on the home page */}
-            <BookList bookList={books1} />
+            {/* <BookList bookList={books1} /> */}
             <BookList bookList={books2} />
         </div>
     )
