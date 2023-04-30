@@ -10,7 +10,7 @@ interface EventListeners {
  * @example
  * const eventListeners = {
  *   typingStatus: (typing) => {
- *     console.log(`User is typing: ${typing}`);
+ *     console.log(`The user is ${typing ? 'typing' : 'not typing'}`);
  *   }
  * };
  * userTypingStatusAdapter(eventListeners)
