@@ -86,22 +86,22 @@ const App = () => {
 
     return (
         <>
-            <div className="content">
-                <div className={!night ? "" : "night-mode-bg"}>
-                <SessionContext.Provider
-                    value={{sessionObject, setSessionObject}}
-                >
-                    <InputContext.Provider
-                        value={{
-                            inputs,
-                            handleInputChange: (inputName, inputValue) =>
-                                setInputs({ ...inputs, [inputName]: inputValue }),
+        <SessionContext.Provider
+            value={{sessionObject, setSessionObject}}
+        >
+            <InputContext.Provider
+                value={{
+                    inputs,
+                    handleInputChange: (inputName, inputValue) =>
+                        setInputs({ ...inputs, [inputName]: inputValue }),
 
-                            handleBulkInput: (inputObj) =>
-                                setInputs({ ...inputs, ...inputObj }),
-                        }}
-                    >
-                    <Header night={night} setNight={setNight} />
+                    handleBulkInput: (inputObj) =>
+                        setInputs({ ...inputs, ...inputObj }),
+                }}
+            >
+                <Header night={night} setNight={setNight} />
+                <div className="content">
+                    <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
                         <Routes>
                             <Route path="" element={<HomePage />} />
                             <Route path="/login" element={<Login />} />
@@ -117,11 +117,11 @@ const App = () => {
                                 element={<SingleBook item={testBook} />}
                             />
                         </Routes>
-                    
-                    </InputContext.Provider>
-                </SessionContext.Provider>
+                    </div>
                 </div>
-                <Footer />
+            </InputContext.Provider>
+        </SessionContext.Provider>
+        <Footer />
                 {/* <div> */}
                     {/* <div className="buttons">
                         <button
@@ -142,7 +142,6 @@ const App = () => {
                         </div>
                     )} */}
                 {/* </div> */}
-            </div>
         </>
     )
 }

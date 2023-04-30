@@ -121,7 +121,7 @@ const HomePage = () => {
     
     useEffect(() => {
         getAllBooksAdapter({
-            limit: 5,
+            limit: 4,
         }).then(result => {
             if(result) {
                 setBooks2(result.books)
@@ -131,7 +131,7 @@ const HomePage = () => {
 
     useEffect(() => {
         getAllBooksAdapter({
-            limit: 5,
+            limit: 4,
             sort: 'CreatedAt',
         }).then(result => {
             if(result) {

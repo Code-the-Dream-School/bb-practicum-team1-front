@@ -7,9 +7,10 @@
     box-shadow: inset 0 -3em 3em rgba(193, 205, 224, 0.1), 0 0 0 2px rgb(255, 255, 255),
     0.3em 0.3em 1em rgba(114, 147, 218, 0.3);
     padding: 10px;
+    padding-bottom: 50px;
     margin-top: 20px;
     margin-bottom: 0px;
-    height: fit-content;
+    height: 900px;
 }
 
 .createBookForm {
@@ -22,16 +23,16 @@
 }
 
 .h1-createBook {
-    color: $white;
+    color: $tertiaryColor;
     font-size: 2rem;
     text-align: center;
     padding: 10px;
-    background-color: $tertiaryColor;
+    padding-top: 20px;
 }
 
 .h1-createBook svg {
     width: 30px;
-    fill: $white;
+    fill: $tertiaryColor;
     margin-left: 15px;
     margin-right: 15px;
 }
@@ -46,7 +47,6 @@
 .dropdown-select, option {
     color: gray;
     text-align:left;
-    width: 250px;
     font-size: 1.2rem;
     padding: 12px 10px;
     margin: 8px 10px;
@@ -58,7 +58,6 @@
 
 .text-input {
     font-size: 1.2rem;
-    width: 250px;
     padding: 12px 10px;
     margin: 8px 10px;
     display: inline-block;
@@ -71,7 +70,6 @@
     height: 7rem;
     color: gray;
     text-align:left;
-    width: 80%;
     font-size: 1.2rem;
     padding: 12px 10px;
     margin: 8px 10px;
@@ -79,6 +77,11 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.text-input, .textarea-input, .text-input-label, .dropdown-select {
+    display: block;
+    width: 300px;
 }
 
 .upload-or-link-cover input {
@@ -247,14 +250,31 @@ input[type="file"] {
     width: 30px;
   }
 
+  .upload-or-link-cover input {
+    padding-left: 10px;
+  }
+
 @media (max-width: 768px) {
+    .container-create-form {
+        box-shadow: none;
+        min-width: 380px;
+        margin-bottom: 0px;
+        height: 1150px;
+        margin-right: 0px;
+        margin-top: 0px;
+    }
+
     .createBookForm {
-        width: fit-content;
-        grid-template-columns: repeat(1, 1fr);
+        width: 100vw;
+        display: inline;
     }
 
     .text-input-label {
         font-size: 1.2rem;
+    }
+
+    optgroup {
+        font-size: 10px;
     }
 
     .inputFields {
@@ -267,19 +287,27 @@ input[type="file"] {
     }
 
     .button {
-        width: 250px;
+        width: 300px;
         height: 30px;
+        margin-left: 10px;
     }
 
     .button button {
         margin-bottom: 70px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .textarea-input {
-        width: fit-content;
+        width: 300px;
     }
 
     .cover-toggle, .upload-or-link-cover input, .plus-sign, .url-field, .custom-file-upload {
-        width: 250px;
+        width: 300px;
     }
+
+    .cover-toggle, .custom-file-upload, .imageCover, .cover-upload {
+        margin-left: 10px;
+    }
+
 }
