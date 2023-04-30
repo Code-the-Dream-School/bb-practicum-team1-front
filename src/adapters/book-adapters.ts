@@ -8,12 +8,12 @@ type bookInput = {
     ageRange: string,
     publishingYear: number,
     status: string,
-    image?: Buffer,
     description: string,
     genre: string,
     author: string,
     worldcatURL?: string,
-    ISBN?: string
+    ISBN?: string,
+    imageLink?: string,
 }
 /**
  * This function will create a book with the provided information.
@@ -29,6 +29,7 @@ type bookInput = {
  * @param {String} bookInput.author - Book's author.
  * @param {String} bookInput.worldcatURL - URL for worldcat(optional).
  * @param {String} bookInput.ISBN - Book's ISBN(optional).
+ * @param {Buffer} bookInput.imageLink - Book's image link(optional).
  * @example
  * const bookInput = {
  *  title = "Pachinko",
@@ -40,6 +41,7 @@ type bookInput = {
  *  Published in 2017, Pachinko is an epic historical fiction novel following a Korean family who immigrates to Japan.",
  *  genre = "Historical Fiction",
  *  author = "Min Jin Lee"
+ *  imageLink = "https://tse1.mm.bing.net/th?id=OIP.NbfPECA64xbFnmW58MbWDQHaEo&pid=Api&P=0"
  * };
  * createBookAdapter(bookInput)
  * @returns {Promise<Object>} A promise that resolves book's creation information.
@@ -209,6 +211,7 @@ export const deleteBookAdapter = async(bookId:string)=>{
     return data
 }
 
+// update book adapter
 type bookParams = {
     id: string,
     title?: string,
@@ -221,6 +224,7 @@ type bookParams = {
     author?: string,
     worldcatURL?: string,
     ISBN?: string,
+    imageLink?: string,
 }
 
 /**
@@ -237,6 +241,7 @@ type bookParams = {
  * @param {String} bookParams.author - Book's author.
  * @param {String} bookInput.worldcatURL - URL for worldcat(optional).
  * @param {String} bookInput.ISBN - Book's ISBN(optional).
+ * @param {String} bookInput.imageLink - Book's image link(optional).
  * @example
  * const bookParams = {
  *  id = "642269e6f562cad511ed0a75",
@@ -251,6 +256,7 @@ type bookParams = {
  *  author = "Min Jin Lee",
  *  worldcatURL = "https://www.worldcat.org/title/1015968617",
  *  ISBN = "9781455563920"
+ *  imageLink = "https://tse1.mm.bing.net/th?id=OIP.NbfPECA64xbFnmW58MbWDQHaEo&pid=Api&P=0"
  * };
  * updateBookAdapter(bookParams)
  * @returns {Promise<Object>} - A promise that resolves updating book information.
