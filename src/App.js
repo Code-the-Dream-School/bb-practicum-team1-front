@@ -1,33 +1,17 @@
 import React, { useState, useEffect, createContext } from 'react'
-
-// 3rd-party dependencies
 import { Routes, Route } from 'react-router-dom'
-
-// utility functions
 import { getAllData } from './util/index'
-import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
-import { setCookie, getCookie, deleteCookie } from './util/Authentication'
-
-// UI Components
-import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
-
-// Page components
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 import HomePage from './components/HomePage/HomePage'
 import { Login } from './components/LoginPage/LoginPage'
 import { SignUp } from './components/SignupPage/SignUp'
-import LoginPage from './components/LoginPage/LoginPage'
 import CreateBook from './components/CreateBook/CreateBook'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-
+import { setCookie, getCookie, deleteCookie } from './util/Authentication'
 import './sass/app.scss'
-import About from './components/About/About'
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-import BookItem from './components/BookItem/BookItem'
-import SingleBook from './components/SingleBook/SingleBook'
 import SearchPage from './components/SearchPage/SearchPage'
 import { PagePagination } from './components/PagePagination/Pagination'
-
 export const InputContext = createContext({})
 
 //This is for testing//
@@ -78,6 +62,15 @@ const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
 
+    /* EXAMPLE: DropdownInput selection options
+  
+  const options = [
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' },
+  ]
+  */
+
     useEffect(() => {
         ;(async () => {
             const myData = await getAllData(URL)
@@ -98,49 +91,28 @@ const App = () => {
                     handleInputChange: (inputName, inputValue) =>
                         setInputs({ ...inputs, [inputName]: inputValue }),
 
-                        handleBulkInput: (inputObj) =>
-                            setInputs({ ...inputs, ...inputObj }),
-                    }}
-                >
-                <Header night={night} setNight={setNight} />
-                <div className="content">
-                    <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
-                        <Routes>
-                            <Route path="" element={<HomePage />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/books/create" element={<CreateBook />} />
-                            <Route path="/books/edit/:bookId" element={<CreateBook />} />
-                            <Route path="/books/:bookId" element={<SingleBook />} />
-                        </Routes>
-                    </div>
-                    </div>
-                </div>
-                </InputContext.Provider>
-            </SessionContext.Provider>
-                <Footer />
-                {/* <div> */}
-                    {/* <div className="buttons">
-                        <button
-                            className="btn get-quote"
-                            onClick={getRandomQuote}
-                        >
-                            Loading Spinner Quote Button (click here)
-                        </button>
-                    </div> */}
-                    {/* {loading ? (
-                        <LoadingSpinner />
-                    ) : (
-                        <div className="quote-section">
-                            <blockquote className="quote">
-                                {quote.content}
-                            </blockquote>{' '}
-                            <span className="author">{quote.author}</span>
-                        </div>
-                    )} */}
-                {/* </div> */}
-            
+                    handleBulkInput: (inputObj) =>
+                        setInputs({ ...inputs, ...inputObj }),
+                }}
+            >
+                    <Routes>
+                        <Route
+                            exact
+                            path="/"
+                            element={<HomePage />}
+                        />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/search" element={< SearchPage inputs={inputs}/> } />
+
+                    <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/createBook" element={<CreateBook />} />
+                    <Route
+                        path="/pagination"
+                        element={<PagePagination books={bigBookArray} />}
+                    />
+                </Routes>
+            </InputContext.Provider>
+            <Footer />
         </>
     )
 }
