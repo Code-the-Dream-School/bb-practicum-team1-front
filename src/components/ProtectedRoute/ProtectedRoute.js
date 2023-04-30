@@ -17,7 +17,10 @@ const ProtectedRoute = ({ children, requiredAuthLevel = 'user' }) => {
     }
 
     if (requiredAuthLevel === 'anonymous') {
-        return <Navigate to="/" />
+        if (userAuthenticated) {
+            return <Navigate to="/" />
+        }
+        return children
     }
 }
 
