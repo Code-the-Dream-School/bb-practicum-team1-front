@@ -99,7 +99,7 @@ const App = () => {
                 >
                 <Header night={night} setNight={setNight} />
                 <div className="content">
-                    <div className={!night ? "" : "night-mode-bg"}>
+                    <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
                         <Routes>
                             <Route path="" element={<HomePage />} />
                             <Route path="/login" element={<Login />} />
@@ -107,7 +107,7 @@ const App = () => {
                             <Route path="/about" element={<About />} />
                             <Route path="/books/create" element={<CreateBook />} />
                             <Route path="/books/edit/:bookId" element={<CreateBook />} />
-                            <Route path="/books/:bookId" element={<SingleBook/>} />
+                            <Route path="/books/:bookId" element={<SingleBook />} />
                         </Routes>
                     </div>
                 </div>
