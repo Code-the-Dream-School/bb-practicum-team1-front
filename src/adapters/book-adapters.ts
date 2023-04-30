@@ -29,7 +29,7 @@ type bookInput = {
  * @param {String} bookInput.author - Book's author.
  * @param {String} bookInput.worldcatURL - URL for worldcat(optional).
  * @param {String} bookInput.ISBN - Book's ISBN(optional).
- * @param {Buffer} bookInput.imageLink - Book's image link(optional).
+ * @param {String} bookInput.imageLink - Book's image link(optional).
  * @example
  * const bookInput = {
  *  title = "Pachinko",
