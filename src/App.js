@@ -6,7 +6,12 @@ import { Routes, Route } from 'react-router-dom'
 // utility functions
 import { getAllData } from './util/index'
 import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
-import { setCookie, getCookie, deleteCookie } from './util/Authentication'
+import {
+    setCookie,
+    getCookie,
+    deleteCookie,
+    cookieName,
+} from './util/Authentication'
 
 // UI Components
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
@@ -41,7 +46,7 @@ const testBook = {
 
 export const InputContext = createContext({})
 export const SessionContext = createContext({
-    sessionObject: {},
+    sessionObject: null,
     setSessionObect: () => {},
 })
 
@@ -55,7 +60,7 @@ const URL = 'http://localhost:8000/api/v1/'
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
-    const [sessionObject, setSessionObject] = useState(getCookie())
+    const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
     const [loading, setLoading] = useState(false)
     const [night, setNight] = useState(false)
 
@@ -87,7 +92,11 @@ const App = () => {
                                     path="/login"
                                     element={
                                         <ProtectedRoute requiredAuthLevel="anonymous">
-                                            <Login />
+                                            <Login
+                                                setSessionObject={
+                                                    setSessionObject
+                                                }
+                                            />
                                         </ProtectedRoute>
                                     }
                                 />

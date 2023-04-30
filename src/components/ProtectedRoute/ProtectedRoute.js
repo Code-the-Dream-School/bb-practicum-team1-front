@@ -5,19 +5,17 @@ import { SessionContext /* <-- this is createContet()*/ } from '../../App'
 const ProtectedRoute = ({ children, requiredAuthLevel = 'user' }) => {
     // Placeholder to actually check if user is authenticated
     const [userAuthenticated, setUserAuthenticated] = useState(false)
-    const sessionCtx = useContext(SessionContext)
-
-    console.log(sessionCtx.sessionObject)
-
+    const { sessionObject } = useContext(SessionContext)
+    console.log('log', sessionObject)
     if (requiredAuthLevel === 'user') {
-        if (!userAuthenticated) {
+        if (!sessionObject) {
             return <Navigate to="/login" />
         }
         return children
     }
 
     if (requiredAuthLevel === 'anonymous') {
-        if (userAuthenticated) {
+        if (sessionObject) {
             return <Navigate to="/" />
         }
         return children
