@@ -100,17 +100,20 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
             ))    
     };
 
-    useEffect(async () => {
+    const getSingleBook = async () => {
         if (routeParams.bookId) {
             const newBook = await getSingleBookAdapter(routeParams.bookId);
             setBookInformation(newBook);
         }
+    }
+
+    useEffect(() => {
+        getSingleBook()
     }, [routeParams.bookId]);
 
-    useEffect(async () => {
+    useEffect(() => {
         handleBulkInput(bookInformation);
     }, []);
-    // bookInformation - as a dependency array..?
 
     console.log('url is: ', selectedURL)
     return (

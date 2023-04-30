@@ -4,8 +4,9 @@ var remove = '\u2718';
 var plus = '+';
 
 const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelectedURL, urlButton, setUrlButton }) => {
-    // const handleURLToggle = () => {
-    //     setUrlButton(!urlButton)
+    const handleURLToggle = (event) => {
+        event.preventDefault();
+        setUrlButton(!urlButton)
         // return (
         //     <>
         //         <TextInput 
@@ -19,7 +20,7 @@ const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelected
         //         />
         //     </>
         // )
-    // }
+    }
 
     return (
         <div className='upload-or-link-cover'>
@@ -81,7 +82,7 @@ const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelected
                                 </div>
                     }
                 </div>
-            <button className='cover-toggle' onClick={() => setUrlButton(!urlButton)}>{urlButton ? 'Upload Cover Image Instead' : 'Provide URL instead'}</button>
+            <button className='cover-toggle' onClick={handleURLToggle}>{urlButton ? 'Upload Cover Image Instead' : 'Provide URL instead'}</button>
         </div>
     )
 }
