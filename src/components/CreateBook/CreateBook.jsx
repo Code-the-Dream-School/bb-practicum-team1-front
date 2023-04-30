@@ -60,7 +60,7 @@ const optionsGenre = [
 const CreateBook = ({ bookId }) => {
 
     const routeParams = useParams();
-    console.log(routeParams)
+    // console.log(routeParams)
 
     const { inputs, handleBulkInput } = useContext(InputContext);
 
@@ -69,8 +69,6 @@ const CreateBook = ({ bookId }) => {
 
     const [selectedImage, setSelectedImage] = useState(null);
 
-
-    // imageURL: inputs.imageURL or imageURL: imageURL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     const handleFormSubmit = (event) => {
         event.preventDefault();
         
@@ -88,8 +86,8 @@ const CreateBook = ({ bookId }) => {
                     author: inputs.author, 
                     worldcatURL: inputs.worldcatURL, 
                     ISBN: inputs.ISBN, 
-                    imageURL: inputs.imageURL
-                }                   
+                },
+                selectedImage              
             )) : (createBookAdapter(
                 {
                     title: inputs.title, 
@@ -100,8 +98,8 @@ const CreateBook = ({ bookId }) => {
                     description: inputs.description, 
                     genre: inputs.genre, 
                     author: inputs.author,
-                    image: inputs.selectedImage
-                }
+                },
+                selectedImage
             ))    
     };
 

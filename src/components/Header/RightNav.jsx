@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { forLoggedInUser, forSignedOutUser } from '../../constants'
+import { Link } from 'react-router-dom'
 import { SessionContext /* <-- this is createContet()*/ } from '../../App'
 import { logoutAdapter } from '../../adapters/auth-adapters'
 
@@ -13,14 +14,18 @@ const RightNav = ({ open }) => {
                     ? forLoggedInUser.map(function (routeObj) {
                           return (
                               <li key={routeObj.route} className="button-17">
-                                  <a href={routeObj.route}>{routeObj.name}</a>
+                                  <Link to={routeObj.route}>
+                                      {routeObj.name}
+                                  </Link>
                               </li>
                           )
                       })
                     : forSignedOutUser.map(function (routeObj) {
                           return (
                               <li key={routeObj.route} className="button-17">
-                                  <a href={routeObj.route}>{routeObj.name}</a>
+                                  <Link to={routeObj.route}>
+                                      {routeObj.name}
+                                  </Link>
                               </li>
                           )
                       })}

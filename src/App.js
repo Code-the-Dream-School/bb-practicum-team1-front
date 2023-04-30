@@ -66,84 +66,56 @@ const App = () => {
 
     return (
         <>
-            <div className="content">
-                <div className={!night ? '' : 'night-mode-bg'}>
-                    <SessionContext.Provider
-                        value={{ sessionObject, setSessionObject }}
-                    >
-                        <InputContext.Provider
-                            value={{
-                                inputs,
-                                handleInputChange: (inputName, inputValue) =>
-                                    setInputs({
-                                        ...inputs,
-                                        [inputName]: inputValue,
-                                    }),
+            <SessionContext.Provider
+                value={{ sessionObject, setSessionObject }}
+            >
+                <InputContext.Provider
+                    value={{
+                        inputs,
+                        handleInputChange: (inputName, inputValue) =>
+                            setInputs({ ...inputs, [inputName]: inputValue }),
 
-                                handleBulkInput: (inputObj) =>
-                                    setInputs({ ...inputs, ...inputObj }),
-                            }}
+                        handleBulkInput: (inputObj) =>
+                            setInputs({ ...inputs, ...inputObj }),
+                    }}
+                >
+                    <Header night={night} setNight={setNight} />
+                    <div className="content">
+                        <div
+                            className={!night ? 'day-mode-bg' : 'night-mode-bg'}
                         >
-                            <Header night={night} setNight={setNight} />
                             <Routes>
                                 <Route path="" element={<HomePage />} />
-
-                                <Route
-                                    path="/login"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="anonymous">
-                                            <Login
-                                                setSessionObject={
-                                                    setSessionObject
-                                                }
-                                            />
-                                        </ProtectedRoute>
-                                    }
-                                />
+                                <Route path="/login" element={<Login />} />
                                 <Route
                                     path="/sign-up"
                                     element={
-                                        <ProtectedRoute requiredAuthLevel="anonymous">
-                                            <SignUp
-                                                setSessionObject={
-                                                    setSessionObject
-                                                }
-                                            />
-                                        </ProtectedRoute>
+                                        <SignUp
+                                            setSessionObject={setSessionObject}
+                                        />
                                     }
                                 />
                                 <Route path="/about" element={<About />} />
                                 <Route
                                     path="/books/create"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="user">
-                                            <CreateBook />
-                                        </ProtectedRoute>
-                                    }
+                                    element={<CreateBook />}
                                 />
                                 <Route
                                     path="/books/edit/:bookId"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="user">
-                                            <CreateBook />
-                                        </ProtectedRoute>
-                                    }
+                                    element={<CreateBook />}
                                 />
                                 <Route
                                     path="/books/:bookId"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="user">
-                                            <SingleBook item={testBook} />
-                                        </ProtectedRoute>
-                                    }
+                                    element={<SingleBook />}
                                 />
                             </Routes>
-                        </InputContext.Provider>
-                    </SessionContext.Provider>
-                </div>
-                <Footer />
-                {/* <div> */}
-                {/* <div className="buttons">
+                        </div>
+                    </div>
+                </InputContext.Provider>
+            </SessionContext.Provider>
+            <Footer />
+            {/* <div> */}
+            {/* <div className="buttons">
                         <button
                             className="btn get-quote"
                             onClick={getRandomQuote}
@@ -151,7 +123,7 @@ const App = () => {
                             Loading Spinner Quote Button (click here)
                         </button>
                     </div> */}
-                {/* {loading ? (
+            {/* {loading ? (
                         <LoadingSpinner />
                     ) : (
                         <div className="quote-section">
@@ -161,8 +133,7 @@ const App = () => {
                             <span className="author">{quote.author}</span>
                         </div>
                     )} */}
-                {/* </div> */}
-            </div>
+            {/* </div> */}
         </>
     )
 }
