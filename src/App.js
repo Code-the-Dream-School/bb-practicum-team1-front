@@ -40,9 +40,17 @@ const testBook = {
 }
 
 export const InputContext = createContext({})
-export const SessionContext = createContext({})
+export const SessionContext = createContext({
+    sessionObject: {},
+    setSessionObect: () => {},
+})
 
 const URL = 'http://localhost:8000/api/v1/'
+
+/**
+ *  level 1 - some kinda of state - dark/light mode   Provider (parent)
+ *  level 6 dark/light mode (useContext)
+ */
 
 const App = () => {
     const [message, setMessage] = useState('')
@@ -73,14 +81,7 @@ const App = () => {
                         >
                             <Header night={night} setNight={setNight} />
                             <Routes>
-                                <Route
-                                    path=""
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="anonymous">
-                                            <HomePage />
-                                        </ProtectedRoute>
-                                    }
-                                />
+                                <Route path="" element={<HomePage />} />
 
                                 <Route
                                     path="/login"
@@ -102,14 +103,7 @@ const App = () => {
                                         </ProtectedRoute>
                                     }
                                 />
-                                <Route
-                                    path="/about"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="anonymous">
-                                            <About />
-                                        </ProtectedRoute>
-                                    }
-                                />
+                                <Route path="/about" element={<About />} />
                                 <Route
                                     path="/books/create"
                                     element={

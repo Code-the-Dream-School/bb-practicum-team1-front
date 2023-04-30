@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react'
+import { Navigate } from 'react-router-dom'
+import { SessionContext /* <-- this is createContet()*/ } from '../../App'
 
 const ProtectedRoute = ({ children, requiredAuthLevel = 'user' }) => {
     // Placeholder to actually check if user is authenticated
-    const [userAuthenticated, setUserAuthenticated] = useState(false);
+    const [userAuthenticated, setUserAuthenticated] = useState(false)
+    const sessionCtx = useContext(SessionContext)
 
-    if (requiredAuthLevel === "user") {
+    console.log(sessionCtx.sessionObject)
+
+    if (requiredAuthLevel === 'user') {
         if (!userAuthenticated) {
-            return <Navigate to="/login" />;
+            return <Navigate to="/login" />
         }
-        return children;
-    };
+        return children
+    }
 
-    if (requiredAuthLevel === "anonymous") {
-        return <Navigate to="/" />;
-    };
-};
+    if (requiredAuthLevel === 'anonymous') {
+        return <Navigate to="/" />
+    }
+}
 
-export default ProtectedRoute;
+export default ProtectedRoute
