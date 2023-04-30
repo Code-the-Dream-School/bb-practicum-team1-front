@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { InputContext } from '../../App'
 import './inputStyles.css'
 
-export default function DropdownInput({ label, id, options }) {
+export default function DropdownInput({ label, id, options, isRequiredSelect }) {
     const { inputs, handleInputChange } = useContext(InputContext)
 
     return (
@@ -17,6 +17,7 @@ export default function DropdownInput({ label, id, options }) {
                 onChange={(e) =>
                     handleInputChange(e.target.name, e.target.value)
                 }
+                required={isRequiredSelect}
             >
                 <option value="" disabled>
                     Select your option
