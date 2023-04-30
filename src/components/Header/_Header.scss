@@ -165,7 +165,11 @@
     }
 
     .lineTop, .lineBottom {
-        background-color: $black;
+        background-color: cadetblue;
+    }
+
+    .nigt-mode-header .lineTop, .nigt-mode-header .lineBottom {
+        background-color: $secondaryColor;
     }
 
     .logo-pic img {

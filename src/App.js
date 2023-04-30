@@ -29,22 +29,20 @@ const App = () => {
 
     return (
         <>
-            <div className="content">
-                <div className={!night ? "" : "night-mode-bg"}>
-                <SessionContext.Provider
-                    value={{sessionObject, setSessionObject}}
-                >
-                    <InputContext.Provider
-                        value={{
-                            inputs,
-                            handleInputChange: (inputName, inputValue) =>
-                                setInputs({ ...inputs, [inputName]: inputValue }),
+            <SessionContext.Provider value={{sessionObject, setSessionObject}}>
+                <InputContext.Provider
+                    value={{
+                        inputs,
+                        handleInputChange: (inputName, inputValue) =>
+                            setInputs({ ...inputs, [inputName]: inputValue }),
 
-                            handleBulkInput: (inputObj) =>
-                                setInputs({ ...inputs, ...inputObj }),
-                        }}
-                    >
-                    <Header night={night} setNight={setNight} />
+                        handleBulkInput: (inputObj) =>
+                            setInputs({ ...inputs, ...inputObj }),
+                    }}
+                >
+                <Header night={night} setNight={setNight} />
+                <div className="content">
+                    <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
                         <Routes>
                             <Route path="" element={<HomePage />} />
                             <Route path="/login" element={<Login />} />
@@ -52,21 +50,14 @@ const App = () => {
                             <Route path="/about" element={<About />} />
                             <Route path="/books/create" element={<CreateBook />} />
                             <Route path="/search" element={<SearchPage/>} />
-                            <Route
-                                path="/books/edit/:bookId"
-                                element={<CreateBook />}
-                            />
-                            //Probably SingleBook element should use adapter to get a book with specific id from backend
-                            {/* <Route
-                                path="/books/:bookId"
-                                element={<SingleBook item={testBook} />} />*/}
+                            <Route path="/books/edit/:bookId" element={<CreateBook />} />
+                            <Route path="/books/:bookId" element={<SingleBook />} />
                         </Routes>
-                    
-                    </InputContext.Provider>
-                </SessionContext.Provider>
+                    </div>
                 </div>
-                <Footer />
-            </div>
+                </InputContext.Provider>
+            </SessionContext.Provider>
+            <Footer />
         </>
     )
 }

@@ -121,7 +121,7 @@ const HomePage = () => {
     
     useEffect(() => {
         getAllBooksAdapter({
-            limit: 5,
+            limit: 4,
         }).then(result => {
             if(result) {
                 setBooks2(result.books)
@@ -131,7 +131,7 @@ const HomePage = () => {
 
     useEffect(() => {
         getAllBooksAdapter({
-            limit: 5,
+            limit: 4,
             sort: 'CreatedAt',
         }).then(result => {
             if(result) {
@@ -144,7 +144,7 @@ const HomePage = () => {
         <div className="homePage">
             {/* <h1 className='homePageCards'>Welcome to ShelfShare</h1> */}
             {/* Render out the booklList on the home page */}
-            <BookList bookList={books1} />
+            {/* <BookList bookList={books1} /> */}
             <BookList bookList={books2} />
         </div>
     )
