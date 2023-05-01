@@ -1,25 +1,13 @@
 import React, {useState} from "react";
 import ReactPaginate from 'react-paginate'
 import './Pagination.scss'
+import BookList from "../BookList/BookList";
 
-export const PagePagination = ({books = []}) => {
+export const PagePagination = ({books = [], booksPerPage = 10}) => {
     const [pageNumber, setPageNumber] = useState(0);
-
-    const booksPerPage = 10;
     const pagesVisited = pageNumber * booksPerPage;
-
     const displayBooks = books
-    .slice(pagesVisited, pagesVisited + booksPerPage)
-    .map((book) => {
-        return(
-            <li className="book" key={book.id}>
-                <div>{book.title}</div>
-                <div>{book.author}</div>
-                <div>{book.description}</div>
-                <div>{book.genre}</div>
-            </li>
-        )
-    });
+    .slice(pagesVisited, pagesVisited + booksPerPage);
 
     const pageCount = Math.ceil(books.length / booksPerPage);
 
@@ -29,7 +17,7 @@ export const PagePagination = ({books = []}) => {
 
     return(
         <div className="Pagination">
-            {displayBooks}
+            <BookList bookList={displayBooks}/>
             <ReactPaginate
             previousLabel={"Previous"}
             nextLabel={"Next"}

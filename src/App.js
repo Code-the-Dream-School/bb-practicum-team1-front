@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, createContext } from 'react'
 
 // 3rd-party dependencies
 import { Routes, Route } from 'react-router-dom'
@@ -15,23 +15,24 @@ import {
 
 // UI Components
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
-
 // Page components
 import HomePage from './components/HomePage/HomePage'
 import { Login } from './components/LoginPage/LoginPage'
 import { SignUp } from './components/SignupPage/SignUp'
-import LoginPage from './components/LoginPage/LoginPage'
 import CreateBook from './components/CreateBook/CreateBook'
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import SingleBook from './components/SingleBook/SingleBook'
 
 import './sass/app.scss'
+import SearchPage from './components/SearchPage/SearchPage'
 import About from './components/About/About'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
+
 import BookItem from './components/BookItem/BookItem'
 import SingleBook from './components/SingleBook/SingleBook'
 // import SearchPage from './components/SearchPage/SearchPage'
 import { PagePagination } from './components/PagePagination/Pagination'
+
 
 
 export const InputContext = createContext({})
@@ -90,12 +91,12 @@ const URL = 'http://localhost:8000/api/v1/'
  */
 
 const App = () => {
-    const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
+    const [sessionObject, setSessionObject] = useState(getCookie());
+    const [night, setNight] = useState(false);
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
     const [loading, setLoading] = useState(false)
     // const [quote, setQuote] = useState({})
-    const [night, setNight] = useState(false);
     const [urlButton, setUrlButton] = useState(false);
 
     // useEffect(() => {
@@ -130,6 +131,7 @@ const App = () => {
                                 <Route path="/login" element={<Login />} />
                                 <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
                                 <Route path="/about" element={<About />} />
+                                <Route path="/search" element={<SearchPage/>} />
                                 <Route 
                                     path="/books/create" 
                                     element={<CreateBook 

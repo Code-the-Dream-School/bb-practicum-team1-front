@@ -10,15 +10,14 @@ import { InputContext } from "../../App";
 // When the timer reaches zero, onDebounce should be called.
 
 const DebouncedSearch = ({ id, handleDebounce, label, placeholder }) => {
-    const { inputs, handleInputChange } = useContext(InputContext); 
-    
-    const debounceSearch = useCallback(_.debounce(query => handleDebounce(query), 500), []);
+    const inputs = useContext(InputContext); 
 
+    const debounceSearch = useCallback(_.debounce(query => handleDebounce(query), 500), []);
     useEffect(() => {
         // cancel any previous debounce action
         debounceSearch.cancel();
-        debounceSearch(inputs[id]);
-    }, [inputs[id], debounceSearch]);
+        debounceSearch(inputs);
+    }, [inputs, debounceSearch]);    
 
     return (
         <>    

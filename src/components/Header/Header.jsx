@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 // Header should always display even when scrolling and should be visible on every page.
 
 const Header = ({ night, setNight }) => {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
     return (
         <div className={night ? 'nav' : 'nigt-mode-header'}>
             <div className="nav-container">
