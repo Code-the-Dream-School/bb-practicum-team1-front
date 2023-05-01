@@ -1,18 +1,18 @@
 
-import { baseURL } from "../util/fetch";
 import {io , Socket} from 'socket.io-client'
+const socketURL = window.location.hostname === 'localhost'? 'ws://localhost:8000/api/v1/': 'wss://shelf-share.onrender.com/api/v1/'
 
 //New message adapter
 
-//By using interFace we are defining a structure for our object, here EventListener is an object with single optional message property, which return nothing.
+//By using interface we are defining a structure for our object, here EventListener is an object with single optional message property, which return nothing.
 interface EventListeners {
   newMessage?: (message: any) => void;
   partnerUsers?: (activeUsers: any) => void;
 }
 /** 
-*@param {EventListeners} eventListeners - The server URL to be connected with.
+*@param {EventListeners} eventListeners - An object with optional properties that will be called when certain event occurs.
 *@example
-*const url = `${baseURL}`
+*const url = `${socketURL}`
 *const eventListeners{
 *   newMessage : message => 
 *   console.log(`New message recieved ${message}`)
@@ -22,7 +22,7 @@ interface EventListeners {
 export const newMessageAdapter = async(eventListeners: EventListeners) => {
     
     //creates a new instance of the Socket.IO client that is connected to the server
-    const socket = io(baseURL);
+    const socket: Socket = io(socketURL);
 
     socket.on('newMessage', message =>{
 
@@ -40,9 +40,9 @@ export const newMessageAdapter = async(eventListeners: EventListeners) => {
 // Partner users adapter
 
 /** 
-*@param {EventListeners} eventListeners - The server URL to be connected with.
+*@param {EventListeners} eventListeners - An object with optional properties that will be called when certain event occurs.
 *@example
-*const url = `${baseURL}`
+*const url = `${socketURL}`
 *const eventListeners{
 *   partnerUsers : activeUsers => 
 *   console.log(`New user connected ${activeUsers}`)
@@ -52,7 +52,7 @@ export const newMessageAdapter = async(eventListeners: EventListeners) => {
 export const partnerUsersAdapter = async(eventListeners: EventListeners) => {
     
     //creates a new instance of the Socket.IO client that is connected to the server
-    const socket = io(baseURL);
+    const socket: Socket = io(socketURL);
 
     socket.on('partnerUsers', activeUsers =>{
 
