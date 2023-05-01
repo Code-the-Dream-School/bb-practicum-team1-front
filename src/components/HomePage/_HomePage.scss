@@ -1,12 +1,45 @@
+.homePage {
+    min-height: 100%;
+    padding-top: 10px;
+}
+
+.book-list-1, .book-list-2 {
+    padding-left: 20px;
+}
+
+.book-list-2 {
+    padding-bottom: 50px;
+}
+
+.h2-home-page {
+    color: $tertiaryColor;
+    font-size: 2rem;
+    font-weight: $fontBold;
+}
+
+.h1-homePageCards {
+    color: $tertiaryColor;
+    font-size: 4rem;
+    text-align: center;
+    padding: 5px;
+    font-weight: $fontBold;
+}
+
 @media (max-width: 768px) {
-    .homePageCards {
+    .h1-homePageCards {
+        font-size: 2rem;
+        background-color: green;
+    }
+
+    .h2-home-page {
+        font-size: 1rem;
+        padding-top: 10px;
+    }
+
+    .h1-homePageCards {
         width: 100%;
-        height: 100%;
-        background-color: red;
-        position: relative;
     }
     #body, #header {
         left: 0; right: 0;
     }
 }
-
