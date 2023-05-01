@@ -9,6 +9,7 @@ const AllConversations = () => {
     const [allConversations, setAllConversations] = useState({});
     const [loading, setLoading] = useState(false);
 
+    //Load all conversations where current user participated
     useEffect(() => {
         setLoading(true);
         getAllConversationAdapter().then(response => {

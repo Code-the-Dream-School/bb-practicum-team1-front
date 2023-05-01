@@ -36,9 +36,12 @@ const Chat = () => {
             msg.messageContent = currentMessageText;
             msg.receivedByUser = selectedRecipientId;
             setLoading(true);
+            //Send message to backend
             createMessageAdapter(msg).then(response => {
                 setLoading(false);
                 if (response) {
+                    //If we received response from backend it means that message was persisted to database
+                    //now we can add it to conversation without sending request to server 
                     let msgs = selectedRecipientConversations;
                     msgs.push(response.message);
                     setSelectedRecipientConversations(msgs);
@@ -49,13 +52,13 @@ const Chat = () => {
     }
 
     return (
-        <>
+        <div className='chat-page'>
             {selectedRecipientId ? 
-            <>
+            <div className='chat-page-input'>
                 {selectedRecipientConversations && selectedRecipientConversations.length > 0 ? 
                 <div id={`selectedConversation${selectedRecipientId}`} key={`selectedConversation${selectedRecipientId}`}>
                     {selectedRecipientConversations.map(item => 
-                        <div id={`message${item._id}`} key={`message${item._id}`}>
+                        <div className='chat-page-message' id={`message${item._id}`} key={`message${item._id}`}>
                             <p style={{color: 'black'}}>{item.postedByUser}</p>
                             <p style={{color: 'black'}}>{item.messageContent}</p>
                         </div>)
@@ -63,12 +66,18 @@ const Chat = () => {
                 </div> :
                 null
                 }
-                <input type='text' placeholder='Type message' onChange={messageTextChanged} value={currentMessageText}/> <input type='button' onClick={createMessage} value='Send'></input>
-            </> :
+                <input 
+                    type='text' 
+                    placeholder='Type message' 
+                    onChange={messageTextChanged} 
+                    value={currentMessageText}
+                /> 
+                <button type='submit' onClick={createMessage}>Send</button>
+            </div> :
             null
             }
             {loading ? <LoadingSpinner/> : null}
-        </>
+        </div>
     );
 }
 

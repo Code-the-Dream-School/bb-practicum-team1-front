@@ -1,0 +1,30 @@
+.chat-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+
+.chat-page-input {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 1rem;
+}
+
+.chat-page-input input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1.4rem;
+}
+
+.chat-page-message {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 1rem;
+}
+
