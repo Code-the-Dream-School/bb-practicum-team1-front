@@ -6,7 +6,7 @@ import { Routes, Route } from 'react-router-dom'
 // utility functions
 import { getAllData } from './util/index'
 import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
-import { setCookie, getCookie, deleteCookie } from './util/Authentication'
+import { setCookie, getCookie, deleteCookie, cookieName } from './util/Authentication'
 
 // UI Components
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
@@ -25,6 +25,8 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import BookItem from './components/BookItem/BookItem'
 import SingleBook from './components/SingleBook/SingleBook'
+import Chat from './components/Chat/Chat'
+import AllConversations from './components/Chat/AllConversations'
 
 const testBook = {
     title: 'Cinderella',
@@ -47,7 +49,7 @@ const URL = 'http://localhost:8000/api/v1/'
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
-    const [sessionObject, setSessionObject] = useState(getCookie());
+    const [sessionObject, setSessionObject] = useState(getCookie(cookieName));
     const [loading, setLoading] = useState(false)
     // const [quote, setQuote] = useState({})
     const [night, setNight] = useState(false);
@@ -102,12 +104,14 @@ const App = () => {
                     <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
                         <Routes>
                             <Route path="" element={<HomePage />} />
-                            <Route path="/login" element={<Login />} />
+                            <Route path="/login" element={<Login setSessionObject={setSessionObject} />} />
                             <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/books/create" element={<CreateBook />} />
                             <Route path="/books/edit/:bookId" element={<CreateBook />} />
                             <Route path="/books/:bookId" element={<SingleBook />} />
+                            <Route path="/chat/:recipientId" element={<Chat/>} />
+                            <Route path="/chat/" element={<AllConversations/>} />
                         </Routes>
                     </div>
                 </div>

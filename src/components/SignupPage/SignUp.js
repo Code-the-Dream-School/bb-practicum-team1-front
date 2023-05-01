@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextInput from '../inputs/TextInput';
 import { signUpAdapter } from '../../adapters/auth-adapters';
-import { getCookie } from '../../util/Authentication';
+import { getCookie, cookieName, deleteCookie } from '../../util/Authentication';
 import { Link } from 'react-router-dom';
 import AddressSearch from '../AddressSearch/AddressSearch';
 
@@ -47,7 +47,7 @@ export function SignUp({ setSessionObject } ) {
         data.username = formProps.userName;
         data.dateOfBirth = formProps.dateOfBirth;
         data.familyName = formProps.signUpLastName;
-        data.address = formProps.address;
+        data.address = 'Some address';
         data.role = 'user';
         data.confirmPass = formProps.signUpConfirmPassword;
 
@@ -81,15 +81,19 @@ export function SignUp({ setSessionObject } ) {
         signUpAdapter(data).then(result => {
             if (result) {
                 setErrorMsg('');
-                setSessionObject(getCookie());
+                setSessionObject(getCookie(cookieName));
                 setErrorMessage('Congrats! You Signed Up!');
                 return console.log('Congrats! You Signed Up!')                
             }  else {
+                deleteCookie(cookieName);
+                setSessionObject({})
                 setErrorMessage('');
                 setState(true);
                 // return <p className='error-message'>Congratulations! You Signed Up</p> 
             } 
         }).catch(e => {
+            deleteCookie(cookieName);
+            setSessionObject({})
             console.log(e);
             setErrorMsg(JSON.parse(e.message).msg) 
         });
