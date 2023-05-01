@@ -1,24 +1,38 @@
+.container-create-form {
+    width: 80%;
+    min-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    box-shadow: inset 0 -3em 3em rgba(193, 205, 224, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(114, 147, 218, 0.3);
+    padding: 10px;
+    padding-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    height: 900px;
+}
+
 .createBookForm {
-    margin-left: 2rem;
     display: grid;
-    height: 80vh;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    grid-column-gap: 10px;
+    grid-column-gap: 0px;
     grid-row-gap: 10px;
+    padding-left: 70px;
 }
 
 .h1-createBook {
-    color: $white;
+    color: $tertiaryColor;
     font-size: 2rem;
     text-align: center;
     padding: 10px;
-    background-color: $tertiaryColor;
+    padding-top: 20px;
 }
 
 .h1-createBook svg {
     width: 30px;
-    fill: $white;
+    fill: $tertiaryColor;
     margin-left: 15px;
     margin-right: 15px;
 }
@@ -31,54 +45,80 @@
 }
 
 .dropdown-select, option {
-    color: #393F3F;
-    font-family: cursive;
+    color: gray;
     text-align:left;
-    width: 250px;
-    border: 2px solid #393F3F;
+    font-size: 1.2rem;
+    padding: 12px 10px;
+    margin: 8px 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .text-input {
     font-size: 1.2rem;
-    width: 250px;
-    margin-top: 15px;
+    padding: 12px 10px;
+    margin: 8px 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .textarea-input {
     height: 7rem;
-    width: 70%;
+    color: gray;
+    text-align:left;
     font-size: 1.2rem;
-    border: 2px solid #393F3F;
+    padding: 12px 10px;
+    margin: 8px 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.text-input, .textarea-input, .text-input-label, .dropdown-select {
+    display: block;
+    width: 300px;
 }
 
 .addButton {
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
+    background-color: #BFD7EA;
+    border: 2px solid #0B3954;
+    border-radius: 30px;
+    box-shadow: #0B3954 4px 4px 0 0;
+    color: #0B3954;
     cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 26px;
+    padding: 7px 18px;
+    line-height: 50px;
     text-align: center;
     text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #008000;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;   
+    width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
 }
 
 .addButton svg {
     width: 25px;
-    fill: $white;
+    fill: $tertiaryColor;
 }
 
 .addButton:hover {
-    background-color: #3e8e41;
+    background-color: #fff;
 }
 
 .addButton:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+    box-shadow: #0B3954 2px 2px 0 0;
+    transform: translate(2px, 2px);
 }
 
 .cover h2 {
@@ -96,80 +136,24 @@
     text-align: center;
 }
 
-.button button {
-    margin-bottom: 100px;
-    width: 9rem;
-}
-
 .inputFields {
     width: fit-content;
     margin-bottom: 20px;
 }
 
-// for the custom-file-upload button
-input[type="file"] {
-    display: none;
-}
-
-.custom-file-upload {
-    display: inline-block;
-    padding: 12px 12px;
-    border-bottom: #3e8e41;
-    border-bottom: 5px solid greenyellow;
-    font-size: 1.5rem;
-    font-family: 'Lucida Sans';
-    background-color: #4f6a6a;
-    color: $white;
-    cursor: pointer;
-    width: 250px;
-    text-align: center;
-}
-
-.custom-file-upload:hover {
-    border-bottom: 5px solid rgb(119, 149, 119);
-}
-
-.custom-file-upload::before {
-    content: 'Upload Cover';
-}
-
-.addCover {
-    position: relative;
-    width: fit-content;
-}
-
-.container {
-    width: fit-content;
-    position: relative;
-}
-
-.imageCover {
-    position: relative;
-    max-height: 500px;
-}
-
-.removeButton {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: rgb(219, 69, 69);;
-    color: white;
-    font-size: 24px;
-    padding: 6px 12px;
-    border: 1px solid $tertiaryColor;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .container .removeButton:hover {
-    background-color: red;
-  }
-
 @media (max-width: 768px) {
+    .container-create-form {
+        box-shadow: none;
+        min-width: 380px;
+        margin-bottom: 0px;
+        height: 1150px;
+        margin-right: 0px;
+        margin-top: 0px;
+    }
+
     .createBookForm {
-        padding-left: 35px;
-        width: fit-content;
-        grid-template-columns: repeat(1, 1fr);
+        width: 100vw;
+        display: inline;
     }
 
     .text-input-label {
@@ -177,25 +161,28 @@ input[type="file"] {
     }
 
     .inputFields {
-        // width: 250px;
+        margin: 0px;
     }
 
     .addButton {
         margin-top: 20px;
-        height: 50px;
+        width: 14rem;
     }
 
     .button {
-        padding-bottom: 20px;
-        width: 250px;
+        width: 300px;
         height: 30px;
+        margin-left: 10px;
     }
 
     .button button {
         margin-bottom: 70px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .textarea-input {
-        // width: fit-content;
+        width: 300px;
     }
+
 }

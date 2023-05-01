@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { InputContext } from '../../App'
 import './inputStyles.css'
 
-export default function DropdownInput({ label, id, options, defaultValue, showPlaceholder }) {
+export default function DropdownInput({ label, id, options, isRequiredSelect, defaultValue, showPlaceholder }) {
     const { inputs, handleInputChange } = useContext(InputContext)
     return (
         <label className="text-input-label" htmlFor={id}>
@@ -16,6 +16,7 @@ export default function DropdownInput({ label, id, options, defaultValue, showPl
                 onChange={(e) =>
                     handleInputChange(e.target.name, e.target.value)
                 }
+                required={isRequiredSelect}
             >
                 {showPlaceholder ? 
                     <option value="" disabled>
