@@ -110,6 +110,7 @@ const App = () => {
                             <Route path="/books/create" element={<CreateBook />} />
                             <Route path="/books/edit/:bookId" element={<CreateBook />} />
                             <Route path="/books/:bookId" element={<SingleBook />} />
+                            //Using one component to show all user's conversations and another for a single conversation
                             <Route path="/chat/:recipientId" element={<Chat/>} />
                             <Route path="/chat/" element={<AllConversations/>} />
                         </Routes>
