@@ -21,7 +21,6 @@ import SearchPage from './components/SearchPage/SearchPage'
 import About from './components/About/About'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-import SingleBook from './components/SingleBook/SingleBook'
 
 
 
