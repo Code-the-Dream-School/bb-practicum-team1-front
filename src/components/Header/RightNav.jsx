@@ -30,15 +30,17 @@ const RightNav = ({ open }) => {
                           )
                       })}
                 {sessionObject && (
-                    <button
-                        className="button-17"
-                        onClick={() => {
-                            logoutAdapter()
-                            setSessionObject(null)
-                        }}
-                    >
-                        Log Out
-                    </button>
+                    <div className="logOut-button-17">
+                        <button
+                            className="button-17"
+                            onClick={() => {
+                                logoutAdapter()
+                                setSessionObject(null)
+                            }}
+                        >
+                            Log Out
+                        </button>
+                    </div>
                 )}
             </ul>
         </div>

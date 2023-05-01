@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import BookList from '../BookList/BookList'
 import { getAllBooksAdapter } from '../../adapters/book-adapters'
+import { LoadingContext } from '../../App'
 
 const bookList = [
     {
@@ -116,29 +117,45 @@ const bookList = [
 ]
 
 const HomePage = () => {
-    const [books1, setBooks1] = useState([]);
-    const [books2, setBooks2] = useState([]);
-    
-    useEffect(() => {
-        getAllBooksAdapter({
-            limit: 4,
-        }).then(result => {
-            if(result) {
-                setBooks2(result.books)
-            }
-        })
-    }, [])
+    const [books1, setBooks1] = useState([])
+    const [books2, setBooks2] = useState([])
+    const { loading, setLoading } = useContext(LoadingContext)
 
     useEffect(() => {
-        getAllBooksAdapter({
-            limit: 4,
-            sort: 'CreatedAt',
-        }).then(result => {
-            if(result) {
-                setBooks1(result.books)
-            }
-        })
+        setLoading(true)
+        setTimeout(() => {
+            getAllBooksAdapter({
+                limit: 4,
+            })
+                .then((result) => {
+                    if (result) {
+                        setBooks2(result.books)
+                    }
+                })
+                .then(
+                    getAllBooksAdapter({
+                        limit: 4,
+                        sort: 'CreatedAt',
+                    }).then((result) => {
+                        if (result) {
+                            setBooks1(result.books)
+                            setLoading(false)
+                        }
+                    })
+                )
+        }, 500)
     }, [])
+
+    // useEffect(() => {
+    //     getAllBooksAdapter({
+    //         limit: 4,
+    //         sort: 'CreatedAt',
+    //     }).then((result) => {
+    //         if (result) {
+    //             setBooks1(result.books)
+    //         }
+    //     })
+    // }, [])
 
     return (
         <div className="homePage">
@@ -150,4 +167,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage;
+export default HomePage

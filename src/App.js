@@ -49,6 +49,7 @@ export const SessionContext = createContext({
     sessionObject: null,
     setSessionObect: () => {},
 })
+export const LoadingContext = createContext({})
 
 const URL = 'http://localhost:8000/api/v1/'
 
@@ -69,77 +70,86 @@ const App = () => {
             <SessionContext.Provider
                 value={{ sessionObject, setSessionObject }}
             >
-                <InputContext.Provider
-                    value={{
-                        inputs,
-                        handleInputChange: (inputName, inputValue) =>
-                            setInputs({ ...inputs, [inputName]: inputValue }),
+                <LoadingContext.Provider value={{ loading, setLoading }}>
+                    <InputContext.Provider
+                        value={{
+                            inputs,
+                            handleInputChange: (inputName, inputValue) =>
+                                setInputs({
+                                    ...inputs,
+                                    [inputName]: inputValue,
+                                }),
 
-                        handleBulkInput: (inputObj) =>
-                            setInputs({ ...inputs, ...inputObj }),
-                    }}
-                >
-                    <Header night={night} setNight={setNight} />
-                    <div className="content">
-                        <div
-                            className={!night ? 'day-mode-bg' : 'night-mode-bg'}
-                        >
-                            <Routes>
-                                <Route path="" element={<HomePage />} />
-                                <Route
-                                    path="/login"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="anonymous">
-                                            <Login
-                                                setSessionObject={
-                                                    setSessionObject
-                                                }
-                                            />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/sign-up"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="anonymous">
-                                            <SignUp
-                                                setSessionObject={
-                                                    setSessionObject
-                                                }
-                                            />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route path="/about" element={<About />} />
-                                <Route
-                                    path="/books/create"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="user">
-                                            <CreateBook />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/books/edit/:bookId"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="user">
-                                            <CreateBook />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/books/:bookId"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="user">
-                                            <SingleBook item={testBook} />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                            </Routes>
+                            handleBulkInput: (inputObj) =>
+                                setInputs({ ...inputs, ...inputObj }),
+                        }}
+                    >
+                        {loading && <LoadingSpinner />}
+                        <Header night={night} setNight={setNight} />
+                        <div className="content">
+                            <div
+                                className={
+                                    !night ? 'day-mode-bg' : 'night-mode-bg'
+                                }
+                            >
+                                <Routes>
+                                    <Route path="" element={<HomePage />} />
+                                    <Route
+                                        path="/login"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="anonymous">
+                                                <Login
+                                                    setSessionObject={
+                                                        setSessionObject
+                                                    }
+                                                />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/sign-up"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="anonymous">
+                                                <SignUp
+                                                    setSessionObject={
+                                                        setSessionObject
+                                                    }
+                                                />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route path="/about" element={<About />} />
+                                    <Route
+                                        path="/books/create"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <CreateBook />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/books/edit/:bookId"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <CreateBook />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/books/:bookId"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <SingleBook item={testBook} />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                </Routes>
+                            </div>
                         </div>
-                    </div>
-                </InputContext.Provider>
+                    </InputContext.Provider>
+                </LoadingContext.Provider>
             </SessionContext.Provider>
+
             <Footer />
             {/* <div> */}
             {/* <div className="buttons">
