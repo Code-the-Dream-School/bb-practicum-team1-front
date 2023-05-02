@@ -1,26 +1,31 @@
 import { error } from 'console'
 // Exported cookie name to easily use the same name for the same cookie accross all application to avoid misprints
 import { getCookie , setCookie, deleteCookie, cookieName } from '../util/Authentication';
+import { Type } from '@sinclair/typebox';
+
+//Export the server URL
+export const baseURL = window.location.hostname === 'localhost'? 'http://localhost:8000/api/v1/': 'https://shelf-share.onrender.com/api/v1/'
 
 // Very first call to SignUp/Login will not have cookie, so there should be an option skip getting cookie from session
-export const fetchAPIData = async (url: string, method: string, body:object | undefined , hasCookie=true, headers?:object) => {
-    let requestHeaders:HeadersInit = {
-      'Content-Type': 'application/json',
-      ...headers,
+export const fetchAPIData = async (url: string, method: string, body:object | undefined , hasCookie=true, headers?:object, isFormData?: Boolean) => {
+    let requestHeaders:HeadersInit = {}
+    if(!isFormData){
+      requestHeaders['Content-Type'] = 'application/json'
     }
     if (hasCookie) {
       const cookie = getCookie(cookieName)as { token: string }
       const token = cookie?.token
       requestHeaders.Authorization = `Bearer ${token}`
     }
-    
+    requestHeaders = {...requestHeaders, ...headers}
+    const bodyData = isFormData ? body : JSON.stringify(body)
     const response = await fetch(url , {
         method,
-        body: JSON.stringify(body),
+        // @ts-ignore
+        body: bodyData,
         headers: requestHeaders,
     })
-    
-
+  
     //Status is numeric
     if(response.status >= 400 && response.status <= 599){
       const errorMsg = await response.text();

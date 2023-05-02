@@ -69,6 +69,8 @@ const CreateBook = ({ bookId }) => {
 
     const [selectedImage, setSelectedImage] = useState(null);
 
+
+    // imageURL: inputs.imageURL or imageURL: imageURL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     const handleFormSubmit = (event) => {
         event.preventDefault();
         
@@ -86,8 +88,9 @@ const CreateBook = ({ bookId }) => {
                     author: inputs.author, 
                     worldcatURL: inputs.worldcatURL, 
                     ISBN: inputs.ISBN, 
-                    imageURL: inputs.imageURL
-                }                   
+                   
+                },
+                selectedImage              
             )) : (createBookAdapter(
                 {
                     title: inputs.title, 
@@ -97,8 +100,9 @@ const CreateBook = ({ bookId }) => {
                     status: inputs.status, 
                     description: inputs.description, 
                     genre: inputs.genre, 
-                    author: inputs.author
-                }
+                    author: inputs.author,
+                },
+                selectedImage
             ))    
     };
 
@@ -163,7 +167,7 @@ const CreateBook = ({ bookId }) => {
                 <div className='cover'>
                     <TextInput 
                         type='text'
-                        placeholder='description here...'
+                        placeholder='description...'
                         label='Description'
                         id='description'
                         textarea

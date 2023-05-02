@@ -7,7 +7,7 @@ import { PagePagination } from "../PagePagination/Pagination";
 
 
 
-const ProfilePage = ({myProfile = false}) => {
+const ProfilePage = () => {
     const [usersBooks, setUsersBooks] = useState([]);
 
     const fetchUserBooks = async () => {
@@ -21,7 +21,6 @@ const ProfilePage = ({myProfile = false}) => {
     }, [])
 
     const {sessionObject} = useContext(SessionContext)
-    console.log(sessionObject)
 
     return (
         <div className="Profile">
