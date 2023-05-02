@@ -34,7 +34,7 @@ const ProfilePage = ({myProfile = false}) => {
             {sessionObject.user.dateOfBirth}<br/>
           </div>
           <BookList bookList={usersBooks} />
-          <PagePagination bookList={usersBooks}/>
+          <PagePagination/>
         </div>
 
       );
