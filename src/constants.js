@@ -14,6 +14,10 @@ export const forLoggedInUser = [
     {
         name: 'Contact', 
         route: '/contact'
+    },
+    {
+        name: 'Chat', 
+        route: '/chat/'
     }
 ];
 
