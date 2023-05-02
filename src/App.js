@@ -25,7 +25,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import BookItem from './components/BookItem/BookItem'
 import SingleBook from './components/SingleBook/SingleBook'
-
+import { newMessageAdapter } from './adapters/websocket-adapter'
 const testBook = {
     title: 'Cinderella',
     language: 'English',
@@ -51,7 +51,9 @@ const App = () => {
     const [loading, setLoading] = useState(false)
     // const [quote, setQuote] = useState({})
     const [night, setNight] = useState(false);
-
+    useEffect(() => {
+        newMessageAdapter();
+    }, [])
     // const getRandomQuote = () => {
     //     setLoading(true)
     //     setTimeout(() => {
