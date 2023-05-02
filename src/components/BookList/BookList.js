@@ -7,7 +7,7 @@ const BookList = ({ bookList }) => {
         <ul className='cardsList'>
             {bookList.map((item) => 
                 <BookItem 
-                    key={item.title}
+                    key={item.ISBN || `${item.title}|${item.author}`}
                     item={item} 
                 />
             )}
