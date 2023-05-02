@@ -1,11 +1,19 @@
 .Profile{
-    text-align: center;
+    height: max-content;
     color: black;
     margin-top: 150px;
     font-size: 40px;
+    width: 100%;
     .user{
-        margin-top: 20px;
-        margin-bottom: 25px;
+        // margin-top: 20px;
+        // margin-bottom: 25px;
         font-size: 30px;
+        position: relative;
+        margin: 25px auto;
+        width: 100%;
+    }
+    .books{
+        margin-top: 300px;
+        margin-bottom: 300px ;
     }
 }

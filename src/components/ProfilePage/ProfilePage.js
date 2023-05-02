@@ -33,8 +33,10 @@ const ProfilePage = ({myProfile = false}) => {
             {sessionObject.user.address}<br/>
             {sessionObject.user.dateOfBirth}<br/>
           </div>
-          <BookList bookList={usersBooks} />
-          <PagePagination/>
+          {/* <BookList booksList={usersBooks}/> */}
+          <div className="books">
+          <PagePagination books={usersBooks}/>
+          </div>
         </div>
 
       );

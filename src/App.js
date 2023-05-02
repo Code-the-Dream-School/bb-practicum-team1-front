@@ -157,7 +157,7 @@ const App = () => {
                         path="/pagination"
                         element={<PagePagination books={bigBookArray} />}
                     />
-                        <Route path='/my-profile' element={<ProfilePage myProfile={false} />}/>
+                        <Route path='/my-profile' element={<ProfilePage myProfile={!!sessionObject}/>}/>
                         <Route path='/profile/:userid' element={<ProfilePage  />} />
                 </Routes>
             </InputContext.Provider>

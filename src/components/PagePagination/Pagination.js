@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import ReactPaginate from 'react-paginate'
+import BookItem from "../BookItem/BookItem";
 import './Pagination.scss'
 
 export const PagePagination = ({books = []}) => {
@@ -10,13 +11,10 @@ export const PagePagination = ({books = []}) => {
 
     const displayBooks = books
     .slice(pagesVisited, pagesVisited + booksPerPage)
-    .map((book) => {
+    .map((book, index) => {
         return(
-            <li className="book" key={book.id}>
-                <div>{book.title}</div>
-                <div>{book.author}</div>
-                <div>{book.description}</div>
-                <div>{book.genre}</div>
+            <li className="book" key={index}>
+                <BookItem item={book}/>
             </li>
         )
     });
@@ -29,7 +27,9 @@ export const PagePagination = ({books = []}) => {
 
     return(
         <div className="Pagination">
+            <ul>
             {displayBooks}
+            </ul>
             <ReactPaginate
             previousLabel={"Previous"}
             nextLabel={"Next"}
