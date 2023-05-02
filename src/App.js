@@ -13,6 +13,7 @@ import {
 import HomePage from './components/HomePage/HomePage'
 import { Login } from './components/LoginPage/LoginPage'
 import { SignUp } from './components/SignupPage/SignUp'
+import  ProfilePage  from './components/ProfilePage/ProfilePage'
 import CreateBook from './components/CreateBook/CreateBook'
 import SingleBook from './components/SingleBook/SingleBook'
 
@@ -64,6 +65,7 @@ const App = () => {
                                 <Route path="/login" element={<Login />} />
                                 <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
                                 <Route path="/about" element={<About />} />
+                                <Route path='/my-profile' element={<ProfilePage />}/>
                                 <Route path="/search" element={<SearchPage/>} />
                                 <Route 
                                     path="/books/create" 
