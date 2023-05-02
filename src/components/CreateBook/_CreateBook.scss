@@ -79,9 +79,13 @@
     box-sizing: border-box;
 }
 
-.text-input, .textarea-input, .text-input-label, .dropdown-select {
+.text-input, .text-input-label, .dropdown-select {
     display: block;
     width: 300px;
+}
+
+.textarea-input {
+    width: 33vw;
 }
 
 .addButton {

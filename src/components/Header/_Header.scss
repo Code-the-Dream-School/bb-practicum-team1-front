@@ -1,6 +1,73 @@
-.navbar,
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background-color: var(--foreground);
+    border-radius: 9999px;
+    border: 0.5px solid wheat;
+    transform-origin: left center;
+    transition: opacity var(--animation-timing), width var(--animation-timing), rotate var(--animation-timing), translate var(--animation-timing), background-color var(--animation-timing);
+}
+
+.hamburger-menu:has(input:checked) {
+    --foreground: white;
+    --background: #333;
+}
+
+.hamburger-menu:has(input:focus-visible)::before,
+.hamburger-menu:has(input:focus-visible)::after,
+.hamburger-menu input:focus-visible {
+    border: 1px solid var(--background);
+    box-shadow: 0 0 0 1px var(--foreground);
+}
+
+.hamburger-menu {
+    --x-width: calc(var(--hamburger-height) * 1.41421356237);
+    display: flex;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    width: max-content;
+    position: absolute;
+    top: var(--hamburger-margin);
+    right: var(--hamburger-margin);
+    z-index: 25;
+    cursor: pointer;
+    display: none;
+}
+
+.hamburger-menu input {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+}
+
+.hamburger-menu input:checked {
+    opacity: 0;
+    width: 0;
+}
+
+.hamburger-menu:has(input:checked) + .sidebar {
+    translate: 0;
+}
+
+.hamburger-menu:has(input:checked)::before {
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
+}
+
+.hamburger-menu:has(input:checked)::after {
+    rotate: -45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2);
+}
+
 .logo-pic img {
-    height: 60px;
+    height: 50px;
 }
 
 .nav-container {
@@ -24,102 +91,30 @@
     border-bottom: 5px solid $tertiaryColor;
 }
 
-.navbar {
-    width: fit-content;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.closeClass ul {
-    text-align: right;
-}
-
-.openClass ul {
-    text-align: right;
-}
-
-.menu-toggle {
-    cursor: pointer;
-}
-
-.hamBox {
-    position: relative;
-    width: 4px;
-    height: 4px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: 0.3s ease;
-    padding: 1.5em;
-    display: none;
-    z-index: 6;
-}
-
-.hamBox:hover {
-    z-index: 5;
-    background-color:azure;
-}
-
-.hamBoxOpen {
-    background: grey;
-}
-
-.lineTop,
-.lineBottom {
-    margin: 0 auto;
-    position: absolute;
-    display: block;
-    width: 2.4rem;
-    height: 4px;
-    border-radius: 10px;
-    background: #364958;
-    left: 0;
-    right: 0;
-    transform: rotate(0deg);
-    transition: all 0.4s;
-}
-
-.lineTop {
-    top: 1.7em;
-    z-index: 4;
-}
-
-.lineBottom {
-    bottom: 1.6em;
-    z-index: 4;
-}
-
-.lineTop.spin {
-    top: 1.4em;
-    transform: rotate(135deg);
-    background: #fff;
-}
-
-.lineBottom.spin {
-    bottom: 1.4em;
-    transform: rotate(225deg);
-    background: #fff;
-}
-
 .night-mode {
     padding: 10px;
     width: 50px;
     background-color: transparent;
-    margin-left: 20px;
 }
 
 .day-mode {
     padding: 10px;
     background-color: transparent;
     width: 50px;
-    margin-left: 20px;
 }
 
 .day-mode > span {
     fill: $white;
 }
 
-.nigt-mode-header {
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.night-mode-header {
     top: 0;
     position: fixed;
     z-index: 2;
@@ -133,28 +128,95 @@
     border-bottom: 5px solid $tertiaryColor;
 } 
 
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-17 a {
+    text-decoration: none;
+    min-width: fit-content;
+}
+.button-17 {
+    align-items: center;
+    appearance: none;
+    background-color: #fff;
+    border-radius: 24px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+        rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+    box-sizing: border-box;
+    color: #3c4043;
+    cursor: pointer;
+    display: inline-flex;
+    fill: currentcolor;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    height: 42px;
+    justify-content: center;
+    letter-spacing: 0.25px;
+    line-height: normal;
+    max-width: 100%;
+    overflow: visible;
+    padding: 2px 10px;
+    position: relative;
+    text-align: center;
+    margin-right: 20px;
+    text-transform: none;
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: auto;
+    will-change: transform, opacity;
+    z-index: 0;
+}
+.button-17:hover {
+    background: #f6f9fe;
+    color: #174ea6;
+}
+.button-17:active {
+    box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+        0 8px 12px 6px rgb(60 64 67 / 15%);
+    outline: none;
+}
+.button-17:focus {
+    outline: none;
+    border: 2px solid #4285f4;
+}
+.button-17:not(:disabled) {
+    box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+.button-17:not(:disabled):hover {
+    box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
+}
+.button-17:not(:disabled):focus {
+    box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+.button-17:not(:disabled):active {
+    box-shadow: rgba(60, 64, 67, 0.3) 0 4px 4px 0,
+        rgba(60, 64, 67, 0.15) 0 8px 12px 6px;
+}
+.button-17:disabled {
+    box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.log-out-button button {
+    width: 8rem;
+}
+
+.right-nav-ul li {
+    width: 9rem;
+}
+
 @media (max-width: 768px) {
-    .nav {
-        padding: 10px;
-    }
-
-    .hamBox {
-        position: fixed;
-        top: 0;
-        right: 0;
-        display: flex;
-        margin-top: 10px;
-        margin-right: 10px;
-    }
-
-    .navbar {
-        margin-bottom: 50px;
-        width: fit-content;
-    }
-
-    .menu-toggle {
-        position: relative;
-    }
 
     .night-mode {
         width: 40px;
@@ -164,15 +226,76 @@
         width: 40px;
     }
 
-    .lineTop, .lineBottom {
-        background-color: cadetblue;
+    .night-mode {
+        padding: 10px;
+        width: 50px;
+        background-color: transparent;
+        margin-right: 60px;
+    }
+    
+    .day-mode {
+        padding: 10px;
+        background-color: transparent;
+        width: 50px;
+        margin-right: 60px;
     }
 
-    .nigt-mode-header .lineTop, .nigt-mode-header .lineBottom {
-        background-color: $secondaryColor;
+    .sidebar, .right-nav-ul {
+        position: fixed;
+        top: 0;
+        right: 0;  
     }
 
-    .logo-pic img {
-        height: 50px;
+    .right-nav-ul {
+        padding-top: 50px;
+        padding-left: 5px;
+        min-width: none;
+    }
+
+    .right-nav-ul li {
+        width: 80%;
+    }
+
+    .log-out-button button {
+        width: 100%;
+    }
+
+    .hamburger-menu {
+        display: flex;
+        top: 0;
+        right: 0;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    .sidebar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        translate: 100%;
+        padding: 0.5rem 1rem;
+        padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 2rem);
+        min-width: 15rem;
+        min-height: 100vh;
+        top: 0;
+        background-color: $tertiaryColor;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        padding-right: 50px;
+    }
+
+    li {
+        cursor: pointer;
+        margin-top: 4.5rem;
+        margin-left: 20px;
+        background-color: #364958;
+    }
+    .button-17 {
+        width: 90%;
+        min-width: fit-content;
+        margin-top: 50px;
     }
 }
