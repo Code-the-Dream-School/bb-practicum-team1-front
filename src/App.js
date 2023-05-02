@@ -47,7 +47,7 @@ const testBook = {
 export const InputContext = createContext({})
 export const SessionContext = createContext({
     sessionObject: null,
-    setSessionObect: () => {},
+    setSessionObject: () => {},
 })
 export const LoadingContext = createContext({})
 
