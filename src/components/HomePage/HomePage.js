@@ -157,7 +157,7 @@ const HomePage = () => {
                     <BookList bookList={books1} />
                 </div>
                 <div className='book-list-2'>
-                    <h2 className='h2-home-page'>Checout these recent {`${getRandomGenre()}`} books: </h2>
+                    <h2 className='h2-home-page'>Checkout these recent "{`${getRandomGenre()}`}" books: </h2>
                     <BookList bookList={books2} />
                 </div>
             </div>
