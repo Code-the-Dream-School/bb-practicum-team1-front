@@ -19,20 +19,20 @@ const AllConversations = () => {
     }, [])
 
     return (
-        <>
+        <div className='allconversations-page'>
             {allConversations ? 
-            <>
+            <div>
                 {Object.keys(allConversations).map(key => 
-                    <div id={`conversation${key}`} key={`conversation${key}`}>
-                        <p style={{color: 'black'}}>Message history with user {key}</p>
+                    <div  className='allconversations-list' id={`conversation${key}`} key={`conversation${key}`}>
+                        <p className='allconversations-user' style={{color: 'black'}}>Message history with user {key}: ({allConversations[key].length}) message(s)</p>
                         <Link to={`/chat/${key}`}>Open conversation</Link>
                     </div>
                 )}
-            </> : 
+            </div> : 
             <p style={{color: 'black'}}>No conversations exist</p>
             }
             {loading ? <LoadingSpinner/> : null}
-        </>
+        </div>
     );
 }
 

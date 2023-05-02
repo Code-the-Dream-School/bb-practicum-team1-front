@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { SessionContext } from '../../App';
 import { createMessageAdapter, getMessageConversationAdapter } from "../../adapters/message-adapters"; 
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { format } from 'date-fns';
 
 const Chat = () => {
 
@@ -20,6 +21,7 @@ const Chat = () => {
             setSelectedRecipientId(params.recipientId);
             setLoading(true);
             getMessageConversationAdapter(params.recipientId).then(response => {
+                console.log(response.messages)
                 setSelectedRecipientConversations(response ? response.messages : []); //Received list of messages
                 setLoading(false);
             });
@@ -59,6 +61,7 @@ const Chat = () => {
                 <div className='chat-conversation' id={`selectedConversation${selectedRecipientId}`} key={`selectedConversation${selectedRecipientId}`}>
                     {selectedRecipientConversations.map(item => 
                         <div className='chat-page-message' id={`message${item._id}`} key={`message${item._id}`}>
+                            <p className='message-username'>{format(new Date(item.createdAt), 'MM-dd-yyyy HH:mm:ss')}</p>
                             <p className='message-username'>{item.postedByUser}</p>
                             <p className='message-user-message'>{item.messageContent}</p>
                         </div>)
