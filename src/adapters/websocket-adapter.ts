@@ -1,6 +1,6 @@
 
 import {io , Socket} from 'socket.io-client'
-const socketURL = window.location.hostname === 'localhost'? 'ws://localhost:8000/api/v1/': 'wss://shelf-share.onrender.com/api/v1/'
+const socketURL = window.location.hostname === 'localhost'? 'ws://localhost:8000': 'wss://shelf-share.onrender.com'
 
 //New message adapter
 
