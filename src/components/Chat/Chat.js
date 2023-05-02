@@ -56,11 +56,11 @@ const Chat = () => {
             {selectedRecipientId ? 
             <div className='chat-page-input'>
                 {selectedRecipientConversations && selectedRecipientConversations.length > 0 ? 
-                <div id={`selectedConversation${selectedRecipientId}`} key={`selectedConversation${selectedRecipientId}`}>
+                <div className='chat-conversation' id={`selectedConversation${selectedRecipientId}`} key={`selectedConversation${selectedRecipientId}`}>
                     {selectedRecipientConversations.map(item => 
                         <div className='chat-page-message' id={`message${item._id}`} key={`message${item._id}`}>
-                            <p style={{color: 'black'}}>{item.postedByUser}</p>
-                            <p style={{color: 'black'}}>{item.messageContent}</p>
+                            <p className='message-username'>{item.postedByUser}</p>
+                            <p className='message-user-message'>{item.messageContent}</p>
                         </div>)
                     }  
                 </div> :
@@ -72,7 +72,7 @@ const Chat = () => {
                     onChange={messageTextChanged} 
                     value={currentMessageText}
                 /> 
-                <button type='submit' onClick={createMessage}>Send</button>
+                <button className='chat-send-button' type='submit' onClick={createMessage}>Send</button>
             </div> :
             null
             }
