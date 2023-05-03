@@ -12,7 +12,7 @@ export const forLoggedInUser = [
         route: '/contact',
     },
     {
-        name: 'Create Book',
+        name: '+ Book',
         route: '/books/create',
     },
 ]

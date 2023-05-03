@@ -28,12 +28,13 @@
 @media (max-width: 768px) {
     .h1-homePageCards {
         font-size: 2rem;
-        background-color: green;
     }
 
     .h2-home-page {
         font-size: 1rem;
         padding-top: 10px;
+        padding-bottom: 30px;
+        font-weight: $fontBold;
     }
 
     .h1-homePageCards {
