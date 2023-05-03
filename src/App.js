@@ -74,6 +74,7 @@ const App = () => {
                                             />} />
                                 <Route path="/books/edit/:bookId" element={<CreateBook />} />
                                 <Route path="/books/:bookId" element={<SingleBook />} />
+                                <Route path="/my-profile" element={<ProfilePage />} />
                             </Routes>
                         </div>
                     </div>
