@@ -1,6 +1,6 @@
 import React from 'react';
 import Message from '../images/message.png';
-import Adults from '../images/13plus.png';
+import Adults from '../images/18plus1.png';
 import NoPic from '../images/Image-Not-Available.png';
 import ZeroPlus from '../images/zeroPlus.png';
 import { Link } from 'react-router-dom';

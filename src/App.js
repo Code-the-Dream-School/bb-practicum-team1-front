@@ -9,21 +9,23 @@ import {
     cookieName,
 } from './util/Authentication'
 
+
 // Page components
 import HomePage from './components/HomePage/HomePage'
 import { Login } from './components/LoginPage/LoginPage'
 import { SignUp } from './components/SignupPage/SignUp'
 import CreateBook from './components/CreateBook/CreateBook'
 import SingleBook from './components/SingleBook/SingleBook'
+import ProfilePage  from './components/ProfilePage/ProfilePage'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import SearchPage from './components/SearchPage/SearchPage'
 
 import './sass/app.scss'
-import SearchPage from './components/SearchPage/SearchPage'
 import About from './components/About/About'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Chat from './components/Chat/Chat'
 import AllConversations from './components/Chat/AllConversations'
-
 
 
 export const InputContext = createContext({})
@@ -40,6 +42,7 @@ const URL = 'http://localhost:8000/api/v1/'
  */
 
 const App = () => {
+    const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
     const [night, setNight] = useState(false);
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
@@ -78,6 +81,7 @@ const App = () => {
                                 //Using one component to show all user's conversations and another for a single conversation
                                 <Route path="/chat/:recipientId" element={<Chat/>} />
                                 <Route path="/chat/" element={<AllConversations/>} />
+                                <Route path="/my-profile" element={<ProfilePage />} />
                             </Routes>
                         </div>
                     </div>
