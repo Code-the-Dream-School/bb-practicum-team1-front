@@ -10,6 +10,7 @@ import {
 } from '../../adapters/book-adapters'
 import { InputContext } from '../../App'
 import { LoadingContext } from '../../App'
+import { useNavigate } from 'react-router-dom'
 
 const addButton = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -70,8 +71,8 @@ const optionsGenre = [
 ]
 
 const CreateBook = ({ bookId }) => {
-    const routeParams = useParams()
-    // console.log(routeParams)
+    const navigate = useNavigate()
+
     const { loading, setLoading } = useContext(LoadingContext)
 
     const { inputs, handleBulkInput } = useContext(InputContext)
@@ -83,11 +84,13 @@ const CreateBook = ({ bookId }) => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault()
+        setLoading(true)
+        console.log('create book inputs', inputs)
 
-        routeParams.bookId
+        bookId
             ? updateBookAdapter(
                   {
-                      id: routeParams.bookId,
+                      id: bookId,
                       title: inputs.title,
                       language: inputs.language,
                       ageRange: inputs.ageRange,
@@ -114,14 +117,21 @@ const CreateBook = ({ bookId }) => {
                   },
                   selectedImage
               )
+        setLoading(false)
+        navigate('/')
     }
 
-    useEffect(async () => {
-        if (routeParams.bookId) {
-            const newBook = await getSingleBookAdapter(routeParams.bookId)
+    useEffect(() => {
+        let newBook
+        if (bookId) {
+            setLoading(true)
+            newBook = async () => {
+                await getSingleBookAdapter(bookId)
+            }
             setBookInformation(newBook)
         }
-    }, [routeParams.bookId])
+        setLoading(false)
+    }, [bookId])
 
     useEffect(() => {
         handleBulkInput(bookInformation)
@@ -149,39 +159,46 @@ const CreateBook = ({ bookId }) => {
                         label="Title"
                         id="title"
                         className="title"
+                        isRequired
                     />
                     <TextInput
                         type="text"
                         placeholder="language here..."
                         label="Language"
                         id="language"
+                        isRequired
                     />
                     <TextInput
                         type="text"
                         placeholder="name of the author here..."
                         label="Author"
                         id="author"
+                        isRequired
                     />
                     <DropdownInput
                         label="Age Range"
                         id="ageRange"
                         options={optionsAge}
+                        isRequired
                     />
                     <DropdownInput
                         label="Status"
                         id="status"
                         options={optionsStatus}
+                        isRequired
                     />
                     <DropdownInput
                         label="Genre"
                         id="genre"
                         options={optionsGenre}
+                        isRequired
                     />
                     <TextInput
                         type="text"
                         placeholder="ex. 2005"
                         label="Publishing Year"
                         id="publishingYear"
+                        isRequired
                     />
                 </div>
 
@@ -192,6 +209,7 @@ const CreateBook = ({ bookId }) => {
                         label="Description"
                         id="description"
                         textarea
+                        isRequired
                     />
 
                     <br />
