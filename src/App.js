@@ -18,6 +18,7 @@ import CreateBook from './components/CreateBook/CreateBook'
 import SingleBook from './components/SingleBook/SingleBook'
 import ProfilePage  from './components/ProfilePage/ProfilePage'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import SearchPage from './components/SearchPage/SearchPage'
 
 import './sass/app.scss'
 import About from './components/About/About'
@@ -63,7 +64,7 @@ const App = () => {
                         <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
                             <Routes>
                                 <Route path="" element={<HomePage />} />
-                                <Route path="/login" element={<Login />} />
+                                <Route path="/login" element={<Login setSessionObject={setSessionObject} />} />
                                 <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
                                 <Route path="/about" element={<About />} />
                                 <Route path="/search" element={<SearchPage/>} />
