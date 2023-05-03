@@ -27,6 +27,7 @@
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.2",
+    "react-switch": "^7.0.0",
     "sass": "^1.60.0",
     "styled-components": "^5.3.9",
     "typedoc": "^0.23.28",
