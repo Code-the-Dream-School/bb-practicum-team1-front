@@ -202,6 +202,14 @@
   padding-top: 50px;
 }
 
+.remove-btn {
+  background-color: green;
+}
+
+.remove-btn::after {
+  background-color: red;
+}
+
 @media (max-width: 768px) {
     .coverImage {
         width: 150px;

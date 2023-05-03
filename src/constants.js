@@ -1,5 +1,9 @@
 export const forLoggedInUser = [
     {
+        name: '+ Book',
+        route: '/books/create',
+    },
+    {
         name: 'My Profile',
         route: '/my-profile',
     },
@@ -10,10 +14,6 @@ export const forLoggedInUser = [
     {
         name: 'Contact',
         route: '/contact',
-    },
-    {
-        name: '+ Book',
-        route: '/books/create',
     },
 ]
 
