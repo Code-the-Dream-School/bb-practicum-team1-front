@@ -4,12 +4,8 @@ import React, { useState, useEffect, createContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 // utility functions
-import { getAllData } from './util/index'
-import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
 import {
-    setCookie,
     getCookie,
-    deleteCookie,
     cookieName,
 } from './util/Authentication'
 
@@ -40,48 +36,6 @@ export const SessionContext = createContext({
     setSessionObect: () => {},
 })
 
-//This is for testing//
-const bookArr = [
-    {
-        title: 'Pride and Prejudice',
-        description:
-            'It is a truth universally acknowledged that when most people think of Jane Austen they think of this charming and humorous story of love, difficult families and the tricky task of finding a handsome husband with a good fortune.',
-        genre: 'Romance',
-        author: 'Jane Austen',
-    },
-    {
-        title: 'The Lion, the Witch and the Wardrobe',
-        description:
-            "C.S. Lewis's timeless tale captured the hearts of children everywhere with its fantastical world through the wardrobe, full of fauns, dwarves and anthropomorphised animals. Whether you were Peter, Edmund, Susan or Lucy, we all wanted to put on a fur coat and go on a snow-laden adventure with Mr Tumnus.",
-        genre: 'Novel',
-        author: 'C.S. Lewis',
-    },
-    {
-        title: 'Frankenstein',
-        description:
-            'The book tells the story of Victor Frankenstein, a Swiss student of natural science who creates an artificial man from pieces of corpses and brings his creature to life.',
-        genre: 'Gothic Fiction',
-        author: 'Mary Shelley',
-    },
-]
-
-const bigBookArray = [
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-    ...bookArr,
-]
-
 const URL = 'http://localhost:8000/api/v1/'
 
 /**
@@ -92,25 +46,9 @@ const URL = 'http://localhost:8000/api/v1/'
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
-    const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
-    const [loading, setLoading] = useState(false)
-    // const [quote, setQuote] = useState({})
     const [night, setNight] = useState(false);
+    const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
     const [urlButton, setUrlButton] = useState(false);
-
-    //how to check if the user is on the profile page??!!!!!!!!
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-    // useEffect(() => {
-    //     ;(async () => {
-    //         const myData = await getAllData(URL)
-    //         setMessage(myData.data)
-    //     })()
-
-    //     return () => {
-    //         console.log('unmounting')
-    //     }
-    // }, [])
 
     return (
         <>
@@ -147,26 +85,6 @@ const App = () => {
                 </InputContext.Provider>
             </SessionContext.Provider>
             <Footer />
-            {/* <div> */}
-            {/* <div className="buttons">
-                        <button
-                            className="btn get-quote"
-                            onClick={getRandomQuote}
-                        >
-                            Loading Spinner Quote Button (click here)
-                        </button>
-                    </div> */}
-            {/* {loading ? (
-                        <LoadingSpinner />
-                    ) : (
-                        <div className="quote-section">
-                            <blockquote className="quote">
-                                {quote.content}
-                            </blockquote>{' '}
-                            <span className="author">{quote.author}</span>
-                        </div>
-                    )} */}
-                {/* </div> */}
         </>
     )
 }

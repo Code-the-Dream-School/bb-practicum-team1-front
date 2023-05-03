@@ -1,10 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Message from '../images/message.png';
-import Ghosts from '../images/ghosts.png';
-import Adults from '../images/13plus.png';
+import Adults from '../images/18plus1.png';
 import NoPic from '../images/Image-Not-Available.png';
 import ZeroPlus from '../images/zeroPlus.png';
-import { Link } from 'react-router-dom';
 import { getSingleBookAdapter } from '../../adapters/book-adapters';
 import { useParams } from 'react-router-dom';
 
@@ -14,7 +12,6 @@ const SingleBook = () => {
   const adult = bookInformation.ageRange === 'adults';
   const description = bookInformation.description;
   const noImg = bookInformation.imageURL === false;
-  const status = bookInformation.status === 'open';
   const image = bookInformation.imageURL;
   const language = bookInformation.language;
   const author = bookInformation.author;
@@ -22,11 +19,17 @@ const SingleBook = () => {
   const genre = bookInformation.genre;
   const publishingYear = bookInformation.publishingYear;
 
-  useEffect(async () => {
+  // getting the single book using useParams
+  const singleFetchedBook = async () => {
     if (routeParams.bookId) {
-        const newBook = await getSingleBookAdapter(routeParams.bookId);
-        setBookInformation(newBook);
+      const newBook = await getSingleBookAdapter(routeParams.bookId);
+      setBookInformation(newBook);
     }
+  }
+
+  // displaying the book when the page refreshes
+  useEffect(() => {
+    singleFetchedBook();
   }, [routeParams.bookId]);
 
     return (
