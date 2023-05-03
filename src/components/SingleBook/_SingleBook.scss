@@ -132,18 +132,19 @@
 
 @media (max-width: 768px) {
   .lang-p-single {
-    padding-top: 65px;
+    padding-top: 55px;
     font-size: smaller;
   }
 
   .genre-p-single {
-    padding-top: 45px;
+    padding-top: 35px;
     font-size: smaller;
   }
 
   .author-p-single{
-    padding-top: 25px;
+    padding-top: 15px;
     font-size: smaller;
+    max-width: 320px;
   }
 
   .coverImage-single {

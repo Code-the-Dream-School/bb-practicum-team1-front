@@ -14,7 +14,7 @@ const HomePage = () => {
 
     useEffect(() => {
         getAllBooksAdapter({
-            // limit: 4,
+            limit: 4,
             genres: getRandomGenre()
         }).then(result => {
             if(result) {
@@ -25,7 +25,7 @@ const HomePage = () => {
 
     useEffect(() => {
         getAllBooksAdapter({
-            // limit: 4,
+            limit: 4,
             sort: 'CreatedAt',
         }).then(result => {
             if(result) {

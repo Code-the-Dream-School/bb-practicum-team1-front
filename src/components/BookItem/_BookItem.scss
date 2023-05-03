@@ -203,7 +203,14 @@
 }
 
 .remove-btn {
+  background-color: red;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.edit-button {
   background-color: green;
+  padding: 10px;
 }
 
 .remove-btn::after {

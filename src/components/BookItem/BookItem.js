@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Message from '../images/message.png';
 import Adults from '../images/18plus1.png';
 import NoPic from '../images/Image-Not-Available.png';
 import ZeroPlus from '../images/zeroPlus.png';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { deleteBookAdapter } from '../../adapters/book-adapters';
+import { deleteBookAdapter, getSingleBookAdapter } from '../../adapters/book-adapters';
+import { SessionContext /* <-- this is createContet()*/ } from '../../App'
+import SingleBook from '../SingleBook/SingleBook';
 
 const BookItem = ({ item }) => {
   const adult = item.ageRange === 'adults';
-  const noImg = item.imageURL === false;
+  const noImg = item.imageLink === false;
   const status = item.status === 'open';
-  const image = item.imageURL;
+  const image = item.imageLink;
   const routeParams = useParams();
   const [list, setList] = useState([]);
+  const { sessionObject, setSessionObject } = useContext(SessionContext);
+  console.log('sessionObject', sessionObject.user.username)
+  console.log('item or each individual book: ', item.owner.username)
+  const userObject = sessionObject.user.username;
+  const userBook = item.owner.username;
 
   {/* targeting a book using useParams for deleting or editing purposes */}
   const deleteBook = async () => {
@@ -21,6 +28,7 @@ const BookItem = ({ item }) => {
       const listWithoutDeletedBook = await deleteBookAdapter(routeParams.bookId);
       setList(listWithoutDeletedBook);
     }
+    console.log('deleted')
   }
 
   return (
@@ -51,15 +59,19 @@ const BookItem = ({ item }) => {
 
 
       {/* delete and edit buttons for the owner of the book */}
-      <div className='edit-and-delete-btn'>
+     {
+      userObject === userBook ? (
+        <div className='edit-and-delete-btn'>
         <button 
           className='remove-btn' 
           type='button'
-          onClick={() => deleteBook()}
+          onClick={() => deleteBook(routeParams.bookId)}
         >Remove</button>
-        <Link to={'/books/edit/:bookId'} className='edit-button'>Edit</Link>
+        <button className='edit-button'><Link to={'/books/edit/:bookId'}>Edit</Link></button>
       </div>
-    </div>
+      ) :('')
+     }
+    </div>  
   );
 };
 

@@ -63,10 +63,8 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
     const [bookInformation, setBookInformation] = useState({});
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedURL, setSelectedURL] = useState('' || undefined);
-    console.log('this is inputs2', inputs)
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        console.log('this is inputs', inputs)
         routeParams.bookId ? 
             (updateBookAdapter( 
                 { 
@@ -94,12 +92,11 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                     description: inputs.description, 
                     genre: inputs.genre, 
                     author: inputs.author,
-                    imageLink: inputs.imageLink
+                    imageLink: inputs.selectedImage
                 },
                 selectedImage,
             ))    
     };
-    console.log('this is inputs3', inputs)
     const getSingleBook = async () => {
         if (routeParams.bookId) {
             const newBook = await getSingleBookAdapter(routeParams.bookId);
