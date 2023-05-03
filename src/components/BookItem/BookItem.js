@@ -17,10 +17,10 @@ const BookItem = ({ item }) => {
   const routeParams = useParams();
   const [list, setList] = useState([]);
   const { sessionObject, setSessionObject } = useContext(SessionContext);
-  console.log('sessionObject', sessionObject.user.username)
-  console.log('item or each individual book: ', item.owner.username)
-  const userObject = sessionObject.user.username;
-  const userBook = item.owner.username;
+  // console.log('sessionObject', sessionObject.user.username)
+  // console.log('item or each individual book: ', item.owner.username)
+  // const userObject = sessionObject.user.username;
+  // const userBook = item.owner.username;
 
   {/* targeting a book using useParams for deleting or editing purposes */}
   const deleteBook = async () => {
@@ -59,7 +59,7 @@ const BookItem = ({ item }) => {
 
 
       {/* delete and edit buttons for the owner of the book */}
-     {
+     {/* {
       userObject === userBook ? (
         <div className='edit-and-delete-btn'>
         <button 
@@ -70,7 +70,7 @@ const BookItem = ({ item }) => {
         <button className='edit-button'><Link to={'/books/edit/:bookId'}>Edit</Link></button>
       </div>
       ) :('')
-     }
+     } */}
     </div>  
   );
 };

@@ -189,7 +189,7 @@ export function SignUp({ setSessionObject } ) {
                         {errorMessage === '' ? null :
                             <span className='error-message'>{errorMessage}</span>}
                     </div>
-                    <button type="submit" className="submitButton">Register</button>
+                    <Link to="/" className='submitLink'><button type="submit" className="submitButton">Register</button></Link>
                 </form>                 
             </div>
         </>
