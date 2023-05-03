@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import TextInput from '../inputs/TextInput';
 import { signUpAdapter } from '../../adapters/auth-adapters';
-import { getCookie } from '../../util/Authentication';
+import { getCookie, cookieName, deleteCookie } from '../../util/Authentication';
 import { Link } from 'react-router-dom';
 import AddressSearch from '../AddressSearch/AddressSearch';
 import { InputContext } from '../../App';
@@ -88,13 +88,17 @@ export function SignUp({ setSessionObject } ) {
         //Call signUpAdapter
         signUpAdapter(data).then(result => {
             if (result) {
-                setErrorMessage('');
-                setSessionObject(getCookie());             
+                setSessionObject(getCookie(cookieName));            
+                setErrorMessage('');            
             }  else {
+                deleteCookie(cookieName);
+                setSessionObject({})
                 setErrorMessage('');
                 setState(true);
             } 
         }).catch(e => {
+            deleteCookie(cookieName);
+            setSessionObject({})
             setState(false)
             console.log(e);
             setErrorMessage(JSON.parse(e.message).msg) 

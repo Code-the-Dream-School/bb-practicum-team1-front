@@ -10,7 +10,6 @@ const BookItem = ({ item }) => {
     const noImg = item.imageURL === false;
     const status = item.status === 'open';
     const image = item.imageURL;
-    console.log("this is item in BookItem.js", item)
 
     return (
       <div className='book-item'>
@@ -28,7 +27,7 @@ const BookItem = ({ item }) => {
               <Link to={`/books/${item._id}`}>{item.title} </Link> 
               ({item.publishingYear})
             </p>
-            <a href={item.description} className='link-to-owner' data-id='Contact the owner'><img src={Message} alt="message_me" /></a>
+            <Link to={`/chat/${item.owner._id}`} className='link-to-owner' data-id='Contact the owner'><img src={Message} alt="message_me" /></Link>
           </div>
           <p className='bookDescription'>{item.description}</p><br />
           <div className='imgAndLanguage'>

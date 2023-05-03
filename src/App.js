@@ -20,6 +20,8 @@ import './sass/app.scss'
 import About from './components/About/About'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
+import Chat from './components/Chat/Chat'
+import AllConversations from './components/Chat/AllConversations'
 
 export const InputContext = createContext({})
 export const SessionContext = createContext({
