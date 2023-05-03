@@ -16,8 +16,13 @@ export const forLoggedInUser = [
         route: '/books/create',
     },
     {
+        name: 'Chat', 
+        route: '/chat/'
+    },
+    {
         name: 'Search Books',
         route: '/search',
+
     },
 ]
 

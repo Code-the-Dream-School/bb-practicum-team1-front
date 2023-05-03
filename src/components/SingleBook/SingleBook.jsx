@@ -44,7 +44,7 @@ const SingleBook = () => {
               <p className='titleAndYear-single'>
                 {title} ({publishingYear})
               </p>
-              <a href={description} className='link-to-owner-single' data-id='Contact the owner'><img src={Message} alt="message_me" /></a>
+              <Link to={`/chat/${bookInformation?.owner?._id}`} className='link-to-owner' data-id='Contact the owner'><img src={Message} alt="message_me" /></Link>
             </div>
             <p className='description-single'>{description}</p> 
             <p className='author-p-single'>Author: {author}</p> 

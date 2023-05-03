@@ -24,6 +24,8 @@ import './sass/app.scss'
 import About from './components/About/About'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
+import Chat from './components/Chat/Chat'
+import AllConversations from './components/Chat/AllConversations'
 
 
 export const InputContext = createContext({})
@@ -69,13 +71,16 @@ const App = () => {
                                 <Route path="/about" element={<About />} />
                                 <Route path="/search" element={<SearchPage/>} />
                                 <Route 
-                                    path="/books/create" 
-                                    element={<CreateBook 
-                                                urlButton={urlButton}
-                                                setUrlButton={setUrlButton}
-                                            />} />
+                                        path="/books/create" 
+                                        element={<CreateBook 
+                                                    urlButton={urlButton}
+                                                    setUrlButton={setUrlButton}
+                                                />} />
                                 <Route path="/books/edit/:bookId" element={<CreateBook />} />
                                 <Route path="/books/:bookId" element={<SingleBook />} />
+                                //Using one component to show all user's conversations and another for a single conversation
+                                <Route path="/chat/:recipientId" element={<Chat/>} />
+                                <Route path="/chat/" element={<AllConversations/>} />
                                 <Route path="/my-profile" element={<ProfilePage />} />
                             </Routes>
                         </div>
