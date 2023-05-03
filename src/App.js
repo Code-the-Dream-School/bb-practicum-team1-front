@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, createContext } from 'react'
 
 // 3rd-party dependencies
 import { Routes, Route } from 'react-router-dom'
@@ -14,18 +14,16 @@ import {
 import HomePage from './components/HomePage/HomePage'
 import { Login } from './components/LoginPage/LoginPage'
 import { SignUp } from './components/SignupPage/SignUp'
-import LoginPage from './components/LoginPage/LoginPage'
 import CreateBook from './components/CreateBook/CreateBook'
+import SingleBook from './components/SingleBook/SingleBook'
+import ProfilePage  from './components/ProfilePage/ProfilePage'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import SearchPage from './components/SearchPage/SearchPage'
 
 import './sass/app.scss'
 import About from './components/About/About'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-import BookItem from './components/BookItem/BookItem'
-import SingleBook from './components/SingleBook/SingleBook'
-// import SearchPage from './components/SearchPage/SearchPage'
-import { PagePagination } from './components/PagePagination/Pagination'
 
 
 export const InputContext = createContext({})
@@ -66,9 +64,10 @@ const App = () => {
                         <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
                             <Routes>
                                 <Route path="" element={<HomePage />} />
-                                <Route path="/login" element={<Login />} />
+                                <Route path="/login" element={<Login setSessionObject={setSessionObject} />} />
                                 <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
                                 <Route path="/about" element={<About />} />
+                                <Route path="/search" element={<SearchPage/>} />
                                 <Route 
                                     path="/books/create" 
                                     element={<CreateBook 
@@ -77,6 +76,7 @@ const App = () => {
                                             />} />
                                 <Route path="/books/edit/:bookId" element={<CreateBook />} />
                                 <Route path="/books/:bookId" element={<SingleBook />} />
+                                <Route path="/my-profile" element={<ProfilePage />} />
                             </Routes>
                         </div>
                     </div>

@@ -100,4 +100,4 @@ export const loginAdapter = async (loginInput: LoginInputs ) => {
  
 export const logoutAdapter = async () => {
     deleteCookie('shelf-share-session')
-}
+} 
