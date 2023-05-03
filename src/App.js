@@ -149,28 +149,7 @@ const App = () => {
                     </InputContext.Provider>
                 </LoadingContext.Provider>
             </SessionContext.Provider>
-
             <Footer />
-            {/* <div> */}
-            {/* <div className="buttons">
-                        <button
-                            className="btn get-quote"
-                            onClick={getRandomQuote}
-                        >
-                            Loading Spinner Quote Button (click here)
-                        </button>
-                    </div> */}
-            {/* {loading ? (
-                        <LoadingSpinner />
-                    ) : (
-                        <div className="quote-section">
-                            <blockquote className="quote">
-                                {quote.content}
-                            </blockquote>{' '}
-                            <span className="author">{quote.author}</span>
-                        </div>
-                    )} */}
-            {/* </div> */}
         </>
     )
 }

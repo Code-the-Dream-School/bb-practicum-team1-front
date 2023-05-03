@@ -123,27 +123,25 @@ const HomePage = () => {
 
     useEffect(() => {
         setLoading(true)
-        setTimeout(() => {
-            getAllBooksAdapter({
-                limit: 4,
+        getAllBooksAdapter({
+            limit: 4,
+        })
+            .then((result) => {
+                if (result) {
+                    setBooks2(result.books)
+                }
             })
-                .then((result) => {
+            .then(
+                getAllBooksAdapter({
+                    limit: 4,
+                    sort: 'CreatedAt',
+                }).then((result) => {
                     if (result) {
-                        setBooks2(result.books)
+                        setBooks1(result.books)
+                        setLoading(false)
                     }
                 })
-                .then(
-                    getAllBooksAdapter({
-                        limit: 4,
-                        sort: 'CreatedAt',
-                    }).then((result) => {
-                        if (result) {
-                            setBooks1(result.books)
-                            setLoading(false)
-                        }
-                    })
-                )
-        }, 500)
+            )
     }, [])
 
     // useEffect(() => {
