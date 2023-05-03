@@ -15,6 +15,10 @@ export const forLoggedInUser = [
         name: '+ Book',
         route: '/books/create',
     },
+    {
+        name: 'Search Books',
+        route: '/search',
+    },
 ]
 
 export const forSignedOutUser = [
