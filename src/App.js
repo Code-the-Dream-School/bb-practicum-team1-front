@@ -4,11 +4,7 @@ import React, { useState, createContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 // utility functions
-import {
-    getCookie,
-    cookieName,
-} from './util/Authentication'
-
+import { getCookie, cookieName } from './util/Authentication'
 
 // Page components
 import HomePage from './components/HomePage/HomePage'
@@ -16,7 +12,7 @@ import { Login } from './components/LoginPage/LoginPage'
 import { SignUp } from './components/SignupPage/SignUp'
 import CreateBook from './components/CreateBook/CreateBook'
 import SingleBook from './components/SingleBook/SingleBook'
-import ProfilePage  from './components/ProfilePage/ProfilePage'
+import ProfilePage from './components/ProfilePage/ProfilePage'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import SearchPage from './components/SearchPage/SearchPage'
 
@@ -24,7 +20,6 @@ import './sass/app.scss'
 import About from './components/About/About'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-
 
 export const InputContext = createContext({})
 export const SessionContext = createContext({
@@ -42,13 +37,15 @@ const URL = 'http://localhost:8000/api/v1/'
 const App = () => {
     const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
-    const [night, setNight] = useState(false);
+    const [night, setNight] = useState(false)
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
-    const [urlButton, setUrlButton] = useState(false);
+    const [urlButton, setUrlButton] = useState(false)
 
     return (
         <>
-            <SessionContext.Provider value={{ sessionObject, setSessionObject }} >
+            <SessionContext.Provider
+                value={{ sessionObject, setSessionObject }}
+            >
                 <InputContext.Provider
                     value={{
                         inputs,
@@ -61,22 +58,76 @@ const App = () => {
                 >
                     <Header night={night} setNight={setNight} />
                     <div className="content">
-                        <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
+                        <div
+                            className={!night ? 'day-mode-bg' : 'night-mode-bg'}
+                        >
                             <Routes>
                                 <Route path="" element={<HomePage />} />
-                                <Route path="/login" element={<Login setSessionObject={setSessionObject} />} />
-                                <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
+                                <Route
+                                    path="/login"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="anonymous">
+                                            <Login
+                                                setSessionObject={
+                                                    setSessionObject
+                                                }
+                                            />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/sign-up"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="anonymous">
+                                            <SignUp
+                                                setSessionObject={
+                                                    setSessionObject
+                                                }
+                                            />
+                                        </ProtectedRoute>
+                                    }
+                                />
                                 <Route path="/about" element={<About />} />
-                                <Route path="/search" element={<SearchPage/>} />
-                                <Route 
-                                    path="/books/create" 
-                                    element={<CreateBook 
-                                                urlButton={urlButton}
-                                                setUrlButton={setUrlButton}
-                                            />} />
-                                <Route path="/books/edit/:bookId" element={<CreateBook />} />
-                                <Route path="/books/:bookId" element={<SingleBook />} />
-                                <Route path="/my-profile" element={<ProfilePage />} />
+                                <Route
+                                    path="/search"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="user">
+                                            <SearchPage />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/books/create"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="user">
+                                            <CreateBook />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/books/edit/:bookId"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="user">
+                                            <CreateBook />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/books/:bookId"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="user">
+                                            <SingleBook />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/my-profile"
+                                    element={
+                                        <ProtectedRoute requiredAuthLevel="user">
+                                            <ProfilePage />
+                                        </ProtectedRoute>
+                                    }
+                                />
                             </Routes>
                         </div>
                     </div>
@@ -87,4 +138,4 @@ const App = () => {
     )
 }
 
-export default App;
+export default App
