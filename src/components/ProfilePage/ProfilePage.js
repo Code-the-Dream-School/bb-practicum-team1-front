@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import BookList from "../BookList/BookList";
 import './Profile.scss'
 import { getAllBooksOwnerAdapter } from "../../adapters/book-adapters";
 import { SessionContext } from "../../App";
@@ -32,7 +31,6 @@ const ProfilePage = () => {
             {sessionObject.user.address}<br/>
             {sessionObject.user.dateOfBirth}<br/>
           </div>
-          {/* <BookList booksList={usersBooks}/> */}
           <div className="books">
           <PagePagination books={usersBooks}/>
           </div>
