@@ -1,31 +1,28 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Message from '../images/message.png';
 import Adults from '../images/18plus1.png';
 import NoPic from '../images/Image-Not-Available.png';
 import ZeroPlus from '../images/zeroPlus.png';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { deleteBookAdapter, getSingleBookAdapter } from '../../adapters/book-adapters';
+import { deleteBookAdapter } from '../../adapters/book-adapters';
 import { SessionContext /* <-- this is createContet()*/ } from '../../App'
-import SingleBook from '../SingleBook/SingleBook';
 
-const BookItem = ({ item }) => {
+const BookItem = ({ item, setList }) => {
   const adult = item.ageRange === 'adults';
   const noImg = item.imageLink === false;
   const status = item.status === 'open';
   const image = item.imageLink;
-  const routeParams = useParams();
-  const [list, setList] = useState([]);
   const { sessionObject, setSessionObject } = useContext(SessionContext);
-  // console.log('sessionObject', sessionObject.user.username)
-  // console.log('item or each individual book: ', item.owner.username)
+  console.log('item is', item)
+  console.log('sessionObject', sessionObject)
+  console.log('item or each individual book: ', item.owner._id)
   // const userObject = sessionObject.user.username;
   // const userBook = item.owner.username;
 
   {/* targeting a book using useParams for deleting or editing purposes */}
   const deleteBook = async () => {
-    if (routeParams.bookId) {
-      const listWithoutDeletedBook = await deleteBookAdapter(routeParams.bookId);
+    if (item._id) {
+      const listWithoutDeletedBook = await deleteBookAdapter(item._id);
       setList(listWithoutDeletedBook);
     }
     console.log('deleted')
