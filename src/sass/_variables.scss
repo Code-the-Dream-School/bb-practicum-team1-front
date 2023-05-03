@@ -18,3 +18,13 @@ $fontNormal: 400;
 $fontBold: 700;
 $fontThin: 100;
 
+:root {
+    --bar-width: 60px;
+    --bar-height: 8px;
+    --hamburger-gap: 6px;
+    --foreground: #393F3F;
+    --background: white;
+    --hamburger-margin: 8px;
+    --animation-timing: 250ms ease-in-out;
+    --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+}
