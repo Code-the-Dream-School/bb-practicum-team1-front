@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Message from '../images/message.png';
 import Adults from '../images/13plus.png';
 import NoPic from '../images/Image-Not-Available.png';
@@ -10,7 +10,8 @@ const BookItem = ({ item }) => {
     const noImg = item.imageURL === false;
     const status = item.status === 'open';
     const image = item.imageURL;
-    console.log("this is item in BookItem.js", item)
+
+    
 
     return (
       <div className='book-item'>
@@ -36,6 +37,10 @@ const BookItem = ({ item }) => {
             <p className='genre-p'>Genre: {item.genre}</p>
             <p className='author-p'>Author: {item.author}</p>
           </div>
+        </div>
+        <div className='edit-and-delete-btn'>
+          <button className='remove-btn'>Remove</button>
+          <Link to={'/books/edit/:bookId'} className='edit-button'>Edit</Link>
         </div>
     </div>
   );

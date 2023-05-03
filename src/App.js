@@ -98,6 +98,9 @@ const App = () => {
     const [night, setNight] = useState(false);
     const [urlButton, setUrlButton] = useState(false);
 
+    //how to check if the user is on the profile page??!!!!!!!!
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+
     // useEffect(() => {
     //     ;(async () => {
     //         const myData = await getAllData(URL)
