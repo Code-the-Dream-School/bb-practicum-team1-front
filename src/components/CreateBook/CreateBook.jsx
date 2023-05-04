@@ -104,16 +104,13 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
         if (routeParams.bookId) {
             const newBook = await getSingleBookAdapter(routeParams.bookId);
             setBookInformation(newBook);
+            handleBulkInput(newBook);
         }
     }
 
     useEffect(() => {
         getSingleBook()
     }, [routeParams.bookId]);
-
-    useEffect(() => {
-        handleBulkInput(bookInformation);
-    }, []);
 
     console.log('url is: ', selectedURL)
     return (

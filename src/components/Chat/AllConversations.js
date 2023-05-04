@@ -29,7 +29,7 @@ const AllConversations = () => {
                     </div>
                 )}
             </div> : 
-            <p style={{color: 'black'}}>No conversations exist</p>
+            <p className='allconversations-empty'>No conversations exist</p>
             }
             {loading ? <LoadingSpinner/> : null}
         </div>
