@@ -8,9 +8,10 @@ const getRandomGenre = () => {
     return genresArr[Math.floor(Math.random() * genresArr.length)];
 };
 
-const HomePage = () => {
+const HomePage = ({ setList }) => {
     const [books1, setBooks1] = useState([]);
     const [books2, setBooks2] = useState([]);
+    const [currentList, setCurrentList] = useState();
 
     useEffect(() => {
         getAllBooksAdapter({
@@ -25,8 +26,7 @@ const HomePage = () => {
 
     useEffect(() => {
         getAllBooksAdapter({
-            // limit: 4,
-            sort: 'CreatedAt',
+            limit: 7,
         }).then(result => {
             if(result) {
                 setBooks1(result.books)
@@ -41,11 +41,11 @@ const HomePage = () => {
                 {/* Render out the booklList on the home page */}
                 <div className='book-list-1'>
                     <h2 className='h2-home-page'>Our most recent books: </h2>
-                    <BookList bookList={books1} />
+                    <BookList bookList={books1} setList={setList}/>
                 </div>
                 <div className='book-list-2'>
                     <h2 className='h2-home-page'>Checkout these recent "{`${getRandomGenre()}`}" books: </h2>
-                    <BookList bookList={books2} />
+                    <BookList bookList={books2} setList={setList}/>
                 </div>
             </div>
         </>

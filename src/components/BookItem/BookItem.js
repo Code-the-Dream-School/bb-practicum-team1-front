@@ -9,7 +9,7 @@ import { SessionContext /* <-- this is createContet()*/ } from '../../App'
 
 const BookItem = ({ item, setList }) => {
   const adult = item.ageRange === 'adults';
-  const noImg = item.imageLink === false || item.imageURL === false || item.image === false;
+  const noImg = item.imageLink === '' || item.imageURL === '' || item.image === false;
   const status = item.status === 'open';
   const image = item.imageLink;
   const { sessionObject, setSessionObject } = useContext(SessionContext);
@@ -19,7 +19,6 @@ const BookItem = ({ item, setList }) => {
   const userObject = sessionObject.user.userId;
   const userBook = item.owner._id;
 
-  {/* targeting a book using useParams for deleting or editing purposes */}
   const deleteBook = async () => {
     if (item._id) {
       const newList = await deleteBookAdapter(item._id);
