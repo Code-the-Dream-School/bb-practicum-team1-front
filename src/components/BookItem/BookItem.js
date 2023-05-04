@@ -9,29 +9,29 @@ import { SessionContext /* <-- this is createContet()*/ } from '../../App'
 
 const BookItem = ({ item, setList }) => {
   const adult = item.ageRange === 'adults';
-  const noImg = item.imageLink === false;
+  const noImg = item.imageLink === false || item.imageURL === false || item.image === false;
   const status = item.status === 'open';
   const image = item.imageLink;
   const { sessionObject, setSessionObject } = useContext(SessionContext);
   console.log('item is', item)
   console.log('sessionObject', sessionObject)
   console.log('item owner id: ', item.owner._id)
-  // const userObject = sessionObject.user.userId;
-  // const userBook = item.owner._id;
+  const userObject = sessionObject.user.userId;
+  const userBook = item.owner._id;
 
   {/* targeting a book using useParams for deleting or editing purposes */}
   const deleteBook = async () => {
     if (item._id) {
-      const listWithoutDeletedBook = await deleteBookAdapter(item._id);
-      setList(listWithoutDeletedBook);
+      const newList = await deleteBookAdapter(item._id);
+      setList(newList);
+      console.log('deleted', newList)
     }
-    console.log('deleted')
   }
 
   return (
     <div className='book-item'>
       <p className='kidsAdults'>
-        {adult ? <img src={Adults} alt="Adults" title='Not appropriate for under 13 years old'/>  : <img src={ZeroPlus} alt="Kids" title='Kid friendly'/> }
+        {adult ? <img src={Adults} alt="Adults" title='Not appropriate for under 18 years old'/>  : <img src={ZeroPlus} alt="Kids" title='Kid friendly'/> }
       </p>
       <span className={status ? 'available' : 'unavailable'}>
         <Link to={`/books/${item._id}`} className={status ? 'linkToAvailableBook' : 'linkToUnavailableBook'} data-id={status ? 'Press to open' : 'Borrowed'}>
@@ -56,7 +56,7 @@ const BookItem = ({ item, setList }) => {
 
 
       {/* delete and edit buttons for the owner of the book */}
-     {/* {
+     {
       userObject === userBook ? (
         <div className='edit-and-delete-btn'>
         <button 
@@ -64,10 +64,10 @@ const BookItem = ({ item, setList }) => {
           type='button'
           onClick={() => deleteBook(userBook)}
         >Remove</button>
-        <button className='edit-button'><Link to={'/books/edit/:bookId'}>Edit</Link></button>
+        <button className='edit-button'><Link to={`/books/edit/${item._id}`}>Edit</Link></button>
       </div>
       ) :('')
-     } */}
+     }
     </div>  
   );
 };
