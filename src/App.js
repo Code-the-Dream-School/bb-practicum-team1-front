@@ -17,7 +17,6 @@ import { SignUp } from './components/SignupPage/SignUp'
 import LoginPage from './components/LoginPage/LoginPage'
 import CreateBook from './components/CreateBook/CreateBook'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import { newMessageAdapter } from './adapters/websocket-adapter'
 import './sass/app.scss'
 import About from './components/About/About'
 import Header from './components/Header/Header'
@@ -49,9 +48,6 @@ const App = () => {
     const [loading, setLoading] = useState(false)
     // const [quote, setQuote] = useState({})
     const [night, setNight] = useState(false);
-      useEffect(() => {
-        newMessageAdapter();
-    }, [])
     // const getRandomQuote = () => {
     //     setLoading(true)
     //     setTimeout(() => {
