@@ -15,6 +15,15 @@ export const forLoggedInUser = [
         name: 'Contact',
         route: '/contact',
     },
+    {
+        name: 'Chat', 
+        route: '/chat/'
+    },
+    {
+        name: 'Search',
+        route: '/search',
+
+    },
 ]
 
 export const forSignedOutUser = [

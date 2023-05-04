@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, createContext } from 'react'
 
 // 3rd-party dependencies
 import { Routes, Route } from 'react-router-dom'
@@ -16,18 +16,18 @@ import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 import HomePage from './components/HomePage/HomePage'
 import { Login } from './components/LoginPage/LoginPage'
 import { SignUp } from './components/SignupPage/SignUp'
-import LoginPage from './components/LoginPage/LoginPage'
 import CreateBook from './components/CreateBook/CreateBook'
+import SingleBook from './components/SingleBook/SingleBook'
+import ProfilePage  from './components/ProfilePage/ProfilePage'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import SearchPage from './components/SearchPage/SearchPage'
 
 import './sass/app.scss'
 import About from './components/About/About'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-import BookItem from './components/BookItem/BookItem'
-import SingleBook from './components/SingleBook/SingleBook'
-// import SearchPage from './components/SearchPage/SearchPage'
-import { PagePagination } from './components/PagePagination/Pagination'
+import Chat from './components/Chat/Chat'
+import AllConversations from './components/Chat/AllConversations'
 
 
 export const InputContext = createContext({})
@@ -68,17 +68,22 @@ const App = () => {
                         <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
                             <Routes>
                                 <Route path="" element={<HomePage />} />
-                                <Route path="/login" element={<Login />} />
+                                <Route path="/login" element={<Login setSessionObject={setSessionObject} />} />
                                 <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
                                 <Route path="/about" element={<About />} />
+                                <Route path="/search" element={<SearchPage/>} />
                                 <Route 
-                                    path="/books/create" 
-                                    element={<CreateBook 
-                                                urlButton={urlButton}
-                                                setUrlButton={setUrlButton}
-                                            />} />
+                                        path="/books/create" 
+                                        element={<CreateBook 
+                                                    urlButton={urlButton}
+                                                    setUrlButton={setUrlButton}
+                                                />} />
                                 <Route path="/books/edit/:bookId" element={<CreateBook />} />
                                 <Route path="/books/:bookId" element={<SingleBook />} />
+                                //Using one component to show all user's conversations and another for a single conversation
+                                <Route path="/chat/:recipientId" element={<Chat/>} />
+                                <Route path="/chat/" element={<AllConversations/>} />
+                                <Route path="/my-profile" element={<ProfilePage />} />
                             </Routes>
                         </div>
                     </div>
