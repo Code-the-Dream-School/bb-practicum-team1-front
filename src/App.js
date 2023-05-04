@@ -7,7 +7,6 @@ import { Routes, Route } from 'react-router-dom'
 import { getAllData } from './util/index'
 import DebouncedSearch from './util/DebouncedSearch/DebouncedSearch'
 import { setCookie, getCookie, deleteCookie } from './util/Authentication'
-
 // UI Components
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 
@@ -50,7 +49,6 @@ const App = () => {
     const [loading, setLoading] = useState(false)
     // const [quote, setQuote] = useState({})
     const [night, setNight] = useState(false);
-   
     // const getRandomQuote = () => {
     //     setLoading(true)
     //     setTimeout(() => {

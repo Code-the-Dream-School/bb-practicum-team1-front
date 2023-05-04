@@ -1,6 +1,10 @@
 
 import {io , Socket} from 'socket.io-client'
+import { getCookie, cookieName } from '../util/Authentication';
 const socketURL = window.location.hostname === 'localhost'? 'ws://localhost:8000': 'wss://shelf-share.onrender.com'
+
+const jwtCookie = getCookie(cookieName)as { token: string }
+const jwtToken = jwtCookie ? jwtCookie.token: null;
 
 //New message adapter
 
@@ -22,7 +26,11 @@ interface EventListeners {
 export const newMessageAdapter = async(eventListeners: EventListeners) => {
     
     //creates a new instance of the Socket.IO client that is connected to the server
-    const socket: Socket = io(socketURL);
+    const socket: Socket = io(`${socketURL}/?token=${jwtToken}`)
+    
+    socket.on('connect' , () =>{
+      console.log('Connected to the server!')
+    })
 
     socket.on('newMessage', message =>{
 
@@ -52,8 +60,12 @@ export const newMessageAdapter = async(eventListeners: EventListeners) => {
 export const partnerUsersAdapter = async(eventListeners: EventListeners) => {
     
     //creates a new instance of the Socket.IO client that is connected to the server
-    const socket: Socket = io(socketURL);
-
+    const socket: Socket = io(`${socketURL}/?token=${jwtToken}`)
+    
+    socket.on('connect' , () =>{
+      console.log('Connected to the server!')
+    })
+  
     socket.on('partnerUsers', activeUsers =>{
 
         if(eventListeners.partnerUsers ){
