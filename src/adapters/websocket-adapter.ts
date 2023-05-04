@@ -3,9 +3,6 @@ import {io , Socket} from 'socket.io-client'
 import { getCookie, cookieName } from '../util/Authentication';
 const socketURL = window.location.hostname === 'localhost'? 'ws://localhost:8000': 'wss://shelf-share.onrender.com'
 
-const jwtCookie = getCookie(cookieName)as { token: string }
-const jwtToken = jwtCookie ? jwtCookie.token: null;
-
 //New message adapter
 
 //By using interface we are defining a structure for our object, here EventListener is an object with single optional message property, which return nothing.
@@ -25,8 +22,10 @@ interface EventListeners {
 **/
 export const newMessageAdapter = async(eventListeners: EventListeners) => {
     
+  const jwtCookie = getCookie(cookieName)as { token: string }
+  const jwtToken = jwtCookie ? jwtCookie.token: null;
     //creates a new instance of the Socket.IO client that is connected to the server
-    const socket: Socket = io(`${socketURL}/?token=${jwtToken}`)
+  const socket: Socket = io(`${socketURL}/?token=${jwtToken}`)
     
     socket.on('connect' , () =>{
       console.log('Connected to the server!')
@@ -59,8 +58,11 @@ export const newMessageAdapter = async(eventListeners: EventListeners) => {
 **/
 export const partnerUsersAdapter = async(eventListeners: EventListeners) => {
     
-    //creates a new instance of the Socket.IO client that is connected to the server
-    const socket: Socket = io(`${socketURL}/?token=${jwtToken}`)
+  const jwtCookie = getCookie(cookieName)as { token: string }
+  const jwtToken = jwtCookie ? jwtCookie.token: null;
+  
+  //creates a new instance of the Socket.IO client that is connected to the server
+  const socket: Socket = io(`${socketURL}/?token=${jwtToken}`)
     
     socket.on('connect' , () =>{
       console.log('Connected to the server!')
