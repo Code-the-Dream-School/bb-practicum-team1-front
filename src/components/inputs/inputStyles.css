@@ -5,12 +5,14 @@
   width: 250px;
   font-size: 1rem;
 }
+
 .textarea-input {
   display: block;
   margin-top: 0.5rem;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
 }
+
 .dropdown-select {
   display: block;
   margin-top: 0.5rem;
@@ -19,6 +21,7 @@
   width: auto;
   font-size: 1rem;
 }
+
 .text-input-label {
   display: block;
   margin-top: 20px;
