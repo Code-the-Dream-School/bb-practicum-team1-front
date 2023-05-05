@@ -1,22 +1,34 @@
-import React, { useState, useEffect, useContext } from 'react';
-import DropdownInput from '../inputs/DropdownInput';
-import TextInput from '../inputs/TextInput';
-import { useParams } from 'react-router-dom';
-import { createBookAdapter, getSingleBookAdapter, updateBookAdapter } from '../../adapters/book-adapters';
-import { InputContext } from '../../App';
-import ImageToggle from '../ImageToggle/ImageToggle';
+import React, { useState, useEffect, useContext } from 'react'
+import DropdownInput from '../inputs/DropdownInput'
+import TextInput from '../inputs/TextInput'
+import { useParams } from 'react-router-dom'
+import Book from './book-solid.svg'
+import {
+    createBookAdapter,
+    getSingleBookAdapter,
+    updateBookAdapter,
+} from '../../adapters/book-adapters'
+import { InputContext } from '../../App'
+import { LoadingContext } from '../../App'
+import { useNavigate } from 'react-router-dom'
+import ImageToggle  from '../ImageToggle/ImageToggle'
 
-const addButton = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>;
+const addButton = (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
+    </svg>
+)
+var remove = '\u2718'
 
 const optionsStatus = [
     { value: 'open', label: 'Open' },
     { value: 'borrowed', label: 'Borrowed' },
-];
+]
 
 const optionsAge = [
     { value: 'kids', label: 'Kids' },
     { value: 'adults', label: 'Adults' },
-];
+]
 
 const optionsGenre = [
     { value: 'Fantasy', label: 'Fantasy' },
@@ -47,14 +59,17 @@ const optionsGenre = [
     { value: 'Humor & Entertainment', label: 'Humor & Entertainment' },
     { value: 'Business & Money', label: 'Business & Money' },
     { value: 'Law & Criminology', label: 'Law & Criminology' },
-    { value: 'Politics & Social Sciences', label: 'Politics & Social Sciences' },
+    {
+        value: 'Politics & Social Sciences',
+        label: 'Politics & Social Sciences',
+    },
     { value: 'Religion & Spirituality', label: 'Religion & Spirituality' },
     { value: 'Education & Teaching', label: 'Education & Teaching' },
     { value: 'Travel', label: 'Travel' },
     { value: 'True Crime', label: 'True Crime' },
     { value: 'Poetry', label: 'Poetry' },
     { value: 'Personal Growth', label: 'Personal Growth' },
-];
+]
 
 const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
     
@@ -63,12 +78,15 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
     const [bookInformation, setBookInformation] = useState({});
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedURL, setSelectedURL] = useState('' || undefined);
+    const { loading, setLoading } = useContext(LoadingContext)
 
-    const handleFormSubmit = (event) => {
+
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true)
         
         routeParams.bookId ? 
-            (updateBookAdapter( 
+            await (updateBookAdapter( 
                 { 
                     id: routeParams.bookId, 
                     title: inputs.title, 
@@ -84,7 +102,7 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                     imageURL: inputs.selectedURL
                 },
                 selectedImage,           
-            )) : (createBookAdapter(
+            )) : await (createBookAdapter(
                 {
                     title: inputs.title, 
                     language: inputs.language, 
@@ -97,7 +115,8 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                     imageURL: inputs.imageURL
                 },
                 selectedImage,
-            ))    
+                ))    
+                setLoading(false)
     };
 
     const getSingleBook = async () => {
@@ -109,10 +128,21 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
     }
 
     useEffect(() => {
-        getSingleBook()
-    }, [routeParams.bookId]);
+        let newBook
+        if (bookId) {
+            setLoading(true)
+            newBook = async () => {
+                await getSingleBookAdapter(bookId)
+            }
+            setBookInformation(newBook)
+        }
+        setLoading(false)
+    }, [bookId])
 
-    console.log('url is: ', selectedURL)
+    useEffect(() => {
+        handleBulkInput(bookInformation)
+    }, [bookInformation])
+
     return (
         <>
             <h1 className='h1-createBook'>Your {<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>} here</h1>
@@ -196,4 +226,4 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
     )
 }
 
-export default CreateBook;
+export default CreateBook
