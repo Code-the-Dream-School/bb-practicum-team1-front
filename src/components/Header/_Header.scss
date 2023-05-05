@@ -8,7 +8,11 @@
     border-radius: 9999px;
     border: 0.5px solid wheat;
     transform-origin: left center;
-    transition: opacity var(--animation-timing), width var(--animation-timing), rotate var(--animation-timing), translate var(--animation-timing), background-color var(--animation-timing);
+    transition: opacity var(--animation-timing), 
+        width var(--animation-timing), 
+        rotate var(--animation-timing), 
+        translate var(--animation-timing), 
+        background-color var(--animation-timing);
 }
 
 .hamburger-menu:has(input:checked) {
@@ -104,7 +108,11 @@
 }
 
 .day-mode > span {
-    fill: $white;
+    fill:goldenrod;
+}
+
+.night-mode > span {
+    fill:darkorange;
 }
 
 .nav-container {
@@ -279,6 +287,7 @@
         min-height: 100vh;
         top: 0;
         background-color: $tertiaryColor;
+        transition: 350ms ease-in-out;;
     }
 
     .buttons {

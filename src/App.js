@@ -5,6 +5,8 @@ import { Routes, Route } from 'react-router-dom'
 
 // utility functions
 import { getCookie, cookieName } from './util/Authentication'
+// UI Components
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 
 // Page components
 import HomePage from './components/HomePage/HomePage'
@@ -22,7 +24,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Chat from './components/Chat/Chat'
 import AllConversations from './components/Chat/AllConversations'
-import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
+// import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 
 export const InputContext = createContext({})
 export const SessionContext = createContext({
@@ -37,12 +39,13 @@ export const LoadingContext = createContext({loading:false, setLoading: () => {}
  */
 
 const App = () => {
-    const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
     const [night, setNight] = useState(false)
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
     const [urlButton, setUrlButton] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)    
+    const [list, setList] = useState([]);
+
     return (
         <>
             <SessionContext.Provider
@@ -58,78 +61,40 @@ const App = () => {
                                     [inputName]: inputValue,
                                 }),
 
-                            handleBulkInput: (inputObj) =>
-                                setInputs({ ...inputs, ...inputObj }),
-                        }}
-                    >
-                        <Header night={night} setNight={setNight} />
-                        <div className="content">
-                            <div
-                                className={
-                                    !night ? 'day-mode-bg' : 'night-mode-bg'
-                                }
-                            >
-                                <Routes>
-                                    <Route path="" element={<HomePage />} />
-                                    <Route
-                                        path="/login"
-                                        element={
-                                            <Login
-                                                setSessionObject={
-                                                    setSessionObject
-                                                }
-                                            />
-                                        }
-                                    />
-                                    <Route
-                                        path="/sign-up"
-                                        element={
-                                            <SignUp
-                                                setSessionObject={
-                                                    setSessionObject
-                                                }
-                                            />
-                                        }
-                                    />
-                                    <Route path="/about" element={<About />} />
-                                    <Route
-                                        path="/search"
-                                        element={<SearchPage />}
-                                    />
-                                    <Route
-                                        path="/books/create"
-                                        element={
-                                            <CreateBook
+                        handleBulkInput: (inputObj) =>
+                            setInputs({ ...inputs, ...inputObj }),
+                    }}
+                >
+                    <Header night={night} setNight={setNight} />
+                    <div className="content">
+                        <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
+                            <Routes>
+                                <Route path="" element={<HomePage 
+                                    list={list}
+                                    setList={setList} 
+                                />} />
+                                <Route path="/login" element={<Login setSessionObject={setSessionObject} />} />
+                                <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
+                                <Route path="/about" element={<About />} />
+                                <Route path="/search" element={<SearchPage/>} />
+                                <Route 
+                                    path="/books/create" 
+                                    element={<CreateBook 
                                                 urlButton={urlButton}
                                                 setUrlButton={setUrlButton}
-                                            />
-                                        }
-                                    />
-                                    <Route
-                                        path="/books/edit/:bookId"
-                                        element={<CreateBook />}
-                                    />
-                                    <Route
-                                        path="/books/:bookId"
-                                        element={<SingleBook />}
-                                    />
-
-                                    <Route
-                                        path="/chat/:recipientId"
-                                        element={<Chat />}
-                                    />
-                                    <Route
-                                        path="/chat/"
-                                        element={<AllConversations />}
-                                    />
-                                    <Route
-                                        path="/my-profile"
-                                        element={<ProfilePage />}
-                                    />
-                                </Routes>
-                            </div>
+                                            />} />
+                                <Route path="/books/edit/:bookId" element={<CreateBook />} />
+                                <Route path="/books/:bookId" element={<SingleBook />} />
+                                <Route path="/chat/:recipientId" element={<Chat/>} />
+                                <Route path="/chat/" element={<AllConversations/>} />
+                                <Route path="/my-profile" element={<ProfilePage
+                                    list={list}
+                                    setList={setList} 
+                                />} />
+                            </Routes>
                         </div>
-                    </InputContext.Provider>
+                    </div>
+                </InputContext.Provider>
                 </LoadingContext.Provider>
             </SessionContext.Provider>
              {loading && <LoadingSpinner />}

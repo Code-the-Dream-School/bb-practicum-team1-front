@@ -35,8 +35,7 @@ if (mm < 10) {
     mm = '0' + mm
 }
 
-today = yyyy + '-' + mm + '-' + dd
-var minDate = '1900-05-25'
+today = yyyy + '-' + mm + '-' + dd;
 
 export function SignUp() {
 
@@ -233,7 +232,7 @@ export function SignUp() {
                         {errorMessage === '' ? null :
                             <span className='error-message'>{errorMessage}</span>}
                     </div>
-                    <button type="submit" className="submitButton">Register</button>
+                    <Link to="/" className='submitLink'><button type="submit" className="submitButton">Register</button></Link>
                 </form>                 
             </div>
         </>
