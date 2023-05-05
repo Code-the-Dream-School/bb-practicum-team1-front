@@ -83,7 +83,7 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                     author: inputs.author, 
                     worldcatURL: inputs.worldcatURL, 
                     ISBN: inputs.ISBN, 
-                    imageLink: inputs.imageLink
+                    imageLink: selectedURL
                 },
                 selectedImage,           
             )) : (createBookAdapter(
@@ -96,18 +96,18 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                     description: inputs.description, 
                     genre: inputs.genre, 
                     author: inputs.author,
-                    imageLink: inputs.imageLink
+                    imageLink: selectedURL
                 },
                 selectedImage,
             ))
             setMessage('Successfully created!')  
-            // handleBulkInput({
-            //     title: '',
-            //     language: '',
-            //     author: '',
-            //     ageRange: '',
-            //     status: ''
-            // })  
+            handleBulkInput({
+                title: '',
+                language: '',
+                author: '',
+                ageRange: '',
+                status: ''
+            })  
     };
     const getSingleBook = async () => {
         if (routeParams.bookId) {

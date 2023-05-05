@@ -4,12 +4,17 @@ import { getAllBooksOwnerAdapter } from "../../adapters/book-adapters";
 import { SessionContext } from "../../App";
 import { PagePagination } from "../PagePagination/Pagination";
 
-const ProfilePage = ({ list, setList }) => {
+const ProfilePage = () => {
     const [usersBooks, setUsersBooks] = useState([]);
 
     const fetchUserBooks = async () => {
        const booksData = await getAllBooksOwnerAdapter()
        setUsersBooks(booksData.books)
+    }
+
+    const handleOnBookDelete = (bookId) => {
+      const newState = [...usersBooks].filter((bookElement) => bookElement._id !== bookId);
+      setUsersBooks(newState)
     }
 
     useEffect( () => {
@@ -29,7 +34,11 @@ const ProfilePage = ({ list, setList }) => {
             {sessionObject.user.dateOfBirth}<br/>
           </div>
           <div className="books">
-          <PagePagination books={usersBooks} list={list} setList={setList}/>
+          <PagePagination 
+            books={usersBooks} 
+            handleOnBookDelete={handleOnBookDelete}
+            isBookOwner={true}
+          />
           </div>
         </div>
 

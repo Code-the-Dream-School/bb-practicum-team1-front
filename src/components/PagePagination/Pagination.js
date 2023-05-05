@@ -4,7 +4,7 @@ import BookItem from "../BookItem/BookItem";
 import './Pagination.scss'
 import BookList from "../BookList/BookList";
 
-export const PagePagination = ({books = [], booksPerPage = 10, list, setList}) => {
+export const PagePagination = ({books = [], booksPerPage = 10, handleOnBookDelete, isBookOwner}) => {
     const [pageNumber, setPageNumber] = useState(0);
     const pagesVisited = pageNumber * booksPerPage;
     const displayBooks = books
@@ -18,8 +18,10 @@ export const PagePagination = ({books = [], booksPerPage = 10, list, setList}) =
 
     return(
         <div className="Pagination">
-            <BookList bookList={list}
-                setList={setList}
+            <BookList 
+                bookList={displayBooks}
+                handleOnBookDelete={handleOnBookDelete}
+                isBookOwner={isBookOwner}
             />
             <ReactPaginate
             previousLabel={"Previous"}

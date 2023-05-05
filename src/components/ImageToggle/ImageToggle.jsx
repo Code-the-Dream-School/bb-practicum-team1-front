@@ -45,7 +45,7 @@ const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelected
                                         type='text' 
                                         placeholder='URL here ...' 
                                         label='The link to the image' 
-                                        id='urlField' 
+                                        id='imageLink' 
                                         className='urlField' 
                                         onChange={(e) => setSelectedURL(e.target.value)} 
                                     />

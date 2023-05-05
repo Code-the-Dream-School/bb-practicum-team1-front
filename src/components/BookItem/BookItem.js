@@ -3,11 +3,11 @@ import Message from '../images/message.png';
 import Adults from '../images/18plus1.png';
 import NoPic from '../images/Image-Not-Available.png';
 import ZeroPlus from '../images/zeroPlus.png';
-import { Link } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
 import { deleteBookAdapter } from '../../adapters/book-adapters';
 import { SessionContext /* <-- this is createContet()*/ } from '../../App'
 
-const BookItem = ({ item, setList }) => {
+const BookItem = ({ item, handleOnBookDelete, isBookOwner }) => {
   const adult = item.ageRange === 'adults';
   const noImg = item.imageLink === false || item.imageURL === '' || item.image === undefined;
   const status = item.status === 'open';
@@ -22,7 +22,10 @@ const BookItem = ({ item, setList }) => {
   const deleteBook = async () => {
     if (item._id) {
       const newList = await deleteBookAdapter(item._id);
-      setList(newList);
+      if (handleOnBookDelete) {
+        handleOnBookDelete(item._id);
+      }
+      
       console.log('deleted', newList)
     }
   }
@@ -55,18 +58,16 @@ const BookItem = ({ item, setList }) => {
 
 
       {/* delete and edit buttons for the owner of the book */}
-     {
-      userObject === userBook ? (
+      {isBookOwner ? 
         <div className='edit-and-delete-btn'>
-        <button 
-          className='remove-btn' 
-          type='button'
-          onClick={() => deleteBook(userBook)}
-        >Remove</button>
-        <button className='edit-button'><Link to={`/books/edit/${item._id}`}>Edit</Link></button>
-      </div>
-      ) : ('')
-     }
+          <button 
+            className='remove-btn' 
+            type='button'
+            onClick={() => deleteBook(userBook)}
+          >Remove</button>
+          <button className='edit-button'><Link to={`/books/edit/${item._id}`}>Edit</Link></button>
+      </div> : null
+      }
     </div>  
   );
 };
