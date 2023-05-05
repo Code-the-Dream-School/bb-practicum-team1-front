@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { LoadingContext } from '../../App'
 
-
 const SingleBook = () => {
   const routeParams = useParams();
   const [bookInformation, setBookInformation] = useState({});
