@@ -232,7 +232,7 @@ export function SignUp() {
                         {errorMessage === '' ? null :
                             <span className='error-message'>{errorMessage}</span>}
                     </div>
-                    <Link to="/" className='submitLink'><button type="submit" className="submitButton">Register</button></Link>
+                    <button type="submit" className="submitButton">Register</button>
                 </form>                 
             </div>
         </>

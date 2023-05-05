@@ -10,7 +10,6 @@ import {
 } from '../../adapters/book-adapters'
 import { InputContext } from '../../App'
 import { LoadingContext } from '../../App'
-import { useNavigate } from 'react-router-dom'
 import ImageToggle  from '../ImageToggle/ImageToggle'
 
 const addButton = (
