@@ -49,7 +49,7 @@ const App = () => {
             <SessionContext.Provider
                 value={{ sessionObject, setSessionObject }}
             >
-                <LoadingContext.Provider>
+                <LoadingContext.Provider value={{ loading, setLoading}}>
                 <InputContext.Provider
                     value={{
                         inputs,
@@ -149,6 +149,7 @@ const App = () => {
                                     }
                                 />
                             </Routes>
+                        </div>
                         </div>
                     </InputContext.Provider>
                 </LoadingContext.Provider>
