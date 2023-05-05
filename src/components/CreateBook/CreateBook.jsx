@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import DropdownInput from '../inputs/DropdownInput'
 import TextInput from '../inputs/TextInput'
 import { useParams } from 'react-router-dom'
-// import Book from './book-solid.svg'
+
 import {
     createBookAdapter,
     getSingleBookAdapter,
@@ -71,10 +71,11 @@ const optionsGenre = [
     { value: 'Personal Growth', label: 'Personal Growth' },
 ]
 
-const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
+const CreateBook = ({ urlButton, setUrlButton }) => {
     
     const routeParams = useParams();
     const { inputs, handleBulkInput } = useContext(InputContext);
+    const bookId = routeParams.bookId
     const [bookInformation, setBookInformation] = useState({});
     const [selectedImage, setSelectedImage] = useState('');
     const [selectedURL, setSelectedURL] = useState('' || undefined);
@@ -129,27 +130,22 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                 setSelectedURL: '',
                 description: '',
             })     
+            setSelectedImage('');
                 setLoading(false)
     };
 
-    // const getSingleBook = async () => {
-    //     if (routeParams.bookId) {
-    //         const newBook = await getSingleBookAdapter(routeParams.bookId);
-    //         setBookInformation(newBook);
-    //         handleBulkInput(newBook);
-    //     }
-    // }
-
-    useEffect(() => {
+    const handleLoadBook = async () => {
         let newBook
         if (bookId) {
             setLoading(true)
-            newBook = async () => {
-                await getSingleBookAdapter(bookId)
-            }
+            newBook = await getSingleBookAdapter(bookId)
             setBookInformation(newBook)
         }
         setLoading(false)
+    }
+
+    useEffect(() => {
+        handleLoadBook()
     }, [bookId])
 
     useEffect(() => {
@@ -189,18 +185,21 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                             id = 'ageRange'
                             options={optionsAge}
                             isRequiredSelect={true}
+                            showPlaceholder={true}
                         />
                         <DropdownInput 
                             label = 'Status'
                             id = 'status'
                             options={optionsStatus}
                             isRequiredSelect={true}
+                            showPlaceholder={true}
                         />
                         <DropdownInput 
                             label = 'Genre'
                             id = 'genre'
                             options={optionsGenre}
                             isRequiredSelect={true}
+                            showPlaceholder={true}
                         />
                         <TextInput 
                             type='text'
