@@ -26,6 +26,7 @@ import Footer from './components/Footer/Footer'
 import BookItem from './components/BookItem/BookItem'
 import SingleBook from './components/SingleBook/SingleBook'
 
+
 const testBook = {
     title: 'Cinderella',
     language: 'English',
@@ -107,7 +108,6 @@ const App = () => {
                             <Route path="/login" element={<Login />} />
                             <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
                             <Route path="/about" element={<About />} />
-                            <Route path='/contact' element={<Contacts />}/>
                             <Route path="/books/create" element={<CreateBook />} />
                             <Route
                                 path="/books/edit/:bookId"

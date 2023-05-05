@@ -1,0 +1,67 @@
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-gap: 50px;
+    float: left;
+    width: 300px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    margin-top: 50px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 15px -5px;
+    box-sizing: content-box;
+    padding-left: 50px;
+    padding-right: 50px;
+    justify-content:baseline;
+
+    .card-content {
+        font-size: 20px;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        text-align: center;
+        margin-bottom: 70px;
+        padding-left: 15px;
+        padding-right: 15px;
+        
+    }
+    .title {
+        font-size: 30px;
+        margin-top: 20px;
+    }
+    .about-links{
+        margin-top: 10px;
+    }
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+    .column {
+        // width: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        margin-bottom: 120px;
+    }
+}
+
+.about {
+    height: max-content;
+    color: black;
+    margin-top: 70px;
+    font-size: 40px;
+    width: 100%;
+    text-align: center;
+
+    .about-text {
+        font-size: 25px;
+        text-align: center;
+        margin-left: 60px;
+        margin-right: 60px;
+        margin-bottom: 20px;
+    }
+}
