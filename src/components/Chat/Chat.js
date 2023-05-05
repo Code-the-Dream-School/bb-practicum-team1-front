@@ -7,9 +7,8 @@ import { format } from 'date-fns';
 import { newMessageAdapter } from "../../adapters/websocket-adapter"; 
 
 const Chat = () => {
-
-    const params = useParams();
-    const sessionObject = useContext(SessionContext);
+    const params = useParams()
+    const sessionObject = useContext(SessionContext)
 
     const [selectedRecipientId, setSelectedRecipientId] = useState('');
     const [selectedRecipientConversations, setSelectedRecipientConversations] = useState({});
@@ -43,18 +42,18 @@ const Chat = () => {
     }, [params.recipientId])
 
     const messageTextChanged = (e) => {
-        setCurrentMessageText(e.target.value);
+        setCurrentMessageText(e.target.value)
     }
 
     const createMessage = () => {
         if (currentMessageText) {
-            let msg = {};
-            msg.messageContent = currentMessageText;
-            msg.receivedByUser = selectedRecipientId;
-            setLoading(true);
+            let msg = {}
+            msg.messageContent = currentMessageText
+            msg.receivedByUser = selectedRecipientId
+            setLoading(true)
             //Send message to backend
-            createMessageAdapter(msg).then(response => {
-                setLoading(false);
+            createMessageAdapter(msg).then((response) => {
+                setLoading(false)
                 if (response) {
                     //If we received response from backend it means that message was persisted to database
                     //now we can add it to conversation without sending request to server 
@@ -109,7 +108,7 @@ const Chat = () => {
             }
             {loading ? <LoadingSpinner/> : null}
         </div>
-    );
+    )
 }
 
-export default Chat;
+export default Chat
