@@ -39,11 +39,11 @@ export const newMessageAdapter = async(eventListeners: EventListeners) => {
     })
 
     socket.on('error', (error: any) => {
-    console.error('Socket error:', error);
-  });
+     console.error('Socket error:', error)
+    })
 }
 
-
+  
 // Partner users adapter
 
 /** 
@@ -79,3 +79,39 @@ export const partnerUsersAdapter = async(eventListeners: EventListeners) => {
     console.error('Socket error:', error);
   });
 }
+
+// Typing status adapter
+interface EventListeners {
+    typingStatus?: (typing: boolean)=> void
+}
+/**
+ * @param {EventListeners} eventListeners - An object with optional properties that will be called when certain event occurs
+ * @example
+ * const url = `${socketURL}`
+ * const eventListeners{
+ *   typingStatus: typing => 
+ *   console.log(`The user is ${typing}`)
+ * }
+ * userTypingStatusAdapter(eventListeners)
+ */
+export const userTypingStatusAdapter = async(eventListeners:EventListeners) => {
+
+    const jwtCookie = getCookie(cookieName)as { token: string }
+    const jwtToken = jwtCookie ? jwtCookie.token: null
+
+    const socket: Socket = io(`${socketURL}/?token=${jwtToken}`)
+
+    socket.on('connect' , () =>{
+        console.log('Connected to the server!')
+      })
+
+    socket.on('typingStatus', typing =>{
+
+        if(eventListeners.typingStatus){
+            eventListeners.typingStatus(typing)
+          
+     socket.on('error', (error: any) => {     
+     console.error('Socket error:', error);
+  });
+}
+
