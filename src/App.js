@@ -44,7 +44,6 @@ const App = () => {
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
     const [urlButton, setUrlButton] = useState(false)
     const [loading, setLoading] = useState(false)    
-    const [list, setList] = useState([]);
 
     return (
         <>
@@ -69,10 +68,7 @@ const App = () => {
                     <div className="content">
                         <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
                             <Routes>
-                                <Route path="" element={<HomePage 
-                                    list={list}
-                                    setList={setList} 
-                                />} />
+                                <Route path="" element={<HomePage/>} />
                                 <Route path="/login" element={<Login setSessionObject={setSessionObject} />} />
                                 <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
                                 <Route path="/about" element={<About />} />
@@ -87,10 +83,7 @@ const App = () => {
                                 <Route path="/books/:bookId" element={<SingleBook />} />
                                 <Route path="/chat/:recipientId" element={<Chat/>} />
                                 <Route path="/chat/" element={<AllConversations/>} />
-                                <Route path="/my-profile" element={<ProfilePage
-                                    list={list}
-                                    setList={setList} 
-                                />} />
+                                <Route path="/my-profile" element={<ProfilePage/>} />
                             </Routes>
                         </div>
                     </div>
