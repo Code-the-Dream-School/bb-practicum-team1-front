@@ -1,0 +1,19 @@
+.allconversations-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+
+.allconversations-list {
+    display: flex;
+    margin: 1rem 0;
+}
+
+.allconversations-user {
+    margin: 0 1rem;
+}
+
+.allconversations-empty {
+    color: black;
+}

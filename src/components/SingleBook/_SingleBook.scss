@@ -1,7 +1,7 @@
 .book-item-single {
     max-width: 600px;
     min-width: 600px;
-    height: 810px;
+    height: 830px;
     padding-top: 5px;
     padding-bottom: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -124,6 +124,10 @@
   .book-item-single .book-item-body-single > div p {
     font-family: 'Lucida Sans', 'Lucida Sans Regular';
     font-size: 35px;
+  }
+
+  .container-single {
+    height: fit-content;
   }
 
 @media (max-width: 768px) {
