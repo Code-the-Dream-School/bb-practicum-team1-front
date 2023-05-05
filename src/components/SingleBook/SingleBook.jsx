@@ -24,17 +24,18 @@ const SingleBook = () => {
 
 
   // getting the single book using useParams
-  const SingleFetchedBook = async () => {
+  const singleFetchedBook = async () => {
     if (routeParams.bookId) {
       setLoading(true)
       const newBook = await getSingleBookAdapter(routeParams.bookId);
       setLoading(false)
       setBookInformation(newBook);
     }
+}
 
     // displaying the book when the page refreshes
     useEffect(() => {
-        SingleFetchedBook()
+        singleFetchedBook()
     }, [routeParams.bookId])
 
     return (
@@ -85,7 +86,7 @@ const SingleBook = () => {
             </div>
         </div>
     )
-                }
+                
 }
 
 
