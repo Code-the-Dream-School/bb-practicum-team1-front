@@ -9,7 +9,7 @@ import { SessionContext /* <-- this is createContet()*/ } from '../../App'
 
 const BookItem = ({ item, setList }) => {
   const adult = item.ageRange === 'adults';
-  const noImg = item.imageLink === '' || item.imageURL === '' || item.image === false;
+  const noImg = item.imageLink === false || item.imageURL === '' || item.image === undefined;
   const status = item.status === 'open';
   const image = item.imageLink;
   const { sessionObject, setSessionObject } = useContext(SessionContext);
@@ -34,7 +34,7 @@ const BookItem = ({ item, setList }) => {
       </p>
       <span className={status ? 'available' : 'unavailable'}>
         <Link to={`/books/${item._id}`} className={status ? 'linkToAvailableBook' : 'linkToUnavailableBook'} data-id={status ? 'Press to open' : 'Borrowed'}>
-          {noImg ? <img src={NoPic} alt="No_Picture_available" className='coverImage' /> : <img src={image} alt="Cover image" className='coverImage' />}
+          {image ? <img src={image} alt="Cover image" className='coverImage' /> : <img src={NoPic} alt="No_Picture_available" className='coverImage' />}
         </Link>
       </span>
       <div className="book-item-body">
@@ -65,7 +65,7 @@ const BookItem = ({ item, setList }) => {
         >Remove</button>
         <button className='edit-button'><Link to={`/books/edit/${item._id}`}>Edit</Link></button>
       </div>
-      ) :('')
+      ) : ('')
      }
     </div>  
   );

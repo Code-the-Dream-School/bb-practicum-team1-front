@@ -61,10 +61,14 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
     const routeParams = useParams();
     const { inputs, handleBulkInput } = useContext(InputContext);
     const [bookInformation, setBookInformation] = useState({});
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState('');
     const [selectedURL, setSelectedURL] = useState('' || undefined);
+    const [message, setMessage] = useState('');
+
+    console.log('inputs in createbook', inputs)
     const handleFormSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault(); 
+        setMessage('')
         routeParams.bookId ? 
             (updateBookAdapter( 
                 { 
@@ -92,10 +96,18 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                     description: inputs.description, 
                     genre: inputs.genre, 
                     author: inputs.author,
-                    imageLink: selectedImage
+                    imageLink: inputs.imageLink
                 },
                 selectedImage,
-            ))    
+            ))
+            setMessage('Successfully created!')  
+            // handleBulkInput({
+            //     title: '',
+            //     language: '',
+            //     author: '',
+            //     ageRange: '',
+            //     status: ''
+            // })  
     };
     const getSingleBook = async () => {
         if (routeParams.bookId) {
@@ -110,8 +122,8 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
 
     useEffect(() => {
         handleBulkInput(bookInformation);
-    }, []);
-
+    }, [bookInformation]);
+console.log('params', Object.keys(routeParams).length)
     return (
         <>
             <h1 className='h1-createBook'>Your {<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>} here</h1>
@@ -186,8 +198,10 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                             setUrlButton={setUrlButton}
                         />
                     </div>
+                    
                     <div className='button'>
-                        <button className='addButton' title='Press to Add'>Add your {addButton}</button>
+                        <p className='success-message'>{message}</p>
+                        <button className='addButton' title='Press to Add'>{Object.keys(routeParams).length === 0 ? 'create' : 'edit'}{addButton}</button>
                     </div>
                 </form>
             </div>

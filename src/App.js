@@ -49,6 +49,7 @@ const App = () => {
     const [night, setNight] = useState(false);
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
     const [urlButton, setUrlButton] = useState(false);
+    const [list, setList] = useState([]);
 
     return (
         <>
@@ -67,7 +68,10 @@ const App = () => {
                     <div className="content">
                         <div className={!night ? "day-mode-bg" : "night-mode-bg"}>
                             <Routes>
-                                <Route path="" element={<HomePage />} />
+                                <Route path="" element={<HomePage 
+                                    list={list}
+                                    setList={setList} 
+                                />} />
                                 <Route path="/login" element={<Login setSessionObject={setSessionObject} />} />
                                 <Route path="/sign-up" element={<SignUp setSessionObject={setSessionObject} />} />
                                 <Route path="/about" element={<About />} />
@@ -83,7 +87,10 @@ const App = () => {
                                 //Using one component to show all user's conversations and another for a single conversation
                                 <Route path="/chat/:recipientId" element={<Chat/>} />
                                 <Route path="/chat/" element={<AllConversations/>} />
-                                <Route path="/my-profile" element={<ProfilePage />} />
+                                <Route path="/my-profile" element={<ProfilePage
+                                    list={list}
+                                    setList={setList} 
+                                />} />
                             </Routes>
                         </div>
                     </div>

@@ -12,7 +12,7 @@ const SingleBook = () => {
   const [bookInformation, setBookInformation] = useState({});
   const adult = bookInformation.ageRange === 'adults';
   const description = bookInformation.description;
-  const noImg = bookInformation.imageLink === false;
+  const noImg = bookInformation.imageLink === false || bookInformation.imageLink === null || bookInformation.imageLink === '';
   const image = bookInformation.imageLink;
   const language = bookInformation.language;
   const author = bookInformation.author;

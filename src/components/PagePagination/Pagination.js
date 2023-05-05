@@ -4,7 +4,7 @@ import BookItem from "../BookItem/BookItem";
 import './Pagination.scss'
 import BookList from "../BookList/BookList";
 
-export const PagePagination = ({books = [], booksPerPage = 10}) => {
+export const PagePagination = ({books = [], booksPerPage = 10, list, setList}) => {
     const [pageNumber, setPageNumber] = useState(0);
     const pagesVisited = pageNumber * booksPerPage;
     const displayBooks = books
@@ -18,7 +18,9 @@ export const PagePagination = ({books = [], booksPerPage = 10}) => {
 
     return(
         <div className="Pagination">
-            <BookList bookList={displayBooks}/>
+            <BookList bookList={list}
+                setList={setList}
+            />
             <ReactPaginate
             previousLabel={"Previous"}
             nextLabel={"Next"}

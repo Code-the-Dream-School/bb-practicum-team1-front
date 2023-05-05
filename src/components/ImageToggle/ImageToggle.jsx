@@ -7,19 +7,6 @@ const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelected
     const handleURLToggle = (event) => {
         event.preventDefault();
         setUrlButton(!urlButton)
-        // return (
-        //     <>
-        //         <TextInput 
-        //             type='text' 
-        //             placeholder='URL here...' 
-        //             label='URL link' 
-        //             value=''
-        //             id='urlField' 
-        //             className='urlField' 
-        //             onChange={(e) => setSelectedURL(e.target.value)}
-        //         />
-        //     </>
-        // )
     }
 
     return (
@@ -37,7 +24,7 @@ const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelected
                                         src={URL.createObjectURL(selectedImage)}
                                     />
                                     
-                                    <button className='removeButton' onClick={() => setSelectedImage(null)} title='Remove' >{remove}</button>
+                                    <button className='removeButton' onClick={() => setSelectedImage('')} title='Remove' >{remove}</button>
                                 </div>
                             )}
                             <br />
