@@ -4,7 +4,7 @@ import Ghosts from '../images/ghosts.png'
 import Adults from '../images/13plus.png'
 import NoPic from '../images/Image-Not-Available.png'
 import ZeroPlus from '../images/zeroPlus.png'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { getSingleBookAdapter } from '../../adapters/book-adapters'
 import { useParams } from 'react-router-dom'
 

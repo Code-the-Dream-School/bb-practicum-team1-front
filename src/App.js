@@ -51,8 +51,6 @@ export const SessionContext = createContext({
 })
 export const LoadingContext = createContext({})
 
-const URL = 'http://localhost:8000/api/v1/'
-
 /**
  *  level 1 - some kinda of state - dark/light mode   Provider (parent)
  *  level 6 dark/light mode (useContext)
