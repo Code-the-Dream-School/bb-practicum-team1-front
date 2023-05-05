@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'
 import TextInput from '../inputs/TextInput'
-import { loginAdapter } from '../../adapters/auth-adapters'
-import { getCookie, cookieName } from '../../util/Authentication'
-import { Link } from 'react-router-dom'
+import { loginAdapter } from '../../adapters/auth-adapters';
+import { getCookie, cookieName, deleteCookie } from '../../util/Authentication';
+import { Link } from 'react-router-dom';
 import { LoadingContext } from '../../App'
 
 const showPass = (
@@ -32,19 +32,26 @@ export const Login = ({ setSessionObject }) => {
         data.password = formProps.logInPassword
 
         // Call loginAdapter
-        loginAdapter(data)
-            .then((result) => {
-                if (result) {
-                    setErrorMsg('')
-                    setSessionObject(getCookie(cookieName))
-                    setLoading(false)
-                }
-            })
-            .catch((e) => {
-                if (e.message) setErrorMsg(JSON.parse(e.message).msg)
+        loginAdapter(data).then(result => {
+            if (result) {
+                setErrorMsg('');
+                let cookie = getCookie(cookieName);
+                console.log(cookie);
+                setSessionObject(getCookie(cookieName));
                 setLoading(false)
-            })
-    }
+            } else {
+                setSessionObject({});
+                deleteCookie(cookieName);
+                console.log('Nothing reseived from server');
+                setLoading(false)
+            }
+        }).catch(e => {
+            setSessionObject({});
+            deleteCookie(cookieName);
+            setErrorMsg(JSON.parse(e.message).msg) ;
+            setLoading(false)
+        });
+    };
 
     const togglePassword = () => {
         // When the handler is invoked inverse the boolean state of passwordShown

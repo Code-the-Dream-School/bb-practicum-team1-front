@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react'
-import TextInput from '../inputs/TextInput'
-import { signUpAdapter } from '../../adapters/auth-adapters'
-import { getCookie } from '../../util/Authentication'
-import { Link } from 'react-router-dom'
-import AddressSearch from '../AddressSearch/AddressSearch'
+import React, { useState, useContext } from 'react';
+import TextInput from '../inputs/TextInput';
+import { signUpAdapter } from '../../adapters/auth-adapters';
+import { getCookie, cookieName, deleteCookie } from '../../util/Authentication';
+import { Link } from 'react-router-dom';
+import AddressSearch from '../AddressSearch/AddressSearch';
+import { InputContext } from '../../App';
 import { SessionContext } from '../../App'
 import { LoadingContext } from '../../App'
 
@@ -37,45 +38,51 @@ if (mm < 10) {
 today = yyyy + '-' + mm + '-' + dd
 var minDate = '1900-05-25'
 
-export function SignUp({}) {
-    const [errorMsg, setErrorMsg] = useState('')
+export function SignUp() {
+
     const [errorMessage, setErrorMessage] = useState('')
-    const [state, setState] = useState(false)
-    const [passwordShown, setPasswordShown] = useState(false)
-    const [passwordConfShown, setPasswordConfShown] = useState(false)
+    const [state, setState] = useState(false);
+    const [passwordShown, setPasswordShown] = useState(false);
+    const [passwordConfShown, setPasswordConfShown] = useState(false);
+    const [address, setAddress] = useState({})
+    const inputs = useContext(InputContext)
     const { sessionObject, setSessionObject } = useContext(SessionContext)
     const { loading, setLoading } = useContext(LoadingContext)
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        setState(false)
-        const formData = new FormData(event.target)
-        const formProps = Object.fromEntries(formData)
-        const data = {}
-        data.email = formProps.signUpEmail
-        data.password = formProps.signUpPassword
-        data.givenName = formProps.signUpFirstName
-        data.username = formProps.userName
-        data.dateOfBirth = formProps.dateOfBirth
-        data.familyName = formProps.signUpLastName
-        data.address = formProps.address
-        data.role = 'user'
-        data.confirmPass = formProps.signUpConfirmPassword
+    function selectAddress(a) {
+        setAddress(a)
+    }
 
-        if (
-            data.password.length < minNumberofChars ||
-            data.password.length > maxNumberofChars
-        ) {
-            setState(false)
-            setErrorMessage(
-                'The length of the Password should be between 8 and 16 characters'
-            )
-            return
-        }
-        if (data.dateOfBirth > today) {
-            setState(false)
-            setErrorMessage('Birthday should be in the past')
-            return
+    function handleSubmit(event) {
+        event.preventDefault();
+        setState(false);
+        const formData = new FormData(event.target);
+        const formProps = Object.fromEntries(formData);
+        const data = {};
+        data.email = formProps.signUpEmail;
+        data.password = formProps.signUpPassword;
+        data.givenName = formProps.signUpFirstName;
+        data.username = formProps.userName;
+        data.dateOfBirth = formProps.dateOfBirth;
+        data.familyName = formProps.signUpLastName;
+        data.address = address.address;
+        data.longitude = address.longitude;
+        data.latitude = address.latitude;
+        data.role = 'user';
+        data.confirmPass = formProps.signUpConfirmPassword;
+
+        if (data.password.length < minNumberofChars || data.password.length > maxNumberofChars) {
+            setState(false);
+            setErrorMessage('The length of the Password should be between 8 and 16 characters');
+            return 
+        } if (data.dateOfBirth > today) {
+            setState(false);
+            setErrorMessage('Birthday should be in the past');
+            return 
+        } else if (!address || !address.address) {
+            setErrorMessage('Address should not be empty');
+            setState(false);
+            return    
         } else if (data.password !== data.confirmPass) {
             setState(false)
             setErrorMessage('Passwords do not match')
@@ -92,32 +99,30 @@ export function SignUp({}) {
             setState(true)
         }
 
-        // test data
-        data.latitude = 12.12
-        data.longitude = 11.11
-
-        // Call signUpAdapter
-        signUpAdapter(data)
+        //Call signUpAdapter
         setLoading(true)
-            .then((result) => {
-                if (result) {
-                    setErrorMsg('')
-                    setSessionObject(getCookie())
-                    setErrorMessage('Congrats! You Signed Up!')
-                    setLoading(false)
-                    return console.log('Congrats! You Signed Up!')
-                } else {
-                    setErrorMessage('')
-                    setState(true)
-                    setLoading(false)
-                    // return <p className='error-message'>Congratulations! You Signed Up</p>
-                }
-            })
-            .catch((e) => {
-                console.log(e)
-                setErrorMsg(JSON.parse(e.message).msg)
+        signUpAdapter(data).then(result => {
+
+            if (result) {
+                setSessionObject(getCookie(cookieName));            
+                setErrorMessage('');    
                 setLoading(false)
-            })
+        
+            }  else {
+                deleteCookie(cookieName);
+                setSessionObject({})
+                setErrorMessage('');
+                setState(true);
+                setLoading(false)
+            } 
+        }).catch(e => {
+            deleteCookie(cookieName);
+            setSessionObject({})
+            setState(false)
+            console.log(e);
+            setErrorMessage(JSON.parse(e.message).msg) 
+            setLoading(false)
+        });
     }
 
     const togglePassword = () => {
@@ -132,7 +137,8 @@ export function SignUp({}) {
 
     return (
         <>
-            <h1 className="h1-sign-up">Create an Account</h1>
+            {/* <h1 className='h1-sign-up'>Create an Account</h1> */}
+            
             <div className="signUP-container">
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="textInputs">
@@ -168,7 +174,7 @@ export function SignUp({}) {
                             isRequired={true}
                         />
 
-                        <AddressSearch id={'mySearch'} />
+                        <AddressSearch id={"myAddress"} onAddressSelected={selectAddress} />
 
                         <TextInput
                             placeholder="Date of Birth"
@@ -221,26 +227,14 @@ export function SignUp({}) {
                             </button>
                         </div>
                     </div>
-                    <p className="link-to-login">
-                        Have an account? <Link to="/login">Log in</Link>
-                    </p>
-                    {/* Handling Error Message */}
-                    <div className="error-container">
-                        {errorMsg !== '' ? (
-                            <p display="block" className="error-message">
-                                {errorMsg}
-                            </p>
-                        ) : null}
-                        {errorMessage === '' ? null : (
-                            <span className="error-message">
-                                {errorMessage}
-                            </span>
-                        )}
+                    <p className='link-to-login'>Have an account? <Link to="/login">Log in</Link></p>
+                    {/* Handling Error Message */}         
+                    <div className='error-container'>
+                        {errorMessage === '' ? null :
+                            <span className='error-message'>{errorMessage}</span>}
                     </div>
-                    <button type="submit" className="submitButton">
-                        Register
-                    </button>
-                </form>
+                    <button type="submit" className="submitButton">Register</button>
+                </form>                 
             </div>
         </>
     )

@@ -11,6 +11,7 @@ import {
 import { InputContext } from '../../App'
 import { LoadingContext } from '../../App'
 import { useNavigate } from 'react-router-dom'
+import ImageToggle  from '../ImageToggle/ImageToggle'
 
 const addButton = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -70,55 +71,59 @@ const optionsGenre = [
     { value: 'Personal Growth', label: 'Personal Growth' },
 ]
 
-const CreateBook = ({ bookId }) => {
-    const navigate = useNavigate()
-
+const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
+    
+    const routeParams = useParams();
+    const { inputs, handleBulkInput } = useContext(InputContext);
+    const [bookInformation, setBookInformation] = useState({});
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedURL, setSelectedURL] = useState('' || undefined);
     const { loading, setLoading } = useContext(LoadingContext)
 
-    const { inputs, handleBulkInput } = useContext(InputContext)
 
-    // placeholder for book update
-    const [bookInformation, setBookInformation] = useState({})
-
-    const [selectedImage, setSelectedImage] = useState(null)
-
-    const handleFormSubmit = (event) => {
-        event.preventDefault()
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
         setLoading(true)
-        console.log('create book inputs', inputs)
+        
+        routeParams.bookId ? 
+            await (updateBookAdapter( 
+                { 
+                    id: routeParams.bookId, 
+                    title: inputs.title, 
+                    language: inputs.language, 
+                    ageRange: inputs.ageRange, 
+                    publishingYear: inputs.publishingYear, 
+                    status: inputs.status, 
+                    description: inputs.description, 
+                    genre: inputs.genre, 
+                    author: inputs.author, 
+                    worldcatURL: inputs.worldcatURL, 
+                    ISBN: inputs.ISBN, 
+                    imageURL: inputs.selectedURL
+                },
+                selectedImage,           
+            )) : await (createBookAdapter(
+                {
+                    title: inputs.title, 
+                    language: inputs.language, 
+                    ageRange: inputs.ageRange, 
+                    publishingYear: inputs.publishingYear, 
+                    status: inputs.status, 
+                    description: inputs.description, 
+                    genre: inputs.genre, 
+                    author: inputs.author,
+                    imageURL: inputs.imageURL
+                },
+                selectedImage,
+                ))    
+                setLoading(false)
+    };
 
-        bookId
-            ? updateBookAdapter(
-                  {
-                      id: bookId,
-                      title: inputs.title,
-                      language: inputs.language,
-                      ageRange: inputs.ageRange,
-                      publishingYear: inputs.publishingYear,
-                      status: inputs.status,
-                      description: inputs.description,
-                      genre: inputs.genre,
-                      author: inputs.author,
-                      worldcatURL: inputs.worldcatURL,
-                      ISBN: inputs.ISBN,
-                  },
-                  selectedImage
-              )
-            : createBookAdapter(
-                  {
-                      title: inputs.title,
-                      language: inputs.language,
-                      ageRange: inputs.ageRange,
-                      publishingYear: inputs.publishingYear,
-                      status: inputs.status,
-                      description: inputs.description,
-                      genre: inputs.genre,
-                      author: inputs.author,
-                  },
-                  selectedImage
-              )
-        setLoading(false)
-        navigate('/')
+    const getSingleBook = async () => {
+        if (routeParams.bookId) {
+            const newBook = await getSingleBookAdapter(routeParams.bookId);
+            setBookInformation(newBook);
+        }
     }
 
     useEffect(() => {
@@ -137,127 +142,86 @@ const CreateBook = ({ bookId }) => {
         handleBulkInput(bookInformation)
     }, [bookInformation])
 
+    console.log('url is: ', selectedURL)
     return (
         <>
-            <h1 className="h1-createBook">
-                Your{' '}
-                {
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512"
-                    >
-                        <path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
-                    </svg>
-                }{' '}
-                here
-            </h1>
-            <form className="createBookForm" onSubmit={handleFormSubmit}>
-                <div className="inputFields">
-                    <TextInput
-                        type="text"
-                        placeholder="title here"
-                        label="Title"
-                        id="title"
-                        className="title"
-                        isRequired
-                    />
-                    <TextInput
-                        type="text"
-                        placeholder="language here..."
-                        label="Language"
-                        id="language"
-                        isRequired
-                    />
-                    <TextInput
-                        type="text"
-                        placeholder="name of the author here..."
-                        label="Author"
-                        id="author"
-                        isRequired
-                    />
-                    <DropdownInput
-                        label="Age Range"
-                        id="ageRange"
-                        options={optionsAge}
-                        isRequired
-                    />
-                    <DropdownInput
-                        label="Status"
-                        id="status"
-                        options={optionsStatus}
-                        isRequired
-                    />
-                    <DropdownInput
-                        label="Genre"
-                        id="genre"
-                        options={optionsGenre}
-                        isRequired
-                    />
-                    <TextInput
-                        type="text"
-                        placeholder="ex. 2005"
-                        label="Publishing Year"
-                        id="publishingYear"
-                        isRequired
-                    />
-                </div>
-
-                <div className="cover">
-                    <TextInput
-                        type="text"
-                        placeholder="description..."
-                        label="Description"
-                        id="description"
-                        textarea
-                        isRequired
-                    />
-
-                    <br />
-                    <div className="addCover">
-                        {selectedImage && (
-                            <div className="container">
-                                <img
-                                    alt="cover"
-                                    width={'250px'}
-                                    className="imageCover"
-                                    src={URL.createObjectURL(selectedImage)}
-                                />
-
-                                <button
-                                    className="removeButton"
-                                    onClick={() => setSelectedImage(null)}
-                                    title="Remove"
-                                >
-                                    {remove}
-                                </button>
-                            </div>
-                        )}
-
-                        <br />
-                        <label
-                            htmlFor="file-upload"
-                            className="custom-file-upload"
-                            title="Press to upload cover"
-                        >
-                            <input
-                                type="file"
-                                id="file-upload"
-                                className="buttonChooseFile"
-                                name="myImage"
-                                onChange={(event) => {
-                                    console.log(event.target.files[0])
-                                    setSelectedImage(event.target.files[0])
-                                }}
-                            />
-                        </label>
+            <h1 className='h1-createBook'>Your {<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>} here</h1>
+            <div className='container-create-form'>
+                <form className='createBookForm' onSubmit={handleFormSubmit}>
+                    <div className='inputFields'>
+                        <TextInput 
+                            type='text'
+                            placeholder='title here'
+                            label='Title'
+                            id='title'
+                            className='title'
+                            isRequired={true}
+                        />
+                        <TextInput 
+                            type='text'
+                            placeholder='language here...'
+                            label='Language'
+                            id='language'
+                            isRequired={true}
+                        />
+                        <TextInput 
+                            type='text'
+                            placeholder='name of the author here...'
+                            label='Author'
+                            id='author'
+                            isRequired={true}
+                        />
+                        <DropdownInput 
+                            label = 'Age Range'
+                            id = 'ageRange'
+                            options={optionsAge}
+                            isRequiredSelect={true}
+                        />
+                        <DropdownInput 
+                            label = 'Status'
+                            id = 'status'
+                            options={optionsStatus}
+                            isRequiredSelect={true}
+                        />
+                        <DropdownInput 
+                            label = 'Genre'
+                            id = 'genre'
+                            options={optionsGenre}
+                            isRequiredSelect={true}
+                        />
+                        <TextInput 
+                            type='text'
+                            placeholder='ex. 2005'
+                            label='Publishing Year'
+                            id='publishingYear'
+                            isRequired={true}
+                        />
                     </div>
-                </div>
-                <div className="button">
-                    <button className="addButton" title="Press to Add">
-                        {addButton}
-                    </button>
-                </div>
-            </form>
+                    
+                    <div className='cover'>
+                        <TextInput 
+                            type='text'
+                            placeholder='description...'
+                            label='Description'
+                            id='description'
+                            textarea
+                            isRequired={true}
+                        />
+                        <br />
+                        <ImageToggle 
+                            selectedImage={selectedImage} 
+                            setSelectedImage={setSelectedImage} 
+                            selectedURL={selectedURL} 
+                            setSelectedURL={setSelectedURL} 
+                            urlButton={urlButton}
+                            setUrlButton={setUrlButton}
+                        />
+                    </div>
+                    <div className='button'>
+                        <button className='addButton' title='Press to Add'>Add your {addButton}</button>
+                    </div>
+                </form>
+            </div>
         </>
     )
 }
