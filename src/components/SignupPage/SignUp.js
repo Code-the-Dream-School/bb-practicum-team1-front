@@ -26,7 +26,6 @@ if (mm < 10) {
 }
 
 today = yyyy + '-' + mm + '-' + dd;
-var minDate = "1900-05-25"
 
 export function SignUp({ setSessionObject } ) {
 

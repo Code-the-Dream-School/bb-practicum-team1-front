@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import ReactPaginate from 'react-paginate'
-import BookItem from "../BookItem/BookItem";
 import './Pagination.scss'
 import BookList from "../BookList/BookList";
 

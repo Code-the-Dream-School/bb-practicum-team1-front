@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import BookItem from "../BookItem/BookItem"
 
 const BookList = ({ bookList, setList, handleOnBookDelete, isBookOwner }) => {
 
-    
-console.log("book list is in BookList:", bookList)
     return (
         <ul className='cardsList'>
             {bookList.map((item) => 

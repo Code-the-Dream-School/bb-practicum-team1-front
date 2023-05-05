@@ -44,7 +44,6 @@ const URL = 'http://localhost:8000/api/v1/'
  */
 
 const App = () => {
-    const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
     const [night, setNight] = useState(false);
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
@@ -77,11 +76,11 @@ const App = () => {
                                 <Route path="/about" element={<About />} />
                                 <Route path="/search" element={<SearchPage/>} />
                                 <Route 
-                                        path="/books/create" 
-                                        element={<CreateBook 
-                                                    urlButton={urlButton}
-                                                    setUrlButton={setUrlButton}
-                                                />} />
+                                    path="/books/create" 
+                                    element={<CreateBook 
+                                                urlButton={urlButton}
+                                                setUrlButton={setUrlButton}
+                                            />} />
                                 <Route path="/books/edit/:bookId" element={<CreateBook />} />
                                 <Route path="/books/:bookId" element={<SingleBook />} />
                                 //Using one component to show all user's conversations and another for a single conversation

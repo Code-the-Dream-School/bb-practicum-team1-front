@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 var remove = '\u2718';
-var plus = '+';
 
 const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelectedURL, urlButton, setUrlButton }) => {
     const handleURLToggle = (event) => {
@@ -37,7 +36,7 @@ const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelected
                                     onChange={(event) => {
                                     console.log(event.target.files[0]);
                                     setSelectedImage(event.target.files[0]);
-                                }}
+                                    }}
                                 />
                             </label>
                         </div> : <div className='url-field'>
@@ -57,19 +56,20 @@ const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelected
                                                     alt="cover"
                                                     width={"250px"}
                                                     className='imageCoverUrl'
-                                                    src={(selectedURL)} // should it be only selectedURL???? without URL.createObjectURL
+                                                    src={(selectedURL)}
                                                 />
                                                 
                                                 <button className='removeButton' onClick={() => setSelectedURL('')} title='Remove' >{remove}</button>
                                             </div>
                                         )}
                                     </div>
-
-                                    {/* <button onClick={(e) => setSelectedURL(e.target.value)} className='plus-sign'>{plus}</button> */}
                                 </div>
                     }
                 </div>
-            <button className='cover-toggle' onClick={handleURLToggle}>{urlButton ? 'Upload Cover Image Instead' : 'Provide URL instead'}</button>
+            <button 
+                className='cover-toggle' 
+                onClick={handleURLToggle}
+            >{urlButton ? 'Upload Cover Image Instead' : 'Provide URL instead'}</button>
         </div>
     )
 }

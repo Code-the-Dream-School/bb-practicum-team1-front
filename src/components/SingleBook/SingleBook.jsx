@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Message from '../images/message.png';
 import Adults from '../images/18plus1.png';
 import NoPic from '../images/Image-Not-Available.png';
@@ -12,14 +12,13 @@ const SingleBook = () => {
   const [bookInformation, setBookInformation] = useState({});
   const adult = bookInformation.ageRange === 'adults';
   const description = bookInformation.description;
-  const noImg = bookInformation.imageLink === false || bookInformation.imageLink === null || bookInformation.imageLink === '';
   const image = bookInformation.imageLink;
   const language = bookInformation.language;
   const author = bookInformation.author;
   const title = bookInformation.title;
   const genre = bookInformation.genre;
   const publishingYear = bookInformation.publishingYear;
-
+  console.log('single',bookInformation)
   // getting the single book using useParams
   const singleFetchedBook = async () => {
     if (routeParams.bookId) {
@@ -39,7 +38,7 @@ const SingleBook = () => {
           <p className='kidsAdults-single'>
             {adult ? <img src={Adults} alt="Adults" title='Not appropriate for under 13 years old'/>  : <img src={ZeroPlus} alt="Kids" title='Kid friendly'/> }
           </p>
-          {noImg ? <img src={NoPic} alt="No_Picture_available" className='coverImage-single' /> : <img src={image} alt="Cover image" className='coverImage-single' />}
+          {image ? <img src={image} alt="Cover image" className='coverImage-single' /> : <img src={NoPic} alt="No_Picture_available" className='coverImage-single' />}
           <div className="book-item-body-single">
             <div>
               <p className='titleAndYear-single'>

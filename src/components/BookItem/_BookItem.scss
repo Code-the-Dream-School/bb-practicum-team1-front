@@ -199,22 +199,44 @@
 }
 
 .edit-and-delete-btn {
-  padding-top: 50px;
+  text-align: center;
+  margin-top: 60px;
+  padding: 10px;
 }
 
 .remove-btn {
-  background-color: red;
-  cursor: pointer;
-  padding: 10px;
+  background-color: transparent;
+  cursor: pointer; 
+  padding: 5px;
+  border: 5px solid transparent;
 }
 
 .edit-button {
-  background-color: green;
-  padding: 10px;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 5px;
+  border: 5px solid transparent;
+  margin-left: 10px;
 }
 
-.remove-btn::after {
-  background-color: red;
+.edit-button svg {
+  width: 35px;
+  background-color: transparent;
+  fill: $tertiaryColor;
+}
+
+.edit-button svg:hover {
+  fill: green;
+}
+
+.remove-btn svg {
+  width: 25px;
+  background-color: transparent;
+  fill: $secondaryColor;
+}
+
+.remove-btn svg:hover {
+  fill: red;
 }
 
 @media (max-width: 768px) {
