@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import DropdownInput from '../inputs/DropdownInput'
 import TextInput from '../inputs/TextInput'
 import { useParams } from 'react-router-dom'
-import Book from './book-solid.svg'
+
 import {
     createBookAdapter,
     getSingleBookAdapter,
@@ -71,19 +71,21 @@ const optionsGenre = [
     { value: 'Personal Growth', label: 'Personal Growth' },
 ]
 
-const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
+const CreateBook = ({ urlButton, setUrlButton }) => {
     
     const routeParams = useParams();
     const { inputs, handleBulkInput } = useContext(InputContext);
+    const bookId = routeParams.bookId
     const [bookInformation, setBookInformation] = useState({});
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState('');
     const [selectedURL, setSelectedURL] = useState('' || undefined);
-    const { loading, setLoading } = useContext(LoadingContext)
-
+    const [message, setMessage] = useState('');
+    const { loading, setLoading } = useContext(LoadingContext);
 
     const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        setLoading(true)
+        event.preventDefault(); 
+        setMessage('');
+        setLoading(true);
         
         routeParams.bookId ? 
             await (updateBookAdapter( 
@@ -99,7 +101,7 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                     author: inputs.author, 
                     worldcatURL: inputs.worldcatURL, 
                     ISBN: inputs.ISBN, 
-                    imageURL: inputs.selectedURL
+                    imageLink: selectedURL
                 },
                 selectedImage,           
             )) : await (createBookAdapter(
@@ -112,36 +114,43 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                     description: inputs.description, 
                     genre: inputs.genre, 
                     author: inputs.author,
-                    imageURL: inputs.imageURL
+                    imageLink: selectedURL
                 },
                 selectedImage,
-                ))    
+            ))
+            setMessage('Successfully created!')  
+            handleBulkInput({
+                title: '',
+                language: '',
+                author: '',
+                ageRange: '',
+                status: '',
+                publishingYear: '',
+                genre: '',
+                setSelectedURL: '',
+                description: '',
+            })     
+            setSelectedImage('');
                 setLoading(false)
     };
 
-    const getSingleBook = async () => {
-        if (routeParams.bookId) {
-            const newBook = await getSingleBookAdapter(routeParams.bookId);
-            setBookInformation(newBook);
-            handleBulkInput(newBook);
-        }
-    }
-
-    useEffect(() => {
+    const handleLoadBook = async () => {
         let newBook
         if (bookId) {
             setLoading(true)
-            newBook = async () => {
-                await getSingleBookAdapter(bookId)
-            }
+            newBook = await getSingleBookAdapter(bookId)
             setBookInformation(newBook)
         }
         setLoading(false)
+    }
+
+    useEffect(() => {
+        handleLoadBook()
     }, [bookId])
 
     useEffect(() => {
-        handleBulkInput(bookInformation)
-    }, [bookInformation])
+        handleBulkInput(bookInformation);
+    }, [bookInformation]);
 
     return (
         <>
@@ -176,18 +185,21 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                             id = 'ageRange'
                             options={optionsAge}
                             isRequiredSelect={true}
+                            showPlaceholder={true}
                         />
                         <DropdownInput 
                             label = 'Status'
                             id = 'status'
                             options={optionsStatus}
                             isRequiredSelect={true}
+                            showPlaceholder={true}
                         />
                         <DropdownInput 
                             label = 'Genre'
                             id = 'genre'
                             options={optionsGenre}
                             isRequiredSelect={true}
+                            showPlaceholder={true}
                         />
                         <TextInput 
                             type='text'
@@ -217,8 +229,10 @@ const CreateBook = ({ bookId, urlButton, setUrlButton }) => {
                             setUrlButton={setUrlButton}
                         />
                     </div>
+                    
                     <div className='button'>
-                        <button className='addButton' title='Press to Add'>Add your {addButton}</button>
+                        <p className='success-message'>{message}</p>
+                        <button className='addButton' title='Press to Add'>{Object.keys(routeParams).length === 0 ? 'Create ' : 'Edit '}{addButton}</button>
                     </div>
                 </form>
             </div>

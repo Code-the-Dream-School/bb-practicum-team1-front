@@ -198,6 +198,47 @@
   text-decoration: none;
 }
 
+.edit-and-delete-btn {
+  text-align: center;
+  padding: 10px;
+  width: 40%;
+}
+
+.remove-btn {
+  background-color: transparent;
+  cursor: pointer; 
+  padding: 5px;
+  border: 5px solid transparent;
+}
+
+.edit-button {
+  background-color: transparent;
+  cursor: pointer;
+  padding: 5px;
+  border: 5px solid transparent;
+  margin-left: 10px;
+}
+
+.edit-button svg {
+  width: 35px;
+  background-color: transparent;
+  fill: $tertiaryColor;
+}
+
+.edit-button svg:hover {
+  fill: green;
+}
+
+.remove-btn svg {
+  width: 25px;
+  background-color: transparent;
+  fill: $secondaryColor;
+}
+
+.remove-btn svg:hover {
+  fill: red;
+}
+
 @media (max-width: 768px) {
     .coverImage {
         width: 150px;

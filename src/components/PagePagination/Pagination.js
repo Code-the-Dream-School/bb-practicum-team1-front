@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import ReactPaginate from 'react-paginate'
-import BookItem from "../BookItem/BookItem";
 import './Pagination.scss'
 import BookList from "../BookList/BookList";
+import { GrNext, GrPrevious } from 'react-icons/gr';
 
-export const PagePagination = ({books = [], booksPerPage = 10}) => {
+export const PagePagination = ({books = [], booksPerPage = 10, handleOnBookDelete, isBookOwner}) => {
     const [pageNumber, setPageNumber] = useState(0);
     const pagesVisited = pageNumber * booksPerPage;
     const displayBooks = books
@@ -18,10 +18,14 @@ export const PagePagination = ({books = [], booksPerPage = 10}) => {
 
     return(
         <div className="Pagination">
-            <BookList bookList={displayBooks}/>
+            <BookList 
+                bookList={displayBooks}
+                handleOnBookDelete={handleOnBookDelete}
+                isBookOwner={isBookOwner}
+            />
             <ReactPaginate
-            previousLabel={"Previous"}
-            nextLabel={"Next"}
+            previousLabel={<GrPrevious />}
+            nextLabel={<GrNext />}
             pageCount={pageCount}
             onPageChange={changePage}
             containerClassName={"paginationBttns"}

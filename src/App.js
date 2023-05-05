@@ -5,6 +5,8 @@ import { Routes, Route } from 'react-router-dom'
 
 // utility functions
 import { getCookie, cookieName } from './util/Authentication'
+// UI Components
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 
 // Page components
 import HomePage from './components/HomePage/HomePage'
@@ -22,7 +24,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Chat from './components/Chat/Chat'
 import AllConversations from './components/Chat/AllConversations'
-import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
+// import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 
 export const InputContext = createContext({})
 export const SessionContext = createContext({
@@ -37,7 +39,6 @@ export const LoadingContext = createContext({loading:false, setLoading: () => {}
  */
 
 const App = () => {
-    const [message, setMessage] = useState('')
     const [inputs, setInputs] = useState({})
     const [night, setNight] = useState(false)
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
@@ -151,7 +152,9 @@ const App = () => {
                             </Routes>
                         </div>
                         </div>
-                    </InputContext.Provider>
+                    
+                    
+                </InputContext.Provider>
                 </LoadingContext.Provider>
             </SessionContext.Provider>
             {loading && <LoadingSpinner />}

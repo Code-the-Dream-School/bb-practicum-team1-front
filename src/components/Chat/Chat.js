@@ -10,7 +10,7 @@ const Chat = () => {
     const params = useParams()
     const sessionObject = useContext(SessionContext)
 
-      const [selectedRecipientId, setSelectedRecipientId] = useState('');
+    const [selectedRecipientId, setSelectedRecipientId] = useState('');
     const [selectedRecipientConversations, setSelectedRecipientConversations] = useState({});
     const [currentMessageText, setCurrentMessageText] = useState('');
     const [loading, setLoading] = useState(false);
