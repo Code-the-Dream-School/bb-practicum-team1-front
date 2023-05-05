@@ -42,8 +42,14 @@
     border: 5px solid transparent;
 }
 
-.made-by span {
-    padding-bottom: 20px;
+// .made-by span {
+//     padding-bottom: 20px;
+// }
+
+.made-by {
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
 
 @media (max-width: 768px) {
@@ -76,5 +82,3 @@
         height: 20px;
     }
 }
-
-

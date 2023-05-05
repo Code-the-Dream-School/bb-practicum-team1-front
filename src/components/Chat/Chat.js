@@ -21,8 +21,7 @@ const Chat = () => {
             setSelectedRecipientId(params.recipientId);
             setLoading(true);
             getMessageConversationAdapter(params.recipientId).then(response => {
-                console.log(response.messages)
-                setSelectedRecipientConversations(response ? response.messages : []); //Received list of messages
+                setSelectedRecipientConversations(response ? response : []); //Received list of messages
                 setLoading(false);
             });
         }
@@ -53,16 +52,27 @@ const Chat = () => {
         }
     }
 
+    const calculateUsername = (userId, otherUserId, otherUserName, sessionObject) => {
+        console.log(sessionObject)
+        if (userId === otherUserId) {
+            return `User ${otherUserName}` ;
+        }
+        if (userId === sessionObject.user.userId) {
+            return 'You';
+        } 
+        return userId;
+    }
+
     return (
         <div className='chat-page'>
             {selectedRecipientId ? 
             <div className='chat-page-input'>
-                {selectedRecipientConversations && selectedRecipientConversations.length > 0 ? 
+                {selectedRecipientConversations[0] && selectedRecipientConversations[0].messages && selectedRecipientConversations[0].messages.length > 0 ? 
                 <div className='chat-conversation' id={`selectedConversation${selectedRecipientId}`} key={`selectedConversation${selectedRecipientId}`}>
-                    {selectedRecipientConversations.map(item => 
+                    {selectedRecipientConversations[0].messages.map(item => 
                         <div className='chat-page-message' id={`message${item._id}`} key={`message${item._id}`}>
                             <p className='message-username'>{format(new Date(item.createdAt), 'MM-dd-yyyy HH:mm:ss')}</p>
-                            <p className='message-username'>{item.postedByUser}</p>
+                            <p className='message-username'>{calculateUsername(item.postedByUser, selectedRecipientConversations[0].userId, selectedRecipientConversations[0].username, sessionObject.sessionObject)}</p>
                             <p className='message-user-message'>{item.messageContent}</p>
                         </div>)
                     }  
