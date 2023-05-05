@@ -20,7 +20,7 @@ export const forLoggedInUser = [
         route: '/chat/'
     },
     {
-        name: 'Search Books',
+        name: 'Search',
         route: '/search',
 
     },
