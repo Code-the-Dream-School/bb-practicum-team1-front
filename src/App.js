@@ -22,14 +22,14 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Chat from './components/Chat/Chat'
 import AllConversations from './components/Chat/AllConversations'
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 
 export const InputContext = createContext({})
 export const SessionContext = createContext({
     sessionObject: null,
-    setSessionObect: () => {},
+    setSessionObject: () => {},
 })
-
-const URL = 'http://localhost:8000/api/v1/'
+export const LoadingContext = createContext({loading:false, setLoading: () => {}})
 
 /**
  *  level 1 - some kinda of state - dark/light mode   Provider (parent)
@@ -43,11 +43,13 @@ const App = () => {
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
     const [urlButton, setUrlButton] = useState(false)
 
+    const [loading, setLoading] = useState(false)
     return (
         <>
             <SessionContext.Provider
                 value={{ sessionObject, setSessionObject }}
             >
+                <LoadingContext.Provider>
                 <InputContext.Provider
                     value={{
                         inputs,
@@ -122,6 +124,22 @@ const App = () => {
                                         </ProtectedRoute>
                                     }
                                 />
+                                    <Route
+                                        path="/chat/:recipientId"                                        
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <Chat />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/chat/"                                       
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <AllConversations />
+                                            </ProtectedRoute>
+                                        }
+                                    />
                                 <Route
                                     path="/my-profile"
                                     element={
@@ -132,9 +150,10 @@ const App = () => {
                                 />
                             </Routes>
                         </div>
-                    </div>
-                </InputContext.Provider>
+                    </InputContext.Provider>
+                </LoadingContext.Provider>
             </SessionContext.Provider>
+            {loading && <LoadingSpinner />}
             <Footer />
         </>
     )

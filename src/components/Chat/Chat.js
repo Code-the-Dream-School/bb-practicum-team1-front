@@ -21,17 +21,12 @@ const Chat = () => {
     useEffect(() => {
         //If recipient selected then load only messages history for given recipient
         if (params.recipientId) {
-            setSelectedRecipientId(params.recipientId)
-            setLoading(true)
-            getMessageConversationAdapter(params.recipientId).then(
-                (response) => {
-                    console.log(response.messages)
-                    setSelectedRecipientConversations(
-                        response ? response.messages : []
-                    ) //Received list of messages
-                    setLoading(false)
-                }
-            )
+            setSelectedRecipientId(params.recipientId);
+            setLoading(true);
+            getMessageConversationAdapter(params.recipientId).then(response => {
+                setSelectedRecipientConversations(response ? response : []); //Received list of messages
+                setLoading(false);
+            });
         }
     }, [])
 
@@ -60,55 +55,44 @@ const Chat = () => {
         }
     }
 
+    const calculateUsername = (userId, otherUserId, otherUserName, sessionObject) => {
+        console.log(sessionObject)
+        if (userId === otherUserId) {
+            return `User ${otherUserName}` ;
+        }
+        if (userId === sessionObject.user.userId) {
+            return 'You';
+        } 
+        return userId;
+    }
+
     return (
-        <div className="chat-page">
-            {selectedRecipientId ? (
-                <div className="chat-page-input">
-                    {selectedRecipientConversations &&
-                    selectedRecipientConversations.length > 0 ? (
-                        <div
-                            className="chat-conversation"
-                            id={`selectedConversation${selectedRecipientId}`}
-                            key={`selectedConversation${selectedRecipientId}`}
-                        >
-                            {selectedRecipientConversations.map((item) => (
-                                <div
-                                    className="chat-page-message"
-                                    id={`message${item._id}`}
-                                    key={`message${item._id}`}
-                                >
-                                    <p className="message-username">
-                                        {format(
-                                            new Date(item.createdAt),
-                                            'MM-dd-yyyy HH:mm:ss'
-                                        )}
-                                    </p>
-                                    <p className="message-username">
-                                        {item.postedByUser}
-                                    </p>
-                                    <p className="message-user-message">
-                                        {item.messageContent}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    ) : null}
-                    <input
-                        type="text"
-                        placeholder="Type message"
-                        onChange={messageTextChanged}
-                        value={currentMessageText}
-                    />
-                    <button
-                        className="chat-send-button"
-                        type="submit"
-                        onClick={createMessage}
-                    >
-                        Send
-                    </button>
-                </div>
-            ) : null}
-            {loading ? <LoadingSpinner /> : null}
+        <div className='chat-page'>
+            {selectedRecipientId ? 
+            <div className='chat-page-input'>
+                {selectedRecipientConversations[0] && selectedRecipientConversations[0].messages && selectedRecipientConversations[0].messages.length > 0 ? 
+                <div className='chat-conversation' id={`selectedConversation${selectedRecipientId}`} key={`selectedConversation${selectedRecipientId}`}>
+                    {selectedRecipientConversations[0].messages.map(item => 
+                        <div className='chat-page-message' id={`message${item._id}`} key={`message${item._id}`}>
+                            <p className='message-username'>{format(new Date(item.createdAt), 'MM-dd-yyyy HH:mm:ss')}</p>
+                            <p className='message-username'>{calculateUsername(item.postedByUser, selectedRecipientConversations[0].userId, selectedRecipientConversations[0].username, sessionObject.sessionObject)}</p>
+                            <p className='message-user-message'>{item.messageContent}</p>
+                        </div>)
+                    }  
+                </div> :
+                null
+                }
+                <input 
+                    type='text' 
+                    placeholder='Type message' 
+                    onChange={messageTextChanged} 
+                    value={currentMessageText}
+                /> 
+                <button className='chat-send-button' type='submit' onClick={createMessage}>Send</button>
+            </div> :
+            null
+            }
+            {loading ? <LoadingSpinner/> : null}
         </div>
     )
 }

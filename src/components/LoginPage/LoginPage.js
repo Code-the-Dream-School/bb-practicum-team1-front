@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import TextInput from '../inputs/TextInput'
 import { loginAdapter } from '../../adapters/auth-adapters';
 import { getCookie, cookieName, deleteCookie } from '../../util/Authentication';
 import { Link } from 'react-router-dom';
+import { LoadingContext } from '../../App'
 
 const showPass = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -18,8 +19,10 @@ const hidePass = (
 export const Login = ({ setSessionObject }) => {
     const [errorMsg, setErrorMsg] = useState('')
     const [passwordShownLogin, setPasswordShownLogin] = useState(false)
+    const { loading, setLoading } = useContext(LoadingContext)
 
     function handleSubmit(event) {
+        setLoading(true)
         event.preventDefault()
         const formData = new FormData(event.target)
         const formProps = Object.fromEntries(formData)
@@ -35,15 +38,18 @@ export const Login = ({ setSessionObject }) => {
                 let cookie = getCookie(cookieName);
                 console.log(cookie);
                 setSessionObject(getCookie(cookieName));
+                setLoading(false)
             } else {
                 setSessionObject({});
                 deleteCookie(cookieName);
                 console.log('Nothing reseived from server');
+                setLoading(false)
             }
         }).catch(e => {
             setSessionObject({});
             deleteCookie(cookieName);
             setErrorMsg(JSON.parse(e.message).msg) ;
+            setLoading(false)
         });
     };
 

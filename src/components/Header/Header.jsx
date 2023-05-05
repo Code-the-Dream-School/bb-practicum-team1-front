@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import logo1 from './logo1.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { forLoggedInUser, forSignedOutUser } from '../../constants'
 import { SessionContext /* <-- this is createContet()*/ } from '../../App'
 import { logoutAdapter } from '../../adapters/auth-adapters'
@@ -8,6 +8,8 @@ import { logoutAdapter } from '../../adapters/auth-adapters'
 
 const Header = ({ night, setNight }) => {
     const { sessionObject, setSessionObject } = useContext(SessionContext)
+    const navigate = useNavigate();
+
     return (
         <div className={night ? 'nav' : 'night-mode-header'}>
          
@@ -69,6 +71,7 @@ const Header = ({ night, setNight }) => {
                                         onClick={() => {
                                             logoutAdapter()
                                             setSessionObject(null)
+                                            navigate('/login');
                                         }}
                                     >
                                         Log Out
