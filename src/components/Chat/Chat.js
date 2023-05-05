@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import React, { useState, useContext, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { SessionContext } from '../../App'
-import {
-    createMessageAdapter,
-    getMessageConversationAdapter,
-} from '../../adapters/message-adapters'
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
-import { format } from 'date-fns'
-=======
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { SessionContext } from '../../App';
@@ -16,27 +5,15 @@ import { createMessageAdapter, getMessageConversationAdapter } from "../../adapt
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { format } from 'date-fns';
 import { newMessageAdapter } from "../../adapters/websocket-adapter"; 
->>>>>>> main
 
 const Chat = () => {
     const params = useParams()
     const sessionObject = useContext(SessionContext)
 
-<<<<<<< HEAD
-    const [selectedRecipientId, setSelectedRecipientId] = useState('')
-    const [selectedRecipientConversations, setSelectedRecipientConversations] =
-        useState([])
-    const [currentMessageText, setCurrentMessageText] = useState('')
-    const [loading, setLoading] = useState(false)
-=======
-    const params = useParams();
-    const sessionObject = useContext(SessionContext);
-
-    const [selectedRecipientId, setSelectedRecipientId] = useState('');
+      const [selectedRecipientId, setSelectedRecipientId] = useState('');
     const [selectedRecipientConversations, setSelectedRecipientConversations] = useState({});
     const [currentMessageText, setCurrentMessageText] = useState('');
     const [loading, setLoading] = useState(false);
->>>>>>> main
 
     const eventListeners = {
         newMessage : message => {
