@@ -103,15 +103,17 @@ export const userTypingStatusAdapter = async(eventListeners:EventListeners) => {
 
     socket.on('connect' , () =>{
         console.log('Connected to the server!')
-      })
+    })
 
     socket.on('typingStatus', typing =>{
 
         if(eventListeners.typingStatus){
             eventListeners.typingStatus(typing)
-          
-     socket.on('error', (error: any) => {     
-     console.error('Socket error:', error);
-  });
+        }
+    })  
+
+    socket.on('error', (error: any) => {     
+        console.error('Socket error:', error);
+    });
 }
 
