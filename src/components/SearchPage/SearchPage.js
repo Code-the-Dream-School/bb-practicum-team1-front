@@ -165,29 +165,29 @@ const SearchPage = () => {
 
     return (
         <div className='search-page'>
-            <div className='search-input'>
-                <DropdownInput 
-                    label={''}
-                    id={'searchType'}
-                    options={[{value: 'title', label: 'Search by title'}, {value: 'author', label: 'Search by author'}]}
-                    defaultValue={'title'} showPlaceholder={false}
-                />
-                <DebouncedSearch 
-                    id={'searchPageDebouncedSearch'}
-                    handleDebounce={processDebounce}
-                />
-            </div>
-            <div>
-                <DropdownInput id={'searchPageSortOrder'} defaultValue={'A to Z'} label={''}
-                    options={[{value: "az", label: "Sort A to Z"}, {value: "za", label: "Sort Z to A"}]} />
-                <DropdownInput id={'searchPageSortAttribute'} defaultValue={'Title'} label={''}
-                    options={[{value: "title", label: "Sort By Title"}, {value: "author", label: "Sort By Author"}, {value: "genre", label: "Sort By Genre"}]} />
-            </div>
-            <div>
+            <div className='inputs-container'>
+                <div className='search-inputs'>
+                    <DropdownInput 
+                        label={''}
+                        id={'searchType'}
+                        options={[{value: 'title', label: 'Search by title'}, {value: 'author', label: 'Search by author'}]}
+                        defaultValue={'title'} showPlaceholder={false}
+                    />
+                    <DebouncedSearch 
+                        id={'searchPageDebouncedSearch'}
+                        handleDebounce={processDebounce}
+                    />
+                </div>
+                <div className='sort-inputs'>
+                    <DropdownInput id={'searchPageSortOrder'} defaultValue={'A to Z'} label={''}
+                        options={[{value: "az", label: "Sort A to Z"}, {value: "za", label: "Sort Z to A"}]} />
+                    <DropdownInput id={'searchPageSortAttribute'} defaultValue={'Title'} label={''}
+                        options={[{value: "title", label: "Sort By Title"}, {value: "author", label: "Sort By Author"}, {value: "genre", label: "Sort By Genre"}]} />
+                </div>
                 <AddressSearch id={'bookAddressSearch'} onAddressSelected={selectAddress}/>
                 <TextInput 
-                    label={'Search radius'}
-                    placeholder={'10 miles'}
+                    label={'Search radius (miles)'}
+                    placeholder={'10'}
                     type='text'
                     id={'bookAddressSearchRadius'}
                     name={'bookAddressSearchRadius'}
