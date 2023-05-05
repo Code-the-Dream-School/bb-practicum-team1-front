@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import BookList from '../BookList/BookList'
 import { getAllBooksAdapter } from '../../adapters/book-adapters'
+import { LoadingContext } from '../../App.js'
 
 const genresArr = ['Mystery', 'History', 'Fantasy', 'Romance', 'Historical Fiction', 'Thriller', 'Young Adult'];
 
@@ -9,30 +10,43 @@ const getRandomGenre = () => {
 };
 
 const HomePage = () => {
-    const [books1, setBooks1] = useState([]);
-    const [books2, setBooks2] = useState([]);
+    const [books1, setBooks1] = useState([])
+    const [books2, setBooks2] = useState([])
+    const { setLoading } = useContext(LoadingContext)
+
+    const DELAY = 600
+    const REQUEST_BOOK_LIMITATION = 4
 
     useEffect(() => {
-        getAllBooksAdapter({
-            limit: 4,
-            genres: getRandomGenre()
-        }).then(result => {
-            if(result) {
-                setBooks2(result.books)
-            }
-        })
-    }, [])
+        setLoading(true)
+        const getAllBooks = async () => {
+            await getAllBooksAdapter({
+                limit: REQUEST_BOOK_LIMITATION,
+            })
+                .then((result) => {
+                    if (!result) return
+                    setBooks2(result.books)
+                })
+                .catch((error) => console.error('❌ ', error))
 
-    useEffect(() => {
-        getAllBooksAdapter({
-            limit: 4,
-            sort: 'CreatedAt',
-        }).then(result => {
-            if(result) {
-                setBooks1(result.books)
-            }
-        })
-    }, [])
+            await getAllBooksAdapter({
+                limit: REQUEST_BOOK_LIMITATION,
+                sort: 'CreatedAt',
+            })
+                .then((result) => {
+                    if (!result) return
+                    setBooks1(result.books)
+                })
+                .catch((error) => console.error('❌ ', error))
+        }
+
+        const timeout = setTimeout(() => {
+            getAllBooks()
+            setLoading(false)
+        }, DELAY)
+
+        return () => clearTimeout(timeout)
+    }, [])  
 
     return (
         <>
@@ -52,4 +66,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage;
+export default HomePage

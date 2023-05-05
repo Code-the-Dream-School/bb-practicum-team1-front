@@ -6,6 +6,8 @@ import ZeroPlus from '../images/zeroPlus.png';
 import { getSingleBookAdapter } from '../../adapters/book-adapters';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { LoadingContext } from '../../App'
+
 
 const SingleBook = () => {
   const routeParams = useParams();
@@ -19,11 +21,15 @@ const SingleBook = () => {
   const title = bookInformation.title;
   const genre = bookInformation.genre;
   const publishingYear = bookInformation.publishingYear;
+  const { loading, setLoading } = useContext(LoadingContext)
+
 
   // getting the single book using useParams
   const singleFetchedBook = async () => {
     if (routeParams.bookId) {
+      setLoading(true)
       const newBook = await getSingleBookAdapter(routeParams.bookId);
+      setLoading(false)
       setBookInformation(newBook);
     }
   }
