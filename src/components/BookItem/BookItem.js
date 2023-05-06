@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { SessionContext } from '../../App';
 import Message from '../images/message.png';
 import Adults from '../images/18plus1.png';
 import NoPic from '../images/Image-Not-Available.png';
@@ -7,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { deleteBookAdapter } from '../../adapters/book-adapters';
 
 const BookItem = ({ item, handleOnBookDelete, isBookOwner }) => {
+  const sessionObject = useContext(SessionContext);
   const adult = item.ageRange === 'adults';
   const status = item.status === 'open';
   const image = item.imageLink;
@@ -36,8 +38,11 @@ const BookItem = ({ item, handleOnBookDelete, isBookOwner }) => {
             <Link to={`/books/${item._id}`}>{item.title} </Link> 
             ({item.publishingYear})
           </p>
-          <a href={item.description} className='link-to-owner' data-id='Contact the owner'><img src={Message} alt="message_me" /></a>
-        </div>
+          { sessionObject?.sessionObject?.user ?
+            <Link to={`/chat/${item?.owner?._id}`} className='link-to-owner' data-id='Contact the owner'><img src={Message} alt="message_me" /></Link> :
+            null
+          }
+          </div>
         <p className='bookDescription'>{item.description}</p><br />
         <div className='imgAndLanguage'>
           <p className='lang-p'>Language: {item.language}</p>
