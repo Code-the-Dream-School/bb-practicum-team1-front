@@ -42,7 +42,7 @@ const SingleBook = () => {
           <p className='kidsAdults-single'>
             {adult ? <img src={Adults} alt="Adults" title='Not appropriate for under 13 years old'/>  : <img src={ZeroPlus} alt="Kids" title='Kid friendly'/> }
           </p>
-          {image ? <img src={image} alt="Cover image" className='coverImage-single' /> : <img src={NoPic} alt="No_Picture_available" className='coverImage-single' />}
+          <div className='cover-container-single'>{image ? <img src={image} alt="Cover image" className='coverImage-single' /> : <img src={NoPic} alt="No_Picture_available" className='coverImage-single' />}</div>
           <div className="book-item-body-single">
             <div>
               <p className='titleAndYear-single'>

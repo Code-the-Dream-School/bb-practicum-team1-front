@@ -8,13 +8,12 @@ export const forLoggedInUser = [
         route: '/my-profile',
     },
     {
-        name: 'About',
-        route: '/about',
-    },
-
-    {
         name: 'Chat',
         route: '/chat/',
+    },
+    {
+        name: 'About',
+        route: '/about',
     },
     {
         name: 'Search',
