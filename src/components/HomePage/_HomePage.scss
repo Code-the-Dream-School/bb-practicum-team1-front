@@ -23,11 +23,17 @@
     text-align: center;
     padding: 5px;
     font-weight: $fontBold;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    letter-spacing: 3px;
 }
 
 @media (max-width: 768px) {
     .h1-homePageCards {
         font-size: 2rem;
+        width: 100%;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
     }
 
     .h2-home-page {
@@ -37,9 +43,6 @@
         font-weight: $fontBold;
     }
 
-    .h1-homePageCards {
-        width: 100%;
-    }
     #body, #header {
         left: 0; right: 0;
     }
