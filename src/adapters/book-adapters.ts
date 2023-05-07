@@ -273,7 +273,9 @@ export const updateBookAdapter = async(bookParams:bookParams, file:File): Promis
     })
     
     // add the file to form data
-    formData.append('image', file)
+    if (file) {
+        formData.append('image', file)
+    }
     
      // send form data to server 
      const data = await fetchAPIData(url, 'POST', formData, true, undefined, true)
