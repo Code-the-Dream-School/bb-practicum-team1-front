@@ -21,7 +21,7 @@ const ProfilePage = () => {
     }, [])
 
     const {sessionObject} = useContext(SessionContext)
-console.log('sessionObj', sessionObject)
+
     return (
         <div className="Profile">
           <div className="user-container">

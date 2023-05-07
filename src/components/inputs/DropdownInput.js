@@ -18,7 +18,7 @@ export default function DropdownInput({ label, id, options, isRequiredSelect, sh
                 required={isRequiredSelect}
             >
                 {showPlaceholder ? 
-                    <option value="" disabled selected>
+                    <option value="">
                         Select your option
                     </option>
                     : null

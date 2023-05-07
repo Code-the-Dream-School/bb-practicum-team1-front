@@ -259,5 +259,15 @@
         padding-bottom: 20px;
         padding-top: 10px;
     }
+
+    .linkToAvailableBook:after {
+      top: 150px;
+      left: 5px;
+    }
+
+    .linkToUnavailableBook:after { 
+      top: 150px;
+      left: 0px;
+    }
 }
 

@@ -46,7 +46,8 @@ const App = () => {
     const [night, setNight] = useState(false)
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
     const [urlButton, setUrlButton] = useState(false)
-    const [loading, setLoading] = useState(false)    
+    const [loading, setLoading] = useState(false) 
+    const [modalIsOpen, setModalIsOpen]=useState(false);   
 
     return (
         <>
@@ -114,6 +115,8 @@ const App = () => {
                                                 <CreateBook 
                                                     urlButton={urlButton}
                                                     setUrlButton={setUrlButton}
+                                                    modalIsOpen={modalIsOpen}
+                                                    setModalIsOpen={setModalIsOpen}
                                                 />
                                             </ProtectedRoute>
                                         }
@@ -125,6 +128,8 @@ const App = () => {
                                                 <CreateBook 
                                                     urlButton={urlButton}
                                                     setUrlButton={setUrlButton}
+                                                    modalIsOpen={modalIsOpen}
+                                                    setModalIsOpen={setModalIsOpen}
                                                 />
                                             </ProtectedRoute>
                                         }
