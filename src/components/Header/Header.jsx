@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
-import logo1 from './Logo.svg'
+import logo from './Logo.svg'
+import LogoNight from './LogoNight.svg'
 import lamp from './Lamp n.svg'
 import lampDay from './Lamp day.svg'
 import { Link, useNavigate } from 'react-router-dom'
@@ -22,7 +23,7 @@ const Header = ({ night, setNight, openRigthNav, setIsOpenRightNav }) => {
          
                 <div className="logo-pic">
                     <Link to="/">
-                        <img src={logo1} alt="logo" />
+                        {night ? <img src={LogoNight} alt="logo" /> : <img src={logo} alt="logo" />}
                     </Link>
                 </div>
                 <button
