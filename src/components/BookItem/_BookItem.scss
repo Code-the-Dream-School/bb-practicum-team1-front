@@ -204,7 +204,7 @@
 .edit-and-delete-btn {
   text-align: center;
   padding: 10px;
-  width: 40%;
+  width: 60%;
 }
 
 .remove-btn {
@@ -215,6 +215,14 @@
 }
 
 .edit-button {
+  background-color: transparent;
+  cursor: pointer;
+  padding: 5px;
+  border: 5px solid transparent;
+  margin-left: 10px;
+}
+
+.borrow-button {
   background-color: transparent;
   cursor: pointer;
   padding: 5px;
