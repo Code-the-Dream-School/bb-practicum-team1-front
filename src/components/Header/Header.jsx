@@ -23,12 +23,12 @@ const Header = ({ night, setNight, openRigthNav, setIsOpenRightNav }) => {
          
                 <div className="logo-pic">
                     <Link to="/">
-                        {night ? <img src={LogoNight} alt="logo" /> : <img src={logo} alt="logo" />}
+                        {night ? <img src={LogoNight} alt="logo" title='Go to Main Page' /> : <img src={logo} alt="logo" title='Go to Main Page' />}
                     </Link>
                 </div>
                 <button
                     type="button"
-                    title="Day/Night Toggle"
+                    title={night ? 'Turn on the light' : 'Turn off the light'}
                     onClick={() => setNight(!night)}
                     className={night ? 'day-mode' : 'night-mode'}
                 >
