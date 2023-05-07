@@ -6,21 +6,21 @@ import { Link } from 'react-router-dom';
 
 const AllConversations = () => {
     const sessionObject = useContext(SessionContext);
-    const [allConversations, setAllConversations] = useState({});
+    const [allConversations, setAllConversations] = useState(undefined);
     const [loading, setLoading] = useState(false);
 
     //Load all conversations where current user participated
     useEffect(() => {
         setLoading(true);
         getAllConversationAdapter().then(response => {
-            setAllConversations(response || {}); //Received map recipientId -> list of messages
+            setAllConversations(response); //Received map recipientId -> list of messages
             setLoading(false);
         });
     }, [])
 
     return (
         <div className='allconversations-page'>
-            {allConversations ? 
+            {allConversations && Object.keys(allConversations).length > 0 ? 
             <div>
                 {Object.keys(allConversations).map(key => 
                     <div  className='allconversations-list' id={`conversation${key}`} key={`conversation${key}`}>
@@ -29,7 +29,7 @@ const AllConversations = () => {
                     </div>
                 )}
             </div> : 
-            <p className='allconversations-empty'>No conversations exist</p>
+            <p className='allconversations-empty'>No conversations exist. You can start conversation with book owner using Contact the Owner button on book card</p>
             }
             {loading ? <LoadingSpinner/> : null}
         </div>

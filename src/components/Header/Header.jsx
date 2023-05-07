@@ -9,6 +9,7 @@ import { logoutAdapter } from '../../adapters/auth-adapters'
 const Header = ({ night, setNight }) => {
     const { sessionObject, setSessionObject } = useContext(SessionContext)
     const navigate = useNavigate();
+    const [checkbox, checkCheckbox] = useState(true)
 
     return (
         <div className={night ? 'nav' : 'night-mode-header'}>
@@ -40,7 +41,7 @@ const Header = ({ night, setNight }) => {
                 </button>
 
                 <label className='hamburger-menu'>
-                    <input type='checkbox'/>
+                    <input type='checkbox' id='hamburger-checkbox' name='hamburger-checkbox' checked={checkbox} onChange={() => {console.log(checkbox); checkCheckbox(!checkbox)}}/>
                 </label>
                 <aside className='sidebar'>
                     <ul className='right-nav-ul'>
@@ -71,6 +72,8 @@ const Header = ({ night, setNight }) => {
                                         onClick={() => {
                                             logoutAdapter()
                                             setSessionObject(null)
+                                            checkCheckbox(false)
+                                            console.log(checkbox)
                                             navigate('/login');
                                         }}
                                     >
