@@ -91,7 +91,6 @@ export function SignUp() {
                 'Password should contain at least one uppercase letter, one lowercase letter, one special character, and one number'
             )
             setState(false)
-            console.log('not strong')
             return
         } else {
             setErrorMessage('')
