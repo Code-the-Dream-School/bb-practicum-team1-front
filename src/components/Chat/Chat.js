@@ -85,24 +85,28 @@ const Chat = () => {
             {selectedRecipientId ? 
             <div className='chat-page-input'>
                 {selectedRecipientConversations && selectedRecipientConversations.messages && selectedRecipientConversations.messages.length > 0 ? 
-                <div className='chat-conversation' id={`selectedConversation${selectedRecipientId}`} key={`selectedConversation${selectedRecipientId}`}>
+                <div className='chat' id={`selectedConversation${selectedRecipientId}`} key={`selectedConversation${selectedRecipientId}`}>
                     {selectedRecipientConversations.messages.map(item => 
-                        <div className='chat-page-message' id={`message${item._id}`} key={`message${item._id}`}>
-                            <p className='message-username'>{format(new Date(item.createdAt), 'MM-dd-yyyy HH:mm:ss')}</p>
-                            <p className='message-username'>{calculateUsername(item.postedByUser, selectedRecipientConversations.userId, selectedRecipientConversations.username, sessionObject.sessionObject)}</p>
-                            <p className='message-user-message'>{item.messageContent}</p>
+                        <div className='message' id={`message${item._id}`} key={`message${item._id}`}>
+                            <div className={calculateUsername(item.postedByUser, selectedRecipientConversations.userId, selectedRecipientConversations.username, sessionObject.sessionObject) === 'You' ? 'my-message' : 'other-message'}>
+                                <p>{format(new Date(item.createdAt), 'MM-dd-yyyy HH:mm:ss')}</p>
+                                <p>{calculateUsername(item.postedByUser, selectedRecipientConversations.userId, selectedRecipientConversations.username, sessionObject.sessionObject)}</p>
+                                <p>{item.messageContent}</p>
+                            </div>
                         </div>)
                     }  
                 </div> :
                 null
                 }
-                <input 
-                    type='text' 
-                    placeholder='Type message' 
-                    onChange={messageTextChanged} 
-                    value={currentMessageText}
-                /> 
-                <button className='chat-send-button' type='submit' onClick={createMessage}>Send</button>
+                <div className='chat-page-send-message'>
+                    <input 
+                        type='text' 
+                        placeholder='Type message' 
+                        onChange={messageTextChanged} 
+                        value={currentMessageText}
+                    /> 
+                    <button className='chat-send-button' type='submit' onClick={createMessage}>Send</button>
+                </div>
             </div> :
             null
             }
