@@ -130,6 +130,15 @@
     height: fit-content;
   }
 
+  .cover-container-single {
+    max-height: 400px;
+    .coverImage-single {
+      max-height: 400px;
+      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+      max-width: 75%;
+    }
+  }
+
 @media (max-width: 768px) {
   .lang-p-single {
     padding-top: 55px;

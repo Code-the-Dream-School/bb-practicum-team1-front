@@ -47,7 +47,8 @@ const App = () => {
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
     const [urlButton, setUrlButton] = useState(false)
     const [loading, setLoading] = useState(false) 
-    const [modalIsOpen, setModalIsOpen]=useState(false);   
+    const [modalIsOpen, setModalIsOpen]=useState(false);  
+    const [openRigthNav, setIsOpenRightNav] = useState(false); 
 
     return (
         <>
@@ -68,7 +69,12 @@ const App = () => {
                             setInputs({ ...inputs, ...inputObj }),
                     }}
                 >
-                    <Header night={night} setNight={setNight} />
+                    <Header 
+                        night={night} 
+                        setNight={setNight} 
+                        openRigthNav={openRigthNav} 
+                        setIsOpenRightNav={setIsOpenRightNav}
+                    />
                     <div className="content">
                         <div
                             className={!night ? 'day-mode-bg' : 'night-mode-bg'}
