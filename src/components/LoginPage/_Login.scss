@@ -134,6 +134,8 @@
     .login-container form {
         width: 90%;
         height: 550px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .login-container {
@@ -141,12 +143,17 @@
     }
 
     .form-inputs-login {
-        margin-left: 0%;
         margin-bottom: 10px;
+        max-width: 250px;
+    }
+
+    .text-input-label {
+        max-width: 250px;
     }
 
     .form-inputs-login input {
         font-size: 1rem;
+        max-width: 250px;
     }
 
     .error-container-login {
