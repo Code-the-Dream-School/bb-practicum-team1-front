@@ -29,7 +29,7 @@ const BookItem = ({ item, handleOnBookDelete, isBookOwner }) => {
       </p>
       <span className={status ? 'available' : 'unavailable'}>
         <Link to={`/books/${item._id}`} className={status ? 'linkToAvailableBook' : 'linkToUnavailableBook'} data-id={status ? 'Press to open' : 'Borrowed'}>
-          {image ? <img src={image} alt="Cover image" className='coverImage' /> : <img src={NoPic} alt="No_Picture_available" className='coverImage' />}
+          <div className='cover-container'>{image ? <img src={image} alt="Cover image" className='coverImage' /> : <img src={NoPic} alt="No_Picture_available" className='coverImage' />}</div>
         </Link>
       </span>
       <div className="book-item-body">

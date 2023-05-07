@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 var remove = '\u2718';
 
@@ -58,8 +58,6 @@ const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelected
                                                     className='imageCoverUrl'
                                                     src={(selectedURL)}
                                                 />
-                                                
-                                                <button className='removeButton' onClick={() => setSelectedURL('')} title='Remove' >{remove}</button>
                                             </div>
                                         )}
                                     </div>

@@ -9,7 +9,7 @@ const getRandomGenre = () => {
     return genresArr[Math.floor(Math.random() * genresArr.length)];
 };
 
-const HomePage = ({ setList }) => {
+const HomePage = () => {
     const [books1, setBooks1] = useState([]);
     const [books2, setBooks2] = useState([]);
     const { setLoading } = useContext(LoadingContext)
@@ -61,11 +61,11 @@ const HomePage = ({ setList }) => {
                 {/* Render out the booklList on the home page */}
                     <div className='book-list-1'>
                         <h2 className='h2-home-page'>Our most recent books: </h2>
-                        <BookList bookList={books1} setList={setList}/>
+                        <BookList bookList={books1}/>
                     </div>
                     <div className='book-list-2'>
                         <h2 className='h2-home-page'>Checkout these recent "{firstBook.genre}" books: </h2>
-                        <BookList bookList={books2} setList={setList}/>
+                        <BookList bookList={books2} />
                     </div> 
             </div>
         </>
