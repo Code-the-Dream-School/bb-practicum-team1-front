@@ -31,7 +31,10 @@ export const SessionContext = createContext({
     sessionObject: null,
     setSessionObject: () => {},
 })
-export const LoadingContext = createContext({loading:false, setLoading: () => {}})
+export const LoadingContext = createContext({
+    loading: false,
+    setLoading: () => {},
+})
 
 /**
  *  level 1 - some kinda of state - dark/light mode   Provider (parent)
@@ -50,83 +53,84 @@ const App = () => {
             <SessionContext.Provider
                 value={{ sessionObject, setSessionObject }}
             >
-                <LoadingContext.Provider value={{ loading, setLoading}}>
-                <InputContext.Provider
-                    value={{
-                        inputs,
-                        handleInputChange: (inputName, inputValue) =>
-                            setInputs({ ...inputs, [inputName]: inputValue }),
+                <LoadingContext.Provider value={{ loading, setLoading }}>
+                    <InputContext.Provider
+                        value={{
+                            inputs,
+                            handleInputChange: (inputName, inputValue) =>
+                                setInputs({
+                                    ...inputs,
+                                    [inputName]: inputValue,
+                                }),
 
-                        handleBulkInput: (inputObj) =>
-                            setInputs({ ...inputs, ...inputObj }),
-                    }}
-                >
-                    <Header night={night} setNight={setNight} />
-                    <div className="content">
-                        <div
-                            className={!night ? 'day-mode-bg' : 'night-mode-bg'}
-                        >
-                            <Routes>
-                                <Route path="" element={<HomePage />} />
-                                <Route
-                                    path="/login"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="anonymous">
-                                            <Login
-                                                setSessionObject={
-                                                    setSessionObject
-                                                }
-                                            />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/sign-up"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="anonymous">
-                                            <SignUp
-                                                setSessionObject={
-                                                    setSessionObject
-                                                }
-                                            />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route path="/about" element={<About />} />
-                                <Route
-                                    path="/search"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="user">
-                                            <SearchPage />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/books/create"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="user">
-                                            <CreateBook />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/books/edit/:bookId"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="user">
-                                            <CreateBook />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/books/:bookId"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="user">
-                                            <SingleBook />
-                                        </ProtectedRoute>
-                                    }
-                                />
+                            handleBulkInput: (inputObj) =>
+                                setInputs({ ...inputs, ...inputObj }),
+                        }}
+                    >
+                        <Header night={night} setNight={setNight} />
+                        <div className="content">
+                            <div
+                                className={
+                                    !night ? 'day-mode-bg' : 'night-mode-bg'
+                                }
+                            >
+                                <Routes>
+                                    <Route path="" element={<HomePage />} />
                                     <Route
-                                        path="/chat/:recipientId"                                        
+                                        path="/login"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="anonymous">
+                                                <Login
+                                                    setSessionObject={
+                                                        setSessionObject
+                                                    }
+                                                />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/sign-up"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="anonymous">
+                                                <SignUp
+                                                    setSessionObject={
+                                                        setSessionObject
+                                                    }
+                                                />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route path="/about" element={<About />} />
+                                    <Route
+                                        path="/search"
+                                        element={<SearchPage />}
+                                    />
+                                    <Route
+                                        path="/books/create"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <CreateBook />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/books/edit/:bookId"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <CreateBook />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/books/:bookId"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <SingleBook />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/chat/:recipientId"
                                         element={
                                             <ProtectedRoute requiredAuthLevel="user">
                                                 <Chat />
@@ -134,27 +138,25 @@ const App = () => {
                                         }
                                     />
                                     <Route
-                                        path="/chat/"                                       
+                                        path="/chat/"
                                         element={
                                             <ProtectedRoute requiredAuthLevel="user">
                                                 <AllConversations />
                                             </ProtectedRoute>
                                         }
                                     />
-                                <Route
-                                    path="/my-profile"
-                                    element={
-                                        <ProtectedRoute requiredAuthLevel="user">
-                                            <ProfilePage />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                            </Routes>
+                                    <Route
+                                        path="/my-profile"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <ProfilePage />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                </Routes>
+                            </div>
                         </div>
-                        </div>
-                    
-                    
-                </InputContext.Provider>
+                    </InputContext.Provider>
                 </LoadingContext.Provider>
             </SessionContext.Provider>
             {loading && <LoadingSpinner />}

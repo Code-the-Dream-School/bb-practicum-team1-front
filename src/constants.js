@@ -11,19 +11,22 @@ export const forLoggedInUser = [
         name: 'About',
         route: '/about',
     },
-   
+
     {
-        name: 'Chat', 
-        route: '/chat/'
+        name: 'Chat',
+        route: '/chat/',
     },
     {
         name: 'Search',
         route: '/search',
-
     },
 ]
 
 export const forSignedOutUser = [
+    {
+        name: 'Search',
+        route: '/search',
+    },
     {
         name: 'Sign Up',
         route: '/sign-up',
@@ -36,5 +39,4 @@ export const forSignedOutUser = [
         name: 'About',
         route: '/about',
     },
-    
 ]
