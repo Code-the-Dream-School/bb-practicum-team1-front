@@ -24,7 +24,6 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Chat from './components/Chat/Chat'
 import AllConversations from './components/Chat/AllConversations'
-import { url } from 'inspector'
 // import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 
 export const InputContext = createContext({})
@@ -106,7 +105,10 @@ const App = () => {
                                     path="/books/create"
                                     element={
                                         <ProtectedRoute requiredAuthLevel="user">
-                                            <CreateBook />
+                                            <CreateBook 
+                                                urlButton={urlButton}
+                                                setUrlButton={setUrlButton}
+                                            />
                                         </ProtectedRoute>
                                     }
                                 />
@@ -115,7 +117,7 @@ const App = () => {
                                     element={
                                         <ProtectedRoute requiredAuthLevel="user">
                                             <CreateBook 
-                                                urlButton={url}
+                                                urlButton={urlButton}
                                                 setUrlButton={setUrlButton}
                                             />
                                         </ProtectedRoute>

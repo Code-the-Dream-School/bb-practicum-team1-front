@@ -21,10 +21,13 @@
             opacity: 80%;
         }
     }
-    .coverImage {
-      max-height: 340px;
-      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-      max-width: 75%;
+    .cover-container {
+      min-height: 340px;
+      .coverImage {
+        max-height: 340px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        max-width: 75%;
+    }
     }
     .coverImage:hover {
       border: 3px solid transparent;
@@ -240,10 +243,13 @@
 }
 
 @media (max-width: 768px) {
+  .book-item .cover-container {
+    min-height: 230px;
+  }
     .coverImage {
         width: 150px;
         opacity: 80%;
-    }
+  }
     .book-item {
         max-width: 300px;
         min-width: 300px;

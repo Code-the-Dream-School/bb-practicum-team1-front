@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import './Profile.scss'
 import { getAllBooksOwnerAdapter } from "../../adapters/book-adapters";
 import { SessionContext } from "../../App";
 import { PagePagination } from "../PagePagination/Pagination";
@@ -22,23 +21,26 @@ const ProfilePage = () => {
     }, [])
 
     const {sessionObject} = useContext(SessionContext)
-
+console.log('sessionObj', sessionObject)
     return (
         <div className="Profile">
-          <h1>My Profile</h1>
-          <div className="user">
-            {sessionObject.user.givenName}<br/>
-            {sessionObject.user.familyName}<br/>
-            {sessionObject.user.username}<br/>
-            {sessionObject.user.address}<br/>
-            {sessionObject.user.dateOfBirth}<br/>
+          <div className="user-container">
+            <h1 className="header-profile">{sessionObject.user.givenName}'s  Profile:</h1>
+            <div className="user">
+              <div className="user-name"><span>Name: </span>{sessionObject.user.givenName} {sessionObject.user.familyName}</div>
+              <div className="username"><span>Username: </span>{sessionObject.user.username}</div>
+              <div className="user-address"><span>Address: </span>{sessionObject.user.address}</div>
+              <div className="user-dob"><span>Date of Birth: </span>{new Date(`${sessionObject.user.dateOfBirth}`).toLocaleDateString()}</div>
+            </div>
           </div>
           <div className="books">
-          <PagePagination 
-            books={usersBooks} 
-            handleOnBookDelete={handleOnBookDelete}
-            isBookOwner={true}
-          />
+          <div className="pagination-container">
+            <PagePagination 
+              books={usersBooks} 
+              handleOnBookDelete={handleOnBookDelete}
+              isBookOwner={true}
+            />
+          </div>
           </div>
         </div>
       );
