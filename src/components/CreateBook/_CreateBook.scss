@@ -151,6 +151,16 @@
     padding-bottom: 10px;
 } 
 
+.modal-container {
+    width: 100vw;
+    background-color: red;
+}
+
+.abstract-modal {
+    background-color: green;
+    font-size: 1.8rem;
+}
+
 @media (max-width: 768px) {
     .container-create-form {
         box-shadow: none;

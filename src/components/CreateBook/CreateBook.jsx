@@ -70,20 +70,18 @@ const optionsGenre = [
     { value: 'Personal Growth', label: 'Personal Growth' },
 ]
 
-const CreateBook = ({ urlButton, setUrlButton }) => {
-    
+const CreateBook = ({ urlButton, setUrlButton, modalIsOpen, setModalIsOpen }) => {
+    const [openModal, setOpenModal] = useState(false);
     const routeParams = useParams();
     const { inputs, handleBulkInput } = useContext(InputContext);
     const bookId = routeParams.bookId
     const [bookInformation, setBookInformation] = useState({});
     const [selectedImage, setSelectedImage] = useState('');
     const [selectedURL, setSelectedURL] = useState('' || undefined);
-    const [message, setMessage] = useState('');
     const { loading, setLoading } = useContext(LoadingContext);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault(); 
-        setMessage('');
         setLoading(true);
         
         routeParams.bookId ? 
@@ -116,8 +114,8 @@ const CreateBook = ({ urlButton, setUrlButton }) => {
                     imageLink: selectedURL
                 },
                 selectedImage,
-            ))
-            setMessage('Successfully created!')  
+            )) 
+            setModalIsOpen(true)
             handleBulkInput({
                 title: '',
                 language: '',
@@ -132,7 +130,6 @@ const CreateBook = ({ urlButton, setUrlButton }) => {
             setSelectedImage('');
             setSelectedURL('');
             setLoading(false)
-            setMessage('');
             setUrlButton(false);
     };
 
@@ -153,12 +150,11 @@ const CreateBook = ({ urlButton, setUrlButton }) => {
     useEffect(() => {
         handleBulkInput(bookInformation);
     }, [bookInformation]);
-
+console.log('modal is: ', modalIsOpen)
     return (
         <>
             <h1 className='h1-createBook'>Your {<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>} here</h1>
             <div className='container-create-form'>
-                {/* <AbstractModal /> */}
                 <form className='createBookForm' onSubmit={handleFormSubmit}>
                     <div className='inputFields'>
                         <TextInput 
@@ -234,10 +230,21 @@ const CreateBook = ({ urlButton, setUrlButton }) => {
                     </div>
                     
                     <div className='button'>
-                        <p className='success-message'>{message}</p>
-                        <button className='addButton' title='Press to Add'>{Object.keys(routeParams).length === 0 ? 'Create ' : 'Edit '}{addButton}</button>
+                        <button className='addButton' title='Press to Add' >{Object.keys(routeParams).length === 0 ? 'Create ' : 'Edit '}{addButton}</button>
                     </div>
                 </form>
+                
+                {!openModal && 
+                    <div className='modal-container'>
+                        <AbstractModal 
+                            modalId='abstractModal'
+                            className='abstract-modal'
+                            modalIsOpen={modalIsOpen}
+                            onModalClose={() => setModalIsOpen(false)}
+                            children='Success!'
+                        />
+                    </div>
+                }
             </div>
         </>
     )

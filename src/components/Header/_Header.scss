@@ -146,6 +146,11 @@
     text-decoration: none;
     min-width: fit-content;
 }
+
+.button-17 a:focus {
+    opacity: 50%;
+}
+
 .button-17 {
     align-items: center;
     appearance: none;
@@ -186,6 +191,7 @@
     background: #f6f9fe;
     color: #174ea6;
 }
+
 .button-17:active {
     box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
         0 8px 12px 6px rgb(60 64 67 / 15%);

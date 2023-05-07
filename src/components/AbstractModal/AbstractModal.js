@@ -11,13 +11,13 @@ const AbstractModal = ({ modalId, className, modalIsOpen, onModalClose, children
                     right: 'auto',
                     bottom: 'auto',
                     transform: 'translate(-50%, -50%)',
-                    width: '40%', 
-                    height: '40%', 
-                    margin: '0 auto', 
-                    color: 'black',
-                    padding: '2rem',
+                    width: '14%', 
+                    height: '14%', 
+                    margin: '30rem 65rem', 
+                    color: 'white',
+                    padding: '1rem',
                     borderRadius: '1rem',
-                    boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)',
+                    boxShadow: '2px 5px 5px rgb(0,0,128)',
                     backgroung: 'white'
                 }, 
                 overlay: { 
@@ -35,10 +35,13 @@ const AbstractModal = ({ modalId, className, modalIsOpen, onModalClose, children
                 style={{
                     display: 'flex',
                     justifyContent: 'end',
-                    marginBottom: '1rem'
+                    marginBottom: '1rem',
                 }}
             >
-                <button type="button" onClick={() => onModalClose(false)}>Close</button>
+                <button 
+                    type="button" 
+                    onClick={() => onModalClose(false)} 
+                    style={{ color: 'blue', 'font-size': '1.8rem', borderRadius: '1rem' }}>{'\u2718'}</button>
             </div>
             { children }
         </Modal>
