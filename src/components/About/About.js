@@ -145,9 +145,6 @@ const About = () => {
                             innovative solutions.
                         </p>
                         </div>
-                   
-
-
 
                         <div className="card">
                         <p className="title">Nikki Graybeal</p>
