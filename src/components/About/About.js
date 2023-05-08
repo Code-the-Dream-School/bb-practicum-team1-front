@@ -1,11 +1,11 @@
 import hands from './Images/Hands.svg'
 import Olga from './Images/Olga.png'
 import Nikki from './Images/Nikki.jpeg'
-import Manizha from './Images/Manizha.png'
-import Lara from './Images/Lara.png'
+import Manizha from './Images/Manizha.jpg'
+import Lara from './Images/Lara.jpg'
 import Rachel from './Images/Rachel.png'
 import Jacob from './Images/Jacob.png'
-import Simon from './Images/Simon.png'
+import Simon from './Images/Simon.jpg'
 import Ekaterina from './Images/Ekaterina.png'
 import Cecilia from './Images/Cecilia.png'
 
@@ -87,15 +87,22 @@ const About = () => {
                         />
                     </div>
                     <p className="card-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        Kate was born in Russia and was passionate about
+                        Information Technology since middle school. She obtained
+                        a Master's degree in Applied Computer Science with a
+                        focus on Finance and Economy. She worked as a manager in
+                        the Finance field for international companies before
+                        moving to the US, to the Research Triangle
+                        Park area, in 2016. She is now pursuing her dream of
+                        becoming a Full Stack Software Engineer. Kate is
+                        grateful to CTD for changing her life and mindset, and
+                        proud to be a part of the CTD family. She enjoys
+                        volunteering, studying, challenging herself every day,
+                        sharing her knowledge, and helping others. Kate believes
+                        that everyone can make this world a better place to live
+                        in! She is also a proud mom of two incredible boys. In
+                        her free time, she loves hiking, traveling with her
+                        family, and exploring new places.
                     </p>
                 </div>
 
@@ -112,15 +119,13 @@ const About = () => {
                         />
                     </div>
                     <p className="card-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        Simon is an aspiring web developer originally from
+                        London, UK and currently based in Recife, Brazil. His
+                        interests include, cooking, travelling, fixing laptops,
+                        hiking and reading. His biggest lesson from Practicum
+                        has been to try and focus on progress over perfection.
+                        As the famous saying goes 'A little progress every day
+                        adds up to big results'.
                     </p>
                 </div>
 
@@ -144,11 +149,11 @@ const About = () => {
                         to the US. Since joining CTD, Cecilia has been able to
                         explore her passion for technology and design further.
                         She also has a passion for helping Spanish-speaking
-                        individuals. Being bilingual in English and Spanish,
-                        she is able to connect with and assist those who may
-                        face language barriers when seeking help or resources.
-                        Outside of her studies, she enjoys spending time
-                        with her family and reading.
+                        individuals. Being bilingual in English and Spanish, she
+                        is able to connect with and assist those who may face
+                        language barriers when seeking help or resources.
+                        Outside of her studies, she enjoys spending time with
+                        her family and reading.
                     </p>
                 </div>
 
