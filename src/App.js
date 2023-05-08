@@ -107,14 +107,6 @@ const App = () => {
                                     />
                                     <Route path="/about" element={<About />} />
                                     <Route
-                                        path="/search"
-                                        element={
-                                            <ProtectedRoute requiredAuthLevel="user">
-                                                <SearchPage />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
                                         path="/books/create"
                                         element={
                                             <ProtectedRoute requiredAuthLevel="user">
