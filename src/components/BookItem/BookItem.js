@@ -15,8 +15,6 @@ const BookItem = ({ item, handleOnBookDelete, isBookOwner }) => {
 
   const [savedItem, setSavedItem] = useState(item);
 
-  console.log(savedItem);
-
   const deleteBook = async () => {
     if (savedItem._id) {
       const newList = await deleteBookAdapter(savedItem._id);
