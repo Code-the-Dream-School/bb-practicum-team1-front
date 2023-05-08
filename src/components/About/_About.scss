@@ -1,51 +1,34 @@
-.cards {
+.members {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    grid-gap: 50px;
-    float: left;
-    width: 300px;
-    margin-left: 40px;
-    margin-bottom: 10px;
-    margin-top: 50px;
-    border-radius: 4px;
-    box-shadow: 0px 0px 15px -5px;
-    box-sizing: content-box;
-    padding-left: 50px;
-    padding-right: 50px;
-    justify-content:baseline;
-
-    .card-content {
-        font-size: 20px;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -webkit-box-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
         text-align: center;
-        margin-bottom: 70px;
-        padding-left: 15px;
-        padding-right: 15px;
-        
-    }
-    .title {
-        font-size: 30px;
-        margin-top: 20px;
-    }
-    .about-links{
-        margin-top: 10px;
-    }
-}
-
-/* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 600px) {
-    .column {
-        // width: 100%;
-        display: flex;
-        flex-flow: column nowrap;
-        margin-bottom: 120px;
+        background-color: #f1f1f1;
+        .card-content {
+            font-size: 20px;
+            margin-bottom: 70px;
+            padding-left: 5px;
+            padding-right: 5px;
+            color: black;
+        }
+        .title {
+            font-size: 30px;
+            margin-top: 20px;
+            color: black;
+        }
+        .image {
+            opacity: 1;
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: 0.5s ease;
+            backface-visibility: hidden;
+        }
     }
 }
 
@@ -53,15 +36,32 @@
     height: max-content;
     color: black;
     margin-top: 70px;
+    margin-bottom: 80px;
     font-size: 40px;
     width: 100%;
     text-align: center;
 
+    .about-title {
+        margin-top: 80px;
+        margin-bottom: 40px;
+        text-decoration: underline;
+    }
     .about-text {
         font-size: 25px;
-        text-align: center;
+        text-align: justify;
         margin-left: 60px;
         margin-right: 60px;
         margin-bottom: 20px;
+        line-height: 30px;
+        padding-left: 750px;
+        color: black;
+    }
+
+    @media screen and (max-width: 600px) {
+        .column {
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+        }
     }
 }

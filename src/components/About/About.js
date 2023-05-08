@@ -3,41 +3,37 @@ import './_About.scss'
 const About = () => {
     return (
         <div className="about">
-            <h1>About us</h1>
+            <h1 className="about-title">About us</h1>
             <p class="about-text">
-                One day in my kids daycare I saw a book shelf where parents put
-                books to share with other kids. And I liked that idea because
-                when you buy book you do not know if your kid would like it or
-                not. But when sharing books you can simply return it and take
-                another one for free. The only disadvantage was that you need to
-                go to daycare to check what books are available. And thats when
-                we came up with idea of an application for sharing books that
-                would allow to search for books and contact owner without going
-                anywhere. The second time when I remembered this idea was when
-                in area I live started to come a lot of refugees from Ukrain and
-                people from Russia who went out from their home countries to
-                save their lives and families. A lot of them arrived in the US
-                without a lot of money but with hope that once they could return
-                to their countries and make it better. Some of them are older
-                people who have kids here and they are not ready to learn new
-                languages. So they just need books on their native language to
-                read. Some of them are small kids and their parents who just try
-                to save native language. And some of them are school age kids
-                who continue their education in native country remotely. But
-                books in Russian/Ukranian/any other languages are really
-                expensive in the US. Not everyone could afford it. Libraries in
-                some areas just do not have so many books in foreign languages
-                people need. And a lot of newcomes just do not have a car. When
-                our multi-national team decided to choose this idea as our
-                Practicum project we decided that it would be great not only for
-                immigrants from different countries but for everyone who just
-                love to read and ready to share have app like this and share
-                books easily. So here it is. ShareShelf app welcome you to share
-                your books and make this World a bit better!
+                ShelfShare is an innovative application that provides a platform
+                for sharing books within the community. Our idea originated from
+                a desire to enable book lovers to share books easily without the
+                hassle of physical visits to libraries or bookstores. With
+                ShelfShare, users can search for books they are interested in
+                and contact owners for borrowing without leaving their
+                communities. <br />
+                ShelfShare is not just about convenience; it is also about
+                creating a community where people can come together to share
+                their love for books. We believe that sharing books can create a
+                ripple effect that extends beyond the act of reading. By sharing
+                books, we can promote cultural exchange and understanding,
+                connect with others in our community, and contribute to
+                sustainability by reducing waste and resource consumption.
+                <br />
+                Additionally, ShelfShare recognizes the unique needs of
+                individuals who have limited access to books in their native
+                languages, such as refugees and immigrants. Our app provides a
+                platform for sharing books in a variety of languages, promoting
+                language retention and cultural preservation. <br />
+                We believe that everyone should have access to quality reading
+                materials regardless of their financial situation. ShelfShare
+                offers a cost-effective solution for book enthusiasts to
+                exchange books and build a vibrant community around literature.
+                Join us in making the world a better place one book at a time
+                with ShelfShare.
             </p>
-            <ul>
-                <div>
-                    <div className="cards">
+            <ul className='members'>
+                        <div className="card">
                         <p className="title">Olga Musteta</p>
                         <p class="card-content">
                             I moved to California in 2018, hoping to fulfill the
@@ -51,12 +47,10 @@ const About = () => {
                             children. Regarding my professional life, I keep
                             moving towards my goal of becoming a professional
                             web designer.
-                            <a href='mailto:' className='about-links'>Email</a>
-                            <a href='' className='about-links'>LinkedIn</a>
                         </p>
-                    </div>
+                       
 
-                    <div className="cards">
+                        <div className="card">
                         <p className="title">Ekaterina</p>
                         <p className="card-content">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -68,26 +62,11 @@ const About = () => {
                             eu fugiat nulla pariatur. Excepteur sint occaecat
                             cupidatat non proident, sunt in culpa qui officia
                             deserunt mollit anim id est laborum.
-
                         </p>
-                    </div>
-
-                    <div className="cards">
-                        <p className="title">Manizha</p>
-                        <p className="card-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate velit esse cillum dolore
-                            eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia
-                            deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
-
-                    <div className="cards">
+                        </div>
+                    
+                    
+                        <div className="card">
                         <p className="title">Simon</p>
                         <p className="card-content">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -100,26 +79,10 @@ const About = () => {
                             cupidatat non proident, sunt in culpa qui officia
                             deserunt mollit anim id est laborum.
                         </p>
-                    </div>
-
-                    <div className="cards">
-                        <p className="title">Larasati Sodjati</p>
-                        <p className="card-content">
-                            Full-stack web developer with expertise in building
-                            both front-end and back-end applications using
-                            Node.js, Express, HTML, CSS, and JavaScript. While
-                            her primary focus in this project is on back-end
-                            development, she has also gained valuable knowledge
-                            and experience in front-end development. In her free
-                            time, she loves hiking, traveling, and crocheting.
-                            She can be reached out via LinkedIn or email, which
-                            are listed below.
-                            <a href='mailto:larasatisodjati@gmail.com'>Email</a>
-                            <a href='https://www.linkedin.com/in/larasati-sodjati-a5b394218/'>LinkedIn</a>
-                        </p>
-                    </div>
-
-                    <div className="cards">
+                        </div>
+                    
+                    
+                        <div className="card">
                         <p className="title">Cecilia</p>
                         <p className="card-content">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -132,8 +95,61 @@ const About = () => {
                             cupidatat non proident, sunt in culpa qui officia
                             deserunt mollit anim id est laborum.
                         </p>
-                    </div>
-                    <div className="cards">
+                        </div>
+
+                        <div className="card">
+                        <p className="title">Larasati Sodjati</p>
+                        <p className="card-content">
+                        {/* <image src="Lara.jpg" alt="Avatar" class="image" /> */}
+                            Lara is originally from Indonesia but moved to the
+                            San Francisco Bay Area in 2021. She holds a degree
+                            in Chemistry and Industrial Engineering which she
+                            got in Indonesia but had difficulty finding a job
+                            that allowed for flexibility with those degrees here
+                            in the U.S. In 2019, Lara became interested in
+                            programming, but didn't have access to programming
+                            resources with a class setup in her home country
+                            until she found CTD, an organization that offers
+                            programming courses for immigrants like herself.
+                            Through CTD, Lara discovered her love for
+                            programming and hopes to create apps that will
+                            benefit people in Indonesia. She loves nature, and
+                            in her free time, Lara enjoys crocheting, hiking,
+                            and traveling with her husband.
+                        </p>
+                        </div>
+                    
+
+                        <div className="card">
+                        <p className="title">Manizha</p>
+                        <p className="card-content">
+                            Manizha is a passionate individual with a strong
+                            interest in software development. She obtained her
+                            BA in Computer Science with a focus on networking
+                            from Afghanistan and has prior experience in data
+                            gathering and system development analysis. In 2021,
+                            Manizha came to the USA and her interactions with
+                            programmers sparked a motivation to pursue her dream
+                            of becoming a professional software developer. Her
+                            experiences with Code The Dream classes and
+                            practicum, has allowed her to expand her skills even
+                            further and she is excited to continue learning and
+                            growing with the organization. Despite her busy
+                            schedule as a devoted mother of two, Manizha manages
+                            to balance her family life and coding interests. She
+                            enjoys spending quality time with her loved ones and
+                            expressing her creativity through painting during
+                            her free time. Manizha is dedicated to continuously
+                            improving her skills and knowledge in software
+                            development, as she strives to create impactful and
+                            innovative solutions.
+                        </p>
+                        </div>
+                   
+
+
+
+                        <div className="card">
                         <p className="title">Nikki Graybeal</p>
                         <p className="card-content">
                             Nikki Graybeal is an apprentice frontend developer
@@ -141,8 +157,10 @@ const About = () => {
                             former teacher, she enjoys the opportunity to
                             collaborate with and mentor others at CTD.
                         </p>
-                    </div>
-                    <div className="cards">
+                        </div>
+
+
+                        <div className="card">
                         <p className="title">Jacob Premo</p>
                         <p className="card-content">
                             Jacob is a software engineer who served as a mentor
@@ -153,8 +171,9 @@ const About = () => {
                             playing video games, and spending time with his
                             cats.
                         </p>
-                    </div>
-                    <div className="cards">
+                        </div>
+
+                        <div className="card">
                         <p className="title">Rachel Westernmann</p>
                         <p className="card-content">
                             Rachel started her career as a school librarian
@@ -170,8 +189,8 @@ const About = () => {
                             She calls the Carolinas her home, going between
                             Durham, NC and the mountains whenever she is able.
                         </p>
+                        </div>
                     </div>
-                </div>
             </ul>
         </div>
     )
