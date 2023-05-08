@@ -1,7 +1,7 @@
 import React from "react";
 import BookItem from "../BookItem/BookItem"
 
-const BookList = ({ bookList, setList, handleOnBookDelete, isBookOwner }) => {
+const BookList = ({ bookList, handleOnBookDelete, isBookOwner }) => {
 
     return (
         <ul className='cardsList'>
@@ -9,7 +9,6 @@ const BookList = ({ bookList, setList, handleOnBookDelete, isBookOwner }) => {
                 <BookItem 
                     key={item.ISBN || `${item.title}|${item.author}`}
                     item={item} 
-                    setList={setList}
                     handleOnBookDelete={handleOnBookDelete}
                     isBookOwner={isBookOwner}
                 />

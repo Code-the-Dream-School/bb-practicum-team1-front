@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-var remove = '\u2718';
+// var remove = '\u2718';
+
+const closeButton = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>
+
 
 const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelectedURL, urlButton, setUrlButton }) => {
     const handleURLToggle = (event) => {
@@ -23,7 +26,7 @@ const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelected
                                         src={URL.createObjectURL(selectedImage)}
                                     />
                                     
-                                    <button className='removeButton' onClick={() => setSelectedImage('')} title='Remove' >{remove}</button>
+                                    <button className='removeButton' onClick={() => setSelectedImage('')} title='Remove' >{closeButton}</button>
                                 </div>
                             )}
                             <br />
@@ -58,8 +61,6 @@ const ImageToggle = ({ selectedImage, setSelectedImage, selectedURL, setSelected
                                                     className='imageCoverUrl'
                                                     src={(selectedURL)}
                                                 />
-                                                
-                                                <button className='removeButton' onClick={() => setSelectedURL('')} title='Remove' >{remove}</button>
                                             </div>
                                         )}
                                     </div>

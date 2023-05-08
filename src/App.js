@@ -46,8 +46,10 @@ const App = () => {
     const [night, setNight] = useState(false)
     const [sessionObject, setSessionObject] = useState(getCookie(cookieName))
     const [urlButton, setUrlButton] = useState(false)
+    const [loading, setLoading] = useState(false) 
+    const [modalIsOpen, setModalIsOpen]=useState(false);  
+    const [openRigthNav, setIsOpenRightNav] = useState(false); 
 
-    const [loading, setLoading] = useState(false)
     return (
         <>
             <SessionContext.Provider
@@ -63,19 +65,89 @@ const App = () => {
                                     [inputName]: inputValue,
                                 }),
 
-                            handleBulkInput: (inputObj) =>
-                                setInputs({ ...inputs, ...inputObj }),
-                        }}
-                    >
-                        <Header night={night} setNight={setNight} />
-                        <div className="content">
-                            <div
-                                className={
-                                    !night ? 'day-mode-bg' : 'night-mode-bg'
-                                }
-                            >
-                                <Routes>
-                                    <Route path="" element={<HomePage />} />
+                        handleBulkInput: (inputObj) =>
+                            setInputs({ ...inputs, ...inputObj }),
+                    }}
+                >
+                    <Header 
+                        night={night} 
+                        setNight={setNight} 
+                        openRigthNav={openRigthNav} 
+                        setIsOpenRightNav={setIsOpenRightNav}
+                    />
+                    <div className="content">
+                        <div
+                            className={!night ? 'day-mode-bg' : 'night-mode-bg'}
+                        >
+                            <Routes>
+                                <Route path="" element={<HomePage />} />
+                                    <Route
+                                        path="/login"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="anonymous">
+                                                <Login
+                                                    setSessionObject={
+                                                        setSessionObject
+                                                    }
+                                                />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/sign-up"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="anonymous">
+                                                <SignUp
+                                                    setSessionObject={
+                                                        setSessionObject
+                                                    }
+                                                />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route path="/about" element={<About />} />
+                                    <Route
+                                        path="/search"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <SearchPage />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/books/create"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <CreateBook 
+                                                    urlButton={urlButton}
+                                                    setUrlButton={setUrlButton}
+                                                    modalIsOpen={modalIsOpen}
+                                                    setModalIsOpen={setModalIsOpen}
+                                                />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/books/edit/:bookId"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <CreateBook 
+                                                    urlButton={urlButton}
+                                                    setUrlButton={setUrlButton}
+                                                    modalIsOpen={modalIsOpen}
+                                                    setModalIsOpen={setModalIsOpen}
+                                                />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/books/:bookId"
+                                        element={
+                                            <ProtectedRoute requiredAuthLevel="user">
+                                                <SingleBook />
+                                            </ProtectedRoute>
+                                        }
+                                    />
                                     <Route
                                         path="/login"
                                         element={
