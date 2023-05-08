@@ -1,7 +1,7 @@
 .book-item-single {
     max-width: 600px;
     min-width: 600px;
-    height: 810px;
+    height: 830px;
     padding-top: 5px;
     padding-bottom: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -126,20 +126,34 @@
     font-size: 35px;
   }
 
+  .container-single {
+    height: fit-content;
+  }
+
+  .cover-container-single {
+    max-height: 400px;
+    .coverImage-single {
+      max-height: 400px;
+      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+      max-width: 75%;
+    }
+  }
+
 @media (max-width: 768px) {
   .lang-p-single {
-    padding-top: 65px;
+    padding-top: 55px;
     font-size: smaller;
   }
 
   .genre-p-single {
-    padding-top: 45px;
+    padding-top: 35px;
     font-size: smaller;
   }
 
   .author-p-single{
-    padding-top: 25px;
+    padding-top: 15px;
     font-size: smaller;
+    max-width: 320px;
   }
 
   .coverImage-single {

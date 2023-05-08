@@ -15,3 +15,17 @@ const LoadingSpinner = () => {
 }
 
 export default LoadingSpinner
+
+// const [quote, setQuote] = useState({})
+
+// const getRandomQuote = () => {
+//     setLoading(true)
+//     setTimeout(() => {
+//         fetch('https://api.quotable.io/random')
+//             .then((res) => res.json())
+//             .then((data) => {
+//                 setLoading(false)
+//                 setQuote(data)
+//             })
+//     }, 5000)
+// }

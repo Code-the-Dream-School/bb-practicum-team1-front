@@ -26,18 +26,18 @@ const About = () => {
                         to libraries or bookstores. With ShelfShare, users can
                         search for books they are interested in and contact
                         owners for borrowing without leaving their communities.
+                        ShelfShare is not just about convenience; it is also about
+                        creating a community where people can come together to share
+                        their love for books. We believe that sharing books can create a
+                        ripple effect that extends beyond the act of reading. By sharing
+                        books, we can promote cultural exchange and understanding,
+                        connect with others in our community, and contribute to
+                        sustainability by reducing waste and resource consumption.
+                <br />
                     </p>
                 </div>
             </div>
             <p className="rest-of-p">
-                ShelfShare is not just about convenience; it is also about
-                creating a community where people can come together to share
-                their love for books. We believe that sharing books can create a
-                ripple effect that extends beyond the act of reading. By sharing
-                books, we can promote cultural exchange and understanding,
-                connect with others in our community, and contribute to
-                sustainability by reducing waste and resource consumption.
-                <br />
                 Additionally, ShelfShare recognizes the unique needs of
                 individuals who have limited access to books in their native
                 languages, such as refugees and immigrants. Our app provides a

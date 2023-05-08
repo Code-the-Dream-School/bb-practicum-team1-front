@@ -51,6 +51,7 @@ export const signUpAdapter = async (signUpInput: SignUpInput) =>{
     const url = `${baseURL}user/sign-up`
     const data = await fetchAPIData(url , 'POST', signUpInput, false)
     if (data) {
+        deleteCookie(cookieName)
         setCookie(cookieName, JSON.stringify(data), 1)
     }
     return data
@@ -88,6 +89,7 @@ export const loginAdapter = async (loginInput: LoginInputs ) => {
     const url =`${baseURL}user/authentication`
     const data = await fetchAPIData(url , 'POST', loginInput, false)
     if (data) {
+        deleteCookie(cookieName)
         setCookie(cookieName, JSON.stringify(data), 1)
     }
     return data
@@ -100,4 +102,4 @@ export const loginAdapter = async (loginInput: LoginInputs ) => {
  
 export const logoutAdapter = async () => {
     deleteCookie('shelf-share-session')
-}
+} 

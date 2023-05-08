@@ -1,6 +1,83 @@
-.navbar,
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background-color: var(--foreground);
+    border-radius: 9999px;
+    border: 0.5px solid wheat;
+    transform-origin: left center;
+    transition: opacity var(--animation-timing), 
+        width var(--animation-timing), 
+        rotate var(--animation-timing), 
+        translate var(--animation-timing), 
+        background-color var(--animation-timing);
+}
+
+.hamburger-menu:has(input:checked) {
+    --foreground: white;
+    --background: #333;
+}
+
+.hamburger-menu:has(input:focus-visible)::before,
+.hamburger-menu:has(input:focus-visible)::after,
+.hamburger-menu input:focus-visible {
+    border: 1px solid var(--background);
+    box-shadow: 0 0 0 1px var(--foreground);
+}
+
+.hamburger-menu {
+    --x-width: calc(var(--hamburger-height) * 1.41421356237);
+    display: flex;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    width: max-content;
+    position: absolute;
+    top: var(--hamburger-margin);
+    right: var(--hamburger-margin);
+    z-index: 25;
+    cursor: pointer;
+    display: none;
+}
+
+.hamburger-menu input {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+}
+
+.hamburger-menu input:checked {
+    opacity: 0;
+    width: 0;
+}
+
+.hamburger-menu:has(input:checked) + .sidebar {
+    translate: 0;
+}
+
+.hamburger-menu:has(input:checked)::before {
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
+}
+
+.hamburger-menu:has(input:checked)::after {
+    rotate: -45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2);
+}
+
+.logo-pic {
+    padding-top: 18px;
+    padding-left: 0px;
+}
+
 .logo-pic img {
-    height: 60px;
+    height: 210px;
+    margin-left: -40px;
 }
 
 .nav-container {
@@ -24,102 +101,42 @@
     border-bottom: 5px solid $tertiaryColor;
 }
 
-.navbar {
-    width: fit-content;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.closeClass ul {
-    text-align: right;
-}
-
-.openClass ul {
-    text-align: right;
-}
-
-.menu-toggle {
-    cursor: pointer;
-}
-
-.hamBox {
-    position: relative;
-    width: 4px;
-    height: 4px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: 0.3s ease;
-    padding: 1.5em;
-    display: none;
-    z-index: 6;
-}
-
-.hamBox:hover {
-    z-index: 5;
-    background-color:azure;
-}
-
-.hamBoxOpen {
-    background: grey;
-}
-
-.lineTop,
-.lineBottom {
-    margin: 0 auto;
-    position: absolute;
-    display: block;
-    width: 2.4rem;
-    height: 4px;
-    border-radius: 10px;
-    background: #364958;
-    left: 0;
-    right: 0;
-    transform: rotate(0deg);
-    transition: all 0.4s;
-}
-
-.lineTop {
-    top: 1.7em;
-    z-index: 4;
-}
-
-.lineBottom {
-    bottom: 1.6em;
-    z-index: 4;
-}
-
-.lineTop.spin {
-    top: 1.4em;
-    transform: rotate(135deg);
-    background: #fff;
-}
-
-.lineBottom.spin {
-    bottom: 1.4em;
-    transform: rotate(225deg);
-    background: #fff;
-}
-
 .night-mode {
     padding: 10px;
     width: 50px;
     background-color: transparent;
-    margin-left: 20px;
 }
 
 .day-mode {
     padding: 10px;
     background-color: transparent;
     width: 50px;
-    margin-left: 20px;
+}
+
+.day-mode img {
+    height: 50px;
+}
+
+.night-mode img {
+    height: 50px;
 }
 
 .day-mode > span {
-    fill: $white;
+    fill:goldenrod;
 }
 
-.nigt-mode-header {
+.night-mode > span {
+    fill:darkorange;
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.night-mode-header {
     top: 0;
     position: fixed;
     z-index: 2;
@@ -133,28 +150,130 @@
     border-bottom: 5px solid $tertiaryColor;
 } 
 
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-17 a {
+    text-decoration: none;
+    min-width: fit-content;
+    color: #BFD7EA;
+}
+
+.button-17 a:focus {
+    opacity: 50%;
+    color: white;
+}
+
+.button-17 a:visited {color: white;}
+
+.button-17 {
+    align-items: center;
+    appearance: none;
+    border-radius: 4px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 1px -2px,rgba(0, 0, 0, .14) 0 2px 2px 0,rgba(0, 0, 0, .12) 0 1px 5px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: Roboto,sans-serif;
+    font-size: .875rem;
+    font-weight: 500;
+    height: 36px;
+    justify-content: center;
+    letter-spacing: .0892857em;
+    line-height: normal;
+    min-width: 64px;
+    outline: none;
+    overflow: visible;
+    padding: 0 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    will-change: transform, opacity;
+    margin-right: 20px;
+}
+
+.button-17:hover {
+    box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+    background-color: #BFD7EA;
+}
+  
+.button-17:disabled {
+box-shadow: rgba(0, 0, 0, .2) 0 0 0 0, rgba(0, 0, 0, .14) 0 0 0 0, rgba(0, 0, 0, .12) 0 0 0 0;
+color: rgba(0, 0, 0, .37);
+cursor: default;
+pointer-events: none;
+}
+
+.nav .log-out-button button svg {
+    fill: $white;
+}
+
+.nav .button-17 {
+    background-color: rgb(187, 242, 245);
+}
+
+.nav .button-17 a {
+    color: $tertiaryColor;
+}
+
+.night-mode-header .button-17 {
+    background-color: $tertiaryColor;
+}
+
+.button-17:not(:disabled):hover {
+background-color: #BFD7EA;
+}
+
+.button-17:focus {
+box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+}
+
+.button-17:active {
+box-shadow: rgba(0, 0, 0, .2) 0 5px 5px -3px, rgba(0, 0, 0, .14) 0 8px 10px 1px, rgba(0, 0, 0, .12) 0 3px 14px 2px;
+background: #364958;
+}
+
+.log-out-button button {
+    width: fit-content;
+    padding: 2px 10px;
+    border-radius: 50%;
+    background-color: none;
+    color: $white;
+}
+
+.log-out-button button svg {
+    width: 30px;
+    fill: $tertiaryColor;
+}
+
+.log-out-button button:not(:disabled) {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+.log-out-button button:not(:disabled):hover {
+    background-color: transparent;
+}
+
+.log-out-button button svg:hover {
+    fill: red;
+}
+
+.right-nav-ul li {
+    width: 9rem;
+}
+
 @media (max-width: 768px) {
-    .nav {
-        padding: 10px;
-    }
-
-    .hamBox {
-        position: fixed;
-        top: 0;
-        right: 0;
-        display: flex;
-        margin-top: 10px;
-        margin-right: 10px;
-    }
-
-    .navbar {
-        margin-bottom: 50px;
-        width: fit-content;
-    }
-
-    .menu-toggle {
-        position: relative;
-    }
 
     .night-mode {
         width: 40px;
@@ -164,11 +283,99 @@
         width: 40px;
     }
 
-    .lineTop, .lineBottom {
-        background-color: $black;
+    .night-mode {
+        padding: 10px;
+        width: 50px;
+        background-color: transparent;
+        margin-right: 60px;
+    }
+    
+    .day-mode {
+        padding: 10px;
+        background-color: transparent;
+        width: 50px;
+        margin-right: 60px;
+    }
+
+    .sidebar, .right-nav-ul {
+        position: fixed;
+        top: 0;
+        right: 0;  
+    }
+
+    .right-nav-ul {
+        padding-top: 50px;
+        padding-left: 5px;
+        min-width: none;
+    }
+
+    .right-nav-ul li {
+        width: 80%;
+    }
+
+    .log-out-button button {
+        width: 100%;
+    }
+
+    .hamburger-menu {
+        display: flex;
+        top: 0;
+        right: 0;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    .sidebar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        translate: 100%;
+        padding: 0.5rem 1rem;
+        padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 2rem);
+        min-width: 15rem;
+        min-height: 100vh;
+        top: 0;
+        background-color: $tertiaryColor;
+        transition: 350ms ease-in-out;;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        padding-right: 50px;
+    }
+
+    li {
+        cursor: pointer;
+        margin-top: 4.5rem;
+        margin-left: 20px;
+    }
+    .button-17 {
+        width: 90%;
+        min-width: fit-content;
+        margin-top: 50px;
+    }
+
+    .button-17 a:visited {color: $tertiaryColor;}
+
+    .button-17:not(:disabled) {
+        background-color: $white;
+      }
+
+      .log-out-button button svg {
+        width: 50px;
+        fill: $white;
     }
 
     .logo-pic img {
-        height: 50px;
+        padding-right: 20px;
+    }
+
+    .night-mode {
+        margin-right: 70px;
+    }
+
+    .day-mode {
+        margin-right: 70px;
     }
 }

@@ -14,7 +14,7 @@
     text-align: justify;
 }
 .image-hands img {
-    width: 60%;
+    width: 50%;
 }
 .image-and-about {
     display: grid;
@@ -37,8 +37,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 2px;
-    grid-row-gap: 2px;
+    grid-column-gap: 6px;
+    grid-row-gap: 3px;
     .title {
         font-size: 2rem;
         padding: 10px;
@@ -80,7 +80,7 @@
 }
 
 .button {
-    background-color: gray;
+    background-color: $tertiaryColor;
     border: none;
     color: white;
     padding: 16px 32px;
@@ -92,7 +92,8 @@
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
-    width: 250px;
+    width: 350px;
+    margin-bottom: 70px;
 }
 
 .button:hover {
@@ -102,8 +103,8 @@
 // card
 .card {
     max-width: 450px;
-    min-width: 500px;
-    height: 950px;
+    min-width: 550px;
+    height: 800px;
     padding-top: 5px;
     padding-bottom: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -134,11 +135,16 @@
         grid-template-rows: repeat(9, 1fr);
         grid-column-gap: 0px;
         grid-row-gap: 8px;
+        width: 100vw;
+        background-color: aqua;
     }
     .image-and-about {
         grid-template-columns: repeat(1, 1fr);
     }
-    
+    // .card{
+    //     width:100vw;
+
+    // }
 
 }
 

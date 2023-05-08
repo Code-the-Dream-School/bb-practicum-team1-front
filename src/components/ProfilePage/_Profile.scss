@@ -1,0 +1,88 @@
+.Profile{
+    color: $tertiaryColor;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    .user-container{
+        font-size: 50px;
+        position: relative;
+        margin: 25px auto;
+        padding: 20px;
+        width: 700px;
+        border-right: 5px double $tertiaryColor;
+        .header-profile {
+            padding-bottom: 20px;
+            color: $white;
+            background-color: $tertiaryColor;
+            padding: 10px 20px;
+        }
+        .user {
+            padding: 20px;
+            line-height: 4rem;
+                div {
+                    font-size: 2rem;
+                    span {
+                        font-weight: $fontBold;
+                    }
+                }
+        }
+    }
+    .books{
+        .Pagination{
+            width: 100%;
+            .cardsList {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(1, 1fr);
+                grid-column-gap: 20px;
+                grid-row-gap: 0px;
+                width: fit-content;
+                padding-left: 10px;
+                max-width: 1650px;
+            }
+            .pagination-container {
+                width: 100%;
+            }
+        }
+             
+    }
+}
+
+@media (max-width: 768px) {
+    .Profile{
+        grid-template-columns: repeat(1, 1fr);
+        width: 100vw;
+    }
+
+    .Profile .user-container {
+        max-width: 400px;
+        border-right: none;
+        border-bottom: 5px double $tertiaryColor;
+        
+    }
+
+    .Profile .user-container .user {
+        line-height: 2rem;
+    }
+    
+    .Profile .user-container .user div {
+        font-size: 1rem;
+    }
+    .edit-and-delete-btn {
+        max-width: 160px;
+        .remove-btn svg {
+            width: 15px;
+        }
+        .edit-button svg {
+            max-width: 20px;
+        }
+    }
+
+    .paginationBttns li {
+        margin-top: 0rem;
+        margin-left: 0px;
+    }
+}
+

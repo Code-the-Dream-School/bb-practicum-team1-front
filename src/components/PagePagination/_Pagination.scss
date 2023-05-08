@@ -1,0 +1,62 @@
+.Pagination {
+    width: 100vw;
+    height: auto;
+    padding: 8px 16px;
+
+    .book {
+        width: 80%;
+        position: relative;
+        margin: 0 auto;
+        
+    }
+    .paginationBttns {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 50px;
+        margin-top: 20px;
+    }
+
+    .paginationBttns a {
+        color: $tertiaryColor;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        padding: auto;
+        margin: auto;
+        cursor: pointer;
+        border-radius: 10%;
+        font-size: 2rem;
+    }
+
+    .paginationBttns a:hover {
+        cursor: pointer;
+        background-color: $tertiaryColor;
+        color: $white;
+    }
+
+    &.selected {
+        background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .paginationDisabled a {
+        pointer-events: none;
+
+        &:hover {
+            background-color: transparent;
+            cursor: default;
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+    .Pagination .paginationBttns {
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+
+    .Pagination .paginationBttns a {
+        font-size: 1.4rem;
+    }
+}
