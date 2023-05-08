@@ -21,11 +21,13 @@ const AllConversations = () => {
     return (
         <div className='allconversations-page'>
             {allConversations && Object.keys(allConversations).length > 0 ? 
-            <div>
+            <div className='allconversations'>
                 {Object.keys(allConversations).map(key => 
                     <div  className='allconversations-list' id={`conversation${key}`} key={`conversation${key}`}>
-                        <p className='allconversations-user' style={{color: 'black'}}>Message history with user {allConversations[key].username}: ({allConversations[key].messages.length}) message(s)</p>
-                        <Link to={`/chat/${key}`}>Open conversation</Link>
+                        <p className='allconversations-user'>Message history with user: 
+                            <span className='allconversations-username'>{allConversations[key].username}</span>
+                        </p>
+                        <Link to={`/chat/${key}`} className='message-link'>{allConversations[key].messages.length}</Link>
                     </div>
                 )}
             </div> : 
