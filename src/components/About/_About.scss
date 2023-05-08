@@ -1,67 +1,90 @@
+.about {
+    color: $tertiaryColor;
+    margin: 50px;
+    text-align: center;
+}
+.title-and-p {
+    font-size: 2rem;
+    line-height: 1rem;
+}
+.about-text {
+    text-align: left;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    text-align: justify;
+}
+.image-hands img {
+    width: 60%;
+}
+.image-and-about {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.about-title {
+    font-size: 5rem;
+    margin-bottom: 40px;
+}
+.rest-of-p {
+    text-align: left;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    text-align: justify;
+}
 .members {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        padding: 16px;
-        text-align: center;
-        background-color: #f1f1f1;
-        .card-content {
-            font-size: 20px;
-            margin-bottom: 70px;
-            padding-left: 5px;
-            padding-right: 5px;
-            color: black;
-        }
-        .title {
-            font-size: 30px;
-            margin-top: 20px;
-            color: black;
-        }
-        .image {
-            opacity: 1;
-            display: block;
-            width: 100%;
-            height: auto;
-            transition: 0.5s ease;
-            backface-visibility: hidden;
-        }
+    .title {
+        font-size: 2rem;
+        padding: 10px;
+        font-weight: $fontBold;
     }
-}
-
-.about {
-    height: max-content;
-    color: black;
-    margin-top: 70px;
-    margin-bottom: 80px;
-    font-size: 40px;
-    width: 100%;
-    text-align: center;
-
-    .about-title {
-        margin-top: 80px;
-        margin-bottom: 40px;
-        text-decoration: underline;
-    }
-    .about-text {
-        font-size: 25px;
+    // .img-container {
+    //     border: 1px solid red;
+    // }
+    .card img {
+            max-height: 340px;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+            max-width: 55%;
+            margin: 10px;
+        }
+    .card-content {
+        font-size: 1.2rem;
         text-align: justify;
-        margin-left: 60px;
-        margin-right: 60px;
-        margin-bottom: 20px;
-        line-height: 30px;
-        padding-left: 750px;
-        color: black;
-    }
-
-    @media screen and (max-width: 600px) {
-        .column {
-            width: 100%;
-            display: block;
-            margin-bottom: 20px;
-        }
+        line-height: 1.6rem;
+        padding: 20px;
     }
 }
+// card
+    .card {
+        max-width: 600px;
+        min-width: 500px;
+        height: 800px;
+        padding-top: 5px;
+        padding-bottom: 15px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        margin: 30px auto;
+        text-align: center;
+        color: $secondaryColor;
+        a {
+            cursor: pointer;
+        }
+        p {
+            img {
+                height: 30px;
+                margin-left: 10px;
+                opacity: 80%;
+            }
+        }
+        .profile-image:hover {
+          border: 3px solid transparent;
+        }
+    }
