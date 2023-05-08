@@ -75,7 +75,6 @@ const Header = ({ night, setNight, openRigthNav, setIsOpenRightNav }) => {
                                             logoutAdapter()
                                             setSessionObject(null)
                                             checkCheckbox(false)
-                                            console.log(checkbox)
                                             navigate('/login');
                                         }}
                                     >

@@ -107,14 +107,6 @@ const App = () => {
                                     />
                                     <Route path="/about" element={<About />} />
                                     <Route
-                                        path="/search"
-                                        element={
-                                            <ProtectedRoute requiredAuthLevel="user">
-                                                <SearchPage />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
                                         path="/books/create"
                                         element={
                                             <ProtectedRoute requiredAuthLevel="user">
@@ -148,58 +140,9 @@ const App = () => {
                                             </ProtectedRoute>
                                         }
                                     />
-                                    <Route
-                                        path="/login"
-                                        element={
-                                            <ProtectedRoute requiredAuthLevel="anonymous">
-                                                <Login
-                                                    setSessionObject={
-                                                        setSessionObject
-                                                    }
-                                                />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
-                                        path="/sign-up"
-                                        element={
-                                            <ProtectedRoute requiredAuthLevel="anonymous">
-                                                <SignUp
-                                                    setSessionObject={
-                                                        setSessionObject
-                                                    }
-                                                />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route path="/about" element={<About />} />
                                     <Route
                                         path="/search"
                                         element={<SearchPage />}
-                                    />
-                                    <Route
-                                        path="/books/create"
-                                        element={
-                                            <ProtectedRoute requiredAuthLevel="user">
-                                                <CreateBook />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
-                                        path="/books/edit/:bookId"
-                                        element={
-                                            <ProtectedRoute requiredAuthLevel="user">
-                                                <CreateBook />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
-                                        path="/books/:bookId"
-                                        element={
-                                            <ProtectedRoute requiredAuthLevel="user">
-                                                <SingleBook />
-                                            </ProtectedRoute>
-                                        }
                                     />
                                     <Route
                                         path="/chat/:recipientId"

@@ -80,29 +80,53 @@ const Chat = () => {
         return userId;
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            createMessage();
+        }
+    };
+
     return (
         <div className='chat-page'>
             {selectedRecipientId ? 
             <div className='chat-page-input'>
                 {selectedRecipientConversations && selectedRecipientConversations.messages && selectedRecipientConversations.messages.length > 0 ? 
-                <div className='chat-conversation' id={`selectedConversation${selectedRecipientId}`} key={`selectedConversation${selectedRecipientId}`}>
+                <div className='chat' id={`selectedConversation${selectedRecipientId}`} key={`selectedConversation${selectedRecipientId}`}>
                     {selectedRecipientConversations.messages.map(item => 
-                        <div className='chat-page-message' id={`message${item._id}`} key={`message${item._id}`}>
-                            <p className='message-username'>{format(new Date(item.createdAt), 'MM-dd-yyyy HH:mm:ss')}</p>
-                            <p className='message-username'>{calculateUsername(item.postedByUser, selectedRecipientConversations.userId, selectedRecipientConversations.username, sessionObject.sessionObject)}</p>
-                            <p className='message-user-message'>{item.messageContent}</p>
-                        </div>)
+                        <div className='message' id={`message${item._id}`} key={`message${item._id}`}>
+                            {calculateUsername(item.postedByUser, selectedRecipientConversations.userId, selectedRecipientConversations.username, sessionObject.sessionObject) === 'You' ?
+                                <span className='spacer'></span> : null}
+                            <div className={calculateUsername(item.postedByUser, selectedRecipientConversations.userId, selectedRecipientConversations.username, sessionObject.sessionObject) === 'You' ? 'my-message' : 'other-message'}>                             
+                                <div className='message-text'>
+                                    <p className='message-date'>{format(new Date(item.createdAt), 'MM-dd-yyyy HH:mm:ss')}</p>
+                                    <p className='message-username'>{calculateUsername(item.postedByUser, selectedRecipientConversations.userId, selectedRecipientConversations.username, sessionObject.sessionObject)}</p>
+                                    <p className='message-text'>{item.messageContent}</p>
+                                </div> 
+                            </div>
+                            {calculateUsername(item.postedByUser, selectedRecipientConversations.userId, selectedRecipientConversations.username, sessionObject.sessionObject) !== 'You' ?
+                                <span></span> : null}
+                        </div>
+                        )
                     }  
                 </div> :
                 null
                 }
-                <input 
-                    type='text' 
-                    placeholder='Type message' 
-                    onChange={messageTextChanged} 
-                    value={currentMessageText}
-                /> 
-                <button className='chat-send-button' type='submit' onClick={createMessage}>Send</button>
+                <div className='chat-page-send-message'>
+                    <input 
+                        type='text' 
+                        placeholder='Type message' 
+                        onChange={messageTextChanged} 
+                        value={currentMessageText}
+                        onKeyDown={handleKeyDown}
+                    /> 
+                    <button 
+                        className='chat-send-button' 
+                        type='submit' 
+                        onClick={createMessage}
+                    >
+                        Send
+                    </button>
+                </div>
             </div> :
             null
             }

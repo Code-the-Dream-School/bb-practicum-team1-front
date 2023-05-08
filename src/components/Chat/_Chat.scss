@@ -2,41 +2,84 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2rem;
-}
-
-.chat-page-input {
-    // display: grid;
-    // grid-template-columns: repeat(1, 1fr);
-    // grid-row-gap: 1rem;
+    margin: 0 1rem;
 }
 
 .chat-page-input input {
     width: 100%;
     padding: 12px 20px;
     margin: 1rem 0;
-    // display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
-    // box-sizing: border-box;
     font-size: 1rem;
 }
 
-.chat-page-message {
-    // display: grid;
-    // grid-template-columns: repeat(1, 1fr);
-    // grid-row-gap: 1rem;
-    color: #000;
-    margin: 1rem 0;
+.chat {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    height: 450px;
+    width: 550px;
+    color: black;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    overflow-y: scroll;
+}
+
+.message-date {
+    margin-bottom:  0.5rem;
+    font-size: smaller;
 }
 
 .message-username {
-    font-size: 1rem;
-    margin: 0.5rem 0;
+    margin-bottom:  0.5rem;
+    font-weight: 550;
 }
 
-.message-user-message {
-    font-size: 0.5rem 0;
+.message-text {
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.message {
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.my-message {
+    width: 50%;
+    display: flex;
+    background-color: #BFD7EA;
+    border-radius: 15px;
+    padding: 1rem;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.other-message {
+    width:50%;
+    display: flex;
+    background-color: #d3d3d3;
+    border-radius: 15px;
+    padding: 1rem;
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.spacer {
+    width: 50%;
+    display: block;
+}
+
+.chat-page-send-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .chat-send-button {
@@ -46,7 +89,6 @@
     box-shadow: #0B3954 4px 4px 0 0;
     color: #0B3954;
     cursor: pointer;
-    display: inline-block;
     font-weight: 600;
     font-size: 26px;
     padding: 0 18px;
