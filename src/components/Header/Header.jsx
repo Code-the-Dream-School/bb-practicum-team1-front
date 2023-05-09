@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
-import logo from './Logo.svg'
-import LogoNight from './LogoNight.svg'
+import logo from './logo-green.png'
+import LogoNight from './logo-night.png'
 import lamp from './Lamp n.svg'
 import lampDay from './Lamp day.svg'
 import { Link, useNavigate } from 'react-router-dom'
@@ -51,20 +51,16 @@ const Header = ({ night, setNight, openRigthNav, setIsOpenRightNav }) => {
                             {sessionObject
                                 ? forLoggedInUser.map(function (routeObj) {
                                     return (
-                                            <li key={routeObj.route} className="button-17">
-                                            <Link key={routeObj.route} to={routeObj.route} className='logged-in-users' onBlur={hide} onFocus={show}>
-                                                {routeObj.name}
-                                            </Link>
-                                            </li>
+                                        <Link key={routeObj.route} to={routeObj.route} className="button-17" onBlur={hide} onFocus={show}>
+                                            {routeObj.name}
+                                        </Link>
                                     )
                                 })
                                 : forSignedOutUser.map(function (routeObj) {
                                     return (
-                                            <li key={routeObj.route} className="button-17">
-                                            <Link to={routeObj.route} key={routeObj.route} className='signed-out-users' onBlur={hide} onFocus={show}>
-                                                {routeObj.name}
-                                            </Link>
-                                            </li>
+                                        <Link to={routeObj.route} key={routeObj.route} className="button-17" onBlur={hide} onFocus={show}>
+                                            {routeObj.name}
+                                        </Link>
                                     )
                                 })}
                             {sessionObject && (
