@@ -75,9 +75,18 @@
     padding-left: 0px;
 }
 
+.logo-pic a {
+    height: fit-content;
+    position: relative;
+}
+
 .logo-pic img {
-    height: 210px;
-    margin-left: -40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 200px;
+    width: 8rem;
+    margin-top: -15px;
 }
 
 .nav-container {
@@ -167,7 +176,7 @@
     color: white;
 }
 
-.button-17 a:visited {color: white;}
+.buttons a:visited {color: white;}
 
 .button-17 {
     align-items: center;
