@@ -194,7 +194,7 @@
     justify-content: center;
     letter-spacing: .0892857em;
     line-height: normal;
-    min-width: 64px;
+    min-width: 150px;
     outline: none;
     overflow: visible;
     padding: 0 16px;
@@ -365,7 +365,7 @@ background: #364958;
         margin-top: 50px;
     }
 
-    .button-17 a:visited {color: $tertiaryColor;}
+    .buttons a:visited {color: $tertiaryColor;}
 
     .button-17:not(:disabled) {
         background-color: $white;
