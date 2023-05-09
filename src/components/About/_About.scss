@@ -79,7 +79,7 @@
     padding-left: 1rem;
 }
 
-.button {
+.button1 {
     background-color: $tertiaryColor;
     border: none;
     color: white;
@@ -96,7 +96,7 @@
     margin-bottom: 70px;
 }
 
-.button:hover {
+.button1:hover {
     opacity: 1;
 }
 
@@ -141,10 +141,4 @@
     .image-and-about {
         grid-template-columns: repeat(1, 1fr);
     }
-    // .card{
-    //     width:100vw;
-
-    // }
-
 }
-

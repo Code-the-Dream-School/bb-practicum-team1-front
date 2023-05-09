@@ -292,7 +292,7 @@ const About = () => {
                 </div>
             </ul>
             <a
-                className="button"
+                className="button1"
                 href="https://shelf-share.onrender.com/api-docs/"
                 target="_blank"
             >

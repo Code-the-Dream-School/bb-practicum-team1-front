@@ -15,7 +15,7 @@ const AbstractModal = ({ modalId, className, modalIsOpen, onModalClose, children
                     bottom: 'auto',
                     transform: 'translate(100%, 50%)',
                     width: '37%', 
-                    height: '13%', 
+                    height: '18%', 
                     marginTop: '15rem', 
                     color: 'white',
                     padding: '1rem',
