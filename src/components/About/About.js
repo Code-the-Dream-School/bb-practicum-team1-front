@@ -239,7 +239,7 @@ const About = () => {
                 <div className="card">
                     <div className="name-position-img">
                         <div className="name-title">
-                            <p className="title">Olga Musteta</p>
+                            <p className="title">Olga Musteață</p>
                             <p className="job-title">Front End Team</p>
                         </div>
                         <img
