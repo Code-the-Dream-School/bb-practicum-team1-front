@@ -8,30 +8,24 @@
     line-height: 1rem;
 }
 .about-text {
-    text-align: left;
     font-size: 1.6rem;
-    line-height: 1.8rem;
+    line-height: 2.6rem;
     text-align: justify;
+    padding-left: 30px;
 }
+
 .image-hands img {
-    width: 50%;
+    width: 90%;
+    margin-right: 250px;
 }
 .image-and-about {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .about-title {
     font-size: 5rem;
     margin-bottom: 40px;
-}
-.rest-of-p {
-    text-align: left;
-    font-size: 1.6rem;
-    line-height: 2rem;
-    text-align: justify;
 }
 .members {
     display: grid;
@@ -45,9 +39,8 @@
         font-weight: $fontBold;
     }
     .card img {
-        max-height: 340px;
         box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-        max-width: 55%;
+        max-height: 200px;
         margin: 40px;
     }
     .card-content {
@@ -58,8 +51,27 @@
         margin-top: 10px;
         padding-left: 50px;
         padding-right: 50px;
+        padding-bottom: 15px;
     }
 }
+
+.container {
+    position: absolute;
+    top: 10%;
+    left: 23%;
+    width: 50%;
+  }
+    
+  .text {
+    display: inline;
+    width: 100%;
+    font-size: 1.5rem;
+  }
+    
+  .read-or-hide{
+    color: rgb(192,192,192);
+    cursor: pointer;
+  }
 
 .name-position-img {
     display: grid;
@@ -100,17 +112,19 @@
     opacity: 1;
 }
 
+.h2-about {
+    font-size: 3rem;
+    padding: 30px;
+}
+
 // card
 .card {
     max-width: 450px;
     min-width: 550px;
-    height: 800px;
+    height: fit-content;
+    min-height: 440px;
     padding-top: 5px;
     padding-bottom: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     margin: 30px auto;
     text-align: center;
     color: $secondaryColor;
@@ -130,15 +144,83 @@
 }
 @media all and (max-width: 500px) {
     .members{
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(9, 1fr);
-        grid-column-gap: 0px;
-        grid-row-gap: 8px;
-        width: 100vw;
-        background-color: aqua;
+        display: inline;
     }
     .image-and-about {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .image-hands img {
+        display: none;
+    }
+    .image-and-about {
+        display: inline;
+    }
+
+    .members .card img {
+        max-height: 100px;
+        text-align: left;
+    }
+
+    .about-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        font-weight: $fontBold;
+    }
+
+    .about {
+        margin: 0px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    // card
+    .card {
+        max-width: 380px;
+        min-width: 250px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin: 0px auto;
+        min-height: 300px;  
+    }
+
+    .about-text {
+        padding-left: 0px;
+    }
+
+    .h2-about {
+        font-size: 2rem;
+        font-weight: $fontBold;
+        padding: 5px;
+        margin-top: 20px;
+    }
+
+    .job-title {
+        margin-top: 0px;
+        font-size: 1rem;
+        padding-left: 0rem;
+        border-top: 3px solid $tertiaryColor;
+        padding-top: 10px;
+    }
+
+    .members .card-content {
+        font-size: 1rem;
+        line-height: 1.4rem;
+        padding: 5px;
+        margin-top: 5px;
+        padding-left: auto;
+        padding-right: auto;
+        padding-bottom: 5px;
+    }
+
+    .members .title {
+        font-size: 1.4rem;
+    }
+
+    .text {
+        display: inline;
+        width: 100%;
+        font-size: 1.2rem;
+        line-height: 1.4rem;
     }
 }
